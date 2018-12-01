@@ -2,14 +2,19 @@
   <title>wework</title>
 </head>
 
-<body>
+<template name="Home">
   {{> loginButtons}}
 
   <h1>Welcome to Meteor!</h1>
 
   {{> hello}}
+</template>
+
+<template name="DefaultLayout">
+  {{> yield}}
+
   {{> info}}
-</body>
+</template>
 
 <template name="hello">
   <button>Click Me</button>

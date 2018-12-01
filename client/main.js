@@ -1,3 +1,7 @@
+import './router';
+import './layout';
+import './inbox/router';
+
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
