@@ -1,0 +1,12 @@
+/* temp fix */
+body {
+  background: #ecf0f5;
+}
+
+body .main-header .logo {
+  font-family: "Source Sans Pro";
+}
+
+.align-center {
+  margin: auto;
+}

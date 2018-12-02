@@ -11,5 +11,5 @@ ApplicationController = RouteController.extend({
   },
   onStop: function() {
 
-  },
+  }
 });

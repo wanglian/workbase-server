@@ -1,0 +1,13 @@
+<template name="AdminLTE">
+  {{#unless isReady}}
+    {{> Template.dynamic template=loadingTemplate}}
+  {{else}}
+    <div class="wrapper">
+      {{> UI.contentBlock}}
+    </div>
+  {{/unless}}
+</template>
+
+<template name="AdminLTE_loading">
+  <b>Loading</b>
+</template>

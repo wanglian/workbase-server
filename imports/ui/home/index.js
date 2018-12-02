@@ -1,3 +1,5 @@
+import './home';
+
 Router.configure({
   layoutTemplate: 'DefaultLayout'
 });
