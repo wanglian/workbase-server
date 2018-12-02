@@ -1,3 +1,5 @@
+import './mailgun.test.js';
+
 import assert from "assert";
 
 describe("wework", function () {
