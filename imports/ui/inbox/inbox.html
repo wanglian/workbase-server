@@ -1,3 +1,27 @@
 <template name="Inbox">
-  Inbox
+  <ul class="list-group threads">
+    {{#each threads}}
+      <a href="#" class="list-group-item clearfix btn-thread thread">
+        <div class="thread-icon">
+          <button type="button" class="{{#unless read}}unread-button{{/unless}}"><i class="{{icon}}"></i></button>
+          {{#unless read}}<span class="unread"></span>{{/unless}}
+        </div>
+        <div class="thread-title">
+          <div class="thread-subject-wrap">
+            <span class="thread-subject text-ellipsis">{{subject}}</span>
+            <small class="pull-right text-muted">{{formattedDate updatedAt 'simple'}}</small>
+          </div>
+          <div class="thread-message-wrap">
+            <div class="thread-message text-muted">
+              <div class="message-summary">
+                <span class="text-ellipsis">
+                  {{lastMessage.content}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    {{/each}}
+  </ul>
 </template>

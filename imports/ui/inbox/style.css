@@ -1,0 +1,97 @@
+/* 左栏区域内容，话题列表 */
+ul.list-group.threads {
+  margin-bottom: 0px;
+}
+ul.list-group.threads .list-group-item.thread {
+  border: 1px solid #f1f1f1;
+  border-left: none;
+  border-right: none;
+  background-color: inherit;
+  padding: 5px 10px;
+}
+ul.list-group.threads .list-group-item.thread:hover {
+  background: rgba(249,249,249, 1);
+}
+ul.list-group.threads .list-group-item.thread:first-child {
+  border-top: none;
+}
+ul.list-group.threads .list-group-item.thread:first-child,
+ul.list-group.threads .list-group-item.thread:last-child {
+  border-radius: 0;
+}
+ul.list-group.threads .list-group-item.thread:last-child {
+  border-bottom: solid 1px #d8d8d8;;
+}
+/* 覆盖list-group-item默认的active效果 */
+ul.list-group.threads .list-group-item.thread.active {
+  color: #555;
+  background: rgba(249,249,249, 1);
+  border-color: #f1f1f1;
+}
+/* 话题标题和最新消息 */
+ul.list-group.threads .list-group-item.thread .thread-title {
+  display: table-cell;
+  width: 100%;
+}
+ul.list-group.threads .list-group-item.thread .thread-subject-wrap {
+  width: 100%;
+  display: inline-block;
+	position: relative;
+	line-height: 20px;
+}
+ul.list-group.threads .list-group-item.thread .thread-subject {
+  position: absolute;
+  width: calc(100% - 60px);
+  font-weight: 600;
+}
+ul.list-group.threads .list-group-item.thread .thread-message-wrap {
+  position: relative;
+  min-height: 18px;
+}
+ul.list-group.threads .list-group-item.thread .thread-message {
+  position: absolute;
+  font-size: 12px;
+  width: 100%;
+}
+ul.list-group.threads .list-group-item.thread .thread-message .message-summary,
+.channel-message .ellipsis-message-body .message-summary {
+  max-width: calc(100% - 45px);
+  display: inline-block;
+}
+ul.list-group.threads .list-group-item.thread .thread-message .message-files,
+.channel-message .ellipsis-message-body .message-files {
+  line-height: 18px;
+}
+ul.list-group.threads .list-group-item.thread .thread-message .message-files span:last-child,
+.channel-message .ellipsis-message-body .message-files span:last-child {
+  padding-left: 5px;
+}
+/* 列表话题图标及未读话题提示 */
+ul.list-group.threads .list-group-item.thread .thread-icon {
+  padding-right: 10px;
+  display: table-cell;
+  vertical-align: middle;
+}
+ul.list-group.threads .list-group-item.thread .thread-icon button {
+  background-color: transparent;
+  border: 1px solid;
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+  font-size: 16px;
+  padding: 0px;
+}
+ul.list-group.threads .list-group-item.thread .thread-icon button.unread-button {
+  color: #3e81de;
+  border: 1px solid #3e81de;
+}
+ul.list-group.threads .list-group-item.thread .thread-icon .unread {
+  position: absolute;
+  background: #f62d51;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  left: 40px;
+  top: 13px;
+}

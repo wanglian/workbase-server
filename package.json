@@ -13,7 +13,9 @@
     "bcrypt": "^3.0.2",
     "i18next": "^12.1.0",
     "mailgun-js": "^0.22.0",
-    "meteor-node-stubs": "^0.4.1"
+    "meteor-node-stubs": "^0.4.1",
+    "moment": "^2.22.2",
+    "sanitize-html": "^1.19.1"
   },
   "meteor": {
     "mainModule": {

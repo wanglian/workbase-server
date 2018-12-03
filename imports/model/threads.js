@@ -1,25 +1,12 @@
 // - category: Email
 // - subject
+// - lastMessageId
 Threads = new Mongo.Collection('threads');
 
-// - email
-// - name
-Contacts = new Mongo.Collection('contacts');
-
-// - threadId
-// - userType: user, contact
-// - userId
-ThreadUsers = new Mongo.Collection('thread_users');
-
-// - threadId
-// - userType: user, contact
-// - userId
-// - content
-Messages = new Mongo.Collection('messages');
-
 WeWork = {};
-WeWork.createThread = (subject) => {
+WeWork.createThread = (category, subject) => {
   return Threads.insert({
+    category,
     subject
   });
 };
@@ -33,23 +20,33 @@ Threads.helpers({
     });
   },
   addMessage(user, message) {
-    return Messages.insert({
+    let mid = Messages.insert({
       threadId: this._id,
       userType: user.className(),
       userId:   user._id,
       content:  message.content
     });
+    Threads.update(this._id, {$set: {lastMessageId: mid}});
+    return mid;
+  },
+  lastMessage() {
+    return Messages.findOne(this.lastMessageId);
   }
 });
 
-Contacts.helpers({
-  className() {
-    return 'Contacts';
+let categories = {};
+ThreadCategories = {
+  add: (category, defs) => {
+    let _obj = {};
+    _obj[category] = defs;
+    _.extend(categories, _obj);
+  },
+  get: (category) => {
+    return categories[category];
   }
-});
+};
 
-Meteor.users.helpers({
-  className() {
-    return 'Meteor.users';
-  }
+ThreadCategories.add("Email", {
+  icon: "fa fa-envelope-o",
+  iconUnread: "fa fa-envelope"
 });

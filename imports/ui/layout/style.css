@@ -7,6 +7,15 @@ body .main-header .logo {
   font-family: "Source Sans Pro";
 }
 
-.align-center {
+body .align-center {
   margin: auto;
+}
+
+body .content-wrapper {
+  background: white;
+}
+
+body .navbar-nav>.user-menu .user-image {
+  height: 30px;
+  margin-top: -4px;
 }

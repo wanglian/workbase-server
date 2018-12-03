@@ -17,7 +17,6 @@ es5-shim@4.8.0                # ECMAScript 5 compatibility for older browsers
 ecmascript@0.12.3             # Enable ECMAScript2015+ syntax in app code
 shell-server@0.4.0            # Server-side component of the `meteor shell` command
 
-autopublish@1.0.7             # Publish all data to the clients (for prototyping)
 insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 
 session
@@ -37,3 +36,5 @@ dburles:collection-helpers
 meteortesting:mocha
 matb33:collection-hooks
 xolvio:cleaner
+msavin:mongol
+tmeasday:publish-counts

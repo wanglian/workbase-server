@@ -4,7 +4,7 @@ ApplicationController = RouteController.extend({
   notFoundTemplate: 'notFound',
   waitOn: function() {
     if (Meteor.userId()) {
-      // return this.subscribe('current-user');
+      return this.subscribe('instance');
     } else {
       this.redirect('/'); // 未登录返回到首页
     }

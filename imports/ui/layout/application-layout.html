@@ -11,7 +11,7 @@
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">
           <!-- <img src="/images/logo.png" class="img-responsive"/> -->
-          <b>@</b>Working
+          We<b>Work</b>
 
         </span>
       </a>
@@ -26,16 +26,17 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                {{> avatar shape="circle" class="img-circle user-image" size="small"}}
+                {{> avatar user=currentUser shape="circle" class="img-circle user-image" size="small"}}
                 <span class="hidden-xs">{{currentUser.profile.name}}</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  {{> avatar shape="circle" class="img-circle align-center" size="large"}}
+                  {{> avatar user=currentUser shape="circle" class="img-circle align-center" size="large"}}
                   <p>
-                    {{currentUser.profile.name}}
-                    <small>{{currentUser.profile.title}}</small>
+                    {{currentUser.name}}
+                    <small>{{currentUser.title}}</small>
+                    <small>{{currentUser.email}}</small>
                   </p>
                 </li>
                 <!-- Menu Footer-->
@@ -72,9 +73,11 @@
             <li class="active">
               <a href="/inbox">
                 <i class="fa fa-inbox"></i> <span>{{_ 'Inbox'}}</span>
-                <span class="pull-right-container">
-                  <span class="label label-danger pull-right">2</span>
-                </span>
+                {{#if countUnread}}
+                  <span class="pull-right-container">
+                    <span class="label label-danger pull-right">{{countUnread}}</span>
+                  </span>
+                {{/if}}
               </a>
             </li>
             <li>
@@ -85,12 +88,7 @@
       </aside>
     </aside>
     <div class="content-wrapper">
-      <section class="content-header">
-
-      </section>
-      <section class="content">
-        {{> yield}}
-      </section>
+      {{> yield}}
     </div>
 
     <!-- The sidebar's background -->
