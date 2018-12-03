@@ -1,4 +1,4 @@
-import './mailgun.test.js';
+import './mailgun';
 
 import assert from "assert";
 

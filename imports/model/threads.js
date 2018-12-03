@@ -25,19 +25,31 @@ WeWork.createThread = (subject) => {
 };
 
 Threads.helpers({
-  addMember(userType, userId) {
+  addMember(user) {
     return ThreadUsers.insert({
       threadId: this._id,
-      userType,
-      userId
+      userType: user.className(),
+      userId:   user._id
     });
   },
-  addMessage(userType, userId, message) {
+  addMessage(user, message) {
     return Messages.insert({
       threadId: this._id,
-      userType,
-      userId,
-      content: message.content
+      userType: user.className(),
+      userId:   user._id,
+      content:  message.content
     });
+  }
+});
+
+Contacts.helpers({
+  className() {
+    return 'Contacts';
+  }
+});
+
+Meteor.users.helpers({
+  className() {
+    return 'Meteor.users';
   }
 });

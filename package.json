@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
+    "address-rfc2822": "^2.0.4",
     "bcrypt": "^3.0.2",
     "i18next": "^12.1.0",
     "mailgun-js": "^0.22.0",

@@ -35,3 +35,5 @@ utilities:avatar
 dburles:collection-helpers
 
 meteortesting:mocha
+matb33:collection-hooks
+xolvio:cleaner
