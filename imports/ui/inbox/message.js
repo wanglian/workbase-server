@@ -1,5 +1,17 @@
 import './message.html';
 
+Template.Message.helpers({
+  userName() {
+    let user = this.user();
+    switch(this.userType) {
+    case 'Users':
+      return user.name();
+    default:
+      return user.address();
+    }
+  }
+});
+
 Template.Message.events({
   "click .message-header"(e, t) {
     e.preventDefault();

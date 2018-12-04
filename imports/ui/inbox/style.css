@@ -2,6 +2,12 @@ body .content-wrapper .row .col {
   padding: 0px !important;
 }
 
+.thread-list {
+  height: 100vh;
+  overflow: auto;
+  margin-top: -50px;
+  padding-top: 50px;
+}
 /* 左栏区域内容，话题列表 */
 ul.list-group.threads {
   margin-bottom: 0px;
@@ -124,17 +130,18 @@ ul.list-group.threads .list-group-item.thread .thread-icon .unread {
 }
 .messages .message-header-avatar {
   float: left;
-  padding: 5px;
 }
 .messages .message-header-title {
-  padding: 5px 15px 0 55px;
+  padding: 0 15px 0 55px;
   cursor: pointer;
 }
 .messages .message-header-name {
   font-size: 14px;
   font-weight: bold;
   color: #555;
-  margin-right: 10px;
+}
+.messages .message-content {
+  padding-top: 10px;
 }
 
 #message-form {

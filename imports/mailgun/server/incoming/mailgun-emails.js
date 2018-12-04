@@ -17,31 +17,6 @@ MailgunEmails.after.insert(function(userId, doc) {
   MailgunEmails.parseEmail(doc.params);
 });
 
-const emailParser = require('address-rfc2822');
-const parseEmailAddress = (emails) => {
-  return emailParser.parse(emails);
-};
-
-const domain = 'weaworking.com';
-const findOrCreateUser = (attrs) => {
-  let email = attrs.address;
-  if (attrs.host() === domain) {
-    return Accounts.findUserByEmail(email);
-  } else {
-    let contact = Contacts.findOne({email});
-    if (!contact) {
-      contactId = Contacts.insert({
-        email,
-        profile: {
-          name: attrs.name() || attrs.user()
-        }
-      });
-      contact = Contacts.findOne(contactId);
-    }
-    return contact;
-  }
-};
-
 MailgunEmails.parseEmail = (params) => {
   let subject    = params['subject'];
   let from       = params['From'];
@@ -66,13 +41,20 @@ MailgunEmails.parseEmail = (params) => {
   }
   let thread = Threads.findOne(threadId);
 
-  let fromUser = findOrCreateUser(parseEmailAddress(from)[0]);
-  let toUser   = findOrCreateUser(parseEmailAddress(recipient)[0]);
-
+  let fromUser = Contacts.parseOne(from);
+  let toUser   = Contacts.parseOne(recipient);
+  let toUsers  = Contacts.parse(to);
   Threads.ensureMember(thread, fromUser);
   Threads.ensureMember(thread, toUser);
+  toUsers.forEach(user => Threads.ensureMember(thread, user));
+  if (cc) {
+    let ccUsers  = Contacts.parse(cc);
+    ccUsers.forEach(user => Threads.ensureMember(thread, user));
+  }
+
   Threads.addMessage(thread, fromUser, {
     content,
-    emailId
+    emailId,
+    email: { from, to, cc, date }
   });
 };

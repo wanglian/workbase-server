@@ -5,9 +5,12 @@
         {{> avatar user=user shape="circle" class="img-circle" size="medium"}}
       </div>
       <div class="message-header-title">
-        <span class="message-header-name">{{user.name}}</span>
+        <span class="message-header-name">{{userName}}</span>
         <span class="text-muted">{{formattedDate createdAt 'simpleDayWithTime'}}</span>
-        <div class="email text-muted">&lt;{{user.email}}&gt;</div>
+        <div class="email text-muted small">
+          {{#if email.to}}<div>to {{email.to}} </div>{{/if}}
+          {{#if email.cc}}<div>cc {{email.cc}} </div>{{/if}}
+        </div>
         <div class="summary text-ellipsis text-muted" style="display: none;">{{summary}}</div>
       </div>
     </div>

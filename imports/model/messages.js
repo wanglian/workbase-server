@@ -4,6 +4,7 @@
 // - content
 // - summary
 // - emailId
+// - email: from, to, cc, time
 Messages = new Mongo.Collection('messages');
 
 const sanitizeHtml = require('sanitize-html');

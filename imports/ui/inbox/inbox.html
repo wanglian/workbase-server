@@ -29,11 +29,13 @@
 </template>
 
 <template name="ThreadList">
-  <ul class="list-group threads">
-    {{#each threads}}
-      {{> ThreadListItem}}
-    {{/each}}
-  </ul>
+  <div class="thread-list">
+    <ul class="list-group threads">
+      {{#each threads}}
+        {{> ThreadListItem}}
+      {{/each}}
+    </ul>
+  </div>
 </template>
 
 <template name="ThreadListItem">

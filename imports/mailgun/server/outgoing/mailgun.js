@@ -18,26 +18,31 @@ Mailgun = {
 };
 
 Messages.after.insert(function(userId, doc) {
+  if (doc.userType === 'Contacts') return;
+
   let threadId = doc.threadId;
-  let thread = Threads.findOne(threadId);
-  let user = this.transform().user();
+  let contacts = ThreadUsers.find({threadId, userType: 'Contacts'}).map(tu => Contacts.findOne(tu.userId));
 
-  let params = {
-    from:    user.address(),
-    subject: thread.subject,
-    text:    doc.content
-  };
+  if (!_.isEmpty(contacts)) {
+    let thread = Threads.findOne(threadId);
+    let user = this.transform().user();
 
-  let contactIds = ThreadUsers.find({threadId, userType: 'Contacts'}).map(tu => tu.userId);
-  if (doc.userType === 'Contacts') {
-    contactIds = _.without(contactIds, doc.userId);
-  }
-  params.to = Contacts.find({_id: {$in: contactIds}}).map(c => c.address());
+    let params = {
+      from:    user.address(),
+      to:      contacts.map(c => c.address()),
+      subject: thread.subject,
+      text:    doc.content
+    };
 
-  if (!_.isEmpty(params.to)) {
     Mailgun.send(params, Meteor.bindEnvironment((err, result) => {
       if (!err) {
-        Messages.update(doc._id, {$set: {emailId: result["id"]}});
+        Messages.update(doc._id, {$set: {
+          emailId: result["id"],
+          email: {
+            from: params.from,
+            to:   params.to.join(", ")
+          }
+        }});
       }
     }));
   }

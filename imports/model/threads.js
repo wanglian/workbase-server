@@ -32,13 +32,11 @@ Threads.ensureMember = (thread, user) => {
 };
 
 Threads.addMessage = (thread, user, message) => {
-  let mid = Messages.insert({
+  let mid = Messages.insert(_.extend({
     threadId: thread._id,
     userType: user.className(),
-    userId:   user._id,
-    content:  message.content,
-    emailId:  message.emailId
-  });
+    userId:   user._id
+  }, message));
   Threads.update(thread._id, {$set: {lastMessageId: mid}});
   ThreadUsers.update({threadId: thread._id}, {$set: {read: false}}, {multi: true}); // mark unread
   ThreadUsers.update({threadId: thread._id, userType: user.className(), userId: user._id}, {$set: {read: true}}); // mark read
