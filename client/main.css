@@ -1,2 +1,8 @@
-
+/* 长文本处理，超长时不换行并添加省略号 */
+.text-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+}
 

@@ -1,20 +1,20 @@
 MailgunEmails = new Mongo.Collection('mailgun_emails');
 
 MailgunEmails.create = (params) => {
-  let email = MailgunEmails.findOne({messageId: params['Message-Id']});
+  let email = MailgunEmails.findOne({emailId: params['Message-Id']});
   if (email) {
     // same email
     console.log("[mailgun] drop");
   } else {
     return MailgunEmails.insert({
-      messageId: params['Message-Id'],
+      emailId: params['Message-Id'],
       params: params
     });
   }
 };
 
 MailgunEmails.after.insert(function(userId, doc) {
-  WeWork.parseMailgunEmail(doc.params);
+  MailgunEmails.parseEmail(doc.params);
 });
 
 const emailParser = require('address-rfc2822');
@@ -32,7 +32,9 @@ const findOrCreateUser = (attrs) => {
     if (!contact) {
       contactId = Contacts.insert({
         email,
-        name: attrs.name() || attrs.user()
+        profile: {
+          name: attrs.name() || attrs.user()
+        }
       });
       contact = Contacts.findOne(contactId);
     }
@@ -40,27 +42,37 @@ const findOrCreateUser = (attrs) => {
   }
 };
 
-WeWork.parseMailgunEmail = (params) => {
-  let subject   = params['subject'];
-  let from      = params['From'];
-  let to        = params['To'];
-  let cc        = params['Cc'];
-  // let bcc  = this._bcc;
-  let recipient = params['recipient'];
-  let content   = params['body-html'] || `<pre>${params['body-plain']}</pre>`
-  let replyTo   = params['In-Reply-To'];
-  let date      = params['Date'];
+MailgunEmails.parseEmail = (params) => {
+  let subject    = params['subject'];
+  let from       = params['From'];
+  let to         = params['To'];
+  let cc         = params['Cc'];
+  let recipient  = params['recipient'];
+  let content    = params['body-html'] || `<pre>${params['body-plain']}</pre>`
+  let replyTo    = params['In-Reply-To'];
+  let date       = params['Date'];
+  let references = params['References'];
+  let emailId    = params['Message-Id'];
 
-  let threadId  = WeWork.createThread('Email', subject);
-  let thread    = Threads.findOne(threadId);
+  let threadId;
+  references = references && references.split(' ') || [];
+  replyTo && _.union(references, [replyTo]);
+  if (!_.isEmpty(references)) {
+    let message = Messages.findOne({emailId: {$in: references}});
+    threadId    = message && message.threadId;
+  }
+  if (!threadId) {
+    threadId = Threads.create('Email', subject);
+  }
+  let thread = Threads.findOne(threadId);
 
-  let fromUser  = findOrCreateUser(parseEmailAddress(from)[0]);
-  let toUser    = findOrCreateUser(parseEmailAddress(recipient)[0]);
+  let fromUser = findOrCreateUser(parseEmailAddress(from)[0]);
+  let toUser   = findOrCreateUser(parseEmailAddress(recipient)[0]);
 
-  thread.addMember(fromUser);
-  thread.addMember(toUser);
-
-  thread.addMessage(fromUser, {
-    content
+  Threads.ensureMember(thread, fromUser);
+  Threads.ensureMember(thread, toUser);
+  Threads.addMessage(thread, fromUser, {
+    content,
+    emailId
   });
 };

@@ -1,0 +1,18 @@
+<template name="Message">
+  <div class="message">
+    <div class="message-header clearfix">
+      <div class="message-header-avatar">
+        {{> avatar user=user shape="circle" class="img-circle" size="medium"}}
+      </div>
+      <div class="message-header-title">
+        <span class="message-header-name">{{user.name}}</span>
+        <span class="text-muted">{{formattedDate createdAt 'simpleDayWithTime'}}</span>
+        <div class="email text-muted">&lt;{{user.email}}&gt;</div>
+        <div class="summary text-ellipsis text-muted" style="display: none;">{{summary}}</div>
+      </div>
+    </div>
+    <div class="message-content">
+      {{#markdown}}{{{content}}}{{/markdown}}
+    </div>
+  </div>
+</template>

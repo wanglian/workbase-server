@@ -1,0 +1,14 @@
+<template name="Thread">
+  <div class="inbox-thread">
+    <div class="inbox-thread-header">
+      <div class="thread-subject">{{subject}}</div>
+    </div>
+    <div class="inbox-thread-content">
+      <div class="messages">
+        {{#each messages}}
+          {{> Message}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>

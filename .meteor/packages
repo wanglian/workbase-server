@@ -19,6 +19,7 @@ shell-server@0.4.0            # Server-side component of the `meteor shell` comm
 
 insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
 
+check
 session
 accounts-ui
 accounts-password
@@ -38,3 +39,5 @@ matb33:collection-hooks
 xolvio:cleaner
 msavin:mongol
 tmeasday:publish-counts
+perak:markdown
+reywood:publish-composite

@@ -1,2 +1,3 @@
 import '../';
-import './publications.js';
+import './publications';
+import './methods';

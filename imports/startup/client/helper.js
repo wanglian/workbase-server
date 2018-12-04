@@ -32,7 +32,7 @@ const formattedDate = function(date, format) {
   } else if (format === 'simpleDayWithTime') {
     // today
     if (date.isBetween(moment().startOf('day'), moment().endOf('day'))) {
-      return date.format('ah:mm');
+      return date.format('a h:mm');
     }
     // yesterday
     if (date.isBetween(moment().subtract(1, 'day').startOf('day'), moment().subtract(1, 'day').endOf('day'))) {
@@ -40,15 +40,15 @@ const formattedDate = function(date, format) {
     }
     // this week
     if (date.isBetween(moment().startOf('week'), moment().endOf('week'))) {
-      return date.format('ddd ah:mm');
+      return date.format('ddd a h:mm');
     }
     // this month
     if (date.isBetween(moment().startOf('month'), moment().endOf('month'))) {
-      return date.format('MM-DD ah:mm');
+      return date.format('MM-DD a h:mm');
     }
     // this year
     if (date.isBetween(moment().startOf('year'), moment().endOf('year'))) {
-      return date.format('MM-DD ah:mm');
+      return date.format('MM-DD a h:mm');
     }
     return date.format('YYYY-MM-DD HH:mm');
   } else {

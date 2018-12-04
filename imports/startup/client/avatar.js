@@ -1,3 +1,0 @@
-Avatar.setOptions({
-  // defaultImageUrl: ""
-});

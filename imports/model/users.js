@@ -12,5 +12,8 @@ Users.helpers({
   },
   title() {
     return this.profile.title;
+  },
+  address() {
+    return `${this.name()} <${this.email()}>`;
   }
 });

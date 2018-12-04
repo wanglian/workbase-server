@@ -1,0 +1,19 @@
+<template name="InboxLayout">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col {{col1Class (hasRegion 'right') (hasRegion 'detail')}}">
+        {{> yield}}
+      </div>
+      {{#if hasRegion 'right'}}
+        <div class="col {{col2Class (hasRegion 'detail')}}">
+          {{> yield 'right'}}
+        </div>
+        {{#if hasRegion 'detail'}}
+        <div class="col {{col3Class}}">
+          {{> yield 'detail'}}
+        </div>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</template>

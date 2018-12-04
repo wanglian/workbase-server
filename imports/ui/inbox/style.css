@@ -1,6 +1,11 @@
+body .content-wrapper .row .col {
+  padding: 0px !important;
+}
+
 /* 左栏区域内容，话题列表 */
 ul.list-group.threads {
   margin-bottom: 0px;
+  background: white;
 }
 ul.list-group.threads .list-group-item.thread {
   border: 1px solid #f1f1f1;
@@ -19,7 +24,8 @@ ul.list-group.threads .list-group-item.thread:first-child,
 ul.list-group.threads .list-group-item.thread:last-child {
   border-radius: 0;
 }
-ul.list-group.threads .list-group-item.thread:last-child {
+ul.list-group.threads .list-group-item.thread:last-child,
+ul.list-group.threads .list-group-item.thread.active:last-child {
   border-bottom: solid 1px #d8d8d8;;
 }
 /* 覆盖list-group-item默认的active效果 */
@@ -94,4 +100,168 @@ ul.list-group.threads .list-group-item.thread .thread-icon .unread {
   width: 10px;
   left: 40px;
   top: 13px;
+}
+/* 话题内容区域 */
+.messages {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  position: relative;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.messages .message {
+  padding: 5px 10px;
+  border-bottom: solid 1px #f1f1f1;
+}
+.messages .message:last-child {
+  border-bottom: 1px solid #d8d8d8;
+}
+.messages .message-header {
+
+}
+.messages .message-header-avatar {
+  float: left;
+  padding: 5px;
+}
+.messages .message-header-title {
+  padding: 5px 15px 0 55px;
+  cursor: pointer;
+}
+.messages .message-header-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  margin-right: 10px;
+}
+
+#message-form {
+  padding: 10px 15px;
+  border-bottom: solid 1px #d8d8d8;
+}
+/* 话题header */
+.inbox-thread {
+  border-left: 1px solid #d8d8d8;
+  height: 100vh;
+  margin-top: -50px;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.inbox-thread-header {
+  flex: none;
+  width: 100%;
+  height: 54px;
+  z-index: 100;
+  padding: 6px 15px;
+  border-bottom: 1px solid #d8d8d8;
+  background: white;
+}
+.inbox-thread-header .thread-action {
+  margin-top: -3px;
+  height: 20px;
+}
+.inbox-thread-header .thread-action .thread-action-item {
+  color: #777;
+  font-size: 12px;
+  float: left;
+  max-width: 60%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-top: 3px;
+}
+.inbox-thread-header .thread-action .thread-action-item a {
+  color: #777;
+}
+.inbox-thread-header .thread-action .thread-action-item a:hover,
+.inbox-thread-header .thread-action .thread-action-item a:active,
+.inbox-thread-header .thread-action .thread-action-item a:focus {
+  color: #72afd2;
+}
+.inbox-thread-header .thread-action .thread-action-item:not(:first-child):before {
+  padding: 0px 5px;
+  content: '|';
+}
+.inbox-thread-header .thread-action .thread-action-item:empty:before {
+  content: '';
+}
+.inbox-thread-header .thread-action .thread-action-item .toggle-thread-star {
+  color: #777;
+}
+.inbox-thread-header .thread-action .thread-action-item .toggle-thread-star:hover {
+  color: #f39c12;
+}
+.inbox-thread-header .thread-subject {
+  margin: 8px 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  padding-right: 50px;
+  color: #555;
+}
+.inbox-thread-header .thread-header-icon {
+  border:1px solid transparent;
+  line-height: 31px;
+  font-size: 20px;
+  text-align: center;
+  width: 32px;
+  height: 32px;
+  margin-top: 8px;
+}
+.inbox-thread-header .thread-header-icon:hover {
+  color: #72afd2;
+}
+.inbox-thread-header .thread-header-icon.active {
+  border:1px solid transparent;
+  border-radius: 3px;
+  background: #d8d8d8;
+  color: #555;
+}
+.inbox-thread-header .thread-header-icon .fa {
+  min-width: 20px;
+}
+.inbox-thread-content {
+  padding: 0;
+  overflow: auto;
+  overflow-x: hidden;
+  background: white;
+}
+.btn-group-message-form, .btn-group-message-form .checkbox {
+  margin-left: 10px;
+  display: inline;
+}
+
+.btn-group-message-form .checkbox label {
+  color: #777;
+}
+
+img.img-thumbnail {
+  display: block;
+  max-height: 300px;
+  max-width: 100%;
+}
+
+.text-right a.actions {
+  padding-left: 10px;
+}
+
+.email pre {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+mark {
+  background: #ff0 !important;
+}
+
+.email-content {
+  overflow-x: auto;
 }
