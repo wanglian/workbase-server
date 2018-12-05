@@ -1,5 +1,6 @@
 <template name="ApplicationLayout">
   {{#AdminLTE skin="blue" fixed="true" sidebarMini=true}}
+    {{> status}}
     <!-- your html here -->
     <header class="main-header">
       <!-- Logo -->
@@ -95,4 +96,20 @@
     <!-- This div must placed right after the sidebar for it to work-->
     <div class="control-sidebar-bg"></div>
   {{/AdminLTE}}
+</template>
+
+<template name="status_default">
+  {{#unless connected}}
+    <div class="status-bar text-center alert alert-warning">
+      <strong>
+        <span class="fa fa-warning"></span>
+        {{message}}
+      </strong>
+      {{extraMessage}}
+
+      {{#if showReconnect}}
+        <a href="#" class="alert-link">{{reconnectLabel}}</a>
+      {{/if}}
+    </div>
+  {{/unless}}
 </template>
