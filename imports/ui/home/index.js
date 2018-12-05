@@ -4,7 +4,7 @@ Router.configure({
   layoutTemplate: 'DefaultLayout'
 });
 
-Router.route('/', function () {
+Router.route('/login', function () {
   if (Meteor.userId()) {
     this.redirect('/inbox');
   } else {
