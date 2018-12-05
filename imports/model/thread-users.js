@@ -14,3 +14,9 @@ ThreadUsers.before.update(function(userId, doc, fieldNames, modifier, options) {
   modifier.$set = modifier.$set || {};
   modifier.$set.updatedAt = new Date();
 });
+
+ThreadUsers.helpers({
+  user() {
+    return eval(this.userType).findOne(this.userId);
+  }
+});

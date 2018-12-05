@@ -58,19 +58,45 @@
   min-width: 17px;
   text-align: center;
 }
-.flat-panel .flat-panel-heading span>i.fa-icon {
-  color: #999;
-}
-.flat-panel.collapsed .flat-panel-heading span>i.fa-icon {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
-}
-.flat-panel.collapsed .flat-panel-heading span>i.fa-icon {
-  color: #555;
-}
 .flat-panel .flat-panel-body {
   padding: 0px 12px;
   margin-bottom: 12px;
+}
+
+.members-list {
+  overflow-x: hidden;
+  margin: 0 -12px 10px -12px;
+}
+.members-list .members-item {
+  border: none;
+  padding: 8px 10px 8px 12px;
+}
+.members-list .members-item:hover {
+  background: #fafafa;
+}
+.members-list .members-item .members-info {
+  margin-left: 38px;
+  font-size: 12px;
+  line-height: 14px;
+  min-height: 30px;
+}
+.members-list .members-item .members-info span {
+  display: block;
+}
+.members-list .members-item .members-info .member-name {
+  color: #555;
+  font-weight: bold;
+  display: inline;
+}
+.members-list .members-item .members-info .member-organization {
+  font-size: 12px;
+  margin-top: 2px;
+}
+.members-list .members-item .li-manage-icon {
+  line-height: 30px;
+  margin-left: 10px;
+  opacity: 0;
+}
+.members-list .members-item:hover .li-manage-icon {
+  opacity: 1;
 }

@@ -39,6 +39,7 @@ Meteor.publish("thread", function(threadId) {
   let contactIds = ThreadUsers.find({threadId, userType: 'Contacts'}).map(tu => tu.userId);
 
   return [
+    ThreadUsers.find({threadId}),
     Users.find({_id: {$in: userIds}}),
     Contacts.find({_id: {$in: contactIds}})
   ]
