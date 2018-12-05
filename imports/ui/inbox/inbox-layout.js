@@ -1,13 +1,10 @@
 import './inbox-layout.html';
-
-Template.InboxLayout.onRendered(function() {
-
-});
+import './inbox-layout.css';
 
 Template.InboxLayout.helpers({
-  col1Class(right, detail) {
+  col1Class(right, sidebar) {
     if (right) {
-      if (detail) {
+      if (sidebar) {
         return 'col-lg-3 hidden-md hidden-sm hidden-xs';
       } else {
         return 'col-md-5 hidden-sm hidden-xs';
@@ -16,14 +13,21 @@ Template.InboxLayout.helpers({
       return 'col-md-12';
     }
   },
-  col2Class(detail) {
-    if (detail) {
-      return 'col-lg-6 col-md-7 hidden-sm hidden-xs';
+  col2Class(sidebar) {
+    if (sidebar) {
+      return 'col-lg-9 col-md-12';
     } else {
-      return 'col-lg-7 col-md-7 col-sm-12';
+      return 'col-md-7 col-sm-12';
     }
   },
-  col3Class() {
-    return 'col-lg-3 col-md-5 col-sm-12';
+  col21Class(sidebar) {
+    if (sidebar) {
+      return 'col-lg-8 col-md-7 hidden-sm hidden-xs';
+    } else {
+      return 'col-md-12';
+    }
+  },
+  col22Class() {
+    return 'col-lg-4 col-md-5 col-sm-12';
   }
 });

@@ -9,10 +9,3 @@ Template.Inbox.onRendered(function() {
     }
   });
 });
-
-Template.ThreadListItem.helpers({
-  icon() {
-    let c = ThreadCategories.get(this.category)
-    return this.read ? c.icon : c.iconUnread;
-  }
-});

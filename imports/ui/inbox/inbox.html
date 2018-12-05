@@ -4,17 +4,25 @@
       {{#Layout template="InboxLayout"}}
         {{> ThreadList threads=threads}}
 
+        {{#contentFor "header"}}
+          {{> ThreadHeader thread}}
+        {{/contentFor}}
+
         {{#contentFor "right"}}
           {{> Thread thread}}
         {{/contentFor}}
 
-        {{#contentFor "detail"}}
-          detail
+        {{#contentFor "sidebar"}}
+          {{> ThreadDetail thread}}
         {{/contentFor}}
       {{/Layout}}
     {{else}}
       {{#Layout template="InboxLayout"}}
         {{> ThreadList threads=threads}}
+
+        {{#contentFor "header"}}
+          {{> ThreadHeader thread}}
+        {{/contentFor}}
 
         {{#contentFor "right"}}
           {{> Thread thread}}
@@ -26,38 +34,4 @@
       {{> ThreadList threads=threads}}
     {{/Layout}}
   {{/if}}
-</template>
-
-<template name="ThreadList">
-  <div class="thread-list">
-    <ul class="list-group threads">
-      {{#each threads}}
-        {{> ThreadListItem}}
-      {{/each}}
-    </ul>
-  </div>
-</template>
-
-<template name="ThreadListItem">
-  <a href="?id={{_id}}" class="list-group-item clearfix btn-thread thread" id="{{_id}}">
-    <div class="thread-icon">
-      <button type="button" class="{{#unless read}}unread-button{{/unless}}"><i class="{{icon}}"></i></button>
-      {{#unless read}}<span class="unread"></span>{{/unless}}
-    </div>
-    <div class="thread-title">
-      <div class="thread-subject-wrap">
-        <span class="thread-subject text-ellipsis">{{subject}}</span>
-        <small class="pull-right text-muted">{{formattedDate updatedAt 'simple'}}</small>
-      </div>
-      <div class="thread-message-wrap">
-        <div class="thread-message text-muted">
-          <div class="message-summary">
-            <span class="text-ellipsis">
-              {{lastMessage.summary}}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </a>
 </template>

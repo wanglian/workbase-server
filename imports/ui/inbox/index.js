@@ -2,6 +2,8 @@ import './inbox-layout';
 import './inbox';
 import './thread';
 import './message';
+import './thread-detail';
+import './thread-list';
 import './style.css';
 
 InboxController = ApplicationController.extend({
@@ -17,6 +19,9 @@ InboxController = ApplicationController.extend({
   threadId() {
     return this.params.query.id;
   },
+  detail() {
+    return this.params.query.detail;
+  },
   thread() {
     let threadId = this.threadId();
     return threadId && Threads.findOne(threadId);
@@ -24,7 +29,8 @@ InboxController = ApplicationController.extend({
   data() {
     return {
       threads: Threads.find({}, {sort: {updatedAt: -1}}),
-      thread: this.thread()
+      thread: this.thread(),
+      detail: this.detail()
     };
   }
 });

@@ -1,18 +1,25 @@
 <template name="InboxLayout">
   <div class="container-fluid">
     <div class="row">
-      <div class="col {{col1Class (hasRegion 'right') (hasRegion 'detail')}}">
-        {{> yield}}
+      <div class="col {{col1Class (hasRegion 'right') (hasRegion 'sidebar')}}">
+        <div id="inbox-left">{{> yield}}</div>
       </div>
       {{#if hasRegion 'right'}}
-        <div class="col {{col2Class (hasRegion 'detail')}}">
-          {{> yield 'right'}}
+        <div class="col {{col2Class (hasRegion 'sidebar')}}">
+          <div id="inbox-header">{{> yield 'header'}}</div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col {{col21Class (hasRegion 'sidebar')}}">
+                <div id="inbox-right">{{> yield 'right'}}</div>
+              </div>
+              {{#if hasRegion 'sidebar'}}
+                <div class="col {{col22Class}}">
+                  <div id="inbox-sidebar">{{> yield 'sidebar'}}</div>
+                </div>
+              {{/if}}
+            </div>
+          </div>
         </div>
-        {{#if hasRegion 'detail'}}
-        <div class="col {{col3Class}}">
-          {{> yield 'detail'}}
-        </div>
-        {{/if}}
       {{/if}}
     </div>
   </div>

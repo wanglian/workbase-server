@@ -1,0 +1,35 @@
+<template name="ThreadDetail">
+  <div class="thread-detail">
+    <div class="box box-widget" id="thread-detail-accordion">
+      <div class="box-header with-border">
+        <p class="box-title">详情</p>
+      </div>
+      <div class="panel flat-panel">
+        <div class="flat-panel-heading">
+          <a data-parent="#thread-detail-accordion" href="#thread-info" data-toggle="collapse" aria-expanded="true" aria-controls="thread-info">
+            <span class="pull-right"><i class="fa fa-chevron-down fa-icon"></i></span>
+            <h4 class="flat-panel-title"><i class="fa fa-info-circle"></i>关于</h4>
+          </a>
+        </div>
+        <div id="thread-info" class="panel-collapse collapse in">
+          <div class="flat-panel-body">
+            {{subject}} asdfasdfsa
+          </div>
+        </div>
+      </div>
+      <div class="panel flat-panel">
+        <div class="flat-panel-heading">
+          <a data-parent="#thread-detail-accordion" href="#files" data-toggle="collapse" aria-expanded="false" aria-controls="files">
+            <span class="pull-right"><i class="fa fa-chevron-down fa-icon"></i></span>
+            <h4 class="flat-panel-title"><i class="fa fa-paperclip text-primary"></i>文件</h4>
+          </a>
+        </div>
+        <div id="files" class="panel-collapse collapse" aria-expanded="false">
+          <div class="flat-panel-body">
+            文件
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,76 @@
+.thread-detail {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 0px;
+}
+.thread-detail .box {
+  margin-bottom: 0px;
+  height: 100%;
+}
+.thread-detail .box-header.with-border {
+  background: #F7F7F7;
+  padding: 15px 12px;
+}
+.thread-detail .box-header>.box-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+}
+.thread-detail .box-header>.box-tools {
+  top: 12px;
+}
+.thread-detail .box-header>.box-tools a {
+  color: #999;
+  font-size: 16px;
+}
+.thread-detail .box-header>.box-tools a:hover {
+  color: #555;
+}
+.thread-detail .box-header>.box-tools a>i.fa{
+  width: 16px;
+}
+.flat-panel {
+  border-radius: 0px;
+  border: 0px;
+  border-bottom: 1px solid #E8E8E8;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+.flat-panel:last-child {
+  border-bottom: none;
+}
+.flat-panel .flat-panel-heading {
+  border-radius: 0px;
+  font-weight: 500;
+  padding: 16px 12px;
+  border: none;
+}
+.flat-panel .flat-panel-heading .flat-panel-title {
+  color: #555;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+.flat-panel .flat-panel-heading .flat-panel-title i.fa {
+  margin-right: 10px;
+  min-width: 17px;
+  text-align: center;
+}
+.flat-panel .flat-panel-heading span>i.fa-icon {
+  color: #999;
+}
+.flat-panel.collapsed .flat-panel-heading span>i.fa-icon {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.flat-panel.collapsed .flat-panel-heading span>i.fa-icon {
+  color: #555;
+}
+.flat-panel .flat-panel-body {
+  padding: 0px 12px;
+  margin-bottom: 12px;
+}

@@ -1,0 +1,66 @@
+#inbox-header .thread-action {
+  margin-top: -3px;
+  height: 20px;
+}
+#inbox-header .thread-action .thread-action-item {
+  color: #777;
+  font-size: 12px;
+  float: left;
+  max-width: 60%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-top: 3px;
+}
+#inbox-header .thread-action .thread-action-item a {
+  color: #777;
+}
+#inbox-header .thread-action .thread-action-item a:hover,
+#inbox-header .thread-action .thread-action-item a:active,
+#inbox-header .thread-action .thread-action-item a:focus {
+  color: #72afd2;
+}
+#inbox-header .thread-action .thread-action-item:not(:first-child):before {
+  padding: 0px 5px;
+  content: '|';
+}
+#inbox-header .thread-action .thread-action-item:empty:before {
+  content: '';
+}
+#inbox-header .thread-action .thread-action-item .toggle-thread-star {
+  color: #777;
+}
+#inbox-header .thread-action .thread-action-item .toggle-thread-star:hover {
+  color: #f39c12;
+}
+#inbox-header .thread-subject {
+  margin: 8px 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  padding-right: 50px;
+  color: #555;
+}
+#inbox-header .thread-header-icon {
+  border:1px solid transparent;
+  font-size: 20px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  margin-top: 6px;
+}
+#inbox-header .thread-header-icon:hover {
+  color: #72afd2;
+}
+#inbox-header .thread-header-icon.active {
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: #d8d8d8;
+  color: #555;
+}
+#inbox-header .thread-header-icon .fa {
+  min-width: 20px;
+}

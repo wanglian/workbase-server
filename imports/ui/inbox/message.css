@@ -1,0 +1,28 @@
+.messages {
+  background: white;
+}
+.messages .message {
+  padding: 5px 10px;
+  border-bottom: solid 1px #f1f1f1;
+}
+.messages .message:last-child {
+  border-bottom: 1px solid #d8d8d8;
+}
+.messages .message-header {
+
+}
+.messages .message-header-avatar {
+  float: left;
+}
+.messages .message-header-title {
+  padding: 0 15px 0 55px;
+  cursor: pointer;
+}
+.messages .message-header-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+}
+.messages .message-content {
+  padding-top: 10px;
+}

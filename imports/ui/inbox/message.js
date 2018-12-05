@@ -1,4 +1,5 @@
 import './message.html';
+import './message.css';
 
 Template.Message.helpers({
   userName() {
