@@ -1,0 +1,6 @@
+<template name="MessageForm">
+  {{#autoForm collection=formCollection schema=formSchema id="message-form" threadId=_id}}
+    {{> afQuickField name="content" }}
+    <button type="submit" class="btn btn-primary btn-sm">发送</button>
+  {{/autoForm}}
+</template>

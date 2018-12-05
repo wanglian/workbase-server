@@ -10,12 +10,14 @@
   "dependencies": {
     "@babel/runtime": "^7.1.5",
     "address-rfc2822": "^2.0.4",
+    "autosize": "^4.0.2",
     "bcrypt": "^3.0.2",
     "i18next": "^12.1.0",
     "mailgun-js": "^0.22.0",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.22.2",
-    "sanitize-html": "^1.19.1"
+    "sanitize-html": "^1.19.1",
+    "simpl-schema": "^1.5.3"
   },
   "meteor": {
     "mainModule": {

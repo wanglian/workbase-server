@@ -2,11 +2,6 @@ body .content-wrapper .row .col {
   padding: 0px !important;
 }
 
-#message-form {
-  padding: 10px 15px;
-  border-bottom: solid 1px #d8d8d8;
-}
-
 .btn-group-message-form, .btn-group-message-form .checkbox {
   margin-left: 10px;
   display: inline;

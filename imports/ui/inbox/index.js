@@ -4,6 +4,7 @@ import './thread';
 import './message';
 import './thread-detail';
 import './thread-list';
+import './message-form';
 import './style.css';
 
 InboxController = ApplicationController.extend({

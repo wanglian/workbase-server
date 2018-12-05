@@ -20,6 +20,10 @@
   overflow-x: hidden;
 }
 
+#inbox-right:last-child {
+  border-right: none;
+}
+
 #inbox-sidebar {
   height: calc(100vh - 100px);
   overflow-y: scroll;
