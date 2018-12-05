@@ -5,7 +5,14 @@ import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 
 Template.MessageForm.onRendered(function() {
+  let draft = Session.get(`message-draft-${this.data._id}`);
+  if (draft) this.$('textarea').val(draft);
   autosize(this.$('textarea'));
+});
+
+Template.MessageForm.onDestroyed(function() {
+  // save draft
+  Session.set(`message-draft-${this.data._id}`, $('#message-form textarea').val());
 });
 
 Template.MessageForm.helpers({
