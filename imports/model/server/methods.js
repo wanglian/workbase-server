@@ -1,4 +1,8 @@
 Meteor.methods({
+  markRead(threadId) {
+    check(threadId, String);
+    ThreadUsers.update({threadId, userType: 'Users', userId: this.userId}, {$set: {read: true}});
+  },
   sendMessage(threadId, content) {
     check(threadId, String);
     check(content, String);

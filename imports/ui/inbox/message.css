@@ -2,7 +2,7 @@
   background: white;
 }
 .messages .message {
-  padding: 5px 10px;
+  padding: 6px 10px;
   border-bottom: solid 1px #f1f1f1;
 }
 .messages .message:last-child {
@@ -15,7 +15,7 @@
   float: left;
 }
 .messages .message-header-title {
-  padding: 0 15px 0 55px;
+  padding: 0 15px 0 50px;
   cursor: pointer;
 }
 .messages .message-header-name {
