@@ -21,6 +21,7 @@
         <div class="thread-message text-muted">
           <div class="message-summary">
             <span class="text-ellipsis">
+              {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
               {{lastMessage.summary}}
             </span>
           </div>

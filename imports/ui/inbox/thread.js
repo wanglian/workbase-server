@@ -2,6 +2,19 @@ import './thread.html';
 import './thread.css';
 
 Template.ThreadHeader.helpers({
+  listPath() {
+    let currentRoute = Router.current();
+    return currentRoute.route.path(currentRoute.params);
+  },
+  btnBackClass() {
+    let currentRoute = Router.current();
+    let query = _.clone(currentRoute.params.query);
+    if (_.has(query, "detail")) {
+      return "visible-md visible-sm visible-xs";
+    } else {
+      return "visible-sm visible-xs";
+    }
+  },
   detailShown() {
     let currentRoute = Router.current();
     let query = _.clone(currentRoute.params.query);
@@ -13,9 +26,9 @@ Template.ThreadHeader.helpers({
     if (_.has(query, "detail")) {
       query = _.omit(query, "detail");
     } else {
-      _.extend(query, {detail: true})
+      _.extend(query, {detail: true});
     }
-    return currentRoute.route.path(currentRoute.params, {query})
+    return currentRoute.route.path(currentRoute.params, {query});
   }
 });
 

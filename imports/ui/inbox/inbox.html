@@ -2,7 +2,7 @@
   {{#if thread}}
     {{#if detail}}
       {{#Layout template="InboxLayout"}}
-        {{> ThreadList threads=threads}}
+        {{> ThreadList threads=threads thread=thread}}
 
         {{#contentFor "header"}}
           {{> ThreadHeader thread}}
@@ -18,7 +18,7 @@
       {{/Layout}}
     {{else}}
       {{#Layout template="InboxLayout"}}
-        {{> ThreadList threads=threads}}
+        {{> ThreadList threads=threads thread=thread}}
 
         {{#contentFor "header"}}
           {{> ThreadHeader thread}}

@@ -8,6 +8,10 @@ Template.registerHelper('countUnread', function() {
   return Counts.get('count-unread-inbox');
 });
 
+Template.registerHelper('isMe', (user) => {
+  return user && user.className() === 'Users' && user._id === Meteor.userId();
+});
+
 let moment = require('moment');
 const formattedDate = function(date, format) {
   date = moment(date);
