@@ -29,6 +29,8 @@ MailgunEmails.parseEmail = (params) => {
   let references = params['References'];
   let emailId    = params['Message-Id'];
 
+  let fromUser = Contacts.parseOne(from);
+
   let threadId;
   references = references && references.split(' ') || [];
   replyTo && _.union(references, [replyTo]);
@@ -37,11 +39,10 @@ MailgunEmails.parseEmail = (params) => {
     threadId    = message && message.threadId;
   }
   if (!threadId) {
-    threadId = Threads.create('Email', subject);
+    threadId = Threads.create(fromUser, 'Email', subject);
   }
   let thread = Threads.findOne(threadId);
 
-  let fromUser = Contacts.parseOne(from);
   let toUser   = Contacts.parseOne(recipient);
   let toUsers  = Contacts.parse(to);
   Threads.ensureMember(thread, fromUser);

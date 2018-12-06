@@ -11,7 +11,7 @@ Meteor.methods({
     let user = Meteor.users.findOne(userId);
     let thread = Threads.findOne(threadId);
     let threadUser = ThreadUsers.findOne({threadId, userId, userType: 'Users'});
-    if (thread && threadUser) {
+    if (thread && thread.scope != 'private' || threadUser) {
       return Threads.addMessage(thread, user, {
         content,
         internal
@@ -27,7 +27,7 @@ Meteor.methods({
     let user = Meteor.users.findOne(userId);
     let contacts = Contacts.parse(email);
     if (!_.isEmpty(contacts)) {
-      let threadId = Threads.create('Email', subject);
+      let threadId = Threads.create(user, 'Email', subject);
       let thread = Threads.findOne(threadId);
 
       Threads.ensureMember(thread, user);

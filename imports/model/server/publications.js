@@ -1,4 +1,4 @@
-Meteor.publish('instance', function() {
+Meteor.publishComposite('instance', function() {
   if (!this.userId) return this.ready();
 
   Counts.publish(this, 'count-unread-inbox', ThreadUsers.find({userType: 'Users', userId: this.userId, read: false}));
@@ -47,7 +47,7 @@ Meteor.publish("thread", function(threadId) {
 
   return [
     ThreadUsers.find({threadId}, {fields: {threadId: 1, userType: 1, userId: 1}}),
-    Users.find({_id: {$in: userIds}}, {fields: {profile: 1}}),
+    Users.find({_id: {$in: userIds}}, {fields: {emails: 1, profile: 1}}),
     Contacts.find({_id: {$in: contactIds}})
   ]
 });

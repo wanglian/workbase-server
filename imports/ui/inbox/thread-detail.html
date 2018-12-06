@@ -2,27 +2,25 @@
   <div class="thread-detail">
     <div class="box box-widget" id="thread-detail-accordion">
       <div class="box-header with-border">
-        <p class="box-title">详情</p>
+        <p class="box-title">About</p>
       </div>
       <div class="panel flat-panel">
         <div class="flat-panel-heading">
-          <a data-parent="#thread-detail-accordion" href="#thread-info" data-toggle="collapse" aria-expanded="true" aria-controls="thread-info">
-            <h4 class="flat-panel-title"><i class="fa fa-info-circle"></i>关于</h4>
-          </a>
+          <h4 class="flat-panel-title">{{subject}}</h4>
         </div>
-        <div id="thread-info" class="panel-collapse collapse in">
+        <div id="thread-info">
           <div class="flat-panel-body">
-            {{subject}} asdfasdfsa
+            <p class="small text-muted">Created at {{formattedDate createdAt "simple"}}</p>
           </div>
         </div>
       </div>
       <div class="panel flat-panel">
         <div class="flat-panel-heading">
           <a data-parent="#thread-detail-accordion" href="#members" data-toggle="collapse">
-            <h4 class="flat-panel-title"><i class="fa fa-users text-success"></i>{{members.count}} 位成员</h4>
+            <h4 class="flat-panel-title"><i class="fa fa-users text-success"></i>Members ({{members.count}})</h4>
           </a>
         </div>
-        <div id="members" class="panel-collapse collapse">
+        <div id="members" class="panel-collapse collapse in">
           <div class="flat-panel-body">
             <ul class="list-group members-list" style="max-height: calc(100vh - 330px); overflow-y: auto;">
               {{#each members}}

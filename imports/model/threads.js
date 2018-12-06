@@ -1,5 +1,8 @@
 // - category: Email
 // - subject
+// - scope: private - only members can reply; protected - everyone can reply; public - everyone can search & view
+// - userType
+// - userId: created by
 // - lastMessageId
 // - createdAt
 // - updatedAt
@@ -7,6 +10,7 @@ Threads = new Mongo.Collection('threads');
 
 Threads.before.insert(function(userId, doc) {
   doc.createdAt = new Date();
+  _.defaults(doc, {scope: 'private'});
 });
 
 Threads.before.update(function(userId, doc, fieldNames, modifier, options) {
@@ -14,10 +18,13 @@ Threads.before.update(function(userId, doc, fieldNames, modifier, options) {
   modifier.$set.updatedAt = new Date();
 });
 
-Threads.create = (category, subject) => {
+Threads.create = (user, category, subject, scope="private") => {
   return Threads.insert({
+    userType: user.className(),
+    userId: user._id,
     category,
-    subject
+    subject,
+    scope
   });
 };
 
