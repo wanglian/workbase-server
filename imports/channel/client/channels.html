@@ -1,0 +1,7 @@
+<template name="Channels">
+  {{#each channels}}
+    <li>
+      <a href="/channels/{{_id}}"><i class="fa fa-slack"></i> <span>{{name}}</span></a>
+    </li>
+  {{/each}}
+</template>
