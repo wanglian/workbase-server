@@ -24,14 +24,16 @@ Meteor.methods({
 
     let userId = this.userId;
     let user = Meteor.users.findOne(userId);
-    let contact = Contacts.parseOne(email);
-    let threadId = Threads.create('Email', subject);
-    let thread = Threads.findOne(threadId);
+    let contacts = Contacts.parse(email);
+    if (!_.isEmpty(contacts)) {
+      let threadId = Threads.create('Email', subject);
+      let thread = Threads.findOne(threadId);
 
-    Threads.ensureMember(thread, user);
-    Threads.ensureMember(thread, contact);
-    return Threads.addMessage(thread, user, {
-      content
-    });
+      Threads.ensureMember(thread, user);
+      contacts.forEach(c => Threads.ensureMember(thread, c));
+      return Threads.addMessage(thread, user, {
+        content
+      });
+    }
   }
 });

@@ -1,4 +1,5 @@
 import './application-layout.html';
+import './send-email-modal';
 import './style.css';
 
 const screenSizes = {
@@ -21,7 +22,11 @@ Template.ApplicationLayout.onRendered(function() {
 });
 
 Template.ApplicationLayout.events({
-  "click .btn-sign-out"(e, t) {
+  "click #btn-send-email"(e, t) {
+    e.preventDefault();
+    Modal.show("SendEmailModal");
+  },
+  "click #btn-sign-out"(e, t) {
     e.preventDefault();
     // history.go(-1);
     Meteor.logout();

@@ -56,6 +56,7 @@ iron:location@1.0.11
 iron:middleware-stack@1.1.0
 iron:router@1.1.2
 iron:url@1.1.0
+jamiecollinson:selectize-bootstrap@0.12.1
 jparker:crypto-core@0.1.0
 jparker:crypto-md5@0.1.1
 jparker:gravatar@0.3.1
@@ -95,6 +96,7 @@ npm-bcrypt@0.9.3
 npm-mongo@3.1.1
 observe-sequence@1.0.16
 ordered-dict@1.1.0
+peppelg:bootstrap-3-modal@1.0.4
 perak:markdown@1.0.5
 promise@0.11.1
 raix:eventemitter@0.1.3
