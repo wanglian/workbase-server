@@ -21,6 +21,13 @@ Template.MessageForm.helpers({
   },
   formSchema() {
     return new SimpleSchema({
+      internal: {
+        type: Boolean,
+        optional: true,
+        autoform: {
+          type: "boolean-checkbox"
+        }
+      },
       content: {
         type: String,
         autoform: {
@@ -38,7 +45,7 @@ AutoForm.hooks({
       this.event.preventDefault();
 
       let threadId = this.formAttributes.threadId;
-      Meteor.call('sendMessage', threadId, insertDoc.content, (err, res) => {
+      Meteor.call('sendMessage', threadId, insertDoc.content, insertDoc.internal, (err, res) => {
         if (err) {
           console.log(err);
         } else {

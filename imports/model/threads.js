@@ -27,7 +27,7 @@ Threads.ensureMember = (thread, user) => {
     userType: user.className(),
     userId:   user._id
   }, {$set: {
-    read: false
+    read: true
   }});
 };
 
@@ -38,12 +38,21 @@ Threads.addMessage = (thread, user, message) => {
     userId:   user._id
   }, message));
   Threads.update(thread._id, {$set: {lastMessageId: mid}});
-  ThreadUsers.update({threadId: thread._id}, {$set: {read: false}}, {multi: true}); // mark unread
-  ThreadUsers.update({threadId: thread._id, userType: user.className(), userId: user._id}, {$set: {read: true}}); // mark read
+  ThreadUsers.update({threadId: thread._id, userType: 'Users'}, {$set: {read: false}}, {multi: true}); // mark unread
+  ThreadUsers.update({threadId: thread._id, userType: 'Users', userId: user._id}, {$set: {read: true}}); // mark read
   return mid;
 };
 
 Threads.helpers({
+  members() {
+    return ThreadUsers.find({threadId: this._id}).map(tu => tu.user());
+  },
+  externalMembers() {
+    return ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).map(tu => tu.user());
+  },
+  hasExternalMembers() {
+    return ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).count() > 0;
+  },
   lastMessage() {
     return Messages.findOne(this.lastMessageId);
   }

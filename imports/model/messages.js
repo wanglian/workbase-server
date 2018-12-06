@@ -1,6 +1,7 @@
 // - threadId
 // - userType: user, contact
 // - userId
+// - internal: boolean
 // - content
 // - summary
 // - emailId
@@ -14,7 +15,8 @@ const purgeHtml = (html) => {
 
 Messages.before.insert(function(userId, doc) {
   doc.createdAt = new Date();
-  let strippedText = purgeHtml(doc.content) || "没有文本内容";
+  _.defaults(doc, {internal: false});
+  let strippedText = purgeHtml(doc.content) || "no text content";
   doc.summary = strippedText.slice(0, 250);
 });
 

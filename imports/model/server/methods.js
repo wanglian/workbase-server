@@ -3,7 +3,7 @@ Meteor.methods({
     check(threadId, String);
     ThreadUsers.update({threadId, userType: 'Users', userId: this.userId}, {$set: {read: true}});
   },
-  sendMessage(threadId, content) {
+  sendMessage(threadId, content, internal=false) {
     check(threadId, String);
     check(content, String);
 
@@ -13,7 +13,8 @@ Meteor.methods({
     let threadUser = ThreadUsers.findOne({threadId, userId, userType: 'Users'});
     if (thread && threadUser) {
       return Threads.addMessage(thread, user, {
-        content
+        content,
+        internal
       });
     }
   },

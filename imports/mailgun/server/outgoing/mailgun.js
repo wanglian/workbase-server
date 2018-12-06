@@ -18,7 +18,7 @@ Mailgun = {
 };
 
 Messages.after.insert(function(userId, doc) {
-  if (doc.userType === 'Contacts') return;
+  if (doc.userType === 'Contacts' || doc.internal) return;
 
   let threadId = doc.threadId;
   let contacts = ThreadUsers.find({threadId, userType: 'Contacts'}).map(tu => Contacts.findOne(tu.userId));
@@ -30,7 +30,7 @@ Messages.after.insert(function(userId, doc) {
     let params = {
       from:    user.address(),
       to:      contacts.map(c => c.address()),
-      subject: thread.subject,
+      subject: `re: ${thread.subject}`,
       text:    doc.content
     };
 

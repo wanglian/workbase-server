@@ -2,5 +2,8 @@
   {{#autoForm collection=formCollection schema=formSchema id="message-form" threadId=_id}}
     {{> afQuickField name="content" }}
     <button type="submit" class="btn btn-primary btn-sm">Send</button>
+    {{#if hasExternalMembers}}
+      {{> afFieldInput name="internal"}}
+    {{/if}}
   {{/autoForm}}
 </template>

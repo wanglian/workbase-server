@@ -5,6 +5,10 @@
 #message-form .form-group {
   margin-bottom: 10px;
 }
+#message-form .checkbox {
+  display: inline-block;
+  float: right;
+}
 /* 圆角输入框 */
 textarea.form-control {
   max-height: 400px;
