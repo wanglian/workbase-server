@@ -1,3 +1,5 @@
 import '../';
-import './publications';
+import './hooks';
+import './functions';
 import './methods';
+import './publications';

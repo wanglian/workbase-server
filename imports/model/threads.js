@@ -8,48 +8,6 @@
 // - updatedAt
 Threads = new Mongo.Collection('threads');
 
-Threads.before.insert(function(userId, doc) {
-  doc.createdAt = new Date();
-  _.defaults(doc, {scope: 'private'});
-});
-
-Threads.before.update(function(userId, doc, fieldNames, modifier, options) {
-  modifier.$set = modifier.$set || {};
-  modifier.$set.updatedAt = new Date();
-});
-
-Threads.create = (user, category, subject, scope="private") => {
-  return Threads.insert({
-    userType: user.className(),
-    userId: user._id,
-    category,
-    subject,
-    scope
-  });
-};
-
-Threads.ensureMember = (thread, user) => {
-  ThreadUsers.upsert({
-    threadId: thread._id,
-    userType: user.className(),
-    userId:   user._id
-  }, {$set: {
-    read: true
-  }});
-};
-
-Threads.addMessage = (thread, user, message) => {
-  let mid = Messages.insert(_.extend({
-    threadId: thread._id,
-    userType: user.className(),
-    userId:   user._id
-  }, message));
-  Threads.update(thread._id, {$set: {lastMessageId: mid}});
-  ThreadUsers.update({threadId: thread._id, userType: 'Users'}, {$set: {read: false}}, {multi: true}); // mark unread
-  ThreadUsers.update({threadId: thread._id, userType: 'Users', userId: user._id}, {$set: {read: true}}); // mark read
-  return mid;
-};
-
 Threads.helpers({
   members() {
     return ThreadUsers.find({threadId: this._id}).map(tu => tu.user());
