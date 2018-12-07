@@ -4,6 +4,9 @@ Users.helpers({
   className() {
     return 'Users';
   },
+  isAdmin() {
+    return this.profile && this.profile.role === 'admin';
+  },
   name() {
     return this.profile.name;
   },

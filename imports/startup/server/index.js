@@ -18,7 +18,7 @@ Meteor.startup(() => {
     let params = {
       email: [Instance.admin.id, Instance.domain].join('@'),
       password: 'admin123',
-      profile: {name: Instance.admin.name}
+      profile: {name: Instance.admin.name, title: 'Admin', role: 'admin'}
     };
     console.log("[startup] create admin: ");
     console.log(params);

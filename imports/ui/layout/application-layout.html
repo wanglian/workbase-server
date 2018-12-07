@@ -23,7 +23,7 @@
         </a>
 
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          {{> AdminMenu}}
+          {{#if currentUser.isAdmin}}{{> AdminMenu}}{{/if}}
           {{> yield "menu"}}
           <form class="navbar-form navbar-left hide" role="search">
             <div class="form-group">
