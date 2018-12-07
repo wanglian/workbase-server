@@ -1,6 +1,7 @@
 import '../chat';
 import './roster-menu-item';
 import './roster';
+import './add-roster-modal';
 import './style.css';
 
 RosterController = ApplicationController.extend({
