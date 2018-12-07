@@ -1,0 +1,9 @@
+<template name="afEmailInput">
+  {{#if atts.domain}}
+    <div class="input-group">
+      <input type="text" value="{{valueWithoutDomain}}" {{atts}}/><span class="input-group-addon">@{{atts.domain}}</span>
+    </div>
+  {{else}}
+    <input type="text" value="{{value}}" {{atts}}/>
+  {{/if}}
+</template>

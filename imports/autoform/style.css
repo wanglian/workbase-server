@@ -1,0 +1,3 @@
+[data-required] label:after {
+  content: '*';
+}

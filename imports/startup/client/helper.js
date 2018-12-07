@@ -8,6 +8,10 @@ Template.registerHelper('countUnread', function() {
   return Counts.get('count-unread-inbox');
 });
 
+Template.registerHelper('domain', function() {
+  return Instance.domain;
+});
+
 Template.registerHelper('isMe', (user) => {
   return user && user.className() === 'Users' && user._id === Meteor.userId();
 });

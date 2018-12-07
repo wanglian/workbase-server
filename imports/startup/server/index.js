@@ -1,18 +1,17 @@
 import '../both';
 
-Instance = {
+_.extend(Instance, {
   root: {
     email: 'wanglian1024@gmail.com',
     profile: {
       name: 'William'
     }
   },
-  domain: "weaworking.com",
   admin: {
     id: 'wanglian',
     name: 'Wang Lian'
   }
-};
+});
 
 Meteor.startup(() => {
   if (Users.find({}).count() === 0) {

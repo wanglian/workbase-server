@@ -3,6 +3,6 @@ ThreadCategories.add("Chat", {
   iconUnread: "fa fa-comment",
   title(thread) {
     let chat = Users.findOne(thread.params.chat);
-    return chat.name();
+    return chat && chat.name();
   }
 });

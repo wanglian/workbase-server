@@ -1,6 +1,6 @@
 <template name="Roster">
   {{#contentFor "menu"}}
-    {{> RosterMenu}}
+    {{> RosterMenu user=user}}
   {{/contentFor}}
   {{#if user}}
     {{#if detail}}
@@ -53,6 +53,9 @@
 <template name="RosterMenu">
   <ul class="nav navbar-nav">
     <li><a href="#" id="btn-add-roster"><i class="fa fa-plus-square"></i> Add Member</a></li>
+    {{#if user}}
+      <li><a href="#" id="btn-edit-roster"><i class="fa fa-edit"></i> Edit Member</a></li>
+    {{/if}}
     <li class="dropdown hide">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
       <ul class="dropdown-menu" role="menu">
@@ -113,7 +116,7 @@
     </div>
 
     {{#unless hasChat}}
-      <a href="#" class="btn btn-default btn-block" id="btn-chat">Messages</a>
+      <a href="#" class="btn btn-primary btn-block" id="btn-chat">Messages</a>
     {{/unless}}
   </div>
 </template>

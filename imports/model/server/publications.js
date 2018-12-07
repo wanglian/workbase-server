@@ -65,3 +65,7 @@ Meteor.publish("messages", function(threadId) {
 
   return Messages.find({threadId}, {sort: {createdAt: -1}});
 });
+
+Meteor.publish("roster", function() {
+  return Users.find({"profile.channel": {$ne: true}}, {fields: {emails: 1, profile: 1}});
+});
