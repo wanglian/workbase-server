@@ -23,6 +23,7 @@ Meteor.publishComposite("threads", function(category) {
           return Threads.find({_id: tu.threadId}, {
             transform: (doc) => {
               doc.read = tu.read;
+              doc.params = tu.params;
               return doc;
             }
           });

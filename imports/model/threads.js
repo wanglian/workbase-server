@@ -21,6 +21,10 @@ Threads.helpers({
   hasExternalMembers() {
     return ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).count() > 0;
   },
+  title() {
+    let c = ThreadCategories.get(this.category);
+    return typeof(c.title) == "function" ? c.title(this) : this.subject;
+  },
   lastMessage() {
     return Messages.findOne(this.lastMessageId);
   }
