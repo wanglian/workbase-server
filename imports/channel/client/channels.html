@@ -1,3 +1,52 @@
+<template name="Channels">
+  {{#contentFor "menu"}}
+    {{> ChannelMenu channel=channel}}
+  {{/contentFor}}
+
+  {{#if thread}}
+    {{#if detail}}
+      {{#Layout template="InboxLayout"}}
+        {{> ThreadList threads=threads thread=thread}}
+
+        {{#contentFor "header"}}
+          {{> ThreadHeader thread}}
+        {{/contentFor}}
+
+        {{#contentFor "right"}}
+          {{> Thread thread}}
+        {{/contentFor}}
+
+        {{#contentFor "sidebar"}}
+          {{> ThreadDetail thread}}
+        {{/contentFor}}
+      {{/Layout}}
+    {{else}}
+      {{#Layout template="InboxLayout"}}
+        {{> ThreadList threads=threads thread=thread}}
+
+        {{#contentFor "header"}}
+          {{> ThreadHeader thread}}
+        {{/contentFor}}
+
+        {{#contentFor "right"}}
+          {{> Thread thread}}
+        {{/contentFor}}
+      {{/Layout}}
+    {{/if}}
+  {{else}}
+    {{#Layout template="InboxLayout"}}
+      {{> ThreadList threads=threads}}
+    {{/Layout}}
+  {{/if}}
+</template>
+
+<template name="ChannelMenu">
+  <p class="navbar-text" style="color: white; font-weight: 600;">{{channel.address}}</p>
+  <ul class="nav navbar-nav">
+    <li><a href="#" id="btn-edit-channel"><i class="fa fa-edit"></i> Edit</a></li>
+  </ul>
+</template>
+
 <template name="ChannelMenuItems">
   {{#each channels}}
     <li class="{{#if isChannel _id}}active{{/if}}">

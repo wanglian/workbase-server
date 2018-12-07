@@ -1,0 +1,42 @@
+<template name="AddChannelModal">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">New Channel</h4>
+        </div>
+        <div class="modal-body">
+          {{#autoForm collection=formCollection schema=formSchema id="add-channel-form" type="normal"}}
+            {{> afQuickField name="name"}}
+            {{> afQuickField name="email" domain=domain}}
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
+          {{/autoForm}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="EditChannelModal">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">Edit Channel</h4>
+        </div>
+        <div class="modal-body">
+          {{#autoForm collection=formCollection schema=formSchema doc=this id="edit-channel-form" type="normal"}}
+            {{> afQuickField name="name" value=name}}
+            {{> afQuickField name="email" domain=domain value=email}}
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Discard</button>
+          {{/autoForm}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+

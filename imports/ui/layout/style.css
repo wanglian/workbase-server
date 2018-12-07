@@ -30,3 +30,9 @@ body .navbar-nav>.user-menu .user-image {
   z-index: 9999; /* 要大于control-sidebar (1010) */
   margin-bottom: 0;
 }
+
+@media (max-width: 991px) {
+  body .navbar-collapse.pull-left+.navbar-custom-menu {
+    right: 0px;
+  }
+}

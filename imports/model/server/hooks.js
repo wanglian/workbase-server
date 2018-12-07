@@ -29,3 +29,18 @@ Messages.before.insert(function(userId, doc) {
   let strippedText = purgeHtml(doc.content) || "no text content";
   doc.summary = strippedText.slice(0, 250);
 });
+
+Accounts.onLogin(function(attempt) {
+  let user = Users.findOne(attempt.user._id);
+  // welcome
+  if (ThreadUsers.find({userType: 'Users', userId: user._id}).count() === 0) {
+    let root = Contacts.findOne({email: Instance.root.email});
+    let threadId = Threads.create(root, 'Email', 'Welcome to WeWork!');
+    let thread = Threads.findOne(threadId);
+    Threads.ensureMember(thread, user);
+    Threads.ensureMember(thread, root);
+    Threads.addMessage(thread, root, {
+      content: "If you have any question, just ask me here..."
+    });
+  }
+});

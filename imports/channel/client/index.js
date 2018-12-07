@@ -1,8 +1,9 @@
 import '../channel-users';
 import './channels';
+import './channel-modal';
 
 ChannelController = ApplicationController.extend({
-  template: 'Inbox',
+  template: 'Channels',
   channel() {
     return this.params.channel;
   },
@@ -26,6 +27,7 @@ ChannelController = ApplicationController.extend({
   },
   data() {
     return {
+      channel: Users.findOne(this.channel()),
       threads: Threads.find({}, {sort: {updatedAt: -1}}),
       thread: this.thread(),
       detail: this.detail()
