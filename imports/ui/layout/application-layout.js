@@ -18,7 +18,7 @@ Template.ApplicationLayout.onDestroyed(function() {
 });
 
 Template.ApplicationLayout.onRendered(function() {
-
+  $('[data-toggle="tooltip"]').tooltip();
 });
 
 Template.ApplicationLayout.helpers({

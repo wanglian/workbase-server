@@ -25,7 +25,9 @@
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
             <li>
-              <a href="#" id="btn-send-email"><i class="fa fa-send"></i> Compose</a>
+              <a href="#" id="btn-send-email">
+                <i class="fa fa-send" data-toggle="tooltip" title="Compose"></i> <span class="hidden-xs">Compose</span>
+              </a>
             </li>
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
@@ -85,6 +87,7 @@
               </a>
             </li>
             {{> ChannelMenuItems}}
+            {{> RosterMenuItem}}
           </ul>
         </section>
       </aside>

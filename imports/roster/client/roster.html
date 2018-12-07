@@ -1,0 +1,98 @@
+<template name="Roster">
+  {{#if user}}
+    {{#if detail}}
+      {{#Layout template="InboxLayout"}}
+        {{> RosterList users=users}}
+
+        {{#contentFor "header"}}
+          {{> ThreadHeader chat}}
+        {{/contentFor}}
+
+        {{#contentFor "right"}}
+          {{> Thread chat}}
+        {{/contentFor}}
+
+        {{#contentFor "sidebar"}}
+          {{> RosterCard user}}
+        {{/contentFor}}
+      {{/Layout}}
+    {{else}}
+      {{#Layout template="InboxLayout"}}
+        {{> RosterList users=users}}
+
+        {{#if chat}}
+          {{#contentFor "header"}}
+            {{> ThreadHeader chat}}
+          {{/contentFor}}
+
+          {{#contentFor "right"}}
+            {{> Thread chat}}
+          {{/contentFor}}
+        {{else}}
+          {{#contentFor "header"}}
+            {{> InboxBackButton}}
+            <div class="thread-subject">{{user.name}}</div>
+          {{/contentFor}}
+
+          {{#contentFor "right"}}
+            {{> RosterCard user}}
+          {{/contentFor}}
+        {{/if}}
+      {{/Layout}}
+    {{/if}}
+  {{else}}
+    {{#Layout template="InboxLayout"}}
+      {{> RosterList users=users}}
+    {{/Layout}}
+  {{/if}}
+</template>
+
+<template name="RosterList">
+  <ul class="list-group threads">
+    {{#each users}}
+      <a href="/roster/{{_id}}" class="list-group-item clearfix thread" id="{{_id}}">
+        <div class="thread-icon">
+          {{> avatar user=this shape="circle" class="img-circle" size="small"}}
+        </div>
+        <div class="thread-title">
+          <div class="thread-subject-wrap clearfix">
+            <span class="thread-subject text-ellipsis">{{name}}</span>
+            <small class="pull-right text-muted">&nbsp;</small>
+          </div>
+          <div class="thread-message-wrap">
+            <div class="thread-message text-muted">
+              <div class="message-summary">
+                <span class="text-ellipsis">
+                  {{email}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="RosterCard">
+  <div class="roster-card">
+    <div class="box box-widget widget-user-2">
+      <!-- Add the bg color to the header using any of the bg-* classes -->
+      <div class="widget-user-header bg-yellow clearfix">
+        {{> avatar user=this shape="circle" class="img-circle pull-left" size="large"}}
+          <!-- /.widget-user-image -->
+        <h3 class="widget-user-username">{{name}}</h3>
+        <h5 class="widget-user-desc">{{email}}</h5>
+      </div>
+      <div class="box-footer no-padding">
+        <ul class="nav nav-stacked">
+          <li><a href="#">Posts <span class="pull-right badge bg-blue">8</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    {{#unless hasChat}}
+      <a href="#" class="btn btn-default btn-block" id="btn-chat">Messages</a>
+    {{/unless}}
+  </div>
+</template>
