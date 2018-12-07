@@ -7,7 +7,7 @@
 </template>
 
 <template name="ThreadListItem">
-  <a href="?id={{_id}}" class="list-group-item clearfix btn-thread thread" id="{{_id}}">
+  <a href="{{threadPath}}" class="list-group-item clearfix thread" id="{{_id}}">
     <div class="thread-icon">
       <button type="button" class="{{#unless read}}unread-button{{/unless}}"><i class="{{icon}}"></i></button>
       {{#unless read}}<span class="unread"></span>{{/unless}}
@@ -21,8 +21,10 @@
         <div class="thread-message text-muted">
           <div class="message-summary">
             <span class="text-ellipsis">
-              {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
-              {{lastMessage.summary}}
+              {{#if lastMessage}}
+                {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
+                {{lastMessage.summary}}
+              {{/if}}
             </span>
           </div>
         </div>

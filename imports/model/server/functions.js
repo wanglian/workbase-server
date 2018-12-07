@@ -8,14 +8,20 @@ Threads.create = (user, category, subject, scope="private") => {
   });
 };
 
-Threads.ensureMember = (thread, user) => {
+Threads.ensureMember = (thread, user, params) => {
+  let modifier = {
+    category: thread.category,
+    read: true
+  };
+  if (params) {
+    _.extend(modifier, params);
+  }
+
   ThreadUsers.upsert({
     threadId: thread._id,
     userType: user.className(),
     userId:   user._id
-  }, {$set: {
-    read: true
-  }});
+  }, {$set: modifier});
 };
 
 Threads.addMessage = (thread, user, message) => {

@@ -2,9 +2,11 @@ Meteor.startup(function() {
   Avatar.setOptions({
     // defaultImageUrl: ""
     imageSizes: {
-      'large': 80,
+      'xlarge': 90,
+      'large': 65,
       'medium': 40,
-      'small': 30,
+      'small': 35,
+      'tiny': 30,
     }
   });
 });

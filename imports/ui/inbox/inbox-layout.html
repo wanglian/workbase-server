@@ -24,3 +24,15 @@
     </div>
   </div>
 </template>
+
+<template name="InboxBackButton">
+  <a href="{{listPath}}" class="btn-back pull-left text-muted {{btnBackClass}}" data-toggle="tooltip" data-placement="bottom" data-trigger="hover" data-original-title="Go back">
+    <i class="fa fa-chevron-left"></i>
+  </a>
+</template>
+
+<template name="InboxSidebarButton">
+  <a href="{{detailPath}}" class="thread-header-icon pull-right text-muted {{#if detailShown}}active{{/if}}">
+    <i class="fa fa-info-circle" style="min-width: 20px;"></i>
+  </a>
+</template>

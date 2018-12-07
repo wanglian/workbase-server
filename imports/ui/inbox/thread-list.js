@@ -12,6 +12,10 @@ Template.ThreadList.onRendered(function() {
 });
 
 Template.ThreadListItem.helpers({
+  threadPath() {
+    let currentRoute = Router.current();
+    return currentRoute.route.path(_.defaults({_id: this._id}, currentRoute.params));
+  },
   icon() {
     let c = ThreadCategories.get(this.category)
     return this.read ? c.icon : c.iconUnread;

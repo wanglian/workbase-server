@@ -1,5 +1,6 @@
 Threads.before.insert(function(userId, doc) {
   doc.createdAt = new Date();
+  doc.updatedAt = new Date();
   _.defaults(doc, {scope: 'private'});
 });
 
@@ -10,6 +11,7 @@ Threads.before.update(function(userId, doc, fieldNames, modifier, options) {
 
 ThreadUsers.before.insert(function(userId, doc) {
   doc.createdAt = new Date();
+  doc.updatedAt = new Date();
 });
 
 ThreadUsers.before.update(function(userId, doc, fieldNames, modifier, options) {

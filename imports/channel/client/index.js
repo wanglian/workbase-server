@@ -4,7 +4,7 @@ import './channels';
 ChannelController = ApplicationController.extend({
   template: 'Inbox',
   channel() {
-    return this.params._id;
+    return this.params.channel;
   },
   subscriptions() {
     this.subscribe("channel.threads", this.channel());
@@ -15,7 +15,7 @@ ChannelController = ApplicationController.extend({
     }
   },
   threadId() {
-    return this.params.query.id;
+    return this.params._id;
   },
   detail() {
     return this.params.query.detail;
@@ -33,7 +33,7 @@ ChannelController = ApplicationController.extend({
   }
 });
 
-Router.route('/channels/:_id', {
+Router.route('/channels/:channel/:_id?', {
   name: 'channel',
   controller: 'ChannelController'
 });

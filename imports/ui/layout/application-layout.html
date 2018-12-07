@@ -30,13 +30,13 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                {{> avatar user=currentUser shape="circle" class="img-circle user-image" size="small"}}
+                {{> avatar user=currentUser shape="circle" class="img-circle user-image" size="tiny"}}
                 <span class="hidden-xs">{{currentUser.profile.name}}</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  {{> avatar user=currentUser shape="circle" class="img-circle align-center" size="large"}}
+                  {{> avatar user=currentUser shape="circle" class="img-circle align-center" size="xlarge"}}
                   <p>
                     {{currentUser.name}}
                     <small>{{currentUser.title}}</small>
@@ -84,7 +84,7 @@
                 {{/if}}
               </a>
             </li>
-            {{> Channels}}
+            {{> ChannelMenuItems}}
           </ul>
         </section>
       </aside>

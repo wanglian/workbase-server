@@ -1,5 +1,6 @@
 // - threadId
-// - userType: user, contact
+// - category: Email, ..
+// - userType: Users, Contacts, ..
 // - userId
 // - read
 // - createdAt

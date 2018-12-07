@@ -31,3 +31,37 @@ Template.InboxLayout.helpers({
     return 'col-lg-4 col-md-5 col-sm-12';
   }
 });
+
+Template.InboxBackButton.helpers({
+  listPath() {
+    let currentRoute = Router.current();
+    return currentRoute.route.path();
+  },
+  btnBackClass() {
+    let currentRoute = Router.current();
+    let query = _.clone(currentRoute.params.query);
+    if (_.has(query, "detail")) {
+      return "visible-md visible-sm visible-xs";
+    } else {
+      return "visible-sm visible-xs";
+    }
+  }
+});
+
+Template.InboxSidebarButton.helpers({
+  detailShown() {
+    let currentRoute = Router.current();
+    let query = _.clone(currentRoute.params.query);
+    return _.has(query, "detail");
+  },
+  detailPath() {
+    let currentRoute = Router.current();
+    let query = _.clone(currentRoute.params.query);
+    if (_.has(query, "detail")) {
+      query = _.omit(query, "detail");
+    } else {
+      _.extend(query, {detail: true});
+    }
+    return currentRoute.route.path(currentRoute.params, {query});
+  }
+});

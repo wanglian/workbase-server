@@ -18,7 +18,7 @@ InboxController = ApplicationController.extend({
     }
   },
   threadId() {
-    return this.params.query.id;
+    return this.params._id;
   },
   detail() {
     return this.params.query.detail;
@@ -36,7 +36,7 @@ InboxController = ApplicationController.extend({
   }
 });
 
-Router.route('/inbox', {
+Router.route('/inbox/:_id?', {
   name: 'inbox',
   controller: 'InboxController'
 });

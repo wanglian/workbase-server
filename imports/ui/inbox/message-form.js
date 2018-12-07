@@ -12,7 +12,10 @@ Template.MessageForm.onRendered(function() {
 
 Template.MessageForm.onDestroyed(function() {
   // save draft
-  Session.set(`message-draft-${this.data._id}`, $('#message-form textarea').val());
+  let textarea = $('#message-form textarea');
+  if (textarea && !_.isEmpty(textarea.val())) {
+    Session.set(`message-draft-${this.data._id}`, textarea.val());
+  }
 });
 
 Template.MessageForm.helpers({

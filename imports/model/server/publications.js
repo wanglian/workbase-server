@@ -5,10 +5,17 @@ Meteor.publishComposite('instance', function() {
   return this.ready();
 });
 
-Meteor.publishComposite("threads", function() {
+Meteor.publishComposite("threads", function(category) {
+  check(category, Match.Maybe(String));
+
+  let conditions = {userType: 'Users', userId: this.userId};
+  if (category) {
+    _.extend(conditions, {category});
+  }
+
   return {
     find() {
-      return ThreadUsers.find({userType: 'Users', userId: this.userId}, {sort: {updatedAt: -1}});
+      return ThreadUsers.find(conditions, {sort: {updatedAt: -1}});
     },
     children: [
       {
