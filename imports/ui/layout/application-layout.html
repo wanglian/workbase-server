@@ -7,12 +7,12 @@
       <a href="/" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">
-          <b>W</b>
+          <b>B</b>
         </span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">
           <!-- <img src="/images/logo.png" class="img-responsive"/> -->
-          We<b>Work</b>
+          <b>B</b>ase
 
         </span>
       </a>
@@ -74,7 +74,7 @@
           </form>
             -->
           <ul class="sidebar-menu">
-            <li class="active">
+            <li class="{{#if isInbox}}active{{/if}}">
               <a href="/inbox">
                 <i class="fa fa-inbox"></i> <span>{{_ 'Inbox'}}</span>
                 {{#if countUnread}}

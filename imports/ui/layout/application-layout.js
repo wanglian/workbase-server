@@ -21,6 +21,12 @@ Template.ApplicationLayout.onRendered(function() {
 
 });
 
+Template.ApplicationLayout.helpers({
+  isInbox() {
+    return Router.current().route.getName() === 'inbox';
+  }
+});
+
 Template.ApplicationLayout.events({
   "click #btn-send-email"(e, t) {
     e.preventDefault();

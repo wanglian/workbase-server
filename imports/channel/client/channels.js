@@ -5,6 +5,10 @@ Template.Channels.onCreated(function() {
 });
 
 Template.Channels.helpers({
+  isChannel(id) {
+    let router = Router.current();
+    return router.route.getName() === 'channel' && router.params._id === id;
+  },
   channels() {
     return Users.find({"profile.channel": true});
   }

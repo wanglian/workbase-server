@@ -9,6 +9,9 @@
 Threads = new Mongo.Collection('threads');
 
 Threads.helpers({
+  user() {
+    return eval(this.userType).findOne(this.userId);
+  },
   members() {
     return ThreadUsers.find({threadId: this._id}).map(tu => tu.user());
   },
