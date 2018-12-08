@@ -69,3 +69,7 @@ Meteor.publish("messages", function(threadId) {
 Meteor.publish("roster", function() {
   return Users.find({"profile.channel": {$ne: true}}, {fields: {emails: 1, profile: 1}});
 });
+
+Meteor.publish("contacts", function() {
+  return Contacts.find({}, {fields: {email: 1, profile: 1}});
+});

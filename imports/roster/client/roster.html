@@ -3,6 +3,10 @@
     {{> RosterMenu user=user}}
   {{/contentFor}}
 
+  {{#contentFor "title"}}
+    <p class="navbar-text" style="color: white; font-weight: 600;">Roster</p>
+  {{/contentFor}}
+
   {{#if user}}
     {{#if detail}}
       {{#Layout template="InboxLayout"}}
@@ -52,9 +56,13 @@
 </template>
 
 <template name="RosterMenu">
-  <ul class="nav navbar-nav">
-    {{#if user}}
-      <li><a href="#" id="btn-edit-roster"><i class="fa fa-edit"></i> Edit Member</a></li>
+  <ul class="dropdown-menu" role="menu">
+    {{#if currentUser.isAdmin}}
+      {{#if user}}
+        <li><a href="#" id="btn-edit-roster"><i class="fa fa-edit"></i> Edit Member</a></li>
+        <li class="divider"></li>
+      {{/if}}
+      <li><a href="#" id="btn-add-roster"><i class="fa fa-plus"></i> Add Member</a></li>
     {{/if}}
   </ul>
 </template>

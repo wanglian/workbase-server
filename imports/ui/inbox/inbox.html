@@ -3,6 +3,10 @@
 
   {{/contentFor}}
 
+  {{#contentFor "title"}}
+    <p class="navbar-text" style="color: white; font-weight: 600;">Inbox</p>
+  {{/contentFor}}
+
   {{#if thread}}
     {{#if detail}}
       {{#Layout template="InboxLayout"}}
@@ -40,15 +44,8 @@
   {{/if}}
 </template>
 
-<template name="AdminMenu">
-  <ul class="nav navbar-nav">
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog"></i></a>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#" id="btn-add-channel">Add Channel</a></li>
-        <li class="divider"></li>
-        <li><a href="#" id="btn-add-roster">Add Member</a></li>
-      </ul>
-    </li>
+<template name="InboxMenu">
+  <ul class="dropdown-menu" role="menu">
+
   </ul>
 </template>

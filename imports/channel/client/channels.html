@@ -1,6 +1,10 @@
 <template name="Channels">
   {{#contentFor "menu"}}
-    {{> ChannelMenu channel=channel}}
+    {{> ChannelMenu}}
+  {{/contentFor}}
+
+  {{#contentFor "title"}}
+    <p class="navbar-text" style="color: white; font-weight: 600;">{{channel.address}}</p>
   {{/contentFor}}
 
   {{#if thread}}
@@ -41,9 +45,12 @@
 </template>
 
 <template name="ChannelMenu">
-  <p class="navbar-text" style="color: white; font-weight: 600;">{{channel.address}}</p>
-  <ul class="nav navbar-nav">
-    <li><a href="#" id="btn-edit-channel"><i class="fa fa-edit"></i> Edit</a></li>
+  <ul class="dropdown-menu" role="menu">
+    {{#if currentUser.isAdmin}}
+      <li><a href="#" id="btn-edit-channel"><i class="fa fa-edit"></i> Edit Channel</a></li>
+      <li class="divider"></li>
+      <li><a href="#" id="btn-add-channel"><i class="fa fa-plus"></i> Add Channel</a></li>
+    {{/if}}
   </ul>
 </template>
 

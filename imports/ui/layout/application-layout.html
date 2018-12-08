@@ -18,13 +18,19 @@
       </a>
       <nav class="navbar navbar-static-top">
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <a href="#" class="sidebar-toggle hide" data-toggle="offcanvas" role="button">
           <span class="sr-only">Toggle navigation</span>
         </a>
 
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          {{#if currentUser.isAdmin}}{{> AdminMenu}}{{/if}}
-          {{> yield "menu"}}
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
+              {{> yield "menu"}}
+            </li>
+          </ul>
+          {{> yield "title"}}
+
           <form class="navbar-form navbar-left hide" role="search">
             <div class="form-group">
               <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
