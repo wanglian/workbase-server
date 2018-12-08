@@ -75,9 +75,9 @@
   background: #fafafa;
 }
 .members-list .members-item .members-info {
-  margin-left: 38px;
+  margin-left: 42px;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 16px;
   min-height: 30px;
 }
 .members-list .members-item .members-info span {

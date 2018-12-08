@@ -24,19 +24,7 @@
           <div class="flat-panel-body">
             <ul class="list-group members-list" style="max-height: calc(100vh - 330px); overflow-y: auto;">
               {{#each members}}
-                <li class="list-group-item members-item clearfix">
-                  <span class="pull-left">
-                    {{> avatar user=user shape="circle" class="img-circle pull-left" size="small"}}
-                  </span>
-
-                  <div class="members-info">
-                    <a href="#" class="member-name text-ellipsis" data-toggle="popover-roster" data-placement="bottom">
-                    {{user.name}}
-                    </a>
-                    {{user.title}}
-                    <span class="member-organization text-muted text-ellipsis">{{user.email}}</span>
-                  </div>
-                </li>
+                {{> UserListItem user}}
               {{/each}}
             </ul>
           </div>
@@ -44,4 +32,20 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="UserListItem">
+  <li class="list-group-item members-item clearfix">
+    <span class="pull-left">
+      {{> avatar user=this shape="circle" class="img-circle pull-left" size="small"}}
+    </span>
+
+    <div class="members-info">
+      <a href="#" class="member-name text-ellipsis" data-toggle="popover-roster" data-placement="bottom">
+      {{name}}
+      </a>
+      <span class="pull-right">{{title}}</span>
+      <span class="member-organization text-muted text-ellipsis">{{email}}</span>
+    </div>
+  </li>
 </template>

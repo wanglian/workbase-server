@@ -9,6 +9,7 @@ Meteor.methods({
     return id;
   },
   editChannel(id, email, name) {
+    check(id, String);
     check(name, String);
     check(email, String);
 
@@ -20,5 +21,17 @@ Meteor.methods({
       }
       if (name != channel.name()) Channels.update(id, {$set: {"profile.name": name}});
     }
+  },
+  addChannelMember(id, userId) {
+    check(id, String);
+    check(userId, String);
+
+    ChannelUsers.ensureMember(id, userId);
+  },
+  removeChannelMember(id, userId) {
+    check(id, String);
+    check(userId, String);
+
+    ChannelUsers.removeMember(id, userId);
   }
 });

@@ -1,6 +1,10 @@
 import './channels.html';
 
 Template.ChannelMenu.events({
+  "click #btn-channel-members"(e, t) {
+    e.preventDefault();
+    Modal.show('ChannelMembersModal', t.data.channel);
+  },
   "click #btn-add-channel"(e, t) {
     e.preventDefault();
     Modal.show('AddChannelModal');

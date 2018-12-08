@@ -12,3 +12,9 @@ Channels.helpers({
     return 'Users';
   }
 });
+
+ChannelUsers.helpers({
+  user() {
+    return Users.findOne(this.userId);
+  }
+});

@@ -15,6 +15,24 @@ Meteor.publishComposite('channels', function() {
   };
 });
 
+Meteor.publishComposite('channel.members', function(channel) {
+  check(channel, String);
+  if (!this.userId) return this.ready();
+
+  return {
+    find() {
+      return ChannelUsers.find({channelId: channel});
+    },
+    children: [
+      {
+        find(channelUser) {
+          return Users.find({_id: channelUser.userId}, {fields: {emails: 1, profile: 1}})
+        }
+      }
+    ]
+  };
+});
+
 Meteor.publishComposite("channel.threads", function(channel) {
   check(channel, String);
 
