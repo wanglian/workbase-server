@@ -9,6 +9,12 @@ RosterController = ApplicationController.extend({
   subscriptions() {
     this.subscribe("roster");
     this.subscribe("threads", "Chat");
+    let chat = this.chat();
+    let threadId = chat && chat._id;
+    if (threadId) {
+      this.subscribe("thread", threadId);
+      this.subscribe("messages", threadId);
+    }
   },
   user() {
     return Users.findOne(this.params._id);

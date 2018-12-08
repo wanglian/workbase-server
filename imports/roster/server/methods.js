@@ -1,12 +1,18 @@
 Meteor.methods({
   startChat(userId) {
     check(userId, String);
-    console.log(userId);
 
     let user = Users.findOne(this.userId);
     let chatUser = Users.findOne(userId);
     if (chatUser) {
       let tu = ThreadUsers.findOne({userType: 'Users', userId: this.userId, chat: userId});
+      if (!tu) {
+        tu = ThreadUsers.findOne({userType: 'Users', userId: userId, chat: this.userId});
+        if (tu) {
+          Threads.ensureMember(thread, user, {chat: userId});
+        }
+      }
+
       let threadId = tu && tu.threadId;
       if (!threadId) {
         threadId = Threads.create(user, 'Chat', 'Chat');
@@ -27,12 +33,13 @@ Meteor.methods({
         name,
         title
       }
-    })
+    });
   },
-  editMember(id, email, name, title) {
+  editMember(id, email, name, password, title) {
     check(id, String);
     check(name, String);
     check(email, String);
+    check(password, Match.Maybe(String));
     check(title, Match.Maybe(String));
 
     let user = Users.findOne(id);
@@ -41,8 +48,10 @@ Meteor.methods({
         Accounts.removeEmail(id, user.email());
         Accounts.addEmail(id, email);
       }
+      if (password) Accounts.setPassword(id, password);
       if (name != user.name()) Users.update(id, {$set: {"profile.name": name}});
       if (title != user.title()) Users.update(id, {$set: {"profile.title": title}});
+      return id;
     }
   }
 });

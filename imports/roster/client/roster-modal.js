@@ -18,6 +18,14 @@ const ROSTER_FORM_SCHEMA = new SimpleSchema({
       label: "Email"
     }
   },
+  password: {
+    type: String,
+    optional: true,
+    autoform: {
+      type: 'password',
+      label: 'Password'
+    }
+  },
   title: {
     type: String,
     optional: true,
@@ -66,7 +74,7 @@ AutoForm.hooks({
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
-      Meteor.call('editMember', currentDoc._id, insertDoc.email, insertDoc.name, insertDoc.title, (err, res) => {
+      Meteor.call('editMember', currentDoc._id, insertDoc.email, insertDoc.name, insertDoc.password, insertDoc.title, (err, res) => {
         if (err) {
           console.log(err);
         } else {
