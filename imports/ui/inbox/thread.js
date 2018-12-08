@@ -2,9 +2,29 @@ import './thread.html';
 import './thread.css';
 
 Template.Thread.onRendered(function() {
+  let threadId, data;
+
+  // 进入话题，延时两秒触发
   this.autorun(() => {
-    let data = Template.currentData();
-    if (data && !data.read) {
+    data = Template.currentData();
+    if (data && data._id != threadId) {
+      threadId = data._id;
+      if (this.timeout) Meteor.clearTimeout(this.timeout);
+      this.timeout = Meteor.setTimeout(() => {
+        if (!data.read) {
+          Meteor.call("markRead", data._id, (err, res) => {
+            if (err) {
+              console.log(err);
+            }
+          });
+        }
+      }, 2000);
+    }
+  });
+
+  // 停留在话题时，滚动页面触发
+  $('#inbox-right').on('scroll', (e) => {
+    if (!data.read) {
       Meteor.call("markRead", data._id, (err, res) => {
         if (err) {
           console.log(err);
@@ -12,6 +32,11 @@ Template.Thread.onRendered(function() {
       });
     }
   });
+});
+
+Template.Thread.onDestroyed(function() {
+  if (this.timeout) Meteor.clearTimeout(this.timeout);
+  $('#inbox-right').off('scroll');
 });
 
 Template.Thread.helpers({
