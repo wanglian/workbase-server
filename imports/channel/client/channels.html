@@ -45,13 +45,13 @@
 </template>
 
 <template name="ChannelMenu">
-  <ul class="dropdown-menu" role="menu">
-    {{#if currentUser.isAdmin}}
+  {{#if currentUser.isAdmin}}
+    <ul class="dropdown-menu" role="menu">
       <li><a href="#" id="btn-edit-channel"><i class="fa fa-edit"></i> Edit Channel</a></li>
       <li class="divider"></li>
       <li><a href="#" id="btn-add-channel"><i class="fa fa-plus"></i> Add Channel</a></li>
-    {{/if}}
-  </ul>
+    </ul>
+  {{/if}}
 </template>
 
 <template name="ChannelMenuItems">

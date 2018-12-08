@@ -1,6 +1,6 @@
 <template name="Inbox">
   {{#contentFor "menu"}}
-
+    {{> InboxMenu}}
   {{/contentFor}}
 
   {{#contentFor "title"}}
@@ -45,7 +45,11 @@
 </template>
 
 <template name="InboxMenu">
-  <ul class="dropdown-menu" role="menu">
-
-  </ul>
+ {{#if currentUser.isAdmin}}
+   <ul class="dropdown-menu" role="menu">
+     <li><a href="#" id="btn-add-roster"><i class="fa fa-plus"></i> Add Member</a></li>
+     <li class="divider"></li>
+     <li><a href="#" id="btn-add-channel"><i class="fa fa-plus"></i> Add Channel</a></li>
+   </ul>
+ {{/if}}
 </template>
