@@ -32,10 +32,12 @@ Template.InboxLayout.helpers({
   }
 });
 
+// rule: use _id as router param
 Template.InboxBackButton.helpers({
   listPath() {
     let currentRoute = Router.current();
-    return currentRoute.route.path();
+    let params = _.omit(currentRoute.params, "_id");
+    return currentRoute.route.path(params);
   },
   btnBackClass() {
     let currentRoute = Router.current();
@@ -48,6 +50,7 @@ Template.InboxBackButton.helpers({
   }
 });
 
+// rule: use detail as router query
 Template.InboxSidebarButton.helpers({
   detailShown() {
     let currentRoute = Router.current();
