@@ -1,8 +1,9 @@
-Meteor.publishComposite('instance', function() {
-  if (!this.userId) return this.ready();
+Meteor.publish('instance', function() {
+  if (this.userId){
+    Counts.publish(this, 'count-unread-inbox', ThreadUsers.find({userType: 'Users', userId: this.userId, read: false}));
+  }
 
-  Counts.publish(this, 'count-unread-inbox', ThreadUsers.find({userType: 'Users', userId: this.userId, read: false}));
-  return this.ready();
+  return Instance.find({}, {fields: {domain: 1}});
 });
 
 Meteor.publishComposite("threads", function(category) {

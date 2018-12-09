@@ -9,7 +9,7 @@ Template.registerHelper('countUnread', function() {
 });
 
 Template.registerHelper('domain', function() {
-  return Instance.domain;
+  return Instance.domain();
 });
 
 Template.registerHelper('isMe', (user) => {

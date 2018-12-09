@@ -1,0 +1,22 @@
+<template name="Setup">
+  {{#AdminLTE page="login"}}
+    <div class="login-box">
+      <div class="login-logo">
+        <a href="/"><b>Base</b></a>
+      </div>
+      <!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">Setup your system</p>
+
+        {{#autoForm collection=formCollection schema=formSchema id="setup-form" type="normal"}}
+          {{> afQuickField name="domain"}}
+          {{> afQuickField name="admin"}}
+          {{> afQuickField name="password"}}
+          <button type="submit" class="btn btn-primary">Save</button>
+        {{/autoForm}}
+
+      </div>
+      <!-- /.login-box-body -->
+    </div>
+  {{/AdminLTE}}
+</template>

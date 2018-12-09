@@ -1,3 +1,4 @@
+import './instance';
 import './users';
 import './threads';
 import './thread-users';

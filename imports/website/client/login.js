@@ -1,6 +1,6 @@
-import './home.html';
+import './login.html';
 
-Template.Home.events({
+Template.Login.events({
   "submit form"(e, t) {
     e.preventDefault();
     // history.go(-1);

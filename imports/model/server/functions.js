@@ -38,7 +38,7 @@ const parseEmailAddress = (emails) => {
 };
 Contacts.findOrCreateByAddress = (attrs) => {
   let email = attrs.address;
-  if (attrs.host() === Instance.domain) {
+  if (attrs.host() === Instance.domain()) {
     return Accounts.findUserByEmail(email);
   } else {
     let contact = Contacts.findOne({email});
