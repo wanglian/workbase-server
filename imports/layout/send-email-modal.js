@@ -15,6 +15,7 @@ Template.SendEmailModal.helpers({
     return new SimpleSchema({
       to: {
         type: String,
+        max: 1000,
         autoform: {
           type: 'text',
           label: I18n.t("To"),
@@ -23,6 +24,7 @@ Template.SendEmailModal.helpers({
       },
       subject: {
         type: String,
+        max: 200,
         autoform: {
           type: 'text',
           label: false,
@@ -31,6 +33,7 @@ Template.SendEmailModal.helpers({
       },
       content: {
         type: String,
+        max: 10000,
         autoform: {
           type: 'textarea',
           label: false,

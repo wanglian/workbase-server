@@ -5,9 +5,28 @@ import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 
 Template.MessageForm.onRendered(function() {
-  let draft = Session.get(`message-draft-${this.data._id}`);
-  if (draft) this.$('textarea').val(draft);
-  autosize(this.$('textarea'));
+  let threadId;
+
+  this.autorun(() => {
+    let data = Template.currentData();
+    if (data && data._id != threadId) {
+      // save
+      if (threadId) {
+        let textarea = $('#message-form textarea');
+        let content = textarea && textarea.val();
+        if (!_.isEmpty(content)) {
+          Session.set(`message-draft-${threadId}`, content);
+        }
+      }
+      // load
+      threadId = data._id;
+      let draft = Session.get(`message-draft-${threadId}`);
+      if (draft) {
+        this.$('textarea').val(draft);
+        autosize(this.$('textarea'));
+      }
+    }
+  });
 });
 
 Template.MessageForm.onDestroyed(function() {
