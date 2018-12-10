@@ -8,7 +8,7 @@ const CHANNEL_FORM_SCHEMA = new SimpleSchema({
     max: 50,
     autoform: {
       type: 'text',
-      label: "Name"
+      label: I18n.t("Channel Name")
     }
   },
   email: {

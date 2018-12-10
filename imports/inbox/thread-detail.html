@@ -2,7 +2,7 @@
   <div class="thread-detail">
     <div class="box box-widget" id="thread-detail-accordion">
       <div class="box-header with-border">
-        <p class="box-title">About</p>
+        <p class="box-title">{{_ "About"}}</p>
       </div>
       <div class="panel flat-panel">
         <div class="flat-panel-heading">
@@ -10,14 +10,14 @@
         </div>
         <div id="thread-info">
           <div class="flat-panel-body">
-            <p class="small text-muted">Created by {{user.name}} at {{formattedDate createdAt "simple"}}</p>
+            <p class="small text-muted">{{_ "Created by and when" name=user.name time=(formattedDate createdAt "simple")}}</p>
           </div>
         </div>
       </div>
       <div class="panel flat-panel">
         <div class="flat-panel-heading">
           <a data-parent="#thread-detail-accordion" href="#members" data-toggle="collapse">
-            <h4 class="flat-panel-title"><i class="fa fa-users text-success"></i>Members ({{members.count}})</h4>
+            <h4 class="flat-panel-title"><i class="fa fa-users text-success"></i>{{_ "Members"}} ({{members.count}})</h4>
           </a>
         </div>
         <div id="members" class="panel-collapse collapse in">

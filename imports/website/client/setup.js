@@ -13,7 +13,7 @@ Template.Setup.helpers({
         max: 50,
         autoform: {
           type: 'text',
-          label: 'Domain',
+          label: I18n.t('Domain'),
         }
       },
       admin: {
@@ -21,7 +21,7 @@ Template.Setup.helpers({
         max: 50,
         autoform: {
           type: 'text',
-          label: "Admin account"
+          label: I18n.t("Admin account")
         }
       },
       password: {
@@ -29,7 +29,7 @@ Template.Setup.helpers({
         max: 50,
         autoform: {
           type: 'password',
-          label: 'Password'
+          label: I18n.t("Password")
         }
       }
     });

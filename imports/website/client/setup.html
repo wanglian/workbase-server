@@ -6,13 +6,13 @@
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Setup your system</p>
+        <p class="login-box-msg">{{_ "Setup your system"}}</p>
 
         {{#autoForm collection=formCollection schema=formSchema id="setup-form" type="normal"}}
           {{> afQuickField name="domain"}}
           {{> afQuickField name="admin"}}
           {{> afQuickField name="password"}}
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
         {{/autoForm}}
 
       </div>

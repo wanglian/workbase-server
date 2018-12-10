@@ -8,7 +8,7 @@ const ROSTER_FORM_SCHEMA = new SimpleSchema({
     max: 50,
     autoform: {
       type: 'text',
-      label: "Name"
+      label: I18n.t("User Name")
     }
   },
   email: {
@@ -26,7 +26,7 @@ const ROSTER_FORM_SCHEMA = new SimpleSchema({
     optional: true,
     autoform: {
       type: 'password',
-      label: 'Password'
+      label: I18n.t("Password")
     }
   },
   title: {
@@ -35,7 +35,7 @@ const ROSTER_FORM_SCHEMA = new SimpleSchema({
     optional: true,
     autoform: {
       type: 'text',
-      label: 'Title',
+      label: I18n.t('Title'),
     }
   }
 });

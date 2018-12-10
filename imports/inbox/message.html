@@ -8,8 +8,8 @@
         <span class="message-header-name">{{userName}}</span>
         <span class="text-muted small">{{formattedDate createdAt 'simpleDayWithTime'}}</span>
         <div class="email text-muted small">
-          {{#if email.to}}<div>to {{email.to}} </div>{{/if}}
-          {{#if email.cc}}<div>cc {{email.cc}} </div>{{/if}}
+          {{#if email.to}}<div>{{_ 'mail to'}} {{email.to}} </div>{{/if}}
+          {{#if email.cc}}<div>{{_ 'mail cc'}} {{email.cc}} </div>{{/if}}
         </div>
         <div class="summary text-ellipsis text-muted hide">{{summary}}</div>
       </div>

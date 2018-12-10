@@ -21,6 +21,11 @@ body .navbar-nav>.user-menu .user-image {
   margin-bottom: -6px;
 }
 
+body .page-header {
+   margin: 30px 0 20px;
+   font-size: 14px;
+}
+
 /* meteor status */
 .status-bar {
   bottom: 0;

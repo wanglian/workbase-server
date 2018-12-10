@@ -26,6 +26,7 @@ Template.MessageForm.helpers({
     return new SimpleSchema({
       internal: {
         type: Boolean,
+        label: I18n.t('Internal'),
         optional: true,
         autoform: {
           type: "boolean-checkbox"

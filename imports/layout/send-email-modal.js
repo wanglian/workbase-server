@@ -17,8 +17,8 @@ Template.SendEmailModal.helpers({
         type: String,
         autoform: {
           type: 'text',
-          label: "To",
-          placeholder: "Recipients"
+          label: I18n.t("To"),
+          placeholder: I18n.t("Recipients")
         }
       },
       subject: {
@@ -26,7 +26,7 @@ Template.SendEmailModal.helpers({
         autoform: {
           type: 'text',
           label: false,
-          placeholder: "Subject"
+          placeholder: I18n.t("Subject")
         }
       },
       content: {

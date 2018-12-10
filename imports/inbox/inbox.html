@@ -4,7 +4,7 @@
   {{/contentFor}}
 
   {{#contentFor "title"}}
-    <p class="navbar-text" style="color: white; font-weight: 600;">Inbox</p>
+    <p class="navbar-text" style="color: white; font-weight: 600;">{{_ 'Inbox'}}</p>
   {{/contentFor}}
 
   {{#if thread}}
@@ -47,9 +47,9 @@
 <template name="InboxMenu">
  {{#if currentUser.isAdmin}}
    <ul class="dropdown-menu" role="menu">
-     <li><a href="#" id="btn-add-roster"><i class="fa fa-plus"></i> Add Member</a></li>
+     <li><a href="#" id="btn-add-roster"><i class="fa fa-plus"></i> {{_ "New User"}}</a></li>
      <li class="divider"></li>
-     <li><a href="#" id="btn-add-channel"><i class="fa fa-plus"></i> Add Channel</a></li>
+     <li><a href="#" id="btn-add-channel"><i class="fa fa-plus"></i> {{_ "New Channel"}}</a></li>
    </ul>
  {{/if}}
 </template>
