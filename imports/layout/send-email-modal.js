@@ -72,17 +72,21 @@ const emailSelectizeConfig = {
   searchField: ['name', 'email'],
   render: {
     item: function(item, escape) {
-      return '<div>' +
-        (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
-        (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
-      '</div>';
+      if (item.name) {
+        return '<div>' +
+          '<span class="name">' + escape(item.name) + '</span> ' +
+          '<span class="email">&lt;' + escape(item.email) + '&gt;</span>' +
+        '</div>';
+      } else {
+        return '<div><span class="email">' + escape(item.email) + '</span></div>';
+      }
     },
     option: function(item, escape) {
       var label = item.name || item.email;
       var caption = item.name ? item.email : null;
       return '<div>' +
-        '<span class="label">' + escape(label) + '</span>' +
-        (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+        '<span class="selectize-label">' + escape(label) + '</span>' +
+        (caption ? ' <span class="selectize-caption">&lt;' + escape(caption) + '&gt;</span>' : '') +
       '</div>';
     }
   },
@@ -102,17 +106,41 @@ const emailSelectizeConfig = {
     return false;
   },
   create: function(input) {
-    if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-      return {email: input};
-    }
     var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
     if (match) {
       return {
         email : match[2],
         name  : $.trim(match[1])
       };
+    } else if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+      // let def = $.Deferred();
+      // bootbox.prompt({
+      //   size: "small",
+      //   title: "Name for " + input,
+      //   callback: def.resolve
+      // });
+      // return def.promise().then(function(result) {
+      //   console.log(result);
+      //   return {name: result, email: input};
+      // });
+      let result = prompt("Please enter the name for" + input);
+      return {name: result, email: input};
+    } else {
+      alert('Invalid email address.');
+      return false;
     }
-    alert('Invalid email address.');
-    return false;
+  },
+  load: function(query, callback) {
+    if (!query.length) return callback();
+
+    Meteor.call('queryContacts', query, (err, res) => {
+      if (err) {
+        console.log(err);
+        callback();
+      } else {
+        console.log(res);
+        callback(res);
+      }
+    });
   }
 };
