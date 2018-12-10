@@ -9,10 +9,7 @@ ApplicationController = RouteController.extend({
     if (Meteor.userId()) {
       return this.subscribe('instance');
     } else {
-      this.redirect('/'); // 未登录返回到首页
+      this.redirect('/login');
     }
-  },
-  onStop: function() {
-
   }
 });

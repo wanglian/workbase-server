@@ -33,6 +33,7 @@ Template.MessageForm.helpers({
       },
       content: {
         type: String,
+        max: 10000,
         autoform: {
           type: 'textarea',
           label: false,

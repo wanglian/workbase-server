@@ -13,7 +13,7 @@ Meteor.startup(() => {
 
 const WELCOME_MAIL = {
   subject: 'Welcome to WeWork!',
-  content: "If you have any question, just ask me here..."
+  content: "If you have any questions, just ask me here..."
 };
 Accounts.onLogin(function(attempt) {
   let user = Users.findOne(attempt.user._id);
@@ -32,7 +32,7 @@ Accounts.onLogin(function(attempt) {
 
 const WELCOME_CHANNEL_MAIL = {
   subject: 'Congratulations!',
-  content: "If you have any question, just ask me here..."
+  content: "If you have any questions, just ask me here..."
 };
 Meteor.users.after.insert(function(userId, doc) {
   if (doc.profile && doc.profile.channel) {

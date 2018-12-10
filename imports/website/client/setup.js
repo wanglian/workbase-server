@@ -10,6 +10,7 @@ Template.Setup.helpers({
     return new SimpleSchema({
       domain: {
         type: String,
+        max: 50,
         autoform: {
           type: 'text',
           label: 'Domain',
@@ -17,6 +18,7 @@ Template.Setup.helpers({
       },
       admin: {
         type: String,
+        max: 50,
         autoform: {
           type: 'text',
           label: "Admin account"
@@ -24,6 +26,7 @@ Template.Setup.helpers({
       },
       password: {
         type: String,
+        max: 50,
         autoform: {
           type: 'password',
           label: 'Password'

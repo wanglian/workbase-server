@@ -5,6 +5,7 @@ import SimpleSchema from 'simpl-schema';
 const CHANNEL_FORM_SCHEMA = new SimpleSchema({
   name: {
     type: String,
+    max: 50,
     autoform: {
       type: 'text',
       label: "Name"
@@ -12,6 +13,7 @@ const CHANNEL_FORM_SCHEMA = new SimpleSchema({
   },
   email: {
     type: String,
+    max: 50,
     regEx: SimpleSchema.RegEx.Email,
     autoform: {
       type: 'emailInput',
