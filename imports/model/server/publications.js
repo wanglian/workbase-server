@@ -3,6 +3,10 @@ Meteor.publish('instance', function() {
     Counts.publish(this, 'count-unread-inbox', ThreadUsers.find({userType: 'Users', userId: this.userId, read: false}));
   }
 
+  ChannelUsers.find({userId: this.userId}).forEach((cu) => {
+    Counts.publish(this, `count-unread-channel-${cu.channelId}`, ThreadUsers.find({userType: 'Channels', userId: cu.channelId, read: false}));
+  });
+
   return Instance.find({}, {fields: {domain: 1}});
 });
 

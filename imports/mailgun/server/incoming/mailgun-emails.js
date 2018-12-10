@@ -1,10 +1,17 @@
+// - emailId
+// - params
+// - parsedAt
 MailgunEmails = new Mongo.Collection('mailgun_emails');
 
 MailgunEmails.create = (params) => {
   let email = MailgunEmails.findOne({emailId: params['Message-Id']});
   if (email) {
     // same email
-    console.log("[mailgun] drop");
+    if (email.parsedAt) {
+      console.log("[mailgun] drop");
+    } else {
+      MailgunEmails.parseEmail(email);
+    }
   } else {
     return MailgunEmails.insert({
       emailId: params['Message-Id'],
@@ -14,10 +21,11 @@ MailgunEmails.create = (params) => {
 };
 
 MailgunEmails.after.insert(function(userId, doc) {
-  MailgunEmails.parseEmail(doc.params);
+  MailgunEmails.parseEmail(this.transform());
 });
 
-MailgunEmails.parseEmail = (params) => {
+MailgunEmails.parseEmail = (doc) => {
+  let params     = doc.params;
   let subject    = params['subject'];
   let from       = params['From'];
   let to         = params['To'];
@@ -58,4 +66,6 @@ MailgunEmails.parseEmail = (params) => {
     emailId,
     email: { from, to, cc, date }
   });
+
+  MailgunEmails.update(doc._id, {$set: {parsedAt: new Date()}});
 };

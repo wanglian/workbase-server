@@ -2,6 +2,10 @@ Template.registerHelper('countUnread', function() {
   return Counts.get('count-unread-inbox');
 });
 
+Template.registerHelper('countUnreadChannel', function(channel) {
+  return Counts.get(`count-unread-channel-${channel}`);
+});
+
 Template.registerHelper('domain', function() {
   return Instance.domain();
 });

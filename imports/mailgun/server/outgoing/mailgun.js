@@ -28,7 +28,7 @@ Messages.after.insert(function(userId, doc) {
     let user = this.transform().user();
 
     let params = {
-      from:    user.address(),
+      from:    (doc.email && doc.email.from) || user.address(),
       to:      contacts.map(c => c.address()),
       subject: `re: ${thread.subject}`,
       text:    doc.content

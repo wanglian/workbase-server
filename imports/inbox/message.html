@@ -6,7 +6,10 @@
       </div>
       <div class="message-header-title">
         <span class="message-header-name">{{userName}}</span>
-        <span class="text-muted small">{{formattedDate createdAt 'simpleDayWithTime'}}</span>
+        <span class="text-muted small">
+          {{formattedDate createdAt 'simpleDayWithTime'}}
+          {{#if internal}}<i class="fa fa-lock" data-toggle="tooltip" title="{{_ 'Internal'}}"></i>{{/if}}
+        </span>
         <div class="email text-muted small">
           {{#if email.to}}<div>{{_ 'mail to'}} {{email.to}} </div>{{/if}}
           {{#if email.cc}}<div>{{_ 'mail cc'}} {{email.cc}} </div>{{/if}}

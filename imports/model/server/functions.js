@@ -15,7 +15,7 @@ Threads.ensureMember = (thread, user, params) => {
     userId:   user._id
   }, {$set: {
     category: thread.category,
-    read: true,
+    read: false,
     params
   }});
 };

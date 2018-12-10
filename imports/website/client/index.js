@@ -5,49 +5,37 @@ import './layout';
 
 Router.configure({
   layoutTemplate: 'DefaultLayout',
-  waitOn: function () {
+  waitOn: function() {
     return Meteor.subscribe('instance');
   }
 });
 
-Router.route('/', function () {
+Router.route('/', function() {
   this.render('Landing');
 }, {
-  name: 'landing',
+  name: 'landing'
 });
 
-Router.route('/login', function () {
-  if (Meteor.userId()) {
-    this.redirect('/inbox');
+Router.route('/login', function() {
+  if (!Instance.domain()) {
+    this.redirect('setup');
+  } else if (Meteor.userId()) {
+    this.redirect('inbox');
   } else {
     this.render('Login');
   }
 }, {
-  name: 'home',
+  name: 'login'
 });
 
-Router.route('/setup', function () {
+Router.route('/setup', function() {
   if (Meteor.userId()) {
-    this.redirect('/inbox');
+    this.redirect('inbox');
   } else if (Instance.domain()) {
-    this.redirect('/login');
+    this.redirect('login');
   } else {
     this.render('Setup');
   }
 }, {
-  name: 'setup',
-});
-
-Iron.Router.plugins.checkSetup = function(router, options) {
-  router.onBeforeAction(function() {
-    if (Instance.domain()) {
-      this.next();
-    } else {
-      this.redirect('/setup');
-    }
-  });
-};
-
-Router.plugin('checkSetup', {
-  only: ['login']
+  name: 'setup'
 });
