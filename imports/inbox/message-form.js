@@ -55,6 +55,7 @@ AutoForm.hooks({
           console.log(err);
         } else {
           console.log(res);
+          $("form textarea").focus();
         }
       });
       this.done();

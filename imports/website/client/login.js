@@ -3,7 +3,7 @@ import './login.html';
 Template.Login.events({
   "submit form"(e, t) {
     e.preventDefault();
-    // history.go(-1);
+
     let email = $('input[type=email]')[0].value;
     let password = $('input[type=password]')[0].value;
     Meteor.loginWithPassword(email, password, (err) => {

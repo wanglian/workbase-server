@@ -1,6 +1,5 @@
 Meteor.methods({
   setup(domain, admin, password) {
-    console.log(password);
     Instance.remove({});
     Instance.insert({domain});
 

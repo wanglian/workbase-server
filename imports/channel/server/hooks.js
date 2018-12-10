@@ -6,10 +6,13 @@ Threads.before.insert(function(userId, doc) {
 
 // send: username <channel@email>
 Messages.before.insert(function(userId, doc) {
-  if (!userId || doc.internal) return; // only outgoing messages
+  // only outgoing messages
+  if (doc.internal) return;
+  let user = Users.findOne(doc.userId);
+  if (!user) return;
+
   let tu = ThreadUsers.findOne({threadId: doc.threadId, userType: 'Channels'});
-  if (tu && tu.userId != doc.userId) {
-    let user = Users.findOne(doc.userId);
+  if (tu) {
     let channel = Channels.findOne(tu.userId);
     doc.email = {
       from: `${user.name()} <${channel.email()}>`
@@ -19,9 +22,13 @@ Messages.before.insert(function(userId, doc) {
 
 // mark read when replied
 Messages.after.insert(function(userId, doc) {
-  if (!userId || doc.internal) return; // only outgoing messages
+  // only outgoing messages
+  if (doc.internal) return;
+  let user = Users.findOne(doc.userId);
+  if (!user) return;
+
   let tu = ThreadUsers.findOne({threadId: doc.threadId, userType: 'Channels'});
-  if (tu && tu.userId != doc.userId) {
+  if (tu) {
     ThreadUsers.update(tu._id, {$set: {read: true}});
   }
 });
