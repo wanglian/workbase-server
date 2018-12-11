@@ -8,20 +8,21 @@ Template.Setup.helpers({
   },
   formSchema() {
     return new SimpleSchema({
-      domain: {
+      name: {
         type: String,
         max: 50,
         autoform: {
           type: 'text',
-          label: I18n.t('Domain'),
+          label: I18n.t('User Name'),
         }
       },
-      admin: {
+      email: {
         type: String,
         max: 50,
+        regEx: SimpleSchema.RegEx.Email,
         autoform: {
-          type: 'text',
-          label: I18n.t("Admin account")
+          type: 'emailInput',
+          label: 'Email'
         }
       },
       password: {
@@ -33,9 +34,6 @@ Template.Setup.helpers({
         }
       }
     });
-  },
-  domain() {
-    return $("input[name=domain").val();
   }
 });
 
@@ -44,7 +42,7 @@ AutoForm.hooks({
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
-      Meteor.call('setup', insertDoc.domain, insertDoc.admin, insertDoc.password, (err, res) => {
+      Meteor.call('setup', insertDoc.name, insertDoc.email, insertDoc.password, (err, res) => {
         if (err) {
           console.log(err);
         } else {

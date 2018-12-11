@@ -62,15 +62,15 @@
 </template>
 
 <template name="RosterMenu">
-  <ul class="dropdown-menu" role="menu">
-    {{#if currentUser.isAdmin}}
+  {{#if currentUser.isAdmin}}
+    <ul class="dropdown-menu" role="menu">
       {{#if user}}
         <li><a href="#" id="btn-edit-roster"><i class="fa fa-edit"></i> {{_ "Edit User"}}</a></li>
         <li class="divider"></li>
       {{/if}}
       <li><a href="#" id="btn-add-roster"><i class="fa fa-plus"></i> {{_ "New User"}}</a></li>
-    {{/if}}
-  </ul>
+    </ul>
+  {{/if}}
 </template>
 
 <template name="RosterList">

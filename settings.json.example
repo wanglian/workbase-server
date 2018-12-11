@@ -1,0 +1,9 @@
+{
+  "public": {
+    "company": "Base",
+    "domain": "xxx.com"
+  },
+  "mailgun": {
+    "key": "key-xxx"
+  }
+}

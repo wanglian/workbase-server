@@ -1,5 +1,5 @@
-let api_key = 'key-8ygfsuyrnqhip88wryqrzjilak5d1ai5';
-let domain = 'weaworking.com';
+let api_key = Meteor.settings.mailgun.key;
+let domain = Meteor.settings.public.domain;
 let client = require('mailgun-js')({apiKey: api_key, domain: domain});
 
 Mailgun = {
@@ -30,7 +30,7 @@ Messages.after.insert(function(userId, doc) {
     let params = {
       from:    (doc.email && doc.email.from) || user.address(),
       to:      contacts.map(c => c.address()),
-      subject: `re: ${thread.subject}`,
+      subject: `${I18n.t('RE')}: ${thread.subject}`,
       text:    doc.content
     };
 

@@ -2,15 +2,15 @@
   {{#AdminLTE page="login"}}
     <div class="login-box">
       <div class="login-logo">
-        <a href="/"><b>Base</b></a>
+        <a href="/"><b>{{company}}</b></a>
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">{{_ "Setup your system"}}</p>
 
         {{#autoForm collection=formCollection schema=formSchema id="setup-form" type="normal"}}
-          {{> afQuickField name="domain"}}
-          {{> afQuickField name="admin"}}
+          {{> afQuickField name="name"}}
+          {{> afQuickField name="email" domain=domain}}
           {{> afQuickField name="password"}}
           <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
         {{/autoForm}}

@@ -1,13 +1,15 @@
 Meteor.methods({
-  setup(domain, admin, password) {
-    Instance.remove({});
-    Instance.insert({domain});
-
+  setup(name, email, password) {
     Users.remove({});
-    Accounts.createUser({
-      email: [admin, domain].join('@'),
+    let adminId = Accounts.createUser({
+      email,
       password,
-      profile: {name: 'Admin', title: 'Admin', role: 'admin'}
+      profile: {name, title: 'Admin', role: 'admin'}
     });
+
+    let instance = Instance.get();
+    Instance.update(instance._id, {$set: {adminId}});
+
+    return adminId;
   }
 });

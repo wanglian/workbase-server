@@ -14,7 +14,7 @@ account: admin@test.com / admin123
 ```
 docker build -t wanglian/wework . // build
 docker push wanglian/wework:latest // push to docker hub
-docker pull wanglian/weaworking:latest // server: pull image
+docker pull wanglian/wework:latest // server: pull image
 ```
 
 启动

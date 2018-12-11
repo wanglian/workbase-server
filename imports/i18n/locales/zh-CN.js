@@ -5,9 +5,9 @@ export const locale_zh_cn = {
   "Inbox": "收件箱",
   "Users": "用户",
   // setup
-  "Setup your system": "系统设置",
+  "Setup your system": "设置管理员帐号",
+  "Company": "企业名称",
   "Domain": "域名",
-  "Admin account": "管理员帐号",
   // login
   "Sign in to start your session": "",
   "Sign In": "登录",
@@ -20,6 +20,7 @@ export const locale_zh_cn = {
   "Recipients": "接收人",
   "Subject": "主题",
   "Internal": "内部消息",
+  "RE": "回复",
   // user
   "New User": "创建用户",
   "Edit User": "修改用户",

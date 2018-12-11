@@ -17,7 +17,7 @@ Router.route('/', function() {
 });
 
 Router.route('/login', function() {
-  if (!Instance.domain()) {
+  if (!Instance.enabled()) {
     this.redirect('setup');
   } else if (Meteor.userId()) {
     this.redirect('inbox');
@@ -31,7 +31,7 @@ Router.route('/login', function() {
 Router.route('/setup', function() {
   if (Meteor.userId()) {
     this.redirect('inbox');
-  } else if (Instance.domain()) {
+  } else if (Instance.enabled()) {
     this.redirect('login');
   } else {
     this.render('Setup');
