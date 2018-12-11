@@ -37,9 +37,12 @@ export const locale_zh_cn = {
   "Remove": "移除",
   "Choose to add": "选择添加",
   // thread
+  "Go back": "返回",
   "About": "详情",
   "Members": "成员",
   "Created by and when": "{{name}} 创建于 {{time}}",
   "mail to": "发给",
-  "mail cc": "抄送"
+  "mail cc": "抄送",
+  "Copy": "复制消息",
+  "Copied": "已复制"
 };

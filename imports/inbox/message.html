@@ -5,6 +5,7 @@
         {{> avatar user=user shape="circle" class="img-circle" size="medium"}}
       </div>
       <div class="message-header-title">
+        {{> MessageActions}}
         <span class="message-header-name">{{userName}}</span>
         <span class="text-muted small">
           {{formattedDate createdAt 'simpleDayWithTime'}}
@@ -20,5 +21,13 @@
     <div class="message-content">
       {{#markdown}}{{{content}}}{{/markdown}}
     </div>
+  </div>
+</template>
+
+<template name="MessageActions">
+  <div class="btn-group message-actions pull-right hide">
+    <button type="button" class="btn btn-sm btn-default btn-copy" data-toggle="tooltip" title="{{_ 'Copy'}}">
+      <i class="fa fa-copy"></i>
+    </button>
   </div>
 </template>

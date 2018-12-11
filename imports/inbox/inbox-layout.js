@@ -32,6 +32,10 @@ Template.InboxLayout.helpers({
   }
 });
 
+Template.InboxBackButton.onRendered(function() {
+  $('[data-toggle="tooltip"]').tooltip({container: 'body'});
+});
+
 // rule: use _id as router param
 Template.InboxBackButton.helpers({
   listPath() {
@@ -48,6 +52,10 @@ Template.InboxBackButton.helpers({
       return "visible-sm visible-xs";
     }
   }
+});
+
+Template.InboxSidebarButton.onRendered(function() {
+  $('[data-toggle="tooltip"]').tooltip({container: 'body'});
 });
 
 // rule: use detail as router query
