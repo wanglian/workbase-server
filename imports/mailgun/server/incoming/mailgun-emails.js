@@ -21,7 +21,15 @@ MailgunEmails.create = (params) => {
 };
 
 MailgunEmails.after.insert(function(userId, doc) {
-  MailgunEmails.parseEmail(this.transform());
+  let message = this.transform();
+  let promise = new Promise(function(resolve, reject) {
+    try {
+      MailgunEmails.parseEmail(message);
+      resolve();
+    } catch (e) {
+      reject(e);
+    }
+  });
 });
 
 MailgunEmails.parseEmail = (doc) => {
