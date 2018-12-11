@@ -24,9 +24,9 @@ Threads.helpers({
   isOwner(user) {
     return ThreadUsers.find({threadId: this._id, userType: user.className(), userId: user._id, role: 'owner'}).count() > 0
   },
-  title() {
+  title(detail=false) {
     let c = ThreadCategories.get(this.category);
-    return typeof(c.title) == "function" ? c.title(this) : this.subject;
+    return typeof(c.title) == "function" ? c.title(this, detail) : this.subject;
   },
   lastMessage() {
     return Messages.findOne(this.lastMessageId);

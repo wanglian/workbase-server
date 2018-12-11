@@ -30,8 +30,8 @@ Messages.after.insert(function(userId, doc) {
     let params = {
       from:    (doc.email && doc.email.from) || user.address(),
       to:      contacts.map(c => c.address()),
-      subject: `${I18n.t('RE')}: ${thread.subject}`,
-      text:    doc.content
+      subject: thread.subject,
+      text:    doc.content // Markdown(doc.content): 需要html邮件模板
     };
 
     Mailgun.send(params, Meteor.bindEnvironment((err, result) => {

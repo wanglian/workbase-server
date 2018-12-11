@@ -43,7 +43,7 @@ MailgunEmails.parseEmail = (doc) => {
   let to         = params['To'];
   let cc         = params['Cc'];
   let recipient  = params['recipient'];
-  let content    = params['body-html'] || `<pre>${params['body-plain']}</pre>`
+  let content    = params['body-html'] || params['body-plain'];
   let replyTo    = params['In-Reply-To'];
   let date       = params['Date'];
   let references = params['References'];

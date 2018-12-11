@@ -29,6 +29,7 @@ export const locale_zh_cn = {
   "Title": "职位",
   "Password": "密码",
   "Send Messages": "发消息",
+  "Chat with": "与 {{name}} 的会话",
   // channel
   "New Channel": "创建频道",
   "Edit Channel": "修改频道",
