@@ -33,7 +33,7 @@ Template.InboxLayout.helpers({
 });
 
 Template.InboxBackButton.onRendered(function() {
-  $('[data-toggle="tooltip"]').tooltip({container: 'body'});
+  $('#inbox-header [data-toggle="tooltip"]').tooltip({delay: 1000});
 });
 
 // rule: use _id as router param
@@ -55,7 +55,7 @@ Template.InboxBackButton.helpers({
 });
 
 Template.InboxSidebarButton.onRendered(function() {
-  $('[data-toggle="tooltip"]').tooltip({container: 'body'});
+  $('#inbox-header [data-toggle="tooltip"]').tooltip({delay: 1000});
 });
 
 // rule: use detail as router query

@@ -7,8 +7,13 @@ Router.route('/api/v1/mailgun', {
   console.log("[mailgun] email received");
   let body = req.body;
   if (!_.isEmpty(body)) {
-    console.log(body);
-    MailgunEmails.create(body);
+    // console.log(body);
+    try {
+      MailgunEmails.create(body);
+    } catch (e) {
+      console.log("[mailgun] error:");
+      console.log(e);
+    }
   }
   res.end("success");
 });

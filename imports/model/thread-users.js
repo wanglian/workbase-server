@@ -6,7 +6,7 @@
 // - createdAt
 // - updatedAt
 // - params: extension
-ThreadUsers = new Mongo.Collection('thread_users');
+ThreadUsers = new Mongo.Collection('thread-users');
 
 ThreadUsers.helpers({
   user() {

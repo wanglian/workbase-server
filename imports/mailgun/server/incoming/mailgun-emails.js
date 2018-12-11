@@ -1,7 +1,7 @@
 // - emailId
 // - params
 // - parsedAt
-MailgunEmails = new Mongo.Collection('mailgun_emails');
+MailgunEmails = new Mongo.Collection('mailgun-emails');
 
 MailgunEmails.create = (params) => {
   let email = MailgunEmails.findOne({emailId: params['Message-Id']});
@@ -29,6 +29,10 @@ MailgunEmails.after.insert(function(userId, doc) {
     } catch (e) {
       reject(e);
     }
+  });
+  promise.catch((e) => {
+    console.log("[mailgun] parse error:");
+    console.log(e);
   });
 });
 
@@ -60,6 +64,8 @@ MailgunEmails.parseEmail = (doc) => {
   let thread = Threads.findOne(threadId);
 
   let toUser   = Contacts.parseOne(recipient);
+  if (!toUser) throw new Error(`recipient not exist: ${recipient}`);
+
   let toUsers  = Contacts.parse(to);
   Threads.ensureMember(thread, fromUser);
   Threads.ensureMember(thread, toUser);
