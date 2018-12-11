@@ -2,6 +2,7 @@
 // - category: Email, ..
 // - userType: Users, Contacts, ..
 // - userId
+// - role: owner, member(default)
 // - read
 // - createdAt
 // - updatedAt

@@ -44,5 +44,6 @@ export const locale_zh_cn = {
   "mail to": "发给",
   "mail cc": "抄送",
   "Copy": "复制消息",
-  "Copied": "已复制"
+  "Copied": "已复制",
+  "Add Members": "添加成员"
 };

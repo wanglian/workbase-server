@@ -11,7 +11,7 @@ Template.registerHelper('domain', function() {
 });
 
 Template.registerHelper('isMe', (user) => {
-  return user && user.className() === 'Users' && user._id === Meteor.userId();
+  return Meteor.user().isMe(user);
 });
 
 Template.registerHelper('inRouter', function(router) {

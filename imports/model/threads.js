@@ -21,6 +21,9 @@ Threads.helpers({
   hasExternalMembers() {
     return ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).count() > 0;
   },
+  isOwner(user) {
+    return ThreadUsers.find({threadId: this._id, userType: user.className(), userId: user._id, role: 'owner'}).count() > 0
+  },
   title() {
     let c = ThreadCategories.get(this.category);
     return typeof(c.title) == "function" ? c.title(this) : this.subject;

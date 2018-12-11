@@ -9,6 +9,7 @@ Threads.create = (user, category, subject, scope="private") => {
 };
 
 Threads.ensureMember = (thread, user, params) => {
+  let role = (thread.userType === user.className() && thread.userId === user._id) ? 'owner' : 'member';
   ThreadUsers.upsert({
     threadId: thread._id,
     userType: user.className(),
@@ -16,6 +17,7 @@ Threads.ensureMember = (thread, user, params) => {
   }, {$set: {
     category: thread.category,
     read: false,
+    role,
     params
   }});
 };

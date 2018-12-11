@@ -78,7 +78,7 @@ const toggleMessage = (m) => {
 };
 
 Template.MessageActions.onRendered(function() {
-  $('.message-actions [data-toggle="tooltip"]').tooltip({container: 'body', trigger: 'hover'});
+  $('.message-actions [data-toggle="tooltip"]').tooltip({container: 'body', trigger: 'hover', delay: 1000});
 });
 
 Template.MessageActions.events({

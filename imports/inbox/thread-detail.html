@@ -17,16 +17,15 @@
       <div class="panel flat-panel">
         <div class="flat-panel-heading">
           <a data-parent="#thread-detail-accordion" href="#members" data-toggle="collapse">
-            <h4 class="flat-panel-title"><i class="fa fa-users text-success"></i>{{_ "Members"}} ({{members.count}})</h4>
+            {{#if canAddMember}}
+              <a href="#" id="btn-add-member" class="pull-right small text-muted"><i class="fa fa-plus-circle"></i> {{_ "Add"}}</a>
+            {{/if}}
+            <h4 class="flat-panel-title"><i class="fa fa-users text-success"></i>{{_ "Members"}} ({{members.length}})</h4>
           </a>
         </div>
         <div id="members" class="panel-collapse collapse in">
           <div class="flat-panel-body">
-            <ul class="list-group members-list" style="max-height: calc(100vh - 330px); overflow-y: auto;">
-              {{#each members}}
-                {{> UserListItem user}}
-              {{/each}}
-            </ul>
+            {{> ThreadMembers}}
           </div>
         </div>
       </div>
@@ -34,18 +33,49 @@
   </div>
 </template>
 
-<template name="UserListItem">
-  <li class="list-group-item members-item clearfix">
-    <span class="pull-left">
-      {{> avatar user=this shape="circle" class="img-circle pull-left" size="small"}}
-    </span>
+<template name="ThreadMembers">
+  <ul class="list-group members-list" style="max-height: calc(100vh - 330px); overflow-y: auto;">
+    {{#each members}}
+      <li class="list-group-item members-item clearfix">
+        <span class="pull-left">
+          {{> avatar user=this shape="circle" class="img-circle pull-left" size="small"}}
+        </span>
 
-    <div class="members-info">
-      <a href="#" class="member-name text-ellipsis" data-toggle="popover-roster" data-placement="bottom">
-      {{name}}
-      </a>
-      <span class="pull-right">{{title}}</span>
-      <span class="member-organization text-muted text-ellipsis">{{email}}</span>
+        <div class="members-info">
+          <span class="pull-right">{{title}}</span>
+          <a href="#" class="member-name text-ellipsis" data-toggle="popover-roster" data-placement="bottom">
+          {{name}}
+          </a>
+          <div class="text-muted">
+            {{#if canRemove}}
+              <a href="#" class="btn-remove-member text-muted small pull-right hide" data-type="{{className}}" data-id="{{_id}}">
+                <i class="fa fa-times"></i> {{_ 'Remove'}}
+              </a>
+            {{/if}}
+            <span class="text-ellipsis">{{email}}</span>
+          </div>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="AddThreadMemberModal">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'Add Members'}}</h4>
+        </div>
+        <div class="modal-body">
+          {{#autoForm collection=formCollection schema=formSchema id="add-thread-member-form" threadId=_id type="normal"}}
+            {{> afQuickField name="emails"}}
+            <button type="submit" class="btn btn-primary">{{_ "Add"}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
+          {{/autoForm}}
+        </div>
+      </div>
     </div>
-  </li>
+  </div>
 </template>

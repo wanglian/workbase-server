@@ -7,6 +7,9 @@ Users.helpers({
   isAdmin() {
     return this.profile && this.profile.role === 'admin';
   },
+  isMe(user) {
+    return user && user.className() === 'Users' && user._id === this._id;
+  },
   name() {
     return this.profile.name;
   },
