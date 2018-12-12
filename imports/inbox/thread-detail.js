@@ -5,10 +5,10 @@ import SimpleSchema from 'simpl-schema';
 import swal from 'sweetalert';
 
 Template.ThreadDetail.helpers({
-  canAddMember() {
+  showAddMember() {
     let thread = this;
     // let currentUser = Meteor.user();
-    // return thread.category === 'Email' && thread.isOwner(currentUser);
+    // return thread.category === 'Email' && thread.hasOwner(currentUser);
     return thread.category === 'Email';
   }
 });
@@ -21,12 +21,12 @@ Template.ThreadDetail.events({
 });
 
 Template.ThreadMembers.helpers({
-  canRemove() {
-    let member = this;
-    // let thread = Template.parentData();
+  showRemove() {
+    let threadUser = this;
+    let thread = Template.parentData();
     let currentUser = Meteor.user();
-    // return thread.isOwner(currentUser) && !currentUser.isMe(member);
-    return !currentUser.isMe(member);
+    // return thread.hasOwner(currentUser) && !currentUser.isMe(member);
+    return !(currentUser.isMe(threadUser.user()) || threadUser.isOwner());
   }
 });
 

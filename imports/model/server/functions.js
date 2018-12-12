@@ -9,17 +9,31 @@ Threads.create = (user, category, subject, scope="private") => {
 };
 
 Threads.ensureMember = (thread, user, params) => {
-  let role = (thread.userType === user.className() && thread.userId === user._id) ? 'owner' : 'member';
-  ThreadUsers.upsert({
-    threadId: thread._id,
-    userType: user.className(),
-    userId:   user._id
-  }, {$set: {
-    category: thread.category,
-    read: false,
-    role,
-    params
-  }});
+  let threadId = thread._id;
+  let userType = user.className();
+  let userId   = user._id;
+
+  let threadUser = ThreadUsers.findOne({threadId, userType, userId});
+  if (!threadUser) {
+    let role = 'member';
+    if (thread.userType === user.className() && thread.userId === user._id) {
+      // thread creator becomes the owner
+      role = 'owner';
+    } else if (ThreadUsers.find({threadId: thread._id, userType: 'Users'}).count() === 0) {
+      // first internal user
+      role = 'owner';
+    }
+
+    ThreadUsers.insert({
+      threadId,
+      userType,
+      userId,
+      category: thread.category,
+      read: false,
+      role,
+      params
+    })
+  }
 };
 
 Threads.addMessage = (thread, user, message) => {

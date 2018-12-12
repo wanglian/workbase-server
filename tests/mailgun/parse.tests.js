@@ -5,6 +5,8 @@ let chai = require('chai');
 let expect = chai.expect;
 
 describe('parse Mailgun email', function() {
+  let userEmail = "wanglian@test.weaworking.com";
+
   beforeEach(function() {
     // resetDatabase();
     MailgunEmails.remove({});
@@ -12,17 +14,22 @@ describe('parse Mailgun email', function() {
     ThreadUsers.remove({});
     Contacts.remove({});
     Messages.remove({});
+    Users.remove({});
+    // user
+    Accounts.createUser({
+      email: userEmail
+    })
   });
 
   it('one to one', function() {
     let params = {
-      "recipient": "wanglian@weaworking.com",
-      "subject": "test",
+      "recipient": userEmail,
+      "subject": "test one to one",
       "From": "Lian Wang <wanglian1024@gmail.com>",
       "Date": "Sun, 2 Dec 2018 14:57:52 -0500",
       "Message-Id": "<CA+RGZYS3dzmA=z10b8yFVB7FWJo2JyM2jQLiAS4+RXZwcgNCPQ@mail.gmail.com>",
       "Subject": "test",
-      "To": "Wang Lian <wanglian@weaworking.com>",
+      "To": userEmail,
       "timestamp": "1543780685",
       "body-plain": "test\r\n\r\n-- \r\nWang Lian\r\n",
       "body-html": "<div dir=\"ltr\">test<br clear=\"all\"><div><br></div>-- <br><div dir=\"ltr\" class=\"gmail_signature\" data-smartmail=\"gmail_signature\">Wang Lian</div></div>\r\n",
@@ -38,6 +45,9 @@ describe('parse Mailgun email', function() {
     expect(thread.subject).to.eq(params["subject"]);
     let count = ThreadUsers.find({threadId: thread._id}).count();
     expect(count).to.eq(2);
+    // role
+    count = ThreadUsers.find({threadId: thread._id, role: "owner"}).count();
+    expect(count).to.eq(2);
     let message = Messages.findOne({threadId: thread._id});
     expect(message.content).to.exist;
     expect(message.userType).to.eq("Contacts");
@@ -45,8 +55,8 @@ describe('parse Mailgun email', function() {
 
   it('recipient != to', function() {
     let params = {
-      "recipient": "wanglian@weaworking.com",
-      "subject": "test",
+      "recipient": userEmail,
+      "subject": "test recipient != to",
       "From": "Lian Wang <wanglian1024@gmail.com>",
       "Date": "Sun, 2 Dec 2018 14:57:52 -0500",
       "Message-Id": "<CA+RGZYS3dzmA=z10b8yFVB7FWJo2JyM2jQLiAS4+RXZwcgNCPQ@mail.gmail.com>",
@@ -74,8 +84,8 @@ describe('parse Mailgun email', function() {
 
   it('cc', function() {
     let params = {
-      "recipient": "wanglian@weaworking.com",
-      "subject": "test",
+      "recipient": userEmail,
+      "subject": "test cc",
       "From": "Lian Wang <wanglian1024@gmail.com>",
       "Date": "Sun, 2 Dec 2018 14:57:52 -0500",
       "Message-Id": "<CA+RGZYS3dzmA=z10b8yFVB7FWJo2JyM2jQLiAS4+RXZwcgNCPQ@mail.gmail.com>",

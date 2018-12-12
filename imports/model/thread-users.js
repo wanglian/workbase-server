@@ -10,7 +10,13 @@
 ThreadUsers = new Mongo.Collection('thread-users');
 
 ThreadUsers.helpers({
+  thread() {
+    return Threads.findOne(this.threadId);
+  },
   user() {
     return eval(this.userType).findOne(this.userId);
+  },
+  isOwner() {
+    return this.role === 'owner';
   }
 });

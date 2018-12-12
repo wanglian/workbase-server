@@ -50,6 +50,8 @@ MailgunEmails.parseEmail = (doc) => {
   let emailId    = params['Message-Id'];
 
   let fromUser = Contacts.parseOne(from);
+  let toUser   = Contacts.parseOne(recipient);
+  if (!toUser) throw new Error(`recipient not exist: ${recipient}`);
 
   let threadId;
   references = references && references.split(' ') || [];
@@ -62,9 +64,6 @@ MailgunEmails.parseEmail = (doc) => {
     threadId = Threads.create(fromUser, 'Email', subject);
   }
   let thread = Threads.findOne(threadId);
-
-  let toUser   = Contacts.parseOne(recipient);
-  if (!toUser) throw new Error(`recipient not exist: ${recipient}`);
 
   let toUsers  = Contacts.parse(to);
   Threads.ensureMember(thread, fromUser);

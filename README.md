@@ -9,6 +9,13 @@ meteor
 access from http://localhost:3000
 account: admin@test.com / admin123
 
+## Run Tests
+
+```
+TEST_WATCH=1 meteor test --driver-package meteortesting:mocha // unit tests
+TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha // integration tests
+```
+
 ## Docker
 
 ```

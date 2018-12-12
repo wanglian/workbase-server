@@ -6,7 +6,7 @@ Channels = Meteor.users;
 
 Channels.helpers({
   className() {
-    if (this.profile.channel) {
+    if (this.profile && this.profile.channel) {
       return 'Channels';
     }
     return 'Users';

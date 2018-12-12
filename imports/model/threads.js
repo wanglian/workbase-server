@@ -12,6 +12,9 @@ Threads.helpers({
   user() {
     return eval(this.userType).findOne(this.userId);
   },
+  threadUsers() {
+    return ThreadUsers.find({threadId: this._id}, {fields: {read: 0}});
+  },
   members() {
     return ThreadUsers.find({threadId: this._id}).map(tu => tu.user());
   },
@@ -21,7 +24,7 @@ Threads.helpers({
   hasExternalMembers() {
     return ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).count() > 0;
   },
-  isOwner(user) {
+  hasOwner(user) {
     return ThreadUsers.find({threadId: this._id, userType: user.className(), userId: user._id, role: 'owner'}).count() > 0
   },
   title(detail=false) {
