@@ -1,29 +1,13 @@
 <template name="Landing">
   <link rel="stylesheet" href="assets/agnes.css">
   <div class="body-wrap boxed-container">
-    <header class="site-header">
+    <header class="site-header" style="padding:0;">
       <div class="container">
         <div class="site-header-inner">
           <div class="brand header-brand">
             <h1 class="m-0">
               <a href="#">
-                <svg width="48" height="32" viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg">
-                  <title>WorkBase</title>
-                  <defs>
-                    <linearGradient x1="0%" y1="100%" y2="0%" id="logo-a">
-                      <stop stop-color="#007CFE" stop-opacity="0" offset="0%"/>
-                      <stop stop-color="#007DFF" offset="100%"/>
-                    </linearGradient>
-                    <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="logo-b">
-                      <stop stop-color="#FF4F7A" stop-opacity="0" offset="0%"/>
-                      <stop stop-color="#FF4F7A" offset="100%"/>
-                    </linearGradient>
-                  </defs>
-                  <g fill="none" fill-rule="evenodd">
-                    <rect fill="url(#logo-a)" width="32" height="32" rx="16"/>
-                    <rect fill="url(#logo-b)" x="16" width="32" height="32" rx="16"/>
-                  </g>
-                </svg>
+                <img src="/assets/workbase.png">
               </a>
             </h1>
           </div>
@@ -32,11 +16,13 @@
     </header>
 
     <main>
-      <section class="hero">
+      <section class="hero" style="padding:10px 0;">
         <div class="container">
           <div class="hero-inner">
-            <div class="hero-copy">
-              <h1 class="hero-title h2-mobile mt-0 is-revealing">Better Communication Better Collaboration</h1>
+            <div class="hero-copy" style="padding-left: 24px;">
+              <h1 class="hero-title h2-mobile mt-0 is-revealing" style="color:#444;font-size:42px;line-height:56px;">
+                Better <br/>Communication <br/>Better <br/>Collaboration
+              </h1>
               <p class="hero-paragraph is-revealing"></p>
               <p class="hero-cta is-revealing"><a class="button button-primary button-shadow" href="/login">Get Started</a></p>
             </div>
@@ -195,7 +181,7 @@
     <footer class="site-footer text-light">
       <div class="container">
         <div class="site-footer-inner has-top-divider">
-          <div class="footer-copyright">&copy; 2018 WorkBase, all rights reserved</div>
+          <div class="footer-copyright">&copy; 2019 WorkBase, all rights reserved</div>
         </div>
       </div>
     </footer>
