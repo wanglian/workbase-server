@@ -19,8 +19,8 @@ Template.ApplicationLayout.onDestroyed(function() {
 
 Template.ApplicationLayout.onRendered(function() {
   // $('[data-toggle="tooltip"]').tooltip({container: 'body'}); // not working?
-  const title = Instance.company();
   Tracker.autorun(() => {
+    let title = Instance.company();
     let count = Counts.get('count-unread-inbox');
     document.title = (count > 0) ? `(${count}) ${title}` : title;
   });
