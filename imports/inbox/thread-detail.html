@@ -69,6 +69,10 @@
           <h4 class="modal-title">{{_ 'Add Members'}}</h4>
         </div>
         <div class="modal-body">
+          <blockquote class="text-muted small">
+            内部用户 - 可以看到这个会话下的所有消息。<br/>
+            外部联系人 - 新的消息将会以邮件发送。
+          </blockquote>
           {{#autoForm collection=formCollection schema=formSchema id="add-thread-member-form" threadId=_id type="normal"}}
             {{> afQuickField name="emails"}}
             <button type="submit" class="btn btn-primary">{{_ "Add"}}</button>

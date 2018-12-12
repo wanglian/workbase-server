@@ -47,5 +47,7 @@ export const locale_zh_cn = {
   "mail cc": "抄送",
   "Copy": "复制消息",
   "Copied": "已复制",
-  "Add Members": "添加成员"
+  "Add Members": "添加成员",
+  "confirm remove member": "确定移除 {{name}}?",
+  "Confirm": "确定"
 };

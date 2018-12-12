@@ -2,12 +2,14 @@ import './thread-detail.html';
 import './thread-detail.css';
 
 import SimpleSchema from 'simpl-schema';
+import swal from 'sweetalert';
 
 Template.ThreadDetail.helpers({
   canAddMember() {
     let thread = this;
-    let currentUser = Meteor.user();
-    return thread.category === 'Email' && thread.isOwner(currentUser);
+    // let currentUser = Meteor.user();
+    // return thread.category === 'Email' && thread.isOwner(currentUser);
+    return thread.category === 'Email';
   }
 });
 
@@ -21,9 +23,10 @@ Template.ThreadDetail.events({
 Template.ThreadMembers.helpers({
   canRemove() {
     let member = this;
-    let thread = Template.parentData();
+    // let thread = Template.parentData();
     let currentUser = Meteor.user();
-    return thread.isOwner(currentUser) && !currentUser.isMe(member);
+    // return thread.isOwner(currentUser) && !currentUser.isMe(member);
+    return !currentUser.isMe(member);
   }
 });
 
@@ -38,7 +41,20 @@ Template.ThreadMembers.events({
   },
   "click .btn-remove-member"(e, t) {
     e.preventDefault();
-    Meteor.call("removeThreadMember", t.data._id, $(e.target).data("type"), $(e.target).data("id"));
+
+    let userType = $(e.target).data("type");
+    let userId = $(e.target).data("id");
+    let user = eval(userType).findOne(userId);
+
+    swal({
+      text: I18n.t("confirm remove member", {name: user.name()}),
+      buttons: [I18n.t("Discard"), I18n.t("Confirm")],
+      dangerMode: true
+    }).then((willRemove) => {
+      if (willRemove) {
+        Meteor.call("removeThreadMember", t.data._id, userType, userId);
+      }
+    });
   }
 });
 

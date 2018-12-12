@@ -20,7 +20,8 @@
     "moment": "^2.22.2",
     "sanitize-html": "^1.19.1",
     "scrollreveal": "^4.0.5",
-    "simpl-schema": "^1.5.3"
+    "simpl-schema": "^1.5.3",
+    "sweetalert": "^2.1.2"
   },
   "meteor": {
     "mainModule": {
