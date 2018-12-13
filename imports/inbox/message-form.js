@@ -14,17 +14,13 @@ Template.MessageForm.onRendered(function() {
       if (threadId) {
         let textarea = $('#message-form textarea');
         let content = textarea && textarea.val();
-        if (!_.isEmpty(content)) {
-          Session.set(`message-draft-${threadId}`, content);
-        }
+        Session.set(`message-draft-${threadId}`, content);
       }
       // load
       threadId = data._id;
       let draft = Session.get(`message-draft-${threadId}`);
-      if (draft) {
-        this.$('textarea').val(draft);
-        autosize(this.$('textarea'));
-      }
+      this.$('textarea').val(draft);
+      autosize(this.$('textarea'));
     }
   });
 });
@@ -32,7 +28,7 @@ Template.MessageForm.onRendered(function() {
 Template.MessageForm.onDestroyed(function() {
   // save draft
   let textarea = $('#message-form textarea');
-  if (textarea && !_.isEmpty(textarea.val())) {
+  if (textarea) {
     Session.set(`message-draft-${this.data._id}`, textarea.val());
   }
 });
