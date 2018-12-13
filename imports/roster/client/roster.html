@@ -1,58 +1,22 @@
 <template name="Roster">
-  {{#contentFor "menu"}}
-    {{> RosterMenu user=user}}
-  {{/contentFor}}
+  {{> contentFor region="menu" template="RosterMenu" data=user}}
 
   {{#contentFor "title"}}
     <p class="navbar-text" style="color: white; font-weight: 600;">{{_ 'Users'}}</p>
   {{/contentFor}}
 
-  {{#if user}}
-    {{#if detail}}
-      {{#Layout template="InboxLayout"}}
-        {{> RosterList users=users user=user}}
+  {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}
+    {{> RosterList users=users user=user}}
 
-        {{#contentFor "header"}}
-          {{> ThreadHeader chat}}
-        {{/contentFor}}
-
-        {{#contentFor "right"}}
-          {{> Thread chat}}
-        {{/contentFor}}
-
-        {{#contentFor "sidebar"}}
-          {{> RosterCard user}}
-        {{/contentFor}}
-      {{/Layout}}
+    {{#if chat}}
+      {{> contentFor region="header" template="ThreadHeader" data=chat}}
+      {{> contentFor region="right" template="Thread" data=chat}}
+      {{> contentFor region="sidebar" template="RosterCard" data=user}}
     {{else}}
-      {{#Layout template="InboxLayout"}}
-        {{> RosterList users=users user=user}}
-
-        {{#if chat}}
-          {{#contentFor "header"}}
-            {{> ThreadHeader chat}}
-          {{/contentFor}}
-
-          {{#contentFor "right"}}
-            {{> Thread chat}}
-          {{/contentFor}}
-        {{else}}
-          {{#contentFor "header"}}
-            {{> InboxBackButton}}
-            <div class="thread-subject">{{user.name}}</div>
-          {{/contentFor}}
-
-          {{#contentFor "right"}}
-            {{> RosterCard user}}
-          {{/contentFor}}
-        {{/if}}
-      {{/Layout}}
+      {{> contentFor region="header" template="RosterHeader" data=user}}
+      {{> contentFor region="right" template="RosterCard" data=user}}
     {{/if}}
-  {{else}}
-    {{#Layout template="InboxLayout"}}
-      {{> RosterList users=users}}
-    {{/Layout}}
-  {{/if}}
+  {{/Layout}}
 </template>
 
 <template name="RosterMenuItem">
@@ -64,7 +28,7 @@
 <template name="RosterMenu">
   {{#if currentUser.isAdmin}}
     <ul class="dropdown-menu" role="menu">
-      {{#if user}}
+      {{#if _id}}
         <li><a href="#" id="btn-edit-roster"><i class="fa fa-edit"></i> {{_ "Edit User"}}</a></li>
         <li class="divider"></li>
       {{/if}}
@@ -98,6 +62,11 @@
       </a>
     {{/each}}
   </ul>
+</template>
+
+<template name="RosterHeader">
+  {{> InboxBackButton}}
+  <div class="thread-subject">{{name}}</div>
 </template>
 
 <template name="RosterCard">

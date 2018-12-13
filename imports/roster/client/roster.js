@@ -7,7 +7,7 @@ Template.RosterMenu.events({
   },
   "click #btn-edit-roster"(e, t) {
     e.preventDefault();
-    Modal.show('EditRosterModal', t.data.user);
+    Modal.show('EditRosterModal', t.data);
   }
 });
 

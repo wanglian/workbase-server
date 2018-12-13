@@ -16,7 +16,7 @@ RosterController = ApplicationController.extend({
     }
   },
   user() {
-    return Users.findOne(this.params._id);
+    return this.params._id && Users.findOne(this.params._id);
   },
   chat() {
     let userId = this.params._id;
@@ -31,7 +31,8 @@ RosterController = ApplicationController.extend({
       users: Users.find({"profile.channel": {$ne: true}}, {sort: {"profile.name": 1}}),
       user: this.user(),
       chat: this.chat(),
-      detail: this.detail()
+      hasRight: !!this.user(),
+      hasSidebar: !!this.detail()
     };
   }
 });

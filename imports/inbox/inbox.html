@@ -1,14 +1,12 @@
 <template name="Inbox">
-  {{#contentFor "menu"}}
-    {{> InboxMenu}}
-  {{/contentFor}}
+  {{> contentFor region="menu" template="InboxMenu"}}
 
   {{#contentFor "title"}}
     <p class="navbar-text" style="color: white; font-weight: 600;">{{_ 'Inbox'}}</p>
   {{/contentFor}}
 
   {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}
-    {{> ThreadList threadId=thread}}
+    {{> ThreadList thread=thread}}
 
     {{> contentFor region="header" template="ThreadHeader" data=thread}}
     {{> contentFor region="right" template="Thread" data=thread}}
