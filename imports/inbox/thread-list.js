@@ -1,6 +1,10 @@
 import './thread-list.html';
 import './thread-list.css';
 
+Template.ThreadList.onCreated(function() {
+  this.subscribe("threads");
+});
+
 Template.ThreadList.onRendered(function() {
   this.autorun(() => {
     let data = Template.currentData();
@@ -9,6 +13,12 @@ Template.ThreadList.onRendered(function() {
       $(`.thread#${data.thread._id}`).addClass('active');
     }
   });
+});
+
+Template.ThreadList.helpers({
+  threads() {
+    return Threads.find({}, {sort: {updatedAt: -1}});
+  }
 });
 
 Template.ThreadListItem.helpers({

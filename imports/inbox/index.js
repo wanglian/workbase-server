@@ -10,11 +10,9 @@ import './style.css';
 InboxController = ApplicationController.extend({
   template: 'Inbox',
   subscriptions() {
-    this.subscribe("threads");
     let threadId = this.threadId();
     if (threadId) {
       this.subscribe("thread", threadId);
-      this.subscribe("messages", threadId);
     }
   },
   threadId() {
@@ -27,14 +25,10 @@ InboxController = ApplicationController.extend({
     let threadId = this.threadId();
     return threadId && Threads.findOne(threadId);
   },
-  threads() {
-    return Threads.find({}, {sort: {updatedAt: -1}});
-  },
   data() {
     return {
-      threads: this.threads(),
       thread: this.thread(),
-      hasRight: !!this.thread(),
+      hasRight: !!this.threadId(),
       hasSidebar: !!this.detail()
     };
   }

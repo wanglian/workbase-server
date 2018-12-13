@@ -2,6 +2,10 @@ import './thread.html';
 import './thread.css';
 
 Template.Thread.onRendered(function() {
+  this.autorun(() => {
+    this.subscribe("messages", this.data.threadId);
+  });
+
   let threadId, data;
 
   // 进入话题，延时两秒触发
@@ -50,5 +54,11 @@ Template.Thread.events({
     e.preventDefault();
     let currentRoute = Router.current();
     currentRoute.route.path(currentRoute.params, {query: _.extend(currentRoute.query, {detail: true})})
+  }
+});
+
+Template.ThreadHeader.helpers({
+  detailTitle() {
+    return this._id && this.title('detail');
   }
 });

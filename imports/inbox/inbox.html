@@ -8,7 +8,7 @@
   {{/contentFor}}
 
   {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}
-    {{> ThreadList threads=threads thread=thread}}
+    {{> ThreadList threadId=thread}}
 
     {{> contentFor region="header" template="ThreadHeader" data=thread}}
     {{> contentFor region="right" template="Thread" data=thread}}
