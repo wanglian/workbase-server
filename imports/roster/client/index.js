@@ -7,7 +7,7 @@ RosterController = ApplicationController.extend({
   template: 'Roster',
   subscriptions() {
     this.subscribe("roster");
-    this.subscribe("threads", "Chat");
+    this.subscribe("threads", {category: "Chat"});
     let chat = this.chat();
     let threadId = chat && chat._id;
     if (threadId) {

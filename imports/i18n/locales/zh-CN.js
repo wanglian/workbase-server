@@ -49,5 +49,7 @@ export const locale_zh_cn = {
   "Copied": "已复制",
   "Add Members": "添加成员",
   "confirm remove member": "确定移除 {{name}}?",
-  "Confirm": "确定"
+  "Confirm": "确定",
+  // paginate
+  "Load More": "查看更多"
 };

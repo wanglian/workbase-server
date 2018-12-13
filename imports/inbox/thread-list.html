@@ -3,6 +3,15 @@
     {{#each threads}}
       {{> ThreadListItem}}
     {{/each}}
+    {{#if ready}}
+      {{#if hasMore}}
+        <a href="#" class="list-group-item text-center text-muted thread btn-load-more small">
+          {{_ "Load More"}}
+        </a>
+      {{/if}}
+    {{else}}
+      <i class="fa fa-spinner fa-spin"></i>
+    {{/if}}
   </ul>
 </template>
 

@@ -3,7 +3,10 @@ import './thread.css';
 
 Template.Thread.onRendered(function() {
   this.autorun(() => {
-    this.subscribe("messages", this.data.threadId);
+    let threadId = this.data.threadId;
+    if (threadId) {
+      this.subscribe("messages", threadId);
+    }
   });
 
   let threadId, data;

@@ -10,17 +10,31 @@ Meteor.publish('instance', function() {
   return Instance.find({}, {fields: {domain: 1, company: 1, adminId: 1}});
 });
 
-Meteor.publishComposite("threads", function(category) {
-  check(category, Match.Maybe(String));
+const MIN_THREADS = 20;
+const MAX_THREADS = 500;
+Meteor.publishComposite("threads", function(options) {
+  check(options, {
+    category: Match.Maybe(String),
+    limit: Match.Maybe(Number)
+  });
 
   let conditions = {userType: 'Users', userId: this.userId};
+  let category = options && options.category;
   if (category) {
     _.extend(conditions, {category});
   }
 
+  let limit = options && options.limit || MIN_THREADS;
+
+  let countName = category ? `threads.${category}` : 'threads';
+  Counts.publish(this, countName, ThreadUsers.find(conditions));
+
   return {
     find() {
-      return ThreadUsers.find(conditions, {sort: {updatedAt: -1}});
+      return ThreadUsers.find(conditions, {
+        sort: {updatedAt: -1},
+        limit: Math.min(limit, MAX_THREADS)
+      });
     },
     children: [
       {
