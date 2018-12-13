@@ -1,18 +1,18 @@
 <template name="InboxLayout">
   <div class="container-fluid">
     <div class="row">
-      <div class="col {{col1Class (hasRegion 'right') (hasRegion 'sidebar')}}" id="inbox-left">
+      <div class="col {{col1Class hasRight hasSidebar}}" id="inbox-left">
         {{> yield}}
       </div>
-      {{#if hasRegion 'right'}}
-        <div class="col {{col2Class (hasRegion 'sidebar')}}">
+      {{#if hasRight}}
+        <div class="col {{col2Class hasSidebar}}">
           <div id="inbox-header">{{> yield 'header'}}</div>
           <div class="container-fluid">
             <div class="row">
-              <div class="col {{col21Class (hasRegion 'sidebar')}}" id="inbox-right">
+              <div class="col {{col21Class hasSidebar}}" id="inbox-right">
                 {{> yield 'right'}}
               </div>
-              {{#if hasRegion 'sidebar'}}
+              {{#if hasSidebar}}
                 <div class="col {{col22Class}}" id="inbox-sidebar">
                   {{> yield 'sidebar'}}
                 </div>

@@ -27,11 +27,15 @@ InboxController = ApplicationController.extend({
     let threadId = this.threadId();
     return threadId && Threads.findOne(threadId);
   },
+  threads() {
+    return Threads.find({}, {sort: {updatedAt: -1}});
+  },
   data() {
     return {
-      threads: Threads.find({}, {sort: {updatedAt: -1}}),
+      threads: this.threads(),
       thread: this.thread(),
-      detail: this.detail()
+      hasRight: !!this.thread(),
+      hasSidebar: !!this.detail()
     };
   }
 });

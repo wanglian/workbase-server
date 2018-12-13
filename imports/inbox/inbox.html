@@ -7,49 +7,21 @@
     <p class="navbar-text" style="color: white; font-weight: 600;">{{_ 'Inbox'}}</p>
   {{/contentFor}}
 
-  {{#if thread}}
-    {{#if detail}}
-      {{#Layout template="InboxLayout"}}
-        {{> ThreadList threads=threads thread=thread}}
+  {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}
+    {{> ThreadList threads=threads thread=thread}}
 
-        {{#contentFor "header"}}
-          {{> ThreadHeader thread}}
-        {{/contentFor}}
-
-        {{#contentFor "right"}}
-          {{> Thread thread}}
-        {{/contentFor}}
-
-        {{#contentFor "sidebar"}}
-          {{> ThreadDetail thread}}
-        {{/contentFor}}
-      {{/Layout}}
-    {{else}}
-      {{#Layout template="InboxLayout"}}
-        {{> ThreadList threads=threads thread=thread}}
-
-        {{#contentFor "header"}}
-          {{> ThreadHeader thread}}
-        {{/contentFor}}
-
-        {{#contentFor "right"}}
-          {{> Thread thread}}
-        {{/contentFor}}
-      {{/Layout}}
-    {{/if}}
-  {{else}}
-    {{#Layout template="InboxLayout"}}
-      {{> ThreadList threads=threads}}
-    {{/Layout}}
-  {{/if}}
+    {{> contentFor region="header" template="ThreadHeader" data=thread}}
+    {{> contentFor region="right" template="Thread" data=thread}}
+    {{> contentFor region="sidebar" template="ThreadDetail" data=thread}}
+  {{/Layout}}
 </template>
 
 <template name="InboxMenu">
- {{#if currentUser.isAdmin}}
-   <ul class="dropdown-menu" role="menu">
-     <li><a href="#" id="btn-add-roster"><i class="fa fa-plus"></i> {{_ "New User"}}</a></li>
-     <li class="divider"></li>
-     <li><a href="#" id="btn-add-channel"><i class="fa fa-plus"></i> {{_ "New Channel"}}</a></li>
-   </ul>
- {{/if}}
+  {{#if currentUser.isAdmin}}
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="#" id="btn-add-roster"><i class="fa fa-plus"></i> {{_ "New User"}}</a></li>
+      <li class="divider"></li>
+      <li><a href="#" id="btn-add-channel"><i class="fa fa-plus"></i> {{_ "New Channel"}}</a></li>
+    </ul>
+  {{/if}}
 </template>
