@@ -17,7 +17,6 @@ Meteor.publishComposite("threads", function(options) {
     category: Match.Maybe(String),
     limit: Match.Maybe(Number)
   });
-  console.log(options);
 
   let conditions = {userType: 'Users', userId: this.userId};
   let category = options && options.category;

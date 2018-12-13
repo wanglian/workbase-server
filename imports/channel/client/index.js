@@ -4,16 +4,20 @@ import './channel-modal';
 
 ChannelController = ApplicationController.extend({
   template: 'Channels',
+  perPage: 20,
   channel() {
     return this.params.channel;
   },
   subscriptions() {
-    this.subscribe("channel.threads", this.channel());
+    this.threadsSub = this.subscribe("channel.threads", this.channel(), {limit: this.limit()});
     let threadId = this.threadId();
     if (threadId) {
       this.subscribe("thread", threadId);
       this.subscribe("messages", threadId);
     }
+  },
+  limit: function() {
+    return parseInt(this.params.query.limit) || this.perPage;
   },
   threadId() {
     return this.params._id;
@@ -26,11 +30,18 @@ ChannelController = ApplicationController.extend({
     return threadId && Threads.findOne(threadId);
   },
   data() {
+    let query = _.clone(this.params.query);
+    _.extend(query, {limit: this.limit() + this.perPage});
+    let nextPath = this.route.path(this.params, {query});
+    let hasMore = Counts.get(`channel.threads.${this.channel()}`) > this.limit();
     return {
-      channel: Users.findOne(this.channel()),
-      threads: Threads.find({}, {sort: {updatedAt: -1}}),
-      thread: this.thread(),
-      detail: this.detail()
+      channel:    Users.findOne(this.channel()),
+      threads:    Threads.find({}, {sort: {updatedAt: -1}}),
+      thread:     this.thread(),
+      ready:      this.threadsSub.ready(),
+      nextPath:   hasMore ? nextPath : null,
+      hasRight:   !!this.threadId(),
+      hasSidebar: !!this.params.query.detail
     };
   }
 });

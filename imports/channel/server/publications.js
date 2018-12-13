@@ -33,16 +33,29 @@ Meteor.publishComposite('channel.members', function(channel) {
   };
 });
 
-Meteor.publishComposite("channel.threads", function(channel) {
+const MIN_THREADS = 20;
+const MAX_THREADS = 200;
+Meteor.publishComposite("channel.threads", function(channel, options) {
   check(channel, String);
+  check(options, {
+    limit: Match.Maybe(Number)
+  });
 
   if (!ChannelUsers.hasMember(channel, this.userId)) {
     return this.ready();
   }
 
+  let limit = options && options.limit || MIN_THREADS;
+
+  let countName = `channel.threads.${channel}`;
+  Counts.publish(this, countName, ThreadUsers.find({userType: 'Channels', userId: channel}, {sort: {updatedAt: -1}}));
+
   return {
     find() {
-      return ThreadUsers.find({userType: 'Channels', userId: channel}, {sort: {updatedAt: -1}});
+      return ThreadUsers.find({userType: 'Channels', userId: channel}, {
+        sort: {updatedAt: -1},
+        limit: Math.min(limit, MAX_THREADS)
+      });
     },
     children: [
       {
