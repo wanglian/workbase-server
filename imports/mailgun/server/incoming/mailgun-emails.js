@@ -55,7 +55,7 @@ MailgunEmails.parseEmail = (doc) => {
 
   let threadId;
   references = references && references.split(' ') || [];
-  replyTo && _.union(references, [replyTo]);
+  if (replyTo) references = _.union(references, [replyTo]);
   if (!_.isEmpty(references)) {
     let message = Messages.findOne({emailId: {$in: references}});
     threadId    = message && message.threadId;
@@ -65,12 +65,12 @@ MailgunEmails.parseEmail = (doc) => {
   }
   let thread = Threads.findOne(threadId);
 
-  let toUsers  = Contacts.parse(to);
+  let toUsers = Contacts.parse(to);
   Threads.ensureMember(thread, fromUser);
   Threads.ensureMember(thread, toUser);
   toUsers.forEach(user => Threads.ensureMember(thread, user));
   if (cc) {
-    let ccUsers  = Contacts.parse(cc);
+    let ccUsers = Contacts.parse(cc);
     ccUsers.forEach(user => Threads.ensureMember(thread, user));
   }
 

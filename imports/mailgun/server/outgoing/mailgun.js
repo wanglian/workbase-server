@@ -34,6 +34,16 @@ Messages.after.insert(function(userId, doc) {
       text:    doc.content // Markdown(doc.content): 需要html邮件模板
     };
 
+    // "h:Reply-To" last message
+    let last = Messages.findOne({threadId, emailId: {$exists: true}}, {sort: {createdAt: -1}});
+    console.log(last);
+    let replyTo = last && last.emailId;
+    if (replyTo) {
+      _.extend(params, {"h:In-Reply-To": replyTo});
+    }
+
+    // "h:References"
+
     Mailgun.send(params, Meteor.bindEnvironment((err, result) => {
       if (!err) {
         Messages.update(doc._id, {$set: {
