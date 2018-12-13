@@ -80,10 +80,23 @@ Meteor.publish("thread", function(threadId) {
   ]
 });
 
-Meteor.publish("messages", function(threadId) {
+const MIN_MESSAGES = 20;
+const MAX_MESSAGES = 1000;
+Meteor.publish("messages", function(threadId, options) {
   check(threadId, String);
+  check(options, {
+    limit: Match.Maybe(Number)
+  });
 
-  return Messages.find({threadId}, {sort: {createdAt: -1}});
+  let limit = options && options.limit || MIN_MESSAGES;
+
+  let countName = `messages.${threadId}`;
+  Counts.publish(this, countName, Messages.find({threadId}, {sort: {createdAt: -1}}));
+
+  return Messages.find({threadId}, {
+    sort: {createdAt: -1},
+    limit: Math.min(limit, MAX_MESSAGES)
+  });
 });
 
 Meteor.publish("roster", function() {

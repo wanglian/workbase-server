@@ -13,7 +13,6 @@ ChannelController = ApplicationController.extend({
     let threadId = this.threadId();
     if (threadId) {
       this.subscribe("thread", threadId);
-      this.subscribe("messages", threadId);
     }
   },
   limit: function() {

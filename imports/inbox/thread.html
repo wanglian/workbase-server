@@ -10,5 +10,18 @@
     {{#each messages}}
       {{> Message}}
     {{/each}}
+    {{#if ready}}
+      {{#if hasMore}}
+        <div class="message text-center">
+          <a href="#" class="text-muted small btn-load-more">
+            {{_ "Load More"}}
+          </a>
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="message text-center">
+        <i class="fa fa-spinner fa-spin text-muted small"></i>
+      </div>
+    {{/if}}
   </div>
 </template>

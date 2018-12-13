@@ -11,6 +11,7 @@ Meteor.methods({
     let user = Meteor.users.findOne(userId);
     let thread = Threads.findOne(threadId);
     let threadUser = ThreadUsers.findOne({threadId, userId, userType: 'Users'});
+
     if (thread && thread.scope != 'private' || threadUser) {
       return Threads.addMessage(thread, user, {
         content,
