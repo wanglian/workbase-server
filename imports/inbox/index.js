@@ -9,27 +9,36 @@ import './style.css';
 
 InboxController = ApplicationController.extend({
   template: 'Inbox',
+  perPage: 20,
   subscriptions() {
+    this.threadsSub = this.subscribe("threads", {limit: this.limit()});
     let threadId = this.threadId();
     if (threadId) {
       this.subscribe("thread", threadId);
     }
   },
+  limit: function() {
+    return parseInt(this.params.query.limit) || this.perPage;
+  },
   threadId() {
     return this.params._id;
-  },
-  detail() {
-    return this.params.query.detail;
   },
   thread() {
     let threadId = this.threadId();
     return threadId && Threads.findOne(threadId);
   },
   data() {
+    let query = _.clone(this.params.query);
+    _.extend(query, {limit: this.limit() + this.perPage});
+    let nextPath = this.route.path(this.params, {query});
+    let hasMore = Counts.get('threads') > this.limit();
     return {
-      thread: this.thread(),
-      hasRight: !!this.threadId(),
-      hasSidebar: !!this.detail()
+      threads:    Threads.find({}, {sort: {updatedAt: -1}}),
+      thread:     this.thread(),
+      ready:      this.threadsSub.ready(),
+      nextPath:   hasMore ? nextPath : null,
+      hasRight:   !!this.threadId(),
+      hasSidebar: !!this.params.query.detail
     };
   }
 });

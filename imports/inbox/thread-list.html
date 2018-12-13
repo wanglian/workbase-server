@@ -4,8 +4,8 @@
       {{> ThreadListItem}}
     {{/each}}
     {{#if ready}}
-      {{#if hasMore}}
-        <a href="#" class="list-group-item text-center text-muted thread btn-load-more small">
+      {{#if nextPath}}
+        <a href="{{nextPath}}" class="list-group-item text-center text-muted thread small">
           {{_ "Load More"}}
         </a>
       {{/if}}

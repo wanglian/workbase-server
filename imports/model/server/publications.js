@@ -11,12 +11,13 @@ Meteor.publish('instance', function() {
 });
 
 const MIN_THREADS = 20;
-const MAX_THREADS = 500;
+const MAX_THREADS = 200;
 Meteor.publishComposite("threads", function(options) {
   check(options, {
     category: Match.Maybe(String),
     limit: Match.Maybe(Number)
   });
+  console.log(options);
 
   let conditions = {userType: 'Users', userId: this.userId};
   let category = options && options.category;
@@ -27,7 +28,7 @@ Meteor.publishComposite("threads", function(options) {
   let limit = options && options.limit || MIN_THREADS;
 
   let countName = category ? `threads.${category}` : 'threads';
-  Counts.publish(this, countName, ThreadUsers.find(conditions));
+  Counts.publish(this, countName, ThreadUsers.find(conditions, {sort: {updatedAt: -1}}));
 
   return {
     find() {

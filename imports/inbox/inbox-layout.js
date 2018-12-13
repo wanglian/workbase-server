@@ -41,7 +41,8 @@ Template.InboxBackButton.helpers({
   listPath() {
     let currentRoute = Router.current();
     let params = _.omit(currentRoute.params, "_id");
-    return currentRoute.route.path(params);
+    let query = currentRoute.params.query;
+    return currentRoute.route.path(params, {query});
   },
   btnBackClass() {
     let currentRoute = Router.current();
