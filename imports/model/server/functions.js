@@ -16,9 +16,11 @@ Threads.ensureMember = (thread, user, params) => {
   let threadUser = ThreadUsers.findOne({threadId, userType, userId});
   if (!threadUser) {
     let role = 'member';
+    let read = false;
     if (thread.userType === user.className() && thread.userId === user._id) {
       // thread creator becomes the owner
       role = 'owner';
+      read = true;
     } else if (ThreadUsers.find({threadId: thread._id, userType: 'Users'}).count() === 0) {
       // first internal user
       role = 'owner';
@@ -29,7 +31,7 @@ Threads.ensureMember = (thread, user, params) => {
       userType,
       userId,
       category: thread.category,
-      read: false,
+      read,
       role,
       params
     })
