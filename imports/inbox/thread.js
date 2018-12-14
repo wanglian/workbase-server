@@ -1,7 +1,7 @@
 import './thread.html';
 import './thread.css';
 
-const PER_PAGE = 5;
+const PER_PAGE = 20;
 Template.Thread.onCreated(function() {
   this.limit = new ReactiveVar(PER_PAGE);
   this.ready = new ReactiveVar(false);

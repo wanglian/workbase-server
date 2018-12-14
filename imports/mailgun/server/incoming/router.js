@@ -1,5 +1,11 @@
 import './mailgun-emails';
 
+Router.configureBodyParsers = function() {
+  Router.onBeforeAction(Iron.Router.bodyParser.urlencoded({
+    extended: true,
+    limit: '50mb'
+  }));
+};
 // mailgun 收取邮件
 Router.route('/api/v1/mailgun', {
   where: 'server'

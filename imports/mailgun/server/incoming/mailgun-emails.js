@@ -1,7 +1,12 @@
 // - emailId
 // - params
 // - parsedAt
+// - createdAt
 MailgunEmails = new Mongo.Collection('mailgun-emails');
+
+MailgunEmails.before.insert(function(user, doc) {
+  doc.createdAt = new Date();
+});
 
 MailgunEmails.create = (params) => {
   let email = MailgunEmails.findOne({emailId: params['Message-Id']});

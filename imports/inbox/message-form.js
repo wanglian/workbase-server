@@ -5,6 +5,8 @@ import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 
 Template.MessageForm.onRendered(function() {
+  autosize($('form textarea'));
+
   let threadId;
 
   this.autorun(() => {
@@ -12,15 +14,15 @@ Template.MessageForm.onRendered(function() {
     if (data && data._id != threadId) {
       // save
       if (threadId) {
-        let textarea = $('#message-form textarea');
+        let textarea = $('form textarea');
         let content = textarea && textarea.val();
         Session.set(`message-draft-${threadId}`, content);
       }
       // load
       threadId = data._id;
       let draft = Session.get(`message-draft-${threadId}`);
-      this.$('textarea').val(draft);
-      autosize(this.$('textarea'));
+      $('form textarea').val(draft);
+      autosize($('form textarea'));
     }
   });
 });
@@ -52,6 +54,7 @@ Template.MessageForm.helpers({
         max: 10000,
         autoform: {
           type: 'textarea',
+          rows: 3,
           label: false,
         }
       }
@@ -70,6 +73,7 @@ AutoForm.hooks({
           console.log(err);
         } else {
           console.log(res);
+          autosize($("form textarea"));
           $("form textarea").focus();
         }
       });
