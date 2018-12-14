@@ -5,8 +5,6 @@ import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 
 Template.MessageForm.onRendered(function() {
-  autosize($('form textarea'));
-
   let threadId;
 
   this.autorun(() => {
@@ -22,7 +20,9 @@ Template.MessageForm.onRendered(function() {
       threadId = data._id;
       let draft = Session.get(`message-draft-${threadId}`);
       $('form textarea').val(draft);
+      // autosize & focus
       autosize($('form textarea'));
+      $('form textarea').focus();
     }
   });
 });
@@ -59,6 +59,15 @@ Template.MessageForm.helpers({
         }
       }
     });
+  }
+});
+
+Template.MessageForm.events({
+  "keyup form textarea"(e, t) {
+    // ctrl + enter submit
+    if (e.ctrlKey && e.which === 13) {
+      t.$("form").submit();
+    }
   }
 });
 
