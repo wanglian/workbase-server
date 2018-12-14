@@ -16,7 +16,10 @@ Template.ThreadDetail.helpers({
 Template.ThreadDetail.events({
   "click #btn-add-member"(e, t) {
     e.stopPropagation();
-    Modal.show('AddThreadMemberModal', this);
+    Modal.show('AddThreadMemberModal', this, {
+      backdrop: 'static',
+      keyboard: false
+    });
   }
 });
 

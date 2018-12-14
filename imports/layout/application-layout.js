@@ -35,7 +35,10 @@ Template.ApplicationLayout.helpers({
 Template.ApplicationLayout.events({
   "click #btn-send-email"(e, t) {
     e.preventDefault();
-    Modal.show("SendEmailModal");
+    Modal.show("SendEmailModal", null, {
+      backdrop: 'static',
+      keyboard: false
+    });
   },
   "click #btn-sign-out"(e, t) {
     e.preventDefault();

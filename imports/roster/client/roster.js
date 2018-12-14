@@ -3,11 +3,17 @@ import './roster.html';
 Template.RosterMenu.events({
   "click #btn-add-roster"(e, t) {
     e.preventDefault();
-    Modal.show('AddRosterModal');
+    Modal.show('AddRosterModal', null, {
+      backdrop: 'static',
+      keyboard: false
+    });
   },
   "click #btn-edit-roster"(e, t) {
     e.preventDefault();
-    Modal.show('EditRosterModal', t.data);
+    Modal.show('EditRosterModal', t.data, {
+      backdrop: 'static',
+      keyboard: false
+    });
   }
 });
 
