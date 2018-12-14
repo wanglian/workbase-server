@@ -8,12 +8,24 @@
 .messages .message:last-child {
   border-bottom: 1px solid #d8d8d8;
 }
+.messages .message-header {
+  margin: -6px -10px;
+  padding: 6px 10px;
+  border-bottom: solid 1px white;
+}
 .messages .message:hover .message-header {
   background: rgba(249,249,249, 1);
+  border-color: rgba(245,245,245, 1);
 }
-.messages .message-header {
-  margin: -6px -10px 0;
-  padding: 6px 10px;
+.messages .fold.message:hover .message-header {
+   border-color: rgba(249,249,249, 1);
+}
+.messages .fold.message .message-header .email,
+.messages .fold.message .message-content {
+  display: none;
+}
+.messages .fold.message .message-header .summary {
+  display: block;
 }
 .messages .message-header-avatar {
   float: left;
@@ -28,7 +40,7 @@
   color: #555;
 }
 .messages .message-content {
-  padding-top: 4px;
+  padding-top: 15px;
 }
 .messages .message-content iframe {
   height: 0px;

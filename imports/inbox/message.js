@@ -52,33 +52,19 @@ Template.Message.events({
   },
   "click .message-header"(e, t) {
     e.preventDefault();
+    // shift + click 折叠/展开全部
     if (e.shiftKey) {
       let m = $(e.target).closest(".message");
-      if ($(m).find(".message-content").hasClass("hide")) {
-        _.each($(".message"), (m) => {
-          if ($(m).find(".message-content").hasClass("hide")) {
-            toggleMessage(m);
-          }
-        });
+      if ($(m).hasClass("fold")) {
+        $(".message").removeClass("fold");
       } else {
-        _.each($(".message"), (m) => {
-          if (!$(m).find(".message-content").hasClass("hide")) {
-            toggleMessage(m);
-          }
-        });
+        $(".message").addClass("fold");
       }
     } else {
-      let m = $(e.target).closest(".message");
-      toggleMessage(m);
+      $(e.target).closest(".message").toggleClass("fold");
     }
   }
 });
-
-const toggleMessage = (m) => {
-  $(m).find(".message-header .email").toggleClass("hide");
-  $(m).find(".message-header .summary").toggleClass("hide");
-  $(m).find(".message-content").toggleClass("hide");
-};
 
 Template.MessageActions.onRendered(function() {
   $('.message-actions [data-toggle="tooltip"]').tooltip({container: 'body', trigger: 'hover', delay: 1000});
