@@ -27,7 +27,7 @@ ul.list-group.threads .list-group-item.thread.active:last-child {
 ul.list-group.threads .list-group-item.thread.active {
   color: #555;
   background: #f4f4f4;
-  border-color: #f1f1f1;
+  border-color: #d8d8d8;
 }
 /* 话题标题和最新消息 */
 ul.list-group.threads .list-group-item.thread .thread-title {
