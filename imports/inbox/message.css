@@ -8,8 +8,12 @@
 .messages .message:last-child {
   border-bottom: 1px solid #d8d8d8;
 }
+.messages .message:hover .message-header {
+  background: rgba(249,249,249, 1);
+}
 .messages .message-header {
-
+  margin: -6px -10px 0;
+  padding: 6px 10px;
 }
 .messages .message-header-avatar {
   float: left;
@@ -24,7 +28,7 @@
   color: #555;
 }
 .messages .message-content {
-  padding-top: 10px;
+  padding-top: 4px;
 }
 .messages .message-content iframe {
   height: 0px;
