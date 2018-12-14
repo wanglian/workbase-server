@@ -13,6 +13,9 @@
   padding: 6px 10px;
   border-bottom: solid 1px white;
 }
+.messages .message-header .summary {
+  display: none;
+}
 .messages .message:hover .message-header {
   background: rgba(249,249,249, 1);
   border-color: rgba(245,245,245, 1);
@@ -47,4 +50,24 @@
   width: 100%;
   overflow-y: hidden;
   overflow-x: auto;
+}
+
+/* markdown */
+.messages .message-content h1 {
+  font-size: 28px;
+}
+.messages .message-content h2 {
+  font-size: 24px;
+}
+.messages .message-content h3 {
+  font-size: 20px;
+}
+.messages .message-content h4 {
+  font-size: 18px;
+}
+.messages .message-content h5 {
+  font-size: 16px;
+}
+.messages .message-content h6 {
+  font-size: 14px;
 }

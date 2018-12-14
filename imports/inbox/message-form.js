@@ -22,7 +22,7 @@ Template.MessageForm.onRendered(function() {
       $('form textarea').val(draft);
       // autosize & focus
       autosize($('form textarea'));
-      $('form textarea').focus();
+      // $('form textarea').focus();
     }
   });
 });
