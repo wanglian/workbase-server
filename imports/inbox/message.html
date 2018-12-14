@@ -19,9 +19,20 @@
       </div>
     </div>
     <div class="message-content">
-      {{#markdown}}{{{content}}}{{/markdown}}
+      {{#if isHTML}}
+        {{> EmailContent}}
+      {{else}}
+        {{#markdown}}{{{content}}}{{/markdown}}
+      {{/if}}
     </div>
   </div>
+</template>
+
+<template name="EmailContent">
+  <div class="spinner text-center" style="font-size: 30px;">
+    <i class="fa fa-spinner fa-spin"></i>
+  </div>
+  <iframe frameborder="0"></iframe>
 </template>
 
 <template name="MessageActions">

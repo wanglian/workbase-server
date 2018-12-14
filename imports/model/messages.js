@@ -3,6 +3,7 @@
 // - userId
 // - internal: boolean
 // - content
+// - contentType
 // - summary
 // - emailId
 // - email: from, to, cc, time

@@ -48,7 +48,8 @@ MailgunEmails.parseEmail = (doc) => {
   let to         = params['To'];
   let cc         = params['Cc'];
   let recipient  = params['recipient'];
-  let content    = params['body-html'] || params['body-plain'];
+  let bodyHtml   = params['body-html'];
+  let bodyPlain  = params['body-plain'];
   let replyTo    = params['In-Reply-To'];
   let date       = params['Date'];
   let references = params['References'];
@@ -79,8 +80,16 @@ MailgunEmails.parseEmail = (doc) => {
     ccUsers.forEach(user => Threads.ensureMember(thread, user));
   }
 
+  let content = bodyHtml;
+  let contentType = 'html';
+  if (!content) {
+    content = bodyPlain;
+    contentType = 'text';
+  }
+
   Threads.addMessage(thread, fromUser, {
     content,
+    contentType,
     emailId,
     email: { from, to, cc, date }
   });

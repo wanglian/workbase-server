@@ -26,3 +26,9 @@
 .messages .message-content {
   padding-top: 10px;
 }
+.messages .message-content iframe {
+  height: 0px;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
