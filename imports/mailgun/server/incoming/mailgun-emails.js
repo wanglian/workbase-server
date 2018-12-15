@@ -91,6 +91,7 @@ MailgunEmails.parseEmail = (doc) => {
     content,
     contentType,
     emailId,
+    internal: false,
     email: { from, to, cc, date }
   });
 

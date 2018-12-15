@@ -83,7 +83,7 @@ AutoForm.hooks({
         } else {
           console.log(res);
           autosize($("form textarea"));
-          $("form textarea").focus();
+          // $("form textarea").focus();
         }
       });
       this.done();

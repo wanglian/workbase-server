@@ -5,3 +5,4 @@ import '/imports/mailgun/server';
 import '/imports/startup/server';
 import '/imports/channel/server';
 import '/imports/roster/server';
+import '/imports/charts/server';
