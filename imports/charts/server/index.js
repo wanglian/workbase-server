@@ -3,7 +3,8 @@ import './message-records';
 import moment from 'moment';
 
 Messages.after.insert(function(userId, doc) {
-  let m = moment.utc(doc.createdAt);
+  // let m = moment.utc(doc.createdAt);
+  let m = moment(doc.createdAt);
   MessageRecords.insert({
     userType:  doc.userType,
     userId:    doc.userId,

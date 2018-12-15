@@ -3,21 +3,6 @@ import './message-day-chart.html';
 import Chart from 'chart.js';
 import moment from 'moment';
 
-const rotateArray = (array, n) => {
-  let a = _.clone(array);
-  if (n === 0) return;
-  if (n < 0) {
-    _.times(-n, () => {
-      a.push(a.shift());
-    });
-  } else {
-    _.times(n, () => {
-      a.unshift(a.pop());
-    });
-  }
-  return a;
-};
-
 Template.MessageDayChart.onRendered(function() {
   let days = moment().endOf("month").date();
   Meteor.call("getChartDay", (err, res) => {
@@ -77,17 +62,17 @@ Template.MessageDayChart.onRendered(function() {
           labels: _.range(1, 24),
           datasets: [{
             label: '内部',
-            data: rotateArray(res["internal"], offset),
+            data: res["internal"],
             backgroundColor: 'rgba(200, 200, 200, 0.8)',
             borderWidth: 1
           }, {
             label: '发出',
-            data: rotateArray(res["outgoing"], offset),
+            data: res["outgoing"],
             backgroundColor: 'rgba(0, 0, 255, 0.8)',
             borderWidth: 1
           }, {
             label: '接收',
-            data: rotateArray(res["incoming"], offset),
+            data: res["incoming"],
             backgroundColor: 'rgba(0, 128, 0, 0.8)',
             borderWidth: 1
           }]

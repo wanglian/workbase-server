@@ -1,4 +1,22 @@
 
+- 旋转数组
+```
+const rotateArray = (array, n) => {
+  let a = _.clone(array);
+  if (n === 0) return;
+  if (n < 0) {
+    _.times(-n, () => {
+      a.push(a.shift());
+    });
+  } else {
+    _.times(n, () => {
+      a.unshift(a.pop());
+    });
+  }
+  return a;
+};
+```
+
 - 转发gmail邮件过来报错
 ```
 W20181213-20:30:49.597(-5)? (STDERR) Error: request entity too large
