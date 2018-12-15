@@ -39,7 +39,8 @@ Template.MessageDayChart.onRendered(function() {
             yAxes: [{
               stacked: true,
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
+                precision: 0
               }
             }]
           }
@@ -85,7 +86,8 @@ Template.MessageDayChart.onRendered(function() {
             yAxes: [{
               stacked: true,
               ticks: {
-                beginAtZero: true
+                beginAtZero: true,
+                precision: 0
               }
             }]
           }
