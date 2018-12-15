@@ -7,7 +7,6 @@ meteor npm install
 meteor
 ```
 access from http://localhost:3000
-account: admin@test.com / admin123
 
 ## Run Tests
 
@@ -18,14 +17,14 @@ TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha // inte
 
 ## Docker
 
+Local
 ```
-docker build -t wanglian/wework . // build
-docker push wanglian/wework:latest // push to docker hub
-docker pull wanglian/wework:latest // server: pull image
+./build
 ```
 
-启动
+Server
 ```
+docker pull wanglian/wework:latest
 docker run -d \
   -e ROOT_URL=<> \
   -e MONGO_URL=<mongodb://url> \
@@ -39,3 +38,17 @@ docker run -d \
   --restart always \
   wanglian/wework:latest
 ```
+
+## Develop
+
+References
+- [Meteor](https://docs.meteor.com/)
+- [bootstrap](https://getbootstrap.com/docs/3.3/javascript/)
+- [AdminLTE](https://adminlte.io/themes/AdminLTE/index.html)
+- [Blaze](http://blazejs.org/api/templates.html)
+- [mailgun](https://documentation.mailgun.com/en/latest/api-routes.html)
+- [autoform](https://github.com/aldeed/meteor-autoform)
+- [iron-router](http://iron-meteor.github.io/iron-router/)
+- [underscore](https://underscorejs.org)
+- [momentjs](https://momentjs.com/docs/)
+- [chartjs](https://www.chartjs.org/)
