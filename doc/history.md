@@ -6,6 +6,7 @@
 - 图片上传显示spinner
 - 使用fancybox查看图片
 - 上传图片到S3
+- fix 重置图片上传input
 
 ## 12-15
 

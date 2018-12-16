@@ -79,14 +79,16 @@ Template.MessageForm.events({
     if ($("input[name=internal]")[0]) {
       internal = $("input[name=internal]")[0].checked;
     }
+    let file = e.target.files[0];
     Modal.show('ImageMessageModal', {
       thread:   t.data,
-      file:     e.target.files[0],
+      file:     file,
       internal
     }, {
       backdrop: 'static',
       keyboard: false
     });
+    $(e.target).val("");
   }
 });
 

@@ -2,6 +2,7 @@ import S3 from 'aws-sdk/clients/s3'; /* http://docs.aws.amazon.com/AWSJavaScript
 /* See fs-extra and graceful-fs NPM packages */
 /* For better i/o performance */
 import fs from 'fs';
+import stream from 'stream';
 
 /* Example: S3='{"s3":{"key": "xxx", "secret": "xxx", "bucket": "xxx", "region": "xxx""}}' meteor */
 if (process.env.S3) {
