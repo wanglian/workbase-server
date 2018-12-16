@@ -6,7 +6,8 @@
 - 图片上传显示spinner
 - 使用fancybox查看图片
 - 上传图片到S3
-- fix 重置图片上传input
+- Meteor Files文件路径使用绝对路径，因为docker部署找不到相对路径
+- fix 重置图片上传input；上传时disable按钮
 
 ## 12-15
 

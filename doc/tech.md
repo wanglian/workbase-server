@@ -11,7 +11,7 @@
 - 使用Metor Files管理
 - Browser端使用JavaScript Load Image加载预览
 - 图片预览样式，使用bootstrap .image-thumbnail，加上自定义高度和宽度限制
-- ?图片编辑：剪切
+- ?图片编辑：剪切，旋转
 - 图片查看，使用fancybox。可支持视频，等各种内容
 - 图片处理 medium: 1024x1024
 

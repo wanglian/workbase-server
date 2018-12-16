@@ -32,7 +32,7 @@ if (s3Conf && s3Conf.key && s3Conf.secret && s3Conf.bucket && s3Conf.region) {
   Images = new FilesCollection({
     debug: false, // Change to `true` for debugging
     collectionName: 'images',
-    storagePath: 'assets/app/uploads/images',
+    storagePath: '/tmp/workbase/uploads/images',
     allowClientCode: false, // Disallow remove files from Client
     onBeforeUpload(file) {
       // Allow upload files under 10MB, and only in png/jpg/jpeg formats

@@ -18,6 +18,12 @@ https://github.com/VeliovGroup/Meteor-Files/wiki
 {{/with}}
 ```
 
+## docker部署
+
+https://github.com/VeliovGroup/Meteor-Files/wiki/MeteorUp-(MUP)-Usage
+
+需要映射路径？
+
 ## S3集成
 
 https://github.com/VeliovGroup/Meteor-Files/wiki/AWS-S3-Integration

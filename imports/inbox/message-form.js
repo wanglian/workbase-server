@@ -123,7 +123,7 @@ Template.ImageMessageModal.onRendered(function() {
     $("#image-preview img").addClass("img-responsive center-block");
   }, {
     maxWidth: "570",
-    maxHeight: "400"
+    maxHeight: "350"
   });
 });
 
@@ -137,6 +137,7 @@ Template.ImageMessageModal.events({
   "click #btn-send-image"(e, t) {
     e.preventDefault();
 
+    $('#btn-send-image').attr("disabled", "disabled");
     const upload = Images.insert({
       file: t.data.file,
       streams: 'dynamic',
