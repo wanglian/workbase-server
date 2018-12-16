@@ -8,6 +8,7 @@
 - 上传图片到S3
 - Meteor Files文件路径使用绝对路径，因为docker部署找不到相对路径
 - fix 重置图片上传input；上传时disable按钮
+- 发送图文消息
 
 ## 12-15
 

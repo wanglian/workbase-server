@@ -1,6 +1,6 @@
 <template name="MessageForm">
   {{#autoForm collection=formCollection schema=formSchema id="message-form" threadId=_id}}
-    {{> afQuickField name="content" }}
+    {{> afQuickField name="content"}}
     <div class="btn-group">
       <button type="submit" class="btn btn-primary btn-sm">{{_ 'Send'}}</button>
       <div class="btn-group">
@@ -15,7 +15,7 @@
     </div>
     <input type="file" style="display:none;" id="image-file" accept="image/*"/>
     {{#if hasExternalMembers}}
-      {{> afFieldInput name="internal"}}
+      <div class="pull-right text-muted">{{> afFieldInput name="internal"}}</div>
     {{/if}}
   {{/autoForm}}
 </template>
@@ -26,15 +26,21 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "Image Preview"}}</h4>
+          <h4 class="modal-title">{{_ "Send Image Message"}}</h4>
         </div>
         <div class="modal-body">
-          {{#with currentUpload}}{{> spinner}}{{/with}}
-          <div id="image-preview" style="width:100%;height:100%;" class="center-block">{{> spinner}}</div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
-          <button type="button" class="btn btn-primary" id="btn-send-image">{{_ "Send"}}</button>
+          {{#autoForm collection=formCollection schema=formSchema id="image-message-form" threadId=thread._id}}
+            {{> afQuickField name="content" placeholder="这一刻的想法..."}}
+            {{#with currentUpload}}{{> spinner}}{{/with}}
+            <div id="image-preview" style="width:100%;height:100%;" class="form-group center-block img-thumbnail">{{> spinner}}</div>
+            <div class="form-group">
+              {{#if thread.hasExternalMembers}}
+                <div class="pull-right text-muted">{{> afFieldInput name="internal"}}</div>
+              {{/if}}
+              <button type="button" class="btn btn-primary" id="btn-send-image">{{_ "Send"}}</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
+            </div>
+          {{/autoForm}}
         </div>
       </div>
     </div>

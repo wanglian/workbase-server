@@ -4,6 +4,7 @@
 // - internal: boolean
 // - content
 // - contentType: text/html/image
+// - fileIds: [fileId]
 // - summary
 // - emailId
 // - email: from, to, cc, time
@@ -17,6 +18,6 @@ Messages.helpers({
     return Threads.findOne(this.threadId);
   },
   image() {
-    return this.contentType === 'image' && Images.findOne(this.content);
+    return this.contentType === 'image' && this.fileIds && Images.findOne(this.fileIds[0]);
   }
 });

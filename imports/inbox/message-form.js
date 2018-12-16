@@ -4,6 +4,26 @@ import './message-form.css';
 import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 
+const MESSAGE_SCHEMA = new SimpleSchema({
+  internal: {
+    type: Boolean,
+    label: I18n.t('Internal'),
+    optional: true,
+    autoform: {
+      type: "boolean-checkbox"
+    }
+  },
+  content: {
+    type: String,
+    max: 10000,
+    autoform: {
+      type: 'textarea',
+      rows: 3,
+      label: false,
+    }
+  }
+});
+
 Template.MessageForm.onRendered(function() {
   let threadId;
 
@@ -40,25 +60,7 @@ Template.MessageForm.helpers({
     return Messages;
   },
   formSchema() {
-    return new SimpleSchema({
-      internal: {
-        type: Boolean,
-        label: I18n.t('Internal'),
-        optional: true,
-        autoform: {
-          type: "boolean-checkbox"
-        }
-      },
-      content: {
-        type: String,
-        max: 10000,
-        autoform: {
-          type: 'textarea',
-          rows: 3,
-          label: false,
-        }
-      }
-    });
+    return MESSAGE_SCHEMA;
   }
 });
 
@@ -75,20 +77,14 @@ Template.MessageForm.events({
   },
   "change #image-file"(e, t) {
     console.log("image selected");
-    let internal = false;
-    if ($("input[name=internal]")[0]) {
-      internal = $("input[name=internal]")[0].checked;
-    }
-    let file = e.target.files[0];
     Modal.show('ImageMessageModal', {
-      thread:   t.data,
-      file:     file,
-      internal
+      thread: t.data,
+      file:   e.target.files[0]
     }, {
       backdrop: 'static',
       keyboard: false
     });
-    $(e.target).val("");
+    $(e.target).val(""); // reset file input
   }
 });
 
@@ -98,7 +94,10 @@ AutoForm.hooks({
       this.event.preventDefault();
 
       let threadId = this.formAttributes.threadId;
-      Meteor.call('sendMessage', threadId, insertDoc.content, insertDoc.internal, (err, res) => {
+      Meteor.call('sendMessage', threadId, {
+        content: insertDoc.content,
+        internal: insertDoc.internal
+      }, (err, res) => {
         if (err) {
           console.log(err);
         } else {
@@ -122,12 +121,18 @@ Template.ImageMessageModal.onRendered(function() {
     $("#image-preview").html(img);
     $("#image-preview img").addClass("img-responsive center-block");
   }, {
-    maxWidth: "570",
+    maxWidth:  "570",
     maxHeight: "350"
   });
 });
 
 Template.ImageMessageModal.helpers({
+  formCollection() {
+    return Messages;
+  },
+  formSchema() {
+    return MESSAGE_SCHEMA;
+  },
   currentUpload() {
     return Template.instance().currentUpload.get();
   }
@@ -151,9 +156,20 @@ Template.ImageMessageModal.events({
     upload.on('end', function (error, fileObj) {
       if (error) {
         alert('Error during upload: ' + error);
+        $('#btn-send-image').attr("disabled", "");
       } else {
         // alert('File "' + fileObj.name + '" successfully uploaded');
-        Meteor.call('sendMessage', t.data.thread._id, fileObj._id, t.data.internal, 'image', (err, res) => {
+        let content = t.$("textarea[name=content]").val();
+        let internal = false;
+        if (t.$("input[name=internal]")[0]) {
+          internal = t.$("input[name=internal]")[0].checked;
+        }
+        Meteor.call('sendMessage', t.data.thread._id, {
+          content,
+          internal,
+          fileIds: [fileObj._id],
+          contentType: 'image'
+        }, (err, res) => {
           Modal.hide('ImageMessageModal');
         });
       }

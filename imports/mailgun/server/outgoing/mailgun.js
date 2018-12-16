@@ -66,6 +66,7 @@ Mailgun.send = (message) => {
       } else {
         console.log(result);
         Messages.update(message._id, {$set: {
+          internal: false,
           emailId: result["id"],
           email: {
             from: params.from,

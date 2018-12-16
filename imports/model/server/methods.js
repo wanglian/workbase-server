@@ -3,9 +3,14 @@ Meteor.methods({
     check(threadId, String);
     ThreadUsers.update({threadId, userType: 'Users', userId: this.userId}, {$set: {read: true}});
   },
-  sendMessage(threadId, content, internal, contentType='text') {
+  sendMessage(threadId, params) {
     check(threadId, String);
-    check(content, String);
+    check(params, {
+      contentType: Match.Maybe(String),
+      content: String,
+      internal: Match.Maybe(Boolean),
+      fileIds: Match.Maybe([String])
+    });
 
     let userId = this.userId;
     let user = Meteor.users.findOne(userId);
@@ -13,11 +18,7 @@ Meteor.methods({
     let threadUser = ThreadUsers.findOne({threadId, userId, userType: 'Users'});
 
     if (thread && thread.scope != 'private' || threadUser) {
-      return Threads.addMessage(thread, user, {
-        content,
-        internal,
-        contentType
-      });
+      return Threads.addMessage(thread, user, params);
     }
   },
   sendEmail(emails, subject, content) {
