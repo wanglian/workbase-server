@@ -29,10 +29,7 @@
           <h4 class="modal-title">{{_ "Image Preview"}}</h4>
         </div>
         <div class="modal-body">
-          {{#with currentUpload}}
-            Uploading <b>{{file.name}}</b>:
-            <span id="progress">{{progress.get}}%</span>
-          {{/with}}
+          {{#with currentUpload}}{{> spinner}}{{/with}}
           <div id="image-preview" style="width:100%;height:100%;" class="center-block">{{> spinner}}</div>
         </div>
         <div class="modal-footer">

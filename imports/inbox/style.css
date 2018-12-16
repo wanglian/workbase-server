@@ -11,11 +11,6 @@ body .content-wrapper .row .col {
   color: #777;
 }
 
-img.img-thumbnail {
-  max-height: 350px;
-  max-width: 100%;
-}
-
 .text-right a.actions {
   padding-left: 10px;
 }
@@ -29,8 +24,4 @@ img.img-thumbnail {
 
 mark {
   background: #ff0 !important;
-}
-
-.email-content {
-  overflow-x: auto;
 }

@@ -71,3 +71,7 @@
 .messages .message-content h6 {
   font-size: 14px;
 }
+.messages .message-content img.img-thumbnail {
+  max-height: 350px;
+  max-width: 100%;
+}
