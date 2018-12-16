@@ -24,6 +24,7 @@ session
 accounts-ui
 accounts-password
 underscore
+random
 
 aldeed:collection2
 matb33:collection-hooks

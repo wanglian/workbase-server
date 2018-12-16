@@ -5,5 +5,11 @@
   },
   "mailgun": {
     "key": "key-xxx"
+  },
+  "s3": {
+    "key": "AWSKEY",
+    "secret": "AWSSECRET",
+    "bucket": "BUCKETNAME",
+    "region": "us-west-1"
   }
 }

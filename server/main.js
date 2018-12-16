@@ -1,5 +1,6 @@
-import '/imports/i18n/server';
 import '/imports/model/server';
+import '/imports/i18n/server';
+import '/imports/files/server';
 import '/imports/website/server';
 import '/imports/mailgun/server';
 import '/imports/startup/server';

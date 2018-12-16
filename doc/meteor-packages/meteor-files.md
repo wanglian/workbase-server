@@ -17,3 +17,43 @@ https://github.com/VeliovGroup/Meteor-Files/wiki
   </div>
 {{/with}}
 ```
+
+## S3集成
+
+https://github.com/VeliovGroup/Meteor-Files/wiki/AWS-S3-Integration
+
+### S3 - 创建bucket
+- name: weaworking.com
+- region: ca-central-1
+
+S3 region list: https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+
+### IAM - 创建policy
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl",
+                "s3:GetObject",
+                "s3:GetObjectAcl"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::BUCKETNAME",
+                "arn:aws:s3:::BUCKETNAME/*"
+            ]
+        }
+    ]
+}
+```
+
+### IAM - 创建用户
+- name
+- Programmatic access
+- policy
+- Access Key:
+- Secret access key:
+

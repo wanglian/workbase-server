@@ -1,5 +1,6 @@
 import '/imports/model';
 import '/imports/i18n/client';
+import '/imports/files/client';
 import '/imports/autoform';
 import '/imports/layout';
 import '/imports/inbox';

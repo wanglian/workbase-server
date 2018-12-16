@@ -12,6 +12,7 @@
     "@fancyapps/fancybox": "^3.5.6",
     "address-rfc2822": "^2.0.4",
     "autosize": "^4.0.2",
+    "aws-sdk": "^2.377.0",
     "bcrypt": "^3.0.2",
     "blueimp-load-image": "^2.20.1",
     "chart.js": "^2.7.3",
