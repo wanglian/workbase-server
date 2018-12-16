@@ -33,9 +33,10 @@ Meteor.methods({
 
       Threads.ensureMember(thread, user);
       contacts.forEach(c => Threads.ensureMember(thread, c));
-      return Threads.addMessage(thread, user, {
+      Threads.addMessage(thread, user, {
         content
       });
+      return threadId;
     }
   },
   queryContacts(keyword) {
