@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
+    "@fancyapps/fancybox": "^3.5.6",
     "address-rfc2822": "^2.0.4",
     "autosize": "^4.0.2",
     "bcrypt": "^3.0.2",

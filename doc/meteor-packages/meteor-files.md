@@ -1,6 +1,6 @@
 # Meteor Files
 
-
+https://github.com/VeliovGroup/Meteor-Files/wiki
 
 ## 上传进度
 

@@ -74,4 +74,5 @@
 .messages .message-content img.img-thumbnail {
   max-height: 350px;
   max-width: 100%;
+  cursor: zoom-in;
 }

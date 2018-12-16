@@ -3,6 +3,9 @@ import './message.css';
 
 import ClipboardJS from 'clipboard';
 
+import '@fancyapps/fancybox';
+import '@fancyapps/fancybox/dist/jquery.fancybox.css';
+
 // copy到剪贴板
 let clipboard = (text, event) => {
   let cb = new ClipboardJS('.null', {
@@ -26,6 +29,9 @@ let clipboard = (text, event) => {
 
 Template.Message.onRendered(function() {
   $('.message [data-toggle="tooltip"]').tooltip({delay: 1000});
+  $('.message-content a[data-fancybox]').fancybox({
+    // Options will go here
+  });
 });
 
 Template.Message.helpers({
@@ -52,6 +58,9 @@ Template.Message.helpers({
 });
 
 Template.Message.events({
+  "click a[data-fancybox=image]"(e, t) {
+    // e.preventDefault();
+  },
   "mouseenter .message .message-header"(e, t) {
     e.preventDefault();
     $(e.target).find(".message-actions").removeClass('hide');

@@ -22,7 +22,9 @@
       {{#if isHTML}}
         {{> EmailContent}}
       {{else if isImage}}
-        <img src="{{image.link}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
+        <a href="{{image.link 'original'}}" data-fancybox data-caption="{{image.name}}">
+          <img src="{{image.link}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
+        </a>
       {{else}}
         {{#markdown}}{{{content}}}{{/markdown}}
       {{/if}}
