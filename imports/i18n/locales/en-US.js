@@ -1,4 +1,8 @@
 export const locale_en_us = {
+  // message
+  "Send Image": "Image",
+  "Send Images": "Images",
+  "Image Message": "[Image]",
   // user
   "Send Messages": "Messages",
   "Chat with": "Chat with {{name}}",

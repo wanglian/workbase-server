@@ -21,6 +21,8 @@
     <div class="message-content">
       {{#if isHTML}}
         {{> EmailContent}}
+      {{else if isImage}}
+        <img src="{{image.link}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
       {{else}}
         {{#markdown}}{{{content}}}{{/markdown}}
       {{/if}}

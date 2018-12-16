@@ -68,6 +68,25 @@ Template.MessageForm.events({
     if (e.ctrlKey && e.which === 13) {
       t.$("form").submit();
     }
+  },
+  "click #btn-load-image"(e, t) {
+    e.preventDefault();
+    $('#image-file').click();
+  },
+  "change #image-file"(e, t) {
+    console.log("image selected");
+    let internal = false;
+    if ($("input[name=internal]")[0]) {
+      internal = $("input[name=internal]")[0].checked;
+    }
+    Modal.show('ImageMessageModal', {
+      thread:   t.data,
+      file:     e.target.files[0],
+      internal
+    }, {
+      backdrop: 'static',
+      keyboard: false
+    });
   }
 });
 
@@ -88,5 +107,56 @@ AutoForm.hooks({
       });
       this.done();
     }
+  }
+});
+
+Template.ImageMessageModal.onCreated(function () {
+  this.currentUpload = new ReactiveVar(false);
+});
+
+import loadImage from "blueimp-load-image";
+Template.ImageMessageModal.onRendered(function() {
+  loadImage(this.data.file, (img) => {
+    $("#image-preview").html(img);
+    $("#image-preview img").addClass("img-responsive center-block");
+  }, {
+    maxWidth: "570",
+    maxHeight: "400"
+  });
+});
+
+Template.ImageMessageModal.helpers({
+  currentUpload() {
+    return Template.instance().currentUpload.get();
+  }
+});
+
+Template.ImageMessageModal.events({
+  "click #btn-send-image"(e, t) {
+    e.preventDefault();
+
+    const upload = Images.insert({
+      file: t.data.file,
+      streams: 'dynamic',
+      chunkSize: 'dynamic'
+    }, false);
+
+    upload.on('start', function () {
+      t.currentUpload.set(this);
+    });
+
+    upload.on('end', function (error, fileObj) {
+      if (error) {
+        alert('Error during upload: ' + error);
+      } else {
+        // alert('File "' + fileObj.name + '" successfully uploaded');
+        Meteor.call('sendMessage', t.data.thread._id, fileObj._id, t.data.internal, 'image', (err, res) => {
+          Modal.hide('ImageMessageModal');
+        });
+      }
+      t.currentUpload.set(false);
+    });
+
+    upload.start();
   }
 });

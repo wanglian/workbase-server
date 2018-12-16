@@ -17,7 +17,7 @@ InboxController = ApplicationController.extend({
       this.subscribe("thread", threadId);
     }
   },
-  limit: function() {
+  limit() {
     return parseInt(this.params.query.limit) || this.perPage;
   },
   threadId() {

@@ -34,6 +34,12 @@ Messages.before.insert(function(userId, doc) {
   if (ThreadUsers.find({threadId: doc.threadId, userType: 'Contacts'}).count() === 0) {
     _.extend(doc, {internal: true});
   }
-  let strippedText = purgeHtml(doc.content) || "no text content";
-  doc.summary = strippedText.slice(0, 250);
+  switch(doc.contentType) {
+  case 'image':
+    doc.summary = I18n.t('Image Message');
+    break;
+  default:
+    let strippedText = purgeHtml(doc.content) || "no text content";
+    doc.summary = strippedText.slice(0, 250);
+  }
 });

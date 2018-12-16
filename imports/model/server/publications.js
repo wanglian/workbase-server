@@ -82,7 +82,7 @@ Meteor.publish("thread", function(threadId) {
 
 const MIN_MESSAGES = 20;
 const MAX_MESSAGES = 1000;
-Meteor.publish("messages", function(threadId, options) {
+Meteor.publishComposite("messages", function(threadId, options) {
   check(threadId, String);
   check(options, {
     limit: Match.Maybe(Number)
@@ -93,10 +93,23 @@ Meteor.publish("messages", function(threadId, options) {
   let countName = `messages.${threadId}`;
   Counts.publish(this, countName, Messages.find({threadId}, {sort: {createdAt: -1}}));
 
-  return Messages.find({threadId}, {
-    sort: {createdAt: -1},
-    limit: Math.min(limit, MAX_MESSAGES)
-  });
+  return {
+    find() {
+      return Messages.find({threadId}, {
+        sort: {createdAt: -1},
+        limit: Math.min(limit, MAX_MESSAGES)
+      });
+    },
+    children: [
+      {
+        find(message) {
+          if (message.contentType === 'image') {
+            return Images.find({_id: message.content}).cursor;
+          }
+        }
+      }
+    ]
+  }
 });
 
 Meteor.publish("roster", function() {

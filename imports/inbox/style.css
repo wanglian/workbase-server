@@ -12,8 +12,7 @@ body .content-wrapper .row .col {
 }
 
 img.img-thumbnail {
-  display: block;
-  max-height: 300px;
+  max-height: 350px;
   max-width: 100%;
 }
 

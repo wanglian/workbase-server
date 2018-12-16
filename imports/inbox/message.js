@@ -38,6 +38,9 @@ Template.Message.helpers({
   },
   isHTML() {
     return this.contentType === 'html';
+  },
+  isImage() {
+    return this.contentType === 'image';
   }
 });
 

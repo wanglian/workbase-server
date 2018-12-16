@@ -3,7 +3,7 @@ Meteor.methods({
     check(threadId, String);
     ThreadUsers.update({threadId, userType: 'Users', userId: this.userId}, {$set: {read: true}});
   },
-  sendMessage(threadId, content, internal=false) {
+  sendMessage(threadId, content, internal, contentType='text') {
     check(threadId, String);
     check(content, String);
 
@@ -15,7 +15,8 @@ Meteor.methods({
     if (thread && thread.scope != 'private' || threadUser) {
       return Threads.addMessage(thread, user, {
         content,
-        internal
+        internal,
+        contentType
       });
     }
   },

@@ -21,6 +21,10 @@ export const locale_zh_cn = {
   "Subject": "主题",
   "Internal": "内部消息",
   "RE": "回复",
+  "Send Image": "图片",
+  "Send Images": "多张图片",
+  "Image Preview": "图片预览",
+  "Image Message": "[图片]",
   // user
   "New User": "创建用户",
   "Edit User": "修改用户",

@@ -52,3 +52,4 @@ References
 - [underscore](https://underscorejs.org)
 - [momentjs](https://momentjs.com/docs/)
 - [chartjs](https://www.chartjs.org/)
+- [Meteor Files](https://github.com/VeliovGroup/Meteor-Files/wiki)
