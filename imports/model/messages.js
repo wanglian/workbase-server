@@ -13,6 +13,9 @@ Messages.helpers({
   user() {
     return eval(this.userType).findOne(this.userId);
   },
+  thread() {
+    return Threads.findOne(this.threadId);
+  },
   image() {
     return this.contentType === 'image' && Images.findOne(this.content);
   }

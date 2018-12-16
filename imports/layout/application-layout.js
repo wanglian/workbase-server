@@ -2,34 +2,13 @@ import './application-layout.html';
 import './send-email-modal';
 import './style.css';
 
-const screenSizes = {
-  xs: 480,
-  sm: 768,
-  md: 992,
-  lg: 1200
-};
-
-Template.ApplicationLayout.onCreated(function() {
-
-});
-
-Template.ApplicationLayout.onDestroyed(function() {
-
-});
-
 Template.ApplicationLayout.onRendered(function() {
-  // $('[data-toggle="tooltip"]').tooltip({container: 'body'}); // not working?
+  $('#btn-send-email [data-toggle="tooltip"]').tooltip({delay: 1000}); // not working?
   Tracker.autorun(() => {
     let title = Instance.company();
     let count = Counts.get('count-unread-inbox');
     document.title = (count > 0) ? `(${count}) ${title}` : title;
   });
-});
-
-Template.ApplicationLayout.helpers({
-  isInbox() {
-    return Router.current().route.getName() === 'inbox';
-  }
 });
 
 Template.ApplicationLayout.events({

@@ -9,7 +9,7 @@
         <span class="message-header-name">{{userName}}</span>
         <span class="text-muted small">
           {{formattedDate createdAt 'simpleDayWithTime'}}
-          {{#if internal}}<i class="fa fa-lock" data-toggle="tooltip" title="{{_ 'Internal'}}"></i>{{/if}}
+          {{#if showInternal}}<i class="fa fa-lock" data-toggle="tooltip" title="{{_ 'Internal'}}"></i>{{/if}}
         </span>
         <div class="email text-muted small">
           {{#if email.to}}<div>{{_ 'mail to'}} {{email.to}} </div>{{/if}}

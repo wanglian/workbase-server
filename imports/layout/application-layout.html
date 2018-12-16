@@ -42,7 +42,8 @@
           <ul class="nav navbar-nav">
             <li>
               <a href="#" id="btn-send-email">
-                <i class="fa fa-send" data-toggle="tooltip" data-placement="left" title="{{_ 'Compose'}}"></i> <span class="hidden-xs">{{_ 'Compose'}}</span>
+                <i class="fa fa-send" data-toggle="tooltip" data-placement="left" title="{{_ 'Compose'}}"></i>
+                <span class="hidden-xs">{{_ 'Compose'}}</span>
               </a>
             </li>
             <!-- User Account: style can be found in dropdown.less -->
@@ -92,7 +93,7 @@
           </form>
             -->
           <ul class="sidebar-menu">
-            <li class="{{#if isInbox}}active{{/if}}">
+            <li class="{{#if inRouter 'inbox'}}active{{/if}}">
               <a href="/inbox">
                 <i class="fa fa-inbox"></i> <span>{{_ 'Inbox'}}</span>
                 {{#if countUnread}}

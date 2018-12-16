@@ -24,7 +24,14 @@ let clipboard = (text, event) => {
   cb.onClick(event);
 };
 
+Template.Message.onRendered(function() {
+  $('.message [data-toggle="tooltip"]').tooltip({delay: 1000});
+});
+
 Template.Message.helpers({
+  showInternal() {
+    return this.internal && this.thread().hasExternalMembers();
+  },
   userName() {
     let user = this.user();
     if (!user) return;
