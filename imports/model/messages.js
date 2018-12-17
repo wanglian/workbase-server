@@ -18,6 +18,6 @@ Messages.helpers({
     return Threads.findOne(this.threadId);
   },
   image() {
-    return this.contentType === 'image' && this.fileIds && Images.findOne(this.fileIds[0]);
+    return this.contentType === 'image' && this.fileIds && Files.findOne(this.fileIds[0]);
   }
 });

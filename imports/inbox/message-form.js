@@ -143,7 +143,7 @@ Template.ImageMessageModal.events({
     e.preventDefault();
 
     $('#btn-send-image').attr("disabled", "disabled");
-    const upload = Images.insert({
+    const upload = Files.insert({
       file: t.data.file,
       streams: 'dynamic',
       chunkSize: 'dynamic'
@@ -156,7 +156,7 @@ Template.ImageMessageModal.events({
     upload.on('end', function (error, fileObj) {
       if (error) {
         alert('Error during upload: ' + error);
-        $('#btn-send-image').attr("disabled", "");
+        $('#btn-send-image').attr("disabled", false);
       } else {
         // alert('File "' + fileObj.name + '" successfully uploaded');
         let content = t.$("textarea[name=content]").val();

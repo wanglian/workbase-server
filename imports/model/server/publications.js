@@ -104,7 +104,7 @@ Meteor.publishComposite("messages", function(threadId, options) {
       {
         find(message) {
           if (message.contentType === 'image' && message.fileIds) {
-            return Images.find({_id: message.fileIds[0]}).cursor;
+            return Files.find({_id: message.fileIds[0]}).cursor;
           }
         }
       }

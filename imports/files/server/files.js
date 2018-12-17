@@ -3,6 +3,7 @@ import S3 from 'aws-sdk/clients/s3'; /* http://docs.aws.amazon.com/AWSJavaScript
 /* For better i/o performance */
 import fs from 'fs';
 import stream from 'stream';
+import moment from 'moment';
 
 /* Example: S3='{"s3":{"key": "xxx", "secret": "xxx", "bucket": "xxx", "region": "xxx""}}' meteor */
 if (process.env.S3) {
@@ -29,26 +30,21 @@ if (s3Conf && s3Conf.key && s3Conf.secret && s3Conf.bucket && s3Conf.region) {
     }
   });
 
-  Images = new FilesCollection({
+  Files = new FilesCollection({
     debug: false, // Change to `true` for debugging
-    collectionName: 'images',
-    storagePath: '/tmp/workbase/uploads/images',
+    collectionName: 'files',
+    storagePath: '/tmp/workbase/uploads/files',
     allowClientCode: false, // Disallow remove files from Client
-    onBeforeUpload(file) {
-      // Allow upload files under 10MB, and only in png/jpg/jpeg formats
-      if (file.size <= 10485760 * 2 && /png|jpg|jpeg/i.test(file.extension)) {
-        return true;
-      }
-      return 'Please upload image, with size equal or less than 20MB';
-    },
     // Start moving files to AWS:S3
     // after fully received by the Meteor server
     onAfterUpload(fileRef) {
+      let now = moment();
+      let [year, month, day] = [now.year(), now.month() + 1, now.date()];
       // Run through each of the uploaded file
       _.each(fileRef.versions, (vRef, version) => {
         // We use Random.id() instead of real file's _id
         // to secure files from reverse engineering on the AWS client
-        const filePath = 'files/images/' + (Random.id()) + '-' + version + '.' + fileRef.extension;
+        let filePath = `files/${year}/${month}/${day}/` + (Random.id()) + '-' + version + '.' + fileRef.extension;
 
         // Create the AWS:S3 object.
         // Feel free to change the storage class from, see the documentation,
@@ -68,7 +64,7 @@ if (s3Conf && s3Conf.key && s3Conf.secret && s3Conf.bucket && s3Conf.region) {
               console.error(error);
             } else {
               // Update FilesCollection with link to the file at AWS
-              const upd = { $set: {} };
+              let upd = { $set: {} };
               upd['$set']['versions.' + version + '.meta.pipePath'] = filePath;
 
               this.collection.update({
@@ -104,16 +100,16 @@ if (s3Conf && s3Conf.key && s3Conf.secret && s3Conf.bucket && s3Conf.region) {
         // and to keep original file name, content-type,
         // content-disposition, chunked "streaming" and cache-control
         // we're using low-level .serve() method
-        const opts = {
+        let opts = {
           Bucket: s3Conf.bucket,
           Key: path
         };
 
         if (http.request.headers.range) {
-          const vRef  = fileRef.versions[version];
+          let vRef  = fileRef.versions[version];
           let range   = _.clone(http.request.headers.range);
-          const array = range.split(/bytes=([0-9]*)-([0-9]*)/);
-          const start = parseInt(array[1]);
+          let array = range.split(/bytes=([0-9]*)-([0-9]*)/);
+          let start = parseInt(array[1]);
           let end     = parseInt(array[2]);
           if (isNaN(end)) {
             // Request data from AWS:S3 by small chunks
@@ -126,7 +122,7 @@ if (s3Conf && s3Conf.key && s3Conf.secret && s3Conf.bucket && s3Conf.region) {
           http.request.headers.range = `bytes=${start}-${end}`;
         }
 
-        const fileColl = this;
+        let fileColl = this;
         s3.getObject(opts, function (error) {
           if (error) {
             console.error(error);
@@ -139,7 +135,7 @@ if (s3Conf && s3Conf.key && s3Conf.secret && s3Conf.bucket && s3Conf.region) {
               http.request.headers.range = this.httpResponse.headers['content-range'].split('/')[0].replace('bytes ', 'bytes=');
             }
 
-            const dataStream = new stream.PassThrough();
+            let dataStream = new stream.PassThrough();
             fileColl.serve(http, fileRef, fileRef.versions[version], version, dataStream);
             dataStream.end(this.data.Body);
           }
@@ -154,9 +150,9 @@ if (s3Conf && s3Conf.key && s3Conf.secret && s3Conf.bucket && s3Conf.region) {
   });
 
   // Intercept FilesCollection's remove method to remove file from AWS:S3
-  const _origRemove = Images.remove;
-  Images.remove = function (search) {
-    const cursor = this.collection.find(search);
+  let _origRemove = Files.remove;
+  Files.remove = function (search) {
+    let cursor = this.collection.find(search);
     cursor.forEach((fileRef) => {
       _.each(fileRef.versions, (vRef) => {
         if (vRef && vRef.meta && vRef.meta.pipePath) {
