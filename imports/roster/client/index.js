@@ -12,7 +12,6 @@ RosterController = ApplicationController.extend({
     let threadId = chat && chat._id;
     if (threadId) {
       this.subscribe("thread", threadId);
-      this.subscribe("messages", threadId);
     }
   },
   user() {
