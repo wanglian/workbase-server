@@ -56,6 +56,7 @@ MailgunEmails.parseEmail = async (doc) => {
   let emailId     = params['Message-Id'];
   let attachments = params['attachments'];
   let cidMap      = params['content-id-map'];
+  let variables   = params['X-Mailgun-Variables'];
 
   let fromUser = Contacts.parseOne(from);
   let toUser   = Contacts.parseOne(recipient);
@@ -90,6 +91,7 @@ MailgunEmails.parseEmail = async (doc) => {
   }
 
   let fileIds = [];
+  let inlineFileIds = [];
   if (attachments) {
     attachments = JSON.parse(attachments);
     // cid
@@ -112,6 +114,7 @@ MailgunEmails.parseEmail = async (doc) => {
           if (regex.test(content)) {
             content= content.replace(regex, url);
             delete attachments[index];
+            inlineFileIds.push(fileId);
           }
         } else {
           fileIds.push(fileId);
@@ -121,6 +124,21 @@ MailgunEmails.parseEmail = async (doc) => {
         console.log(e);
       }
     });
+  }
+
+  // 自定义
+  if (variables) {
+    variables = JSON.parse(variables);
+    let messageType = variables['MessageType'];
+    switch (messageType) {
+    case 'image':
+      contentType = 'image';
+      content = "";
+      fileIds = inlineFileIds;
+      break;
+    default:
+      //
+    }
   }
 
   // console.log("save message");

@@ -7,6 +7,7 @@
 - mailgun邮件解析：处理附件 async/await/promise
 - 发消息表单，按钮放到右边
 - 纯图片消息的summary处理
+- 自定义邮件消息属性 v:MessageType=image 图片类型
 
 ## 12-16
 

@@ -40,7 +40,8 @@ Mailgun.send = (message) => {
       let image = message.image();
       _.extend(params, {
         html: `<img src="cid:${image._id}.${image.extension}"/>`,
-        inline: image.path
+        inline: image.path,
+        'v:MessageType': 'image'
       });
       break;
     default:
