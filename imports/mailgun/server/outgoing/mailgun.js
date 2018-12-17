@@ -39,7 +39,7 @@ Mailgun.send = (message) => {
     case 'image':
       let image = message.image();
       _.extend(params, {
-        html: `<img src="cd:${image.name}"/>`,
+        html: `<img src="cid:${image._id}.${image.extension}"/>`,
         inline: image.path
       });
       break;
