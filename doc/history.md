@@ -1,5 +1,11 @@
 # 开发进展
 
+## 12-17
+
+- mailgun路由配置为Store and notify，便于处理附件
+- fix发送图片：cid设置为Meteor Files保存的文件名
+- mailgun邮件解析：处理附件 async/await/promise
+
 ## 12-16
 
 - 内部消息标识：只在有外部联系人的情况下显示
@@ -9,6 +15,7 @@
 - Meteor Files文件路径使用绝对路径，因为docker部署找不到相对路径
 - fix 重置图片上传input；上传时disable按钮
 - 发送图文消息
+- 重命名 Images -> Files，准备用作通用文件保存
 
 ## 12-15
 

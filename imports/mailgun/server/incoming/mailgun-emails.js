@@ -41,19 +41,21 @@ MailgunEmails.after.insert(function(userId, doc) {
   });
 });
 
-MailgunEmails.parseEmail = (doc) => {
-  let params     = doc.params;
-  let subject    = params['subject'];
-  let from       = params['From'];
-  let to         = params['To'];
-  let cc         = params['Cc'];
-  let recipient  = params['recipient'];
-  let bodyHtml   = params['body-html'];
-  let bodyPlain  = params['body-plain'];
-  let replyTo    = params['In-Reply-To'];
-  let date       = params['Date'];
-  let references = params['References'];
-  let emailId    = params['Message-Id'];
+MailgunEmails.parseEmail = async (doc) => {
+  let params      = doc.params;
+  let subject     = params['subject'];
+  let from        = params['from'];
+  let to          = params['To'];
+  let cc          = params['Cc'];
+  let recipient   = params['recipient'];
+  let bodyHtml    = params['body-html'];
+  let bodyPlain   = params['body-plain'];
+  let replyTo     = params['In-Reply-To'];
+  let date        = params['Date'];
+  let references  = params['References'];
+  let emailId     = params['Message-Id'];
+  let attachments = params['attachments'];
+  let cidMap      = params['content-id-map'];
 
   let fromUser = Contacts.parseOne(from);
   let toUser   = Contacts.parseOne(recipient);
@@ -87,13 +89,73 @@ MailgunEmails.parseEmail = (doc) => {
     contentType = 'text';
   }
 
+  let fileIds = [];
+  if (attachments) {
+    attachments = JSON.parse(attachments);
+    // cid
+    if (cidMap) {
+      cidMap = JSON.parse(cidMap);
+      _.each(cidMap, (url, cid) => {
+        let index = attachments.findIndex((a) => {return a.url === url;});
+        // <RqCqStfKSrKJLrgE4.jpeg>
+        attachments[index].cid = cid.match(/<(.*?)>/i)[1];
+      });
+    }
+    // upload
+    attachments.map((attachment, index) => {
+      // attachment: url,name,content-type,size
+      try {
+        // cid
+        let {fileId, url} = await uploadFile(authURL(attachment.url), attachment.name);
+        if (attachment.cid) {
+          let regex = new RegExp("cid:" + attachment.cid, 'g');
+          if (regex.test(content)) {
+            content= content.replace(regex, url);
+            delete attachments[index];
+          }
+        } else {
+          fileIds.push(fileId);
+        }
+      } catch(e) {
+        console.log("[mailgun] upload error: ");
+        console.log(e);
+      }
+    });
+  }
+
+  // console.log("save message");
   Threads.addMessage(thread, fromUser, {
     content,
     contentType,
+    fileIds,
     emailId,
     internal: false,
     email: { from, to, cc, date }
   });
 
   MailgunEmails.update(doc._id, {$set: {parsedAt: new Date()}});
+};
+
+const URL = Npm.require('url');
+const authURL = (url) => {
+  let re = URL.parse(url);
+  re.auth = "api:" + Meteor.settings.mailgun.key;
+  return re.format();
+};
+
+// promise
+const uploadFile = (url, name, size) => {
+  return new Promise((resolve, reject) => {
+    Files.load(url, {
+      fileName: name
+    }, (err, fileRef) => {
+      if (err) {
+        reject(err.toString());
+      } else {
+        let fileId = fileRef._id;
+        let url    = Files.link(fileRef);
+        resolve({fileId, url});
+      }
+    }, true);
+  });
 };

@@ -1,5 +1,9 @@
 # 技术方案
 
+## Mailgun
+
+Router: store and notify
+
 ## 图片
 
 工具
@@ -15,6 +19,7 @@
 - 图片查看，使用fancybox。可支持视频，等各种内容
 - 图片处理 medium: 1024x1024
 
-排除方案
+调研方案
 - https://github.com/lokesh/lightbox2 图片查看
 - https://github.com/dimsemenov/Magnific-Popup 图片查看
+- https://github.com/enyo/dropzone
