@@ -139,6 +139,13 @@ Template.ImageMessageModal.helpers({
 });
 
 Template.ImageMessageModal.events({
+  "click .add-comment a"(e, t) {
+    e.preventDefault();
+
+    $('.modal').toggleClass('image-only');
+    $('.add-comment').toggleClass('hide');
+    $("form textarea").focus();
+  },
   "click #btn-send-image"(e, t) {
     e.preventDefault();
 
