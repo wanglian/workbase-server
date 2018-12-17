@@ -39,7 +39,15 @@ Messages.before.insert(function(userId, doc) {
     doc.summary = I18n.t('Image Message');
     break;
   default:
-    let strippedText = purgeHtml(doc.content) || "no text content";
+    let strippedText = purgeHtml(doc.content)
+    if (!strippedText) {
+      // image
+      if (/<img src/.test(doc.content)) {
+        strippedText = I18n.t('Image Message');
+      } else {
+        strippedText = I18n.t('No content');
+      }
+    }
     doc.summary = strippedText.slice(0, 250);
   }
 });

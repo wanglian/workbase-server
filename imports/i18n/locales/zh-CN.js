@@ -25,6 +25,7 @@ export const locale_zh_cn = {
   "Send Images": "多张图片",
   "Send Image Message": "发送图片",
   "Image Message": "[图片]",
+  "No content": "没有内容",
   // user
   "New User": "创建用户",
   "Edit User": "修改用户",

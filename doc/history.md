@@ -6,6 +6,7 @@
 - fix发送图片：cid设置为Meteor Files保存的文件名
 - mailgun邮件解析：处理附件 async/await/promise
 - 发消息表单，按钮放到右边
+- 纯图片消息的summary处理
 
 ## 12-16
 
