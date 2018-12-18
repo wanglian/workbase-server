@@ -107,23 +107,23 @@ if (s3Conf && s3Conf.key && s3Conf.secret && s3Conf.bucket && s3Conf.region) {
 
         if (http.request.headers.range) {
           let vRef  = fileRef.versions[version];
-          let range   = _.clone(http.request.headers.range);
+          let range = _.clone(http.request.headers.range);
           let array = range.split(/bytes=([0-9]*)-([0-9]*)/);
           let start = parseInt(array[1]);
-          let end     = parseInt(array[2]);
+          let end   = parseInt(array[2]);
           if (isNaN(end)) {
             // Request data from AWS:S3 by small chunks
-            end       = (start + this.chunkSize) - 1;
+            end     = (start + this.chunkSize) - 1;
             if (end >= vRef.size) {
-              end     = vRef.size - 1;
+              end   = vRef.size - 1;
             }
           }
-          opts.Range   = `bytes=${start}-${end}`;
+          opts.Range = `bytes=${start}-${end}`;
           http.request.headers.range = `bytes=${start}-${end}`;
         }
 
         let fileColl = this;
-        s3.getObject(opts, function (error) {
+        s3.getObject(opts, function(error) {
           if (error) {
             console.error(error);
             if (!http.response.finished) {
@@ -151,7 +151,7 @@ if (s3Conf && s3Conf.key && s3Conf.secret && s3Conf.bucket && s3Conf.region) {
 
   // Intercept FilesCollection's remove method to remove file from AWS:S3
   let _origRemove = Files.remove;
-  Files.remove = function (search) {
+  Files.remove = function(search) {
     let cursor = this.collection.find(search);
     cursor.forEach((fileRef) => {
       _.each(fileRef.versions, (vRef) => {

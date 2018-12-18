@@ -51,7 +51,15 @@
   overflow-y: hidden;
   overflow-x: auto;
 }
-
+.files-count {
+  color: #666;
+  cursor: pointer;
+}
+.files-count[aria-expanded="false"] .collapse-arrow i {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
 /* markdown */
 .messages .message-content h1 {
   font-size: 28px;

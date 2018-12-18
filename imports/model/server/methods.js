@@ -6,10 +6,11 @@ Meteor.methods({
   sendMessage(threadId, params) {
     check(threadId, String);
     check(params, {
-      contentType: Match.Maybe(String),
-      content: String,
-      internal: Match.Maybe(Boolean),
-      fileIds: Match.Maybe([String])
+      contentType:   Match.Maybe(String),
+      content:       String,
+      internal:      Match.Maybe(Boolean),
+      fileIds:       Match.Maybe([String]),
+      inlineFileIds: Match.Maybe([String])
     });
 
     let userId = this.userId;
@@ -18,7 +19,36 @@ Meteor.methods({
     let threadUser = ThreadUsers.findOne({threadId, userId, userType: 'Users'});
 
     if (thread && thread.scope != 'private' || threadUser) {
-      return Threads.addMessage(thread, user, params);
+      // files
+      if (params.contentType != 'image') {
+        let files = Files.find({"meta.relations": {$elemMatch: {threadId, userId: this.userId, messageId: null}}});
+        if (files) {
+          fileIds = files.map(file => file._id);
+          _.extend(params, {fileIds});
+        }
+      }
+
+      let messageId = Threads.addMessage(thread, user, params);
+
+      if (params.contentType === 'image') {
+        Files.update({
+          "meta.relations.threadId": threadId,
+          "meta.relations.type":     'image',
+          "meta.relations.messageId": null,
+          userId
+        }, {
+          $set: {"meta.relations.$.messageId": messageId}
+        }, {"multi": true});
+      } else {
+        Files.update({
+          "meta.relations.threadId": threadId,
+          "meta.relations.messageId": null,
+          userId
+        }, {
+          $set: {"meta.relations.$.messageId": messageId}
+        }, {"multi": true});
+      }
+      return messageId;
     }
   },
   sendEmail(emails, subject, content) {

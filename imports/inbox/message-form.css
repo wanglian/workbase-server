@@ -27,14 +27,38 @@ input[type=text].form-control:focus {
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-#message-form .checkbox,
-#image-message-form .checkbox {
-  margin-bottom: 0;
-}
 .image-only #image-message-form .form-control {
   display: none;
 }
 .image-only .img-thumbnail {
   border: none;
   padding: 0;
+}
+ul.files {
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+ul.files li {
+  padding: 0 5px;
+}
+ul.files .action {
+  display: none;
+  border: none;
+  padding: 0;
+}
+ul.files li:hover {
+  background: rgba(249,249,249, 1);
+}
+ul.files li:hover .action {
+  display: inline;
+}
+#message-form-actions {
+  margin-top: 10px;
+}
+#message-form-actions .form-action {
+  margin-right: 10px;
+}
+#message-form-actions .checkbox {
+  display: inline;
+  margin: 0;
 }

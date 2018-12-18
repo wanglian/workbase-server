@@ -15,6 +15,7 @@ InboxController = ApplicationController.extend({
     let threadId = this.threadId();
     if (threadId) {
       this.subscribe("thread", threadId);
+      this.subscribe("thread.files.pending", threadId);
     }
   },
   limit() {

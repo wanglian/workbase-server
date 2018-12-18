@@ -135,7 +135,6 @@ MailgunEmails.parseEmail = async (doc) => {
     case 'image':
       contentType = 'image';
       content = "";
-      fileIds = inlineFileIds;
       break;
     default:
       //
@@ -147,6 +146,7 @@ MailgunEmails.parseEmail = async (doc) => {
     content,
     contentType,
     fileIds,
+    inlineFileIds,
     emailId,
     internal: false,
     email: { from, to, cc, date }

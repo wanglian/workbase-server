@@ -62,6 +62,9 @@ Template.MessageForm.helpers({
   },
   formSchema() {
     return MESSAGE_SCHEMA;
+  },
+  pendingFiles() {
+    return Files.find({"meta.relations": {$elemMatch: {threadId: this._id, messageId: null}}}, {sort: {"meta.relations.createdAt": -1}});
   }
 });
 
@@ -71,6 +74,37 @@ Template.MessageForm.events({
     if (e.ctrlKey && e.which === 13) {
       t.$("form").submit();
     }
+  },
+  "click #btn-file"(e, t) {
+    e.preventDefault();
+    $('#file').click();
+  },
+  "change #file"(e, t) {
+    Modal.show('FileUploadModal', {
+      thread: t.data,
+      file:   e.target.files[0]
+    }, {
+      backdrop: 'static',
+      keyboard: false
+    });
+    $(e.target).val(""); // reset file input
+  },
+  "click .btn-remove-file"(e, t) {
+    e.preventDefault();
+    Swal({
+      title: I18n.t("confirm remove file"),
+      type: 'warning',
+      position: 'center-end',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: I18n.t("Confirm"),
+      cancelButtonText: I18n.t("Discard")
+    }).then((result) => {
+      if (result.value) {
+        Meteor.call("files.remove", this._id);
+      }
+    })
   },
   "click #btn-markdown"(e, t) {
     e.preventDefault();
@@ -120,7 +154,54 @@ AutoForm.hooks({
   }
 });
 
-Template.ImageMessageModal.onCreated(function () {
+Template.FileUploadModal.onCreated(function() {
+  this.currentUpload = new ReactiveVar(false);
+});
+
+Template.FileUploadModal.onRendered(function() {
+  let data = this.data;
+  let _this = this;
+  const upload = Files.insert({
+    file: data.file,
+    streams: 'dynamic',
+    chunkSize: 'dynamic',
+    meta: {
+      relations: [
+        {
+          threadId:  data.thread._id,
+          userType:  'Users',
+          userId:    Meteor.userId(),
+          createdAt: new Date()
+        }
+      ]
+    }
+  }, false);
+
+  upload.on('start', function() {
+    _this.currentUpload.set(this);
+  });
+
+  upload.on('end', function(error, fileObj) {
+    if (error) {
+      alert('Error during upload: ' + error);
+    } else {
+      Meteor.setTimeout(() => {
+        Modal.hide('FileUploadModal');
+        _this.currentUpload.set(false);
+      }, 1000);
+    }
+  });
+
+  upload.start();
+});
+
+Template.FileUploadModal.helpers({
+  currentUpload() {
+    return Template.instance().currentUpload.get();
+  }
+});
+
+Template.ImageMessageModal.onCreated(function() {
   this.currentUpload = new ReactiveVar(false);
 });
 
@@ -162,14 +243,25 @@ Template.ImageMessageModal.events({
     const upload = Files.insert({
       file: t.data.file,
       streams: 'dynamic',
-      chunkSize: 'dynamic'
+      chunkSize: 'dynamic',
+      meta: {
+        relations: [
+          {
+            threadId:  t.data.thread._id,
+            userType:  'Users',
+            userId:    Meteor.userId(),
+            type:      'image',
+            createdAt: new Date()
+          }
+        ]
+      }
     }, false);
 
-    upload.on('start', function () {
+    upload.on('start', function() {
       t.currentUpload.set(this);
     });
 
-    upload.on('end', function (error, fileObj) {
+    upload.on('end', function(error, fileObj) {
       if (error) {
         alert('Error during upload: ' + error);
         $('#btn-send-image').attr("disabled", false);
@@ -183,7 +275,7 @@ Template.ImageMessageModal.events({
         Meteor.call('sendMessage', t.data.thread._id, {
           content,
           internal,
-          fileIds: [fileObj._id],
+          inlineFileIds: [fileObj._id],
           contentType: 'image'
         }, (err, res) => {
           Modal.hide('ImageMessageModal');

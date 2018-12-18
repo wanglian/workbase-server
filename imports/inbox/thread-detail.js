@@ -62,7 +62,7 @@ Template.ThreadMembers.events({
       if (result.value) {
         Meteor.call("removeThreadMember", t.data._id, userType, userId);
       }
-    })
+    });
   }
 });
 

@@ -103,9 +103,12 @@ Meteor.publishComposite("messages", function(threadId, options) {
     children: [
       {
         find(message) {
-          if (message.contentType === 'image' && message.fileIds) {
-            return Files.find({_id: message.fileIds[0]}).cursor;
-          }
+          return message.fileIds && Files.find({_id: {$in: message.fileIds}}).cursor;
+        }
+      },
+      {
+        find(message) {
+          return message.inlineFileIds && Files.find({_id: {$in: message.inlineFileIds}}).cursor;
         }
       }
     ]

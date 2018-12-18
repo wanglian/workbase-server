@@ -5,6 +5,7 @@
 // - content
 // - contentType: text/html/image
 // - fileIds: [fileId]
+// - inlineFileIds: [fileId]
 // - summary
 // - emailId
 // - email: from, to, cc, time
@@ -18,6 +19,9 @@ Messages.helpers({
     return Threads.findOne(this.threadId);
   },
   image() {
-    return this.contentType === 'image' && this.fileIds && Files.findOne(this.fileIds[0]);
+    return this.contentType === 'image' && this.inlineFileIds && Files.findOne(this.inlineFileIds[0]);
+  },
+  files() {
+    return this.fileIds && Files.find({_id: {$in: this.fileIds}});
   }
 });

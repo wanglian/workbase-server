@@ -44,7 +44,8 @@ S3 region list: https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_regi
                 "s3:PutObject",
                 "s3:PutObjectAcl",
                 "s3:GetObject",
-                "s3:GetObjectAcl"
+                "s3:GetObjectAcl",
+                "s3:DeleteObject"
             ],
             "Effect": "Allow",
             "Resource": [

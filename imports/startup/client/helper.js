@@ -22,6 +22,10 @@ Template.registerHelper('inRouter', function(router) {
   return Router.current().route.getName() === router;
 });
 
+Template.registerHelper('filetype', function(ext) {
+  return "<i class='fa fa-paperclip'></i>";
+});
+
 let moment = require('moment');
 const formattedDate = function(date, format) {
   date = moment(date);
