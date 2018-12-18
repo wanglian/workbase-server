@@ -10,15 +10,16 @@ Router.route('/api/v1/mailgun', {
   where: 'server'
 }).post(function(req, res, next) {
   console.log("[mailgun] email received");
+  res.end("success");
+
   let body = req.body;
   if (!_.isEmpty(body)) {
     // console.log(body);
-    try {
-      MailgunEmails.create(body);
-    } catch (e) {
+    MailgunEmails.create(body).then((id) => {
+      console.log("[mailgun] " + id);
+    }).catch((e) => {
       console.log("[mailgun] error:");
       console.log(e);
-    }
+    });
   }
-  res.end("success");
 });

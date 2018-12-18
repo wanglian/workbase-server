@@ -9,6 +9,7 @@
 - 纯图片消息的summary处理
 - 自定义邮件消息属性 v:MessageType=image 图片类型
 - 使用sweetalert2（替换sweetalert）
+- noreply: 自动识别，收件人和添加成员排除在外，外发邮件排除在外，判断是否显示回复框
 
 ## 12-16
 

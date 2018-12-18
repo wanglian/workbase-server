@@ -1,4 +1,5 @@
 import './mailgun';
+import './model';
 
 import assert from "assert";
 

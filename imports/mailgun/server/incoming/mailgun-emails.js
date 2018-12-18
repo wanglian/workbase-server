@@ -14,34 +14,36 @@ MailgunEmails.create = (params) => {
     // same email
     if (email.parsedAt) {
       console.log("[mailgun] drop");
-    } else {
-      MailgunEmails.parseEmail(email);
+      return false;
     }
   } else {
-    return MailgunEmails.insert({
+    let _id = MailgunEmails.insert({
       emailId: params['Message-Id'],
       params: params
     });
+    email = MailgunEmails.findOne(_id);
   }
+  return MailgunEmails.parseEmail(email);
 };
 
-MailgunEmails.after.insert(function(userId, doc) {
-  let message = this.transform();
-  let promise = new Promise(function(resolve, reject) {
-    try {
-      MailgunEmails.parseEmail(message);
-      resolve();
-    } catch (e) {
-      reject(e);
-    }
-  });
-  promise.catch((e) => {
-    console.log("[mailgun] parse error:");
-    console.log(e);
-  });
-});
+// MailgunEmails.after.insert(function(userId, doc) {
+//   let message = this.transform();
+//   let promise = new Promise(function(resolve, reject) {
+//     try {
+//       MailgunEmails.parseEmail(message);
+//       resolve();
+//     } catch (e) {
+//       reject(e);
+//     }
+//   });
+//   promise.catch((e) => {
+//     console.log("[mailgun] parse error:");
+//     console.log(e);
+//   });
+// });
 
 MailgunEmails.parseEmail = async (doc) => {
+  console.log("[mailgun] parse");
   let params      = doc.params;
   let subject     = params['subject'];
   let from        = params['from'];
@@ -73,7 +75,6 @@ MailgunEmails.parseEmail = async (doc) => {
     threadId = Threads.create(fromUser, 'Email', subject);
   }
   let thread = Threads.findOne(threadId);
-
   let toUsers = Contacts.parse(to);
   Threads.ensureMember(thread, fromUser);
   Threads.ensureMember(thread, toUser);
@@ -152,6 +153,7 @@ MailgunEmails.parseEmail = async (doc) => {
   });
 
   MailgunEmails.update(doc._id, {$set: {parsedAt: new Date()}});
+  return doc._id;
 };
 
 const URL = Npm.require('url');

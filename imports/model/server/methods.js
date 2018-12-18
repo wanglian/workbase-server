@@ -48,7 +48,7 @@ Meteor.methods({
       {"profile.name": {$regex: keyword, $options: 'i'}},
       {email: {$regex: keyword, $options: 'i'}}
     ]};
-    let contacts = Contacts.find(search, {limit: 5}).map(c => [{name: c.name(), email: c.email}]);
+    let contacts = Contacts.find(_.extend(search, {noreply: {$ne: true}}), {limit: 5}).map(c => [{name: c.name(), email: c.email}]);
     let users = Users.find(search, {limit: 5}).map(c => [{name: c.name(), email: c.email()}]);
     return _.union(users, contacts);
   },
@@ -64,7 +64,7 @@ Meteor.methods({
       {"profile.name": {$regex: keyword, $options: 'i'}},
       {email: {$regex: keyword, $options: 'i'}}
     ]};
-    let contacts = Contacts.find(_.extend(search, {_id: {$nin: contactIds}}), {limit: 5}).map(c => [{name: c.name(), email: c.email}]);
+    let contacts = Contacts.find(_.extend(search, {_id: {$nin: contactIds}, noreply: {$ne: true}}), {limit: 5}).map(c => [{name: c.name(), email: c.email}]);
     let users = Users.find(_.extend(search, {_id: {$nin: userIds}}), {limit: 5}).map(c => [{name: c.name(), email: c.email()}]);
     return _.union(users, contacts);
   },

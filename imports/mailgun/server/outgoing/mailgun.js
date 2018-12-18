@@ -24,6 +24,7 @@ Mailgun.client = require('mailgun-js')({apiKey: Mailgun.api_key, domain: Mailgun
 Mailgun.send = (message) => {
   let threadId = message.threadId;
   let contacts = ThreadUsers.find({threadId, userType: 'Contacts'}).map(tu => Contacts.findOne(tu.userId));
+  contacts = _.reject(contacts, (c) => {return c.noreply;});
 
   if (!_.isEmpty(contacts)) {
     let thread = Threads.findOne(threadId);

@@ -5,7 +5,14 @@
 </template>
 
 <template name="Thread">
-  {{> MessageForm}}
+  {{#if isReplyable}}
+    {{> MessageForm}}
+  {{else}}
+    <div class="text-muted text-center" style="padding: 10px;">
+      <span>此邮件无需回复</span>
+    </div>
+  {{/if}}
+
   <div class="messages">
     {{#each messages}}
       {{> Message}}

@@ -23,3 +23,15 @@ Router: store and notify
 - https://github.com/lokesh/lightbox2 图片查看
 - https://github.com/dimsemenov/Magnific-Popup 图片查看
 - https://github.com/enyo/dropzone
+
+## 邮箱 noreply
+
+无需回复的邮箱
+
+- 邮件地址自动识别
+```
+email.match(/noreply|no_reply|no-reply|do-not-reply|do_not_reply/i)
+```
+- 查询联系人时排除
+- 外发邮件时排除
+- 不显示回复框：当只有noreply的参与者时

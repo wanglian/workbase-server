@@ -61,8 +61,10 @@ Contacts.findOrCreateByAddress = (attrs) => {
   } else {
     let contact = Contacts.findOne({email});
     if (!contact) {
+      let noreply = !!email.match(/noreply|no_reply|no-reply|do-not-reply|do_not_reply/i);
       contactId = Contacts.insert({
         email,
+        noreply,
         profile: {
           name: attrs.name() || attrs.user()
         }

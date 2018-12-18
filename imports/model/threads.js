@@ -24,6 +24,16 @@ Threads.helpers({
   hasExternalMembers() {
     return ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).count() > 0;
   },
+  hasReplyableExternalMembers() {
+    return this.externalMembers().some((contact) => {
+      return !contact.noreply;
+    });
+  },
+  isReplyable() {
+    let count = ThreadUsers.find({threadId: this._id}).count();
+    let countContacts = ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).count();
+    return (count - countContacts) > 1 || this.hasReplyableExternalMembers();
+  },
   hasOwner(user) {
     return ThreadUsers.find({threadId: this._id, userType: user.className(), userId: user._id, role: 'owner'}).count() > 0
   },
