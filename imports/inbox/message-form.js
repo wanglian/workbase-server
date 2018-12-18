@@ -3,6 +3,7 @@ import './message-form.css';
 
 import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
+import Swal from 'sweetalert2'
 
 const MESSAGE_SCHEMA = new SimpleSchema({
   internal: {
@@ -70,6 +71,14 @@ Template.MessageForm.events({
     if (e.ctrlKey && e.which === 13) {
       t.$("form").submit();
     }
+  },
+  "click #btn-markdown"(e, t) {
+    e.preventDefault();
+    Swal({
+      title: "Coming soon ^_^",
+      type: "info",
+      position: 'center-end'
+    });
   },
   "click #btn-load-image"(e, t) {
     e.preventDefault();

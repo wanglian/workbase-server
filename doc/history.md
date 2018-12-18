@@ -8,6 +8,7 @@
 - 发消息表单，按钮放到右边
 - 纯图片消息的summary处理
 - 自定义邮件消息属性 v:MessageType=image 图片类型
+- 使用sweetalert2（替换sweetalert）
 
 ## 12-16
 

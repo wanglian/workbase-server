@@ -2,7 +2,7 @@ import './thread-detail.html';
 import './thread-detail.css';
 
 import SimpleSchema from 'simpl-schema';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 Template.ThreadDetail.helpers({
   showAddMember() {
@@ -49,15 +49,20 @@ Template.ThreadMembers.events({
     let userId = $(e.target).data("id");
     let user = eval(userType).findOne(userId);
 
-    swal({
-      text: I18n.t("confirm remove member", {name: user.name()}),
-      buttons: [I18n.t("Discard"), I18n.t("Confirm")],
-      dangerMode: true
-    }).then((willRemove) => {
-      if (willRemove) {
+    Swal({
+      title: I18n.t("confirm remove member", {name: user.name()}),
+      type: 'warning',
+      position: 'center-end',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: I18n.t("Confirm"),
+      cancelButtonText: I18n.t("Discard")
+    }).then((result) => {
+      if (result.value) {
         Meteor.call("removeThreadMember", t.data._id, userType, userId);
       }
-    });
+    })
   }
 });
 

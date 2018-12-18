@@ -26,7 +26,7 @@
     "sanitize-html": "^1.19.1",
     "scrollreveal": "^4.0.5",
     "simpl-schema": "^1.5.3",
-    "sweetalert": "^2.1.2"
+    "sweetalert2": "^7.32.4"
   },
   "meteor": {
     "mainModule": {
