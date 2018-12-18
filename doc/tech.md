@@ -17,12 +17,18 @@ Router: store and notify
 - 图片预览样式，使用bootstrap .image-thumbnail，加上自定义高度和宽度限制
 - ?图片编辑：剪切，旋转
 - 图片查看，使用fancybox。可支持视频，等各种内容
-- 图片处理 medium: 1024x1024
+- ?图片处理 medium: 1024x1024
 
 调研方案
 - https://github.com/lokesh/lightbox2 图片查看
 - https://github.com/dimsemenov/Magnific-Popup 图片查看
 - https://github.com/enyo/dropzone
+
+## 文件
+
+- 文件大小限制：在Files中设置，然后取决于Server
+- 外发邮件：Mailgun限制在25M，我们将附件限制在20M
+- 先保存，再发送。也就是文件要存草稿
 
 ## 邮箱 noreply
 

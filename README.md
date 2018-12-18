@@ -53,3 +53,5 @@ References
 - [momentjs](https://momentjs.com/docs/)
 - [chartjs](https://www.chartjs.org/)
 - [Meteor Files](https://github.com/VeliovGroup/Meteor-Files/wiki)
+- [JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+- [ES6 入门](http://es6.ruanyifeng.com)
