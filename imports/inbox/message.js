@@ -54,6 +54,10 @@ Template.Message.helpers({
   },
   isImage() {
     return this.contentType === 'image';
+  },
+  isType(type) {
+    let reg = new RegExp(type);
+    return reg.test(this.type);
   }
 });
 

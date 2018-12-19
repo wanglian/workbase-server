@@ -34,24 +34,6 @@ input[type=text].form-control:focus {
   border: none;
   padding: 0;
 }
-ul.files {
-  font-size: 12px;
-  padding-bottom: 10px;
-}
-ul.files li {
-  padding: 0 5px;
-}
-ul.files .action {
-  display: none;
-  border: none;
-  padding: 0;
-}
-ul.files li:hover {
-  background: rgba(249,249,249, 1);
-}
-ul.files li:hover .action {
-  display: inline;
-}
 #message-form-actions {
   margin-top: 10px;
 }

@@ -26,6 +26,11 @@ Template.registerHelper('filetype', function(ext) {
   return "<i class='fa fa-paperclip'></i>";
 });
 
+Template.registerHelper('fileLink', function(file, version) {
+  // return Files.findOne(file._id).link();
+  return Files.link(file, version);
+});
+
 let moment = require('moment');
 const formattedDate = function(date, format) {
   date = moment(date);

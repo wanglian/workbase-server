@@ -33,15 +33,20 @@
       {{#if files.count}}
         <div>
           <span href="#" class="files-count" data-toggle="collapse" data-target="#files-list-{{_id}}" aria-expanded="true">
-            {{ files.count }}个文件 <span class="collapse-arrow"><i class="fa fa-caret-down"></i></span>
+            {{files.count}}个文件 <span class="collapse-arrow"><i class="fa fa-caret-down"></i></span>
           </span>
           <ul class="files nav nav-pills nav-stacked collapse in" id="files-list-{{_id}}" aria-expanded="true">
             {{#each files}}
               <li>
                 {{{filetype type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
-                <a href="{{link}}?download=true" download="{{name}}" target="_blank" class="action pull-right">
+                <a href="{{fileLink this 'original'}}?download=true" download="{{name}}" target="_blank" class="action pull-right">
                   <i class="fa fa-download"></i>下载
                 </a>
+                {{#if isType 'image'}}
+                  <a href="{{fileLink this 'original'}}" data-fancybox data-caption="{{name}}" class="action pull-right">
+                    <i class="fa fa-eye"></i>查看
+                  </a>
+                {{/if}}
               </li>
             {{/each}}
           </ul>
