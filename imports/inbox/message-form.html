@@ -5,8 +5,8 @@
     <ul class="files nav nav-pills nav-stacked">
       {{#each pendingFiles}}
         <li>
-          {{{filetype type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
-          <a href="#" class="btn-remove-file action pull-right text-muted"><i class="fa fa-times"></i> 删除</a>
+          {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
+          <a href="#" class="btn-remove-file action pull-right text-muted"><i class="fa fa-times"></i>删除</a>
         </li>
       {{/each}}
     </ul>
@@ -19,9 +19,9 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="#" id="btn-load-image"><i class="fa fa-image"></i> {{_ "Send Image"}}</a></li>
+            <li><a href="#" id="btn-load-image"><i class="fa fa-image"></i>{{_ "Send Image"}}</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#" id="btn-markdown"><i class="fa fa-file-code-o"></i> {{_ "Send Markdown"}}</a></li>
+            <li><a href="#" id="btn-markdown"><i class="fa fa-file-code-o"></i>{{_ "Send Markdown"}}</a></li>
           </ul>
         </div>
       </div>
