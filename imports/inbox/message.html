@@ -39,11 +39,11 @@
             {{#each files}}
               <li>
                 {{{filetype type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
-                <a href="{{fileLink this 'original'}}?download=true" download="{{name}}" target="_blank" class="action pull-right">
+                <a href="{{fileURL this 'original'}}?download=true" download="{{name}}" target="_blank" class="action pull-right">
                   <i class="fa fa-download"></i>下载
                 </a>
                 {{#if isType 'image'}}
-                  <a href="{{fileLink this 'original'}}" data-fancybox data-caption="{{name}}" class="action pull-right">
+                  <a href="{{fileURL this}}" data-fancybox data-caption="{{name}}" class="action pull-right">
                     <i class="fa fa-eye"></i>查看
                   </a>
                 {{/if}}
