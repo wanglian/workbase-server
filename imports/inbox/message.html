@@ -25,7 +25,7 @@
         {{#markdown}}{{{content}}}{{/markdown}}
         {{#if isImage}}
           <a href="{{image.link 'original'}}" data-fancybox data-caption="{{image.name}}">
-            <img src="{{image.link}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
+            <img src="{{image.link 'thumbnail'}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
           </a>
         {{/if}}
       {{/if}}
