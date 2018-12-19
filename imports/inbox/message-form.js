@@ -137,9 +137,11 @@ AutoForm.hooks({
       this.event.preventDefault();
 
       let threadId = this.formAttributes.threadId;
+      let fileIds = Files.find({"meta.relations": {$elemMatch: {threadId, messageId: null, type: 'file'}}}).map(f => f._id);
       Meteor.call('sendMessage', threadId, {
         content: insertDoc.content,
-        internal: insertDoc.internal
+        internal: insertDoc.internal,
+        fileIds
       }, (err, res) => {
         if (err) {
           console.log(err);
@@ -171,6 +173,7 @@ Template.FileUploadModal.onRendered(function() {
           threadId:  data.thread._id,
           userType:  'Users',
           userId:    Meteor.userId(),
+          type:      'file',
           createdAt: new Date()
         }
       ]
@@ -250,7 +253,7 @@ Template.ImageMessageModal.events({
             threadId:  t.data.thread._id,
             userType:  'Users',
             userId:    Meteor.userId(),
-            type:      'image',
+            type:      'inline',
             createdAt: new Date()
           }
         ]

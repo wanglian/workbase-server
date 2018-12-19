@@ -23,6 +23,7 @@
     "mailgun-js": "^0.22.0",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.22.2",
+    "request": "^2.88.0",
     "sanitize-html": "^1.19.1",
     "scrollreveal": "^4.0.5",
     "simpl-schema": "^1.5.3",

@@ -29,10 +29,15 @@ Router: store and notify
 - 文件大小限制：在Files中设置，然后取决于Server
 - 外发邮件：Mailgun限制在25M，我们将附件限制在20M
 - 先保存，再发送。也就是文件要存草稿
-- 上传，保存
-- 在回复表单展现（数据发布）：icon，大小，删除
-- 发送消息处理：图片是一种特殊消息，逻辑处理不一样
-- 在消息内展现：下载
+- 双向保存关系：Message中保存在fileIds, inlineFileIds；Files中保存引用：meta.relations: {threadId, messageId, userType, userId, type, createdAt}
+- 两种文件：附件file，内嵌图片inline。Message以字段区分fileIds/inlineFileIds，File以type区分：file/inline
+- Message中的关系在创建时提供（先保存文件），Message保存后回填File中的引用关系
+
+```
+1 upload file: meta.relations[{threadId, userType, userId, type, createdAt}]
+2 save message: fileIds, inlineFileIds
+3 update file: meta.relations[{messageId}]
+```
 
 ## 邮箱 noreply
 

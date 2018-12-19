@@ -1,3 +1,5 @@
+const request = require('request');
+
 Messages.after.insert(function(userId, doc) {
   if (doc.userType === 'Contacts' || doc.internal) return;
 
@@ -48,6 +50,21 @@ Mailgun.send = (message) => {
     default:
       _.extend(params, {
         text: message.content // Markdown(message.content): 需要html邮件模板
+      });
+    }
+
+    // attachments
+    let files = message.files();
+    if (files && files.count() > 0) {
+      _.extend(params, {
+        attachment: files.map((file) => {
+          return new Mailgun.client.Attachment({
+            data:        request({encoding: null, url: Files.link(file)}),
+            filename:    file.name,
+            contentType: file.type,
+            knownLength: file.size
+          });
+        })
       });
     }
 

@@ -1,3 +1,11 @@
+// - meta.relations: [{}]
+//   - threadId
+//   - messageId
+//   - userType
+//   - userId
+//   - type: file/inline
+//   - createdAt
+
 import S3 from 'aws-sdk/clients/s3'; /* http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html */
 /* See fs-extra and graceful-fs NPM packages */
 /* For better i/o performance */

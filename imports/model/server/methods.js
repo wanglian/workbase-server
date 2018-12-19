@@ -19,36 +19,7 @@ Meteor.methods({
     let threadUser = ThreadUsers.findOne({threadId, userId, userType: 'Users'});
 
     if (thread && thread.scope != 'private' || threadUser) {
-      // files
-      if (params.contentType != 'image') {
-        let files = Files.find({"meta.relations": {$elemMatch: {threadId, userId: this.userId, messageId: null}}});
-        if (files) {
-          fileIds = files.map(file => file._id);
-          _.extend(params, {fileIds});
-        }
-      }
-
-      let messageId = Threads.addMessage(thread, user, params);
-
-      if (params.contentType === 'image') {
-        Files.update({
-          "meta.relations.threadId": threadId,
-          "meta.relations.type":     'image',
-          "meta.relations.messageId": null,
-          userId
-        }, {
-          $set: {"meta.relations.$.messageId": messageId}
-        }, {"multi": true});
-      } else {
-        Files.update({
-          "meta.relations.threadId": threadId,
-          "meta.relations.messageId": null,
-          userId
-        }, {
-          $set: {"meta.relations.$.messageId": messageId}
-        }, {"multi": true});
-      }
-      return messageId;
+      return Threads.addMessage(thread, user, params);
     }
   },
   sendEmail(emails, subject, content) {

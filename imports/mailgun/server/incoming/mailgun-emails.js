@@ -109,7 +109,18 @@ MailgunEmails.parseEmail = async (doc) => {
       // attachment: url,name,content-type,size
       try {
         // cid
-        let {fileId, url} = await uploadFile(authURL(attachment.url), attachment.name);
+        let type = attachment.cid ? 'image' : 'file';
+        let {fileId, url} = await uploadFile(authURL(attachment.url), attachment.name, {
+          relations: [
+            {
+              threadId,
+              type,
+              userType:  'Contacts',
+              userId:    fromUser._id,
+              createdAt: new Date()
+            }
+          ]
+        });
         if (attachment.cid) {
           let regex = new RegExp("cid:" + attachment.cid, 'g');
           if (regex.test(content)) {
@@ -164,10 +175,11 @@ const authURL = (url) => {
 };
 
 // promise
-const uploadFile = (url, name, size) => {
+const uploadFile = (url, name, params) => {
   return new Promise((resolve, reject) => {
     Files.load(url, {
-      fileName: name
+      fileName: name,
+      meta: params
     }, (err, fileRef) => {
       if (err) {
         reject(err.toString());

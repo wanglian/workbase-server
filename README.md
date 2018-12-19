@@ -47,6 +47,7 @@ References
 - [AdminLTE](https://adminlte.io/themes/AdminLTE/index.html)
 - [Blaze](http://blazejs.org/api/templates.html)
 - [mailgun](https://documentation.mailgun.com/en/latest/api-routes.html)
+- [mailgun-js](https://github.com/bojand/mailgun-js)
 - [autoform](https://github.com/aldeed/meteor-autoform)
 - [iron-router](http://iron-meteor.github.io/iron-router/)
 - [underscore](https://underscorejs.org)
