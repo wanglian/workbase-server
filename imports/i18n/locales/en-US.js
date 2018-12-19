@@ -3,6 +3,7 @@ export const locale_en_us = {
   "Send Image": "Image",
   "Send Images": "Images",
   "Image Message": "[Image]",
+  "Files with count": "Files ({{count}})",
   // user
   "Send Messages": "Messages",
   "Chat with": "Chat with {{name}}",

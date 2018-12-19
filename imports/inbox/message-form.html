@@ -6,7 +6,7 @@
       {{#each pendingFiles}}
         <li>
           {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
-          <a href="#" class="btn-remove-file action pull-right text-muted"><i class="fa fa-times"></i>删除</a>
+          <a href="#" class="btn-remove-file action pull-right text-muted"><i class="fa fa-times"></i>{{_ 'Remove'}}</a>
         </li>
       {{/each}}
     </ul>
@@ -28,7 +28,7 @@
       <input type="file" style="display:none;" id="image-file" accept="image/*"/>
       <input type="file" style="display:none;" id="file"/>
       <div id="message-form-actions" class="text-muted">
-        <a href="#" class="form-action text-muted" id="btn-file"><i class="fa fa-paperclip"></i> 添加文件</a>
+        <a href="#" class="form-action text-muted" id="btn-file"><i class="fa fa-paperclip"></i> {{_ 'Add File'}}</a>
         {{#if hasReplyableExternalMembers}}
           {{> afFieldInput name="internal"}}
         {{/if}}
@@ -69,8 +69,8 @@
         </div>
         {{#autoForm collection=formCollection schema=formSchema id="image-message-form" threadId=thread._id}}
         <div class="modal-body">
-          {{> afQuickField name="content" placeholder="这一刻的想法..."}}
-          <p class="text-center add-comment"><a href='#'>这一刻的想法</a></p>
+          {{> afQuickField name="content" placeholder=contentPlaceholder}}
+          <p class="text-center add-comment"><a href='#'>{{_ 'Write something'}}</a></p>
           {{#with currentUpload}}{{> spinner}}{{/with}}
           <div id="image-preview" style="width:100%;height:100%;" class="center-block img-thumbnail">{{> spinner}}</div>
         </div>

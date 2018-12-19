@@ -99,6 +99,7 @@ observe-sequence@1.0.16
 ordered-dict@1.1.0
 ostrio:cookies@2.3.0
 ostrio:files@1.10.2
+ostrio:templatehelpers@2.2.1
 peppelg:bootstrap-3-modal@1.0.4
 perak:markdown@1.0.5
 promise@0.11.1

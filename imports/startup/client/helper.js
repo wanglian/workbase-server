@@ -45,6 +45,7 @@ const filetype = (type) => {
     return 'file';
   }
 };
+Template.registerHelper('filetype', filetype);
 
 Template.registerHelper('fileicon', function(type) {
   switch (filetype(type)) {

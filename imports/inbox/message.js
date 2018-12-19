@@ -48,16 +48,6 @@ Template.Message.helpers({
     default:
       return user.address();
     }
-  },
-  isHTML() {
-    return this.contentType === 'html';
-  },
-  isImage() {
-    return this.contentType === 'image';
-  },
-  isType(type) {
-    let reg = new RegExp(type);
-    return reg.test(this.type);
   }
 });
 

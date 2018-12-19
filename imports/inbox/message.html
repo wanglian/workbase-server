@@ -19,11 +19,11 @@
       </div>
     </div>
     <div class="message-content">
-      {{#if isHTML}}
+      {{#if compare contentType '===' 'html'}}
         {{> EmailContent}}
       {{else}}
         {{#markdown}}{{{content}}}{{/markdown}}
-        {{#if isImage}}
+        {{#if compare contentType '===' 'image'}}
           <a href="{{image.link 'original'}}" data-fancybox data-caption="{{image.name}}">
             <img src="{{image.link 'thumbnail'}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
           </a>
@@ -33,18 +33,18 @@
       {{#if files.count}}
         <div>
           <span href="#" class="files-count" data-toggle="collapse" data-target="#files-list-{{_id}}" aria-expanded="true">
-            {{files.count}}个文件 <span class="collapse-arrow"><i class="fa fa-caret-down"></i></span>
+            {{_ 'Files with count' count=files.count}} <span class="collapse-arrow"><i class="fa fa-caret-down"></i></span>
           </span>
           <ul class="files nav nav-pills nav-stacked collapse in" id="files-list-{{_id}}" aria-expanded="true">
             {{#each files}}
               <li>
                 {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
                 <a href="{{fileURL this 'original'}}?download=true" download="{{name}}" target="_blank" class="action pull-right">
-                  <i class="fa fa-download"></i>下载
+                  <i class="fa fa-download"></i>{{_ 'Download'}}
                 </a>
-                {{#if isType 'image'}}
+                {{#if compare (filetype type)  '===' 'image'}}
                   <a href="{{fileURL this}}" data-fancybox data-caption="{{name}}" class="action pull-right">
-                    <i class="fa fa-eye"></i>查看
+                    <i class="fa fa-eye"></i>{{_ 'View'}}
                   </a>
                 {{/if}}
               </li>

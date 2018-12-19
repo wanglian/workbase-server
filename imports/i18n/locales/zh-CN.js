@@ -4,6 +4,9 @@ export const locale_zh_cn = {
   "Compose": "发消息",
   "Inbox": "收件箱",
   "Users": "用户",
+  "Remove": "删除",
+  "Download": "下载",
+  "View": "查看",
   // setup
   "Setup your system": "设置管理员帐号",
   "Company": "企业名称",
@@ -25,8 +28,11 @@ export const locale_zh_cn = {
   "Send Images": "多张图片",
   "Send Markdown": "Markdown",
   "Send Image Message": "发送图片",
+  "Add File": "添加文件",
+  "Write something": "这一刻的想法",
   "Image Message": "[图片]",
   "No content": "没有内容",
+  "Files with count": "文件 ({{count}})",
   // user
   "New User": "创建用户",
   "Edit User": "修改用户",

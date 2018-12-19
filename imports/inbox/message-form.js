@@ -226,6 +226,9 @@ Template.ImageMessageModal.helpers({
   formSchema() {
     return MESSAGE_SCHEMA;
   },
+  contentPlaceholder() {
+    return `${I18n.t('Write something')} ...`;
+  },
   currentUpload() {
     return Template.instance().currentUpload.get();
   }
