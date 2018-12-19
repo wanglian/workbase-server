@@ -17,17 +17,23 @@ Files = new FilesCollection({
   // Start moving files to AWS:S3
   // after fully received by the Meteor server
   onAfterUpload(fileRef) {
-    // Run `createThumbnails` only over PNG, JPG and JPEG files
-    if (/png|jpe?g/i.test(fileRef.extension || '')) {
-      createThumbnails(this, fileRef, (error, fileRef) => {
-        if (error) {
-          console.error(error);
-        } else {
-          S3.upload(this, fileRef);
-        }
-      });
-    } else {
-      S3.upload(this, fileRef);
+    try {
+      // Run `createThumbnails` only over PNG, JPG and JPEG files
+      if (/png|jpe?g/i.test(fileRef.extension || '')) {
+        createThumbnails(this, fileRef, (error, fileRef) => {
+          if (error) {
+            console.log("[Files] resize image error:");
+            console.error(error);
+          } else {
+            S3.upload(this, fileRef);
+          }
+        });
+      } else {
+        S3.upload(this, fileRef);
+      }
+    } catch(error) {
+      console.log("[Files] after upload error:");
+      console.error(error);
     }
   },
   // Intercept access to the file

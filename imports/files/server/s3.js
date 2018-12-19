@@ -58,6 +58,7 @@ const uploadToS3 = (collection, fileRef) => {
     }, (error) => {
       bound(() => {
         if (error) {
+          console.log("[Files] S3 upload error:");
           console.error(error);
         } else {
           // Update FilesCollection with link to the file at AWS

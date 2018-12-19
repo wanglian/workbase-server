@@ -109,7 +109,7 @@ MailgunEmails.parseEmail = async (doc) => {
       // attachment: url,name,content-type,size
       try {
         // cid
-        let type = attachment.cid ? 'image' : 'file';
+        let type = attachment.cid ? 'inline' : 'file';
         let {fileId, url} = await uploadFile(authURL(attachment.url), attachment.name, {
           relations: [
             {
