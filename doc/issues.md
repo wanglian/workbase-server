@@ -1,4 +1,20 @@
 
+- 外发inline图片文件名问题
+
+因为文件保存时使用的随机ID作为文件名，所以在inline中cid设置为这个随机ID。但是这样接收方就丢失了文件名信息。
+解决方案是同附件处理，mailgun-js提供了接口。
+
+```
+html: `<img src="cid:${image.name}.${image.extension}"/>`,
+inline: new Mailgun.client.Attachment({
+  data: image.path,
+  filename: image.name,
+  knownLength: image.size,
+  contentType: image.type
+}),
+```
+
+
 - 旋转数组
 ```
 const rotateArray = (array, n) => {

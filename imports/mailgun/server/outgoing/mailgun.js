@@ -42,8 +42,13 @@ Mailgun.send = (message) => {
     case 'image':
       let image = message.image();
       _.extend(params, {
-        html: `<img src="cid:${image._id}.${image.extension}"/>`,
-        inline: image.path,
+        html: `<img src="cid:${image.name}.${image.extension}"/>`,
+        inline: new Mailgun.client.Attachment({
+          data: image.path,
+          filename: image.name,
+          knownLength: image.size,
+          contentType: image.type
+        }),
         'v:MessageType': 'image'
       });
       break;

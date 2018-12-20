@@ -9,6 +9,7 @@
 - 捕获文件上传处理异常。这个偶尔出现，但会使Server崩溃
 - 显示文件类型图标
 - 使用Meteor-Template-helpers简化模板代码
+- fix 外发inline邮件图片文件名问题
 
 ## 12-18
 
