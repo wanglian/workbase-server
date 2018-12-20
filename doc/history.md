@@ -6,6 +6,7 @@
 - 使用pdf|odf查看器 ViewerJS，隐藏查看器中的文件名
 - 使用微软在线office查看文档
 - 重构文件相关模板
+- fix 邮件消息的发件人从email.from中显示，这对channel是必要的
 
 ## 12-19
 

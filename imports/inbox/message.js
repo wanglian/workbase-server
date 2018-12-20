@@ -46,6 +46,7 @@ Template.Message.helpers({
     case 'Users':
       return user.name();
     default:
+      if (this.email) return this.email.from;
       return user.address();
     }
   }
