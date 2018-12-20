@@ -29,6 +29,7 @@ export const locale_zh_cn = {
   "Send Markdown": "Markdown",
   "Send Image Message": "发送图片",
   "Add File": "添加文件",
+  "Uploading": "上传",
   "Write something": "这一刻的想法",
   "Image Message": "[图片]",
   "No content": "没有内容",

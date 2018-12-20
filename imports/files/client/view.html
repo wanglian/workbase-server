@@ -1,0 +1,69 @@
+<template name="FileViewLink">
+  {{#if compare (filetype type)  '===' 'image'}}
+    <a href="{{fileURL this}}" data-fancybox data-caption="{{name}}" class="action pull-right">
+      <i class="fa fa-eye"></i>{{_ 'View'}}
+    </a>
+  {{/if}}
+  {{#if compare (filetype type)  '===' 'video'}}
+    <a href="{{fileURL this}}?play=true" data-fancybox data-caption="{{name}}" class="action pull-right">
+      <i class="fa fa-eye"></i>{{_ 'View'}}
+    </a>
+  {{/if}}
+  {{#if compare (filetype type)  '===' 'audio'}}
+    <div style="display: none;" id="content-{{_id}}">
+      <audio controls loop>
+        <source src="{{fileURL this}}?play=true" type={{type}}>
+      </audio>
+    </div>
+    <a href="#" data-fancybox data-src="#content-{{_id}}" data-caption="{{name}}" class="action pull-right">
+      <i class="fa fa-eye"></i>{{_ 'View'}}
+    </a>
+  {{/if}}
+  {{#if compare (filetype type)  '===' 'text'}}
+    <a href="#" data-fancybox data-type="iframe" data-src="{{fileURL this}}" data-caption="{{name}}" class="action pull-right">
+      <i class="fa fa-eye"></i>{{_ 'View'}}
+    </a>
+  {{/if}}
+  {{#if compare (filetype type)  '===' 'pdf|odf'}}
+    <a href="#" data-fancybox data-type="iframe" data-src="/ViewerJS/index.html#..{{fileURL this 'original' '/'}}" data-caption="{{name}}" class="action pull-right">
+      <i class="fa fa-eye"></i>{{_ 'View'}}
+    </a>
+  {{/if}}
+  {{#if compare (filetype type)  '===' 'word|excel|ppt'}}
+    <a href="#" data-fancybox data-type="iframe" data-src="https://view.officeapps.live.com/op/embed.aspx?src={{fileURL this}}" data-caption="{{name}}" class="action pull-right">
+      <i class="fa fa-eye"></i>{{_ 'View'}}
+    </a>
+  {{/if}}
+</template>
+
+<template name="FileDownloadLink">
+  <a href="{{fileURL this 'original'}}?download=true" download="{{name}}" target="_blank" class="action pull-right">
+    <i class="fa fa-download"></i>{{_ 'Download'}}
+  </a>
+</template>
+
+<template name="FileRemoveLink">
+  <a href="#" class="btn-remove-file action pull-right text-muted"><i class="fa fa-times"></i>{{_ 'Remove'}}</a>
+</template>
+
+<template name="FileUploadModal">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'Uploading'}} {{file.name}}</h4>
+        </div>
+        <div class="modal-body">
+          {{#with currentUpload}}
+          <div class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+              <span class="sr-only">{{progress.get}}% Complete</span>
+            </div>
+          </div>
+          {{/with}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

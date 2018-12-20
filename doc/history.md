@@ -5,6 +5,7 @@
 - 文件查看：pdf/video/audio/word/excel/ppt/text。使用fancybox
 - 使用pdf|odf查看器 ViewerJS，隐藏查看器中的文件名
 - 使用微软在线office查看文档
+- 重构文件相关模板
 
 ## 12-19
 

@@ -14,3 +14,8 @@ blockquote {
   border-left: 4px solid #ddd;
 }
 
+/* customize fancybox */
+.fancybox-slide--iframe .fancybox-content {
+    max-height : 100%;
+    margin: 0;
+}

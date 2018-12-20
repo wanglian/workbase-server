@@ -39,44 +39,8 @@
             {{#each files}}
               <li>
                 {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
-                <a href="{{fileURL this 'original'}}?download=true" download="{{name}}" target="_blank" class="action pull-right">
-                  <i class="fa fa-download"></i>{{_ 'Download'}}
-                </a>
-                {{#if compare (filetype type)  '===' 'image'}}
-                  <a href="{{fileURL this}}" data-fancybox data-caption="{{name}}" class="action pull-right">
-                    <i class="fa fa-eye"></i>{{_ 'View'}}
-                  </a>
-                {{/if}}
-                {{#if compare (filetype type)  '===' 'video'}}
-                  <a href="{{fileURL this}}?play=true" data-fancybox data-caption="{{name}}" class="action pull-right">
-                    <i class="fa fa-eye"></i>{{_ 'View'}}
-                  </a>
-                {{/if}}
-                {{#if compare (filetype type)  '===' 'audio'}}
-                  <div style="display: none;" id="content-{{_id}}">
-                    <audio controls loop>
-                      <source src="{{fileURL this}}?play=true" type={{type}}>
-                    </audio>
-                  </div>
-                  <a href="#" data-fancybox data-src="#content-{{_id}}" data-caption="{{name}}" class="action pull-right">
-                    <i class="fa fa-eye"></i>{{_ 'View'}}
-                  </a>
-                {{/if}}
-                {{#if compare (filetype type)  '===' 'text'}}
-                  <a href="#" data-fancybox data-type="iframe" data-src="{{fileURL this}}" data-caption="{{name}}" class="action pull-right">
-                    <i class="fa fa-eye"></i>{{_ 'View'}}
-                  </a>
-                {{/if}}
-                {{#if compare (filetype type)  '===' 'pdf|odf'}}
-                  <a href="#" data-fancybox data-type="iframe" data-src="/ViewerJS/index.html#..{{fileURL this 'original' '/'}}" data-caption="{{name}}" class="action pull-right">
-                    <i class="fa fa-eye"></i>{{_ 'View'}}
-                  </a>
-                {{/if}}
-                {{#if compare (filetype type)  '===' 'word|excel|ppt'}}
-                  <a href="#" data-fancybox data-type="iframe" data-src="https://view.officeapps.live.com/op/embed.aspx?src={{fileURL this}}" data-caption="{{name}}" class="action pull-right">
-                    <i class="fa fa-eye"></i>{{_ 'View'}}
-                  </a>
-                {{/if}}
+                {{> FileDownloadLink}}
+                {{> FileViewLink}}
               </li>
             {{/each}}
           </ul>
