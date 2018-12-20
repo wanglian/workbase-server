@@ -2,6 +2,11 @@
 - ViewerJS显示文件名问题
 
 实现保存的文件名与原文件名是不一致的，而ViewerJS显示的是路径中的文件名。
+解决方案是修改模板
+
+```
+<div id = "documentName" style="display:none;"></div>
+```
 
 - 外发inline图片文件名问题
 
