@@ -27,12 +27,12 @@ const filetype = (type) => {
     return "image";
   } else if (type.match(/pdf/)) {
     return "pdf";
+  } else if (type.match(/opendocument/)) {
+    return "odf";
   } else if (type.match(/audio/)) {
     return "audio";
   } else if (type.match(/video/)) {
     return "video";
-  } else if (type.match(/opendocument/)) {
-    return "odf";
   } else if (type.match(/word/)) {
     return "word";
   } else if (type.match(/spreadsheet/)) {
@@ -54,7 +54,9 @@ Template.registerHelper('fileicon', function(type) {
   case 'image':
     return "<i class='fa fa-file-image-o text-info'></i>";
   case 'pdf':
-    return "<i class='fa fa-file-pdf-o text-danger'></i>";
+    return "<i class='fa fa-file-video-o text-info'></i>";
+  case 'odf':
+    return "<i class='fa fa-file-o text-blue'></i>"; // no af icon yet
   case 'audio':
     return "<i class='fa fa-file-audio-o text-info'></i>";
   case 'video':
