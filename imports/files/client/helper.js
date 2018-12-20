@@ -30,7 +30,7 @@ Template.registerHelper('fileicon', function(type) {
   case 'image':
     return "<i class='fa fa-file-image-o text-info'></i>";
   case 'pdf':
-    return "<i class='fa fa-file-video-o text-info'></i>";
+    return "<i class='fa fa-file-pdf-o text-danger'></i>";
   case 'odf':
     return "<i class='fa fa-file-o text-blue'></i>"; // no af icon yet
   case 'audio':

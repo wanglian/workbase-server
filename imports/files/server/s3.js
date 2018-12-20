@@ -130,6 +130,7 @@ const streamFromS3 = (collection, http, fileRef, version, path) => {
       dataStream.end(this.data.Body);
     }
   });
+  return true;
 };
 
 const removeFromS3 = (collection, search) => {

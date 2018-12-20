@@ -1,5 +1,9 @@
 import './files';
 
+Files.collection.before.insert(function(userId, doc) {
+  _.extend(doc, {createdAt: new Date()});
+});
+
 Messages.after.insert(function(userId, doc) {
   if (doc.fileIds) {
     Files.update({

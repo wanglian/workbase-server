@@ -6,8 +6,8 @@
 //   - type: file/inline
 //   - createdAt
 
+import Storage from './storage';
 import createThumbnails from './image-processing';
-import S3 from './s3';
 
 Files = new FilesCollection({
   debug: false, // Change to `true` for debugging
@@ -25,11 +25,11 @@ Files = new FilesCollection({
             console.log("[Files] resize image error:");
             console.error(error);
           } else {
-            S3.upload(this, fileRef);
+            Storage.upload(this, fileRef);
           }
         });
       } else {
-        S3.upload(this, fileRef);
+        Storage.upload(this, fileRef);
       }
     } catch(error) {
       console.log("[Files] after upload error:");
@@ -46,9 +46,7 @@ Files = new FilesCollection({
     }
 
     if (path) {
-      S3.stream(this, http, fileRef, version, path);
-
-      return true;
+      return Storage.stream(this, http, fileRef, version, path);
     }
     // While file is not yet uploaded to AWS:S3
     // It will be served file from FS
@@ -59,7 +57,7 @@ Files = new FilesCollection({
 // Intercept FilesCollection's remove method to remove file from AWS:S3
 let _origRemove = Files.remove;
 Files.remove = function(search) {
-  S3.remove(this, search);
+  Storage.remove(this, search);
 
   //remove original file from database
   _origRemove.call(this, search);

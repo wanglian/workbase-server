@@ -3,6 +3,9 @@
     "company": "WorkBase",
     "domain": "xxx.com"
   },
+  "modules": {
+    "storage": "S3"
+  },
   "mailgun": {
     "key": "key-xxx"
   },
