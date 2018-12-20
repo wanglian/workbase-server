@@ -1,5 +1,11 @@
 # 开发进展
 
+## 12-20
+
+- 文件查看：pdf/video/audio/word/excel/ppt/text。使用fancybox
+- 使用pdf|odf查看器 ViewerJS
+- 使用微软在线office查看文档
+
 ## 12-19
 
 - 查看消息文件中的图片

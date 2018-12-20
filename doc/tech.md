@@ -39,6 +39,20 @@ Router: store and notify
 3 update file: meta.relations[{messageId}]
 ```
 
+文件查看，使用fancybox
+- 图片
+- 视频
+- 音频 inline
+- Text iframe
+- pdf|odf iframe + ViewerJS
+- word|excel|ppt iframe + 微软online office
+
+ViewerJS
+https://github.com/kogmbh/ViewerJS
+使用的是
+- https://github.com/mozilla/pdf.js
+- https://webodf.org/
+
 ## 邮箱 noreply
 
 无需回复的邮箱

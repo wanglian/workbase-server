@@ -31,6 +31,8 @@ const filetype = (type) => {
     return "audio";
   } else if (type.match(/video/)) {
     return "video";
+  } else if (type.match(/opendocument/)) {
+    return "odf";
   } else if (type.match(/word/)) {
     return "word";
   } else if (type.match(/spreadsheet/)) {

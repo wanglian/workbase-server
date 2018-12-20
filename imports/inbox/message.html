@@ -12,8 +12,8 @@
           {{#if showInternal}}<i class="fa fa-lock" data-toggle="tooltip" title="{{_ 'Internal'}}"></i>{{/if}}
         </span>
         <div class="email text-muted small">
-          {{#if email.to}}<div>{{_ 'mail to'}} {{email.to}} </div>{{/if}}
-          {{#if email.cc}}<div>{{_ 'mail cc'}} {{email.cc}} </div>{{/if}}
+          {{#if email.to}}<div>{{_ 'mail to'}} {{email.to}}</div>{{/if}}
+          {{#if email.cc}}<div>{{_ 'mail cc'}} {{email.cc}}</div>{{/if}}
         </div>
         <div class="summary text-ellipsis text-muted">{{summary}}</div>
       </div>
@@ -44,6 +44,36 @@
                 </a>
                 {{#if compare (filetype type)  '===' 'image'}}
                   <a href="{{fileURL this}}" data-fancybox data-caption="{{name}}" class="action pull-right">
+                    <i class="fa fa-eye"></i>{{_ 'View'}}
+                  </a>
+                {{/if}}
+                {{#if compare (filetype type)  '===' 'video'}}
+                  <a href="{{fileURL this}}?play=true" data-fancybox data-caption="{{name}}" class="action pull-right">
+                    <i class="fa fa-eye"></i>{{_ 'View'}}
+                  </a>
+                {{/if}}
+                {{#if compare (filetype type)  '===' 'audio'}}
+                  <div style="display: none;" id="content-{{_id}}">
+                    <audio controls loop>
+                      <source src="{{fileURL this}}?play=true" type={{type}}>
+                    </audio>
+                  </div>
+                  <a href="#" data-fancybox data-src="#content-{{_id}}" data-caption="{{name}}" class="action pull-right">
+                    <i class="fa fa-eye"></i>{{_ 'View'}}
+                  </a>
+                {{/if}}
+                {{#if compare (filetype type)  '===' 'text'}}
+                  <a href="#" data-fancybox data-type="iframe" data-src="{{fileURL this}}" data-caption="{{name}}" class="action pull-right">
+                    <i class="fa fa-eye"></i>{{_ 'View'}}
+                  </a>
+                {{/if}}
+                {{#if compare (filetype type)  '===' 'pdf|odf'}}
+                  <a href="#" data-fancybox data-type="iframe" data-src="/ViewerJS/index.html#..{{fileURL this 'original' '/'}}" data-caption="{{name}}" class="action pull-right">
+                    <i class="fa fa-eye"></i>{{_ 'View'}}
+                  </a>
+                {{/if}}
+                {{#if compare (filetype type)  '===' 'word|excel|ppt'}}
+                  <a href="#" data-fancybox data-type="iframe" data-src="https://view.officeapps.live.com/op/embed.aspx?src={{fileURL this}}" data-caption="{{name}}" class="action pull-right">
                     <i class="fa fa-eye"></i>{{_ 'View'}}
                   </a>
                 {{/if}}
