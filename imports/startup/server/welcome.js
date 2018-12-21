@@ -1,16 +1,7 @@
-// _.extend(Instance, {
-const ROOT = {
-  email: 'will@weaworking.com',
-  profile: {
-    name: 'Will',
-    title: 'Developer'
-  }
-};
+// 1 from Will to owner
+const ROOT = "Will <will@weaworking.com>";
 
-Meteor.startup(() => {
-  Contacts.findOne({email: ROOT.email}) || Contacts.insert(ROOT);
-});
-
+// 2 from owner to member
 const WELCOME_MAIL = {
   subject: () => {
     return `${Instance.company()} 欢迎你！`;
@@ -29,7 +20,7 @@ Accounts.onLogin(function(attempt) {
   let user = Users.findOne(attempt.user._id);
   // welcome
   if (ThreadUsers.find({userType: 'Users', userId: user._id}).count() === 0) {
-    let root = Contacts.findOne({email: ROOT.email});
+    let root = Instance.admin() || Contacts.parseOne(ROOT);
     let threadId = Threads.create(root, 'Email', WELCOME_MAIL.subject());
     let thread = Threads.findOne(threadId);
     Threads.ensureMember(thread, user);
@@ -48,7 +39,7 @@ Meteor.users.after.insert(function(userId, doc) {
   if (doc.profile && doc.profile.channel) {
     let channel = Channels.findOne(doc._id);
     if (ThreadUsers.find({userType: 'Channels', userId: doc._id}).count() === 0) {
-      let root = Contacts.findOne({email: ROOT.email});
+      let root = Instance.admin() || Contacts.parseOne(ROOT);
       let threadId = Threads.create(root, 'Email', WELCOME_CHANNEL_MAIL.subject, 'protected');
       let thread = Threads.findOne(threadId);
       Threads.ensureMember(thread, channel);

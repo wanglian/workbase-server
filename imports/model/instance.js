@@ -13,11 +13,16 @@ Instance.company = () => {
 };
 
 Instance.domain = () => {
-  let instance = Instance.get()
+  let instance = Instance.get();
   return instance && instance.domain;
 };
 
 Instance.enabled = () => {
-  let instance = Instance.get()
+  let instance = Instance.get();
   return instance && instance.adminId;
+};
+
+Instance.admin = () => {
+  let instance = Instance.get();
+  return instance && instance.adminId && Users.findOne(instance.adminId);
 };
