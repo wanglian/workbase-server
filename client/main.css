@@ -16,6 +16,6 @@ blockquote {
 
 /* customize fancybox */
 .fancybox-slide--iframe .fancybox-content {
-    max-height : 100%;
-    margin: 0;
+  max-height : 100%;
+  margin: 0;
 }

@@ -1,0 +1,52 @@
+.avatar {
+  height: 50px;
+  width: 50px;
+  position: relative;
+}
+.avatar .avatar-image,
+.avatar .avatar-initials {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.avatar .avatar-image {
+  z-index: 10;
+  background-color: #fff;
+}
+.avatar .avatar-initials {
+  display: block;
+  background-size: 100% 100%;
+  background-color: #aaa;
+  color: #fff;
+  font-size: 25px;
+  line-height: 50px;
+  font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+  text-align: center;
+  z-index: 1;
+}
+.avatar-rounded .avatar-image,
+.avatar-rounded .avatar-initials {
+  border-radius: 5px;
+}
+.avatar-circle .avatar-image,
+.avatar-circle .avatar-initials {
+  border-radius: 50%;
+}
+.avatar-hide-image .avatar-image {
+  display: none;
+}
+.avatar-hide-initials .avatar-initials {
+  display: none;
+}
+.avatar-xlarge {width: 90px; min-width: 90px; height: 90px;}
+.avatar-xlarge .avatar-initials {font-size: 45px; line-height: 90px;}
+.avatar-large {width: 65px; min-width: 65px; height: 65px;}
+.avatar-large .avatar-initials {font-size: 32.5px; line-height: 65px;}
+.avatar-medium {width: 40px; min-width: 40px; height: 40px;}
+.avatar-medium .avatar-initials {font-size: 20px; line-height: 40px;}
+.avatar-small {width: 35px; min-width: 35px; height: 35px;}
+.avatar-small .avatar-initials {font-size: 17.5px; line-height: 35px;}
+.avatar-tiny {width: 30px; min-width: 30px; height: 30px;}
+.avatar-tiny .avatar-initials {font-size: 15px; line-height: 30px;}

@@ -1,5 +1,11 @@
 # 开发进展
 
+## 12-21
+
+- 增加iOS
+- 购买Apple开发帐号 $135
+- 购买logo https://www.logaster.com $72
+
 ## 12-20
 
 - 文件查看：pdf/video/audio/word/excel/ppt/text。使用fancybox

@@ -1,6 +1,7 @@
 Meteor.startup(function() {
   Avatar.setOptions({
     // defaultImageUrl: ""
+    // generateCSS: false,
     imageSizes: {
       'xlarge': 90,
       'large': 65,
