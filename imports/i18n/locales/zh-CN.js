@@ -68,5 +68,9 @@ export const locale_zh_cn = {
   "confirm remove member": "确定移除 {{name}}?",
   "Confirm": "确定",
   // paginate
-  "Load More": "查看更多"
+  "Load More": "查看更多",
+  // reports
+  "Reports": "报表",
+  "Daily Messages Counts": "消息日统计",
+  "Hourly Message Counts": "消息分时统计"
 };

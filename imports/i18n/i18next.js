@@ -5,7 +5,8 @@ import { locale_zh_cn } from './locales/zh-CN';
 
 i18next.use(LngDetector);
 i18next.init({
-  lng: 'zh-CN',
+  // lng: 'zh-CN',
+  fallbackLng: "en-US",
   debug: false,
   resources: {
     "en-US": {translation: locale_en_us},

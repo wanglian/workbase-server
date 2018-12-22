@@ -1,4 +1,6 @@
 Meteor.startup(function () {
   Status.setTemplate('default'); // bootstrap3
-  TAPi18n.setLanguage('zh');
+  let lng = currentLanguage();
+  if (lng === 'zh-CN') lng = 'zh';
+  TAPi18n.setLanguage(lng);
 });

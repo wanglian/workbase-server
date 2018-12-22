@@ -2,7 +2,7 @@ let moment = require('moment');
 require('moment/locale/zh-cn');
 
 // i18n
-moment.locale('zh-cn');
+moment.locale(currentLanguage().toLowerCase());
 
 Template.registerHelper('formatSimpleDate', (date) => {
   return moment(date).calendar(null, {
