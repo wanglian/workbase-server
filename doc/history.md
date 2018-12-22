@@ -10,6 +10,7 @@
 - app加上camera支持 cordova-plugin-camera （不然打不开camera）
 - app发布带上server参数，以支持Hot Code Push
 - 改进登录，密码错误提示
+- 小屏幕放大字体
 
 ## 12-21
 

@@ -22,8 +22,8 @@ body .navbar-nav>.user-menu .user-image {
 }
 
 body .page-header {
-   margin: 30px 0 20px;
-   font-size: 14px;
+  margin: 30px 0 20px;
+  font-size: 14px;
 }
 
 /* meteor status */
@@ -34,10 +34,4 @@ body .page-header {
   right: 0;
   z-index: 9999; /* 要大于control-sidebar (1010) */
   margin-bottom: 0;
-}
-
-@media (max-width: 991px) {
-  body .navbar-collapse.pull-left+.navbar-custom-menu {
-    right: 0px;
-  }
 }
