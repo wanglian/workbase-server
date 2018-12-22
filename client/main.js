@@ -10,3 +10,4 @@ import '/imports/channel/client';
 import '/imports/roster/client';
 import '/imports/profile/client';
 import '/imports/charts/client';
+import '/imports/cordova/client';

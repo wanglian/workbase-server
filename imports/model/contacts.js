@@ -10,6 +10,9 @@ Contacts.helpers({
   name() {
     return this.profile.name;
   },
+  internalName() {
+    return this.address();
+  },
   address() {
     return `${this.profile.name} <${this.email}>`;
   }

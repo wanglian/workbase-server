@@ -5,6 +5,8 @@
 - 增加iOS
 - 购买Apple开发帐号 $135
 - 购买logo https://www.logaster.com $72
+- iOS消息推送，配置开发/发布环境的cert/key
+- 提交到Apple Store，使用TestFlight开始测试
 
 ## 12-20
 

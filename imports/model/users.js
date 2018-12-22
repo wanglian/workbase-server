@@ -13,6 +13,9 @@ Users.helpers({
   name() {
     return this.profile.name;
   },
+  internalName() {
+    return this.name();
+  },
   email() {
     return this.emails[0].address;
   },

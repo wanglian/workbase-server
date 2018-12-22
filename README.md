@@ -39,6 +39,14 @@ docker run -d \
   wanglian/wework:latest
 ```
 
+## App
+
+```
+meteor build ../workbase-app --server=www.weaworking.com // 有问题
+meteor run ios-device --settings settings.json --mobile-server=https://www.weaworking.com
+// 从XCode发布
+```
+
 ## Develop
 
 References
