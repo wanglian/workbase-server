@@ -42,9 +42,8 @@ docker run -d \
 ## App
 
 ```
-meteor build ../workbase-app --server=www.weaworking.com // 有问题
-meteor run ios-device --settings settings.json --mobile-server=https://www.weaworking.com
-// 从XCode发布
+meteor build ../workbase-app --server=https://www.weaworking.com
+// 然后打开 WorkBase.xcworkspace，从XCode发布
 ```
 
 ## Develop

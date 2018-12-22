@@ -16,11 +16,27 @@ Meteor.startup(function() {
       sound: true
     }
   });
-  
-  Tracker.autorun(() => {
-    if (Meteor.isCordova) {
+
+  if (Meteor.isCordova) {
+    cordova.plugins.diagnostic.isCameraAuthorized(
+      authorized => {
+        if (!authorized) {
+          cordova.plugins.diagnostic.requestCameraAuthorization(
+            granted => {
+              console.log( "Authorization request for camera use was " +
+                (granted ? "granted" : "denied"));
+            },
+            error => { console.error(error); }
+          );
+        }
+      },
+      error => { console.error(error); }
+    );
+
+    // badge
+    Tracker.autorun(() => {
       let count = Counts.get('count-unread-inbox');
       Push.setBadge(count);
-    }
-  });
+    });
+  }
 });

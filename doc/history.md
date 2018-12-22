@@ -7,6 +7,8 @@
 - 按用户浏览器环境本地化
 - 界面skin，默认blue。用户可设置（TODO）
 - 消息输入框禁止手动调节（宽度）
+- app加上camera支持 cordova-plugin-camera （不然打不开camera）
+- app发布带上server参数，以支持Hot Code Push
 
 ## 12-21
 

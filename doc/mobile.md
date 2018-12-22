@@ -5,10 +5,23 @@
 ```
 meteor add-platform ios
 
+meteor add cordova:cordova-plugin-camera@4.0.2
+meteor add cordova:cordova-plugin-device@2.0.2
+meteor add cordova:cordova-plugin-splashscreen@5.0.2
+meteor add cordova:cordova-plugin-statusbar@2.4.2
+meteor add cordova:cordova.plugins.diagnostic@4.0.10
+meteor add cordova:phonegap-plugin-push@2.2.3
+
 meteor run ios-device --settings settings.json // --mobile-server=https://www.weaworking.com
 // 在XCode中配置
 // 1 签名
 // 2 添加几个lib（解决link问题）
+```
+
+## Hot Code Push
+
+```
+meteor build ../workbase-app --server=http://xxx.com // 加上server参数，跟server的ROOT_URL设置对应
 ```
 
 ## Apple开发者帐号设置
