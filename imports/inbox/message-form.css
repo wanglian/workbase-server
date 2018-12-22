@@ -10,6 +10,7 @@ textarea.form-control {
   max-height: 400px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  resize: none;
 }
 textarea.form-control:focus {
   border-color: #66afe9;
