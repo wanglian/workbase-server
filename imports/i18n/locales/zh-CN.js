@@ -19,6 +19,7 @@ export const locale_zh_cn = {
   "Sign in to start your session": "",
   "Sign In": "登录",
   "Remember Me": "记住我",
+  "Login password not match": "登录密码错误",
   // message
   "New Message": "发消息",
   "Send": "发送",
