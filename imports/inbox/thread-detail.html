@@ -10,7 +10,7 @@
         </div>
         <div id="thread-info">
           <div class="flat-panel-body">
-            <p class="small text-muted">{{_ "Created by and when" name=user.name time=(formattedDate createdAt "simple")}}</p>
+            <p class="small text-muted">{{_ "Created by and when" name=user.name time=(formatDayWithTime createdAt)}}</p>
           </div>
         </div>
       </div>

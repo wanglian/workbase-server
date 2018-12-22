@@ -7,6 +7,10 @@ export const locale_zh_cn = {
   "Remove": "删除",
   "Download": "下载",
   "View": "查看",
+  // Time
+  "Today": "今天",
+  "Yesterday": "昨天",
+  "Tomorrow": "明天",
   // setup
   "Setup your system": "设置管理员帐号",
   "Company": "企业名称",
