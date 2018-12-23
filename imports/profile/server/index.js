@@ -3,7 +3,8 @@ Meteor.methods({
     check(params, {
       language:  Match.Maybe(String),
       skin:      Match.Maybe(String),
-      signature: Match.Maybe(String)
+      signature: Match.Maybe(String),
+      avatar:    Match.Maybe(String)
     });
 
     let userId = this.userId;

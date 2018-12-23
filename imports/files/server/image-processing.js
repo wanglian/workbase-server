@@ -6,8 +6,13 @@ const bound = Meteor.bindEnvironment((callback) => {
   return callback();
 });
 
-const createThumbnails = (collection, fileRef, cb) => {
+// size: {width, crop}
+const createThumbnails = (collection, fileRef, definition, cb) => {
   check(fileRef, Object);
+  check(definition, {
+    width: Number,
+    crop:  Match.Maybe(Boolean)
+  });
 
   fs.exists(fileRef.path, (exists) => {
     bound(() => {
@@ -36,7 +41,7 @@ const createThumbnails = (collection, fileRef, cb) => {
           });
 
           const path = (collection.storagePath(fileRef)) + '/thumbnail-' + fileRef._id + '.' + fileRef.extension;
-          const img = gm(fileRef.path)
+          let img = gm(fileRef.path)
             .quality(70)
             .define('filter:support=2')
             .define('jpeg:fancy-upsampling=false')
@@ -53,7 +58,13 @@ const createThumbnails = (collection, fileRef, cb) => {
             .filter('Triangle');
 
           // Change width and height proportionally
-          img.resize(800).interlace('Line').write(path, (resizeError) => {
+          img = img.resize(definition.width).interlace('Line');
+
+          if (definition.crop) {
+            img = img.gravity('Center').crop(definition.width, definition.width);
+          }
+
+          img.write(path, (resizeError) => {
             bound(() => {
               if (resizeError) {
                 console.error('[createThumbnails] [img.resize]', resizeError);

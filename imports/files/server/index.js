@@ -1,4 +1,5 @@
 import './files';
+import './avatar-files';
 
 Files.collection.before.insert(function(userId, doc) {
   _.extend(doc, {createdAt: new Date()});

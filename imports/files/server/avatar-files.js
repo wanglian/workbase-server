@@ -1,18 +1,10 @@
-// - meta.relations: [{}]
-//   - threadId
-//   - messageId
-//   - userType
-//   - userId
-//   - type: file/inline
-//   - createdAt
-
 import Storage from './storage';
 import createThumbnails from './image-processing';
 
-Files = new FilesCollection({
+AvatarFiles = new FilesCollection({
   debug: false, // Change to `true` for debugging
-  collectionName: 'files',
-  storagePath: '/tmp/workbase/uploads/files',
+  collectionName: 'avatar-files',
+  storagePath: '/tmp/workbase/uploads/avatars',
   allowClientCode: false, // Disallow remove files from Client
   // Start moving files to AWS:S3
   // after fully received by the Meteor server
@@ -20,7 +12,7 @@ Files = new FilesCollection({
     try {
       // Run `createThumbnails` only over PNG, JPG and JPEG files
       if (/png|jpe?g/i.test(fileRef.extension || '')) {
-        createThumbnails(this, fileRef, {width: 800}, (error, fileRef) => {
+        createThumbnails(this, fileRef, {width: 180, crop: true}, (error, fileRef) => {
           if (error) {
             console.log("[Files] resize image error:");
             console.error(error);

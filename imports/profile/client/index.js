@@ -1,3 +1,4 @@
+import './avatar-files';
 import './profile';
 
 Router.route('/profile', function () {

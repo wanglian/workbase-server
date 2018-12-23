@@ -71,6 +71,19 @@ Template.Profile.events({
         document.location.reload(true);
       }
     });
+  },
+  "click #btn-upload-avatar"(e, t) {
+    e.preventDefault();
+    $('#avatar-file').click();
+  },
+  "change #avatar-file"(e, t) {
+    Modal.show('AvatarUploadModal', {
+      file: e.target.files[0]
+    }, {
+      backdrop: 'static',
+      keyboard: false
+    });
+    $(e.target).val(""); // reset file input
   }
 });
 
@@ -94,5 +107,60 @@ AutoForm.hooks({
         this.done();
       });
     }
+  }
+});
+
+Template.AvatarUploadModal.onCreated(function() {
+  this.currentUpload = new ReactiveVar(false);
+});
+
+import loadImage from "blueimp-load-image";
+Template.AvatarUploadModal.onRendered(function() {
+  loadImage(this.data.file, (img) => {
+    $("#image-preview").html(img);
+    $("#image-preview img").addClass("img-responsive center-block");
+  }, {
+    maxWidth:  "570",
+    maxHeight: "350"
+  });
+});
+
+Template.AvatarUploadModal.helpers({
+  currentUpload() {
+    return Template.instance().currentUpload.get();
+  }
+});
+
+Template.AvatarUploadModal.events({
+  "click #btn-send-image"(e, t) {
+    e.preventDefault();
+
+    $('#btn-send-image').attr("disabled", "disabled");
+    const upload = AvatarFiles.insert({
+      file: t.data.file,
+      streams: 'dynamic',
+      chunkSize: 'dynamic'
+    }, false);
+
+    upload.on('start', function() {
+      t.currentUpload.set(this);
+    });
+
+    upload.on('end', function(error, fileObj) {
+      if (error) {
+        alert('Error during upload: ' + error);
+        $('#btn-send-image').attr("disabled", false);
+      } else {
+        // alert('File "' + fileObj.name + '" successfully uploaded');
+        Meteor.call('updateProfile', {
+          avatar: AvatarFiles.link(fileObj, 'thumbnail')
+        }, (err, res) => {
+          Modal.hide('AvatarUploadModal');
+        });
+      }
+      t.currentUpload.set(false);
+    });
+
+    upload.start();
   }
 });

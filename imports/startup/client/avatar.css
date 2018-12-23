@@ -40,6 +40,8 @@
 .avatar-hide-initials .avatar-initials {
   display: none;
 }
+.avatar-profile {width: 180px; min-width: 180px; height: 180px;}
+.avatar-profile .avatar-initials {font-size: 90px; line-height: 180px;}
 .avatar-xlarge {width: 90px; min-width: 90px; height: 90px;}
 .avatar-xlarge .avatar-initials {font-size: 45px; line-height: 90px;}
 .avatar-large {width: 65px; min-width: 65px; height: 65px;}

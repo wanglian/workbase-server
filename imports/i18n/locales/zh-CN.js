@@ -27,6 +27,8 @@ export const locale_zh_cn = {
   "Blue Skin": "蓝色",
   "Purple Skin": "紫色",
   "Profile Saved": "已保存",
+  "Upload new picture": "上传新头像",
+  "Upload": "上传",
   // message
   "New Message": "发消息",
   "Send": "发送",
