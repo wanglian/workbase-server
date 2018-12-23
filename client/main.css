@@ -25,6 +25,7 @@ blockquote {
   body,
   body blockquote,
   body .page-header,
+  body .dropdown-menu,
   body .flat-panel .flat-panel-heading .flat-panel-title {
     font-size: 16px !important;
   }
@@ -51,7 +52,7 @@ blockquote {
   }
   body #inbox-header {
     height: 62px;
-    padding: 11px 10px;
+    padding: 10px;
   }
   body #inbox-header .btn-back {
     margin-top: 8px;
