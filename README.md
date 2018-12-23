@@ -65,3 +65,4 @@ References
 - [ES6 入门](http://es6.ruanyifeng.com)
 - [Meteor Template helpers](https://github.com/VeliovGroup/Meteor-Template-helpers/)
 - [i18next](https://www.i18next.com/)
+- [gm](http://aheckmann.github.io/gm/docs.html)
