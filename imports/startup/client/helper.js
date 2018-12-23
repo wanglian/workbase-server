@@ -25,3 +25,4 @@ Template.registerHelper('inRouter', function(router) {
 currentLanguage = () => {
   return window.navigator.language;
 };
+Template.registerHelper('currentLanguage', currentLanguage);

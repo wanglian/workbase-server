@@ -7,3 +7,10 @@ Template.registerHelper('_', (key, options) => {
 Meteor.startup(function () {
   I18n.changeLanguage(currentLanguage());
 });
+
+Accounts.onLogin(function(attempt) {
+  let user = Meteor.user();
+  if (user.profile.language) {
+    I18n.changeLanguage(user.profile.language);
+  }
+});

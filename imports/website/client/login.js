@@ -41,10 +41,10 @@ AutoForm.hooks({
             title: I18n.t("Login password not match"),
             type: "error"
           });
-          this.done();
         } else {
           Router.go('/inbox');
         }
+        this.done();
       });
     }
   }

@@ -20,6 +20,13 @@ export const locale_zh_cn = {
   "Sign In": "登录",
   "Remember Me": "记住我",
   "Login password not match": "登录密码错误",
+  // profile
+  "Language": "语言",
+  "Skin": "模板",
+  "Signature": "邮件签名",
+  "Blue Skin": "蓝色",
+  "Purple Skin": "紫色",
+  "Profile Saved": "已保存",
   // message
   "New Message": "发消息",
   "Send": "发送",
