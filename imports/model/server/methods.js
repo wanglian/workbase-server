@@ -22,26 +22,6 @@ Meteor.methods({
       return Threads.addMessage(thread, user, params);
     }
   },
-  sendEmail(emails, subject, content) {
-    check(emails, String);
-    check(subject, String);
-    check(content, String);
-
-    let userId = this.userId;
-    let user = Meteor.users.findOne(userId);
-    let contacts = Contacts.parse(emails);
-    if (!_.isEmpty(contacts)) {
-      let threadId = Threads.create(user, 'Email', subject);
-      let thread = Threads.findOne(threadId);
-
-      Threads.ensureMember(thread, user);
-      contacts.forEach(c => Threads.ensureMember(thread, c));
-      Threads.addMessage(thread, user, {
-        content
-      });
-      return threadId;
-    }
-  },
   queryContacts(keyword) {
     check(keyword, String);
 

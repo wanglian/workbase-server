@@ -1,27 +1,4 @@
 Meteor.methods({
-  startChat(userId) {
-    check(userId, String);
-
-    let user = Users.findOne(this.userId);
-    let chatUser = Users.findOne(userId);
-    if (chatUser) {
-      let tu = ThreadUsers.findOne({userType: 'Users', userId: this.userId, chat: userId});
-      if (!tu) {
-        tu = ThreadUsers.findOne({userType: 'Users', userId: userId, chat: this.userId});
-        if (tu) {
-          Threads.ensureMember(thread, user, {chat: userId});
-        }
-      }
-
-      let threadId = tu && tu.threadId;
-      if (!threadId) {
-        threadId = Threads.create(user, 'Chat', 'Chat');
-        thread = Threads.findOne(threadId);
-        Threads.ensureMember(thread, user, {chat: userId});
-      }
-      return threadId;
-    }
-  },
   addMember(email, name, title) {
     check(name, String);
     check(email, String);

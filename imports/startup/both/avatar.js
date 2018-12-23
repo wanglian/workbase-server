@@ -11,7 +11,7 @@ Meteor.startup(function() {
       'tiny': 30,
     },
     customImageProperty: function() {
-      return this.profile.avatar;
+      return this.profile && this.profile.avatar;
     }
   });
 });

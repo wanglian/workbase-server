@@ -76,9 +76,9 @@ ul.list-group.threads .list-group-item.thread .thread-icon {
 }
 ul.list-group.threads .list-group-item.thread .thread-icon button {
   background-color: transparent;
-  border: 1px solid;
-  width: 35px;
-  height: 35px;
+  border: 1px solid #777;
+  width: 40px;
+  height: 40px;
   border-radius: 20px;
   font-size: 16px;
   padding: 0px;

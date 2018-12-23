@@ -1,23 +1,5 @@
 const request = require('request');
 
-Messages.after.insert(function(userId, doc) {
-  if (doc.userType === 'Contacts' || doc.internal) return;
-
-  let message = this.transform();
-  let promise = new Promise(function(resolve, reject) {
-    try {
-      Mailgun.send(message);
-      resolve();
-    } catch (e) {
-      reject(e);
-    }
-  });
-  promise.catch((e) => {
-    console.log("[mailgun] send error:");
-    console.log(e);
-  });
-});
-
 Mailgun = {
   api_key: Meteor.settings.mailgun.key,
   domain:  Meteor.settings.public.domain,

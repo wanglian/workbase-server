@@ -10,6 +10,29 @@
   border-bottom: 1px solid #d8d8d8;
 /*  background: white;*/
 }
+#inbox-header .btn-back {
+  height: 30px;
+  margin-top: 8px;
+  font-size: 20px;
+  padding-right: 10px;
+}
+#inbox-header .thread-header-icon {
+  border:1px solid transparent;
+  font-size: 20px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  margin-top: 6px;
+}
+#inbox-header .thread-header-icon:hover {
+  color: #72afd2;
+}
+#inbox-header .thread-header-icon.active {
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: #d8d8d8;
+  color: #555;
+}
 
 #inbox-right {
   border-left: 1px solid #d8d8d8;
@@ -18,7 +41,6 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
 #inbox-right:last-child {
   border-right: none;
 }

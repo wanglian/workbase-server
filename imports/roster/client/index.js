@@ -1,4 +1,3 @@
-import '../chat';
 import './roster';
 import './roster-modal';
 import './style.css';

@@ -1,7 +1,9 @@
 <template name="ThreadList">
   <ul class="list-group threads">
     {{#each threads}}
-      {{> ThreadListItem}}
+      <a href="{{threadPath}}" class="list-group-item clearfix thread" id="{{_id}}">
+        {{> Template.dynamic template=listItemTemplate}}
+      </a>
     {{/each}}
     {{#if ready}}
       {{#if nextPath}}
@@ -13,31 +15,4 @@
       <span class="list-group-item text-center text-muted thread small"><i class="fa fa-spinner fa-spin"></i></span>
     {{/if}}
   </ul>
-</template>
-
-<template name="ThreadListItem">
-  <a href="{{threadPath}}" class="list-group-item clearfix thread" id="{{_id}}">
-    <div class="thread-icon">
-      <button type="button" class="{{#unless read}}unread-button{{/unless}}"><i class="{{icon}}"></i></button>
-      {{#unless read}}<span class="unread"></span>{{/unless}}
-    </div>
-    <div class="thread-title">
-      <div class="thread-subject-wrap">
-        <span class="thread-subject text-ellipsis">{{title}}</span>
-        <small class="pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
-      </div>
-      <div class="thread-message-wrap">
-        <div class="thread-message text-muted">
-          <div class="message-summary">
-            <span class="text-ellipsis">
-              {{#if lastMessage}}
-                {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
-                {{lastMessage.summary}}
-              {{/if}}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </a>
 </template>

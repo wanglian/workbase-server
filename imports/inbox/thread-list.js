@@ -11,15 +11,14 @@ Template.ThreadList.onRendered(function() {
   });
 });
 
-Template.ThreadListItem.helpers({
+Template.ThreadList.helpers({
   threadPath() {
     let currentRoute = Router.current();
     let params = _.defaults({_id: this._id}, currentRoute.params);
     let query = currentRoute.params.query;
     return currentRoute.route.path(params, {query});
   },
-  icon() {
-    let c = ThreadCategories.get(this.category)
-    return this.read ? c.icon : c.iconUnread;
+  listItemTemplate() {
+    return `${this.category}ListItem`;
   }
 });
