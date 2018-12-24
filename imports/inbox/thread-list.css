@@ -96,4 +96,5 @@ ul.list-group.threads .list-group-item.thread .thread-icon .unread {
   width: 10px;
   left: 40px;
   top: 13px;
+  z-index: 999;
 }

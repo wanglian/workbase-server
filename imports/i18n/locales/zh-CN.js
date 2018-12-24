@@ -48,6 +48,7 @@ export const locale_zh_cn = {
   "Image Message": "[图片]",
   "No content": "没有内容",
   "Files with count": "文件 ({{count}})",
+  "Sent you an image": "发来一张图片",
   // user
   "New User": "创建用户",
   "Edit User": "修改用户",
