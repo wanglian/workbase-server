@@ -6,6 +6,7 @@
 - 上传头像
 - fix Hot Code Push
 - 回复消息后增加flash效果：使用animate.css (ScrollReveal需要License)
+- markdown内链接在新窗口打开(blank)
 
 ## 12-22
 

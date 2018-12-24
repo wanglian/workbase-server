@@ -1,3 +1,25 @@
+
+- Markdown链接在新窗口打开
+
+https://github.com/markedjs/marked/pull/1371
+
+```
+let renderer = new Markdown.Renderer();
+renderer.link = function(href, title, text) {
+  let link = Markdown.Renderer.prototype.link.call(this, href, title, text);
+  return link.replace("<a","<a target='_blank' ");
+};
+Markdown.setOptions({
+  renderer: renderer
+});
+
+```
+
+- 自适应动态布局
+
+https://css-tricks.com/guide-responsive-friendly-css-columns/
+
+
 - fancybox 不能播放mov格式影片
 
 直接从iphone上传的
