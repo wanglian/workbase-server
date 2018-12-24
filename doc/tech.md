@@ -64,3 +64,46 @@ email.match(/noreply|no_reply|no-reply|do-not-reply|do_not_reply/i)
 - 查询联系人时排除
 - 外发邮件时排除
 - 不显示回复框：当只有noreply的参与者时
+
+## Thread扩展方案
+
+### 菜单
+
+- 图标弹出？
+- 菜单按钮
+
+```
+{{#if showActions}}
+  <span class="btn-group inbox-header-icon pull-right">
+    <a href="#" class="dropdown-toggle text-muted" data-toggle="dropdown" aria-expanded="false">
+      <i class="fa fa-ellipsis-h"></i>
+    </a>
+    {{> Template.dynamic template=threadActionsTemplate}}
+  </span>
+{{/if}}
+
+Template.ThreadHeader.helpers({
+  showActions() {
+    return eval(`Template.${this.category}ThreadActions`);
+  },
+  threadActionsTemplate() {
+    return `${this.category}ThreadActions`;
+  }
+});
+
+<template name="RosterThreadActions">
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#" id="btn-show-rosters"><i class="fa fa-list-ul"></i> {{_ "User List"}}</a></li>
+  </ul>
+</template>
+
+Template.RosterThreadActions.events({
+  "click #btn-show-rosters"(e, t) {
+    e.preventDefault();
+    Modal.show('RosterListModal', null, {
+      backdrop: 'static',
+      keyboard: false
+    });
+  }
+});
+```

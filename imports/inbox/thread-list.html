@@ -16,3 +16,28 @@
     {{/if}}
   </ul>
 </template>
+
+<template name="ThreadListItem">
+  <div class="thread-icon">
+    <button type="button" class="{{#unless read}}unread-button{{/unless}}"><i class="{{icon}}"></i></button>
+    {{#unless read}}<span class="unread"></span>{{/unless}}
+  </div>
+  <div class="thread-title">
+    <div class="thread-subject-wrap">
+      <span class="thread-subject">{{title}}</span>
+      <small class="pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
+    </div>
+    <div class="thread-message-wrap">
+      <div class="thread-message text-muted">
+        <div class="message-summary">
+          <span class="text-ellipsis">
+            {{#if lastMessage}}
+              {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
+              {{lastMessage.summary}}
+            {{/if}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

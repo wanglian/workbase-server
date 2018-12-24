@@ -98,6 +98,13 @@ Template.Thread.events({
   }
 });
 
+Template.ThreadMenu.events({
+  "click .btn-action"(e, t) {
+    e.preventDefault();
+    this.action.apply(this);
+  }
+});
+
 Template.ThreadHeader.helpers({
   detailTitle() {
     return this._id && this.title('detail');

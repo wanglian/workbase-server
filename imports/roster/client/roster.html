@@ -1,6 +1,4 @@
 <template name="Roster">
-  {{> contentFor region="menu" template="RosterMenu" data=user}}
-
   {{#contentFor "title"}}
     <p class="navbar-text" style="color: white; font-weight: 600;">{{_ 'Users'}}</p>
   {{/contentFor}}
@@ -25,18 +23,6 @@
   </li>
 </template>
 
-<template name="RosterMenu">
-  {{#if currentUser.isAdmin}}
-    <ul class="dropdown-menu" role="menu">
-      {{#if _id}}
-        <li><a href="#" id="btn-edit-roster"><i class="fa fa-edit"></i> {{_ "Edit User"}}</a></li>
-        <li class="divider"></li>
-      {{/if}}
-      <li><a href="#" id="btn-add-roster"><i class="fa fa-plus"></i> {{_ "New User"}}</a></li>
-    </ul>
-  {{/if}}
-</template>
-
 <template name="RosterList">
   <ul class="list-group threads">
     {{#each users}}
@@ -46,7 +32,7 @@
         </div>
         <div class="thread-title">
           <div class="thread-subject-wrap clearfix">
-            <span class="thread-subject text-ellipsis">{{name}}</span>
+            <span class="thread-subject">{{name}}</span>
             <small class="pull-right text-muted">&nbsp;{{title}}</small>
           </div>
           <div class="thread-message-wrap">
@@ -89,5 +75,49 @@
     {{#unless hasChat}}
       <a href="#" class="btn btn-primary btn-block" id="btn-chat">{{_ "Send Messages"}}</a>
     {{/unless}}
+  </div>
+</template>
+
+<template name="RosterListModal">
+  <div class="modal fade modal-rounded full-screen">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'User List'}}</h4>
+        </div>
+        <ul class="list-group threads" style="height: calc(100vh - 121px); overflow: scroll;">
+          {{#each users}}
+            <li class="list-group-item clearfix thread" id="{{_id}}">
+              <div class="pull-right">
+                <a href="#" class="btn-edit-roster text-muted"><i class="fa fa-edit"></i></a>
+              </div>
+              <div class="thread-icon">
+                {{> avatar user=this shape="circle" class="img-circle" size="small"}}
+              </div>
+              <div class="thread-title">
+                <div class="thread-subject-wrap clearfix">
+                  <span class="thread-subject">{{name}}</span>
+                  <small class="text-muted">&nbsp;{{title}}</small>
+                </div>
+                <div class="thread-message-wrap">
+                  <div class="thread-message text-muted">
+                    <div class="message-summary">
+                      <span class="text-ellipsis">
+                        {{email}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
+          <a href="#" id="btn-add-roster" class="btn btn-primary">{{_ "New User"}}</a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

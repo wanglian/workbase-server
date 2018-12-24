@@ -43,6 +43,7 @@
 }
 .messages .message-content {
   padding-top: 15px;
+  overflow: scroll;
 }
 .messages .message-content iframe {
   height: 0px;

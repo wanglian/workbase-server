@@ -39,11 +39,11 @@ ul.list-group.threads .list-group-item.thread .thread-subject-wrap {
   width: 100%;
   display: inline-block;
 	position: relative;
-	line-height: 20px;
+	line-height: 22px;
 }
 ul.list-group.threads .list-group-item.thread .thread-subject {
-  position: absolute;
-  width: calc(100% - 60px);
+/*  position: absolute;*/
+/*  width: calc(100% - 60px);*/
   font-weight: 600;
 }
 ul.list-group.threads .list-group-item.thread .thread-message-wrap {
@@ -52,7 +52,6 @@ ul.list-group.threads .list-group-item.thread .thread-message-wrap {
 }
 ul.list-group.threads .list-group-item.thread .thread-message {
   position: absolute;
-  font-size: 12px;
   width: 100%;
 }
 ul.list-group.threads .list-group-item.thread .thread-message .message-summary,

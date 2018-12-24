@@ -3,7 +3,7 @@
 // - userId
 // - internal: boolean
 // - content
-// - contentType: text/html/image
+// - contentType: text/html/image/log
 // - fileIds: [fileId]
 // - inlineFileIds: [fileId]
 // - summary

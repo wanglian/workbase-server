@@ -20,6 +20,14 @@ blockquote {
   margin: 0;
 }
 
+.modal.full-screen .modal-dialog {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.modal.full-screen .modal-dialog .modal-content {
+  height: 100%;
+}
 
 @media (max-width: 991px) {
   body,

@@ -19,6 +19,14 @@ Template.ThreadList.helpers({
     return currentRoute.route.path(params, {query});
   },
   listItemTemplate() {
-    return `${this.category}ListItem`;
+    let tmpl = `${this.category}ListItem`;
+    return eval(`Template.${tmpl}`) ? tmpl : 'ThreadListItem';
+  }
+});
+
+Template.ThreadListItem.helpers({
+  icon() {
+    let c = ThreadCategories.get(this.category)
+    return this.read ? c.icon : c.iconUnread;
   }
 });

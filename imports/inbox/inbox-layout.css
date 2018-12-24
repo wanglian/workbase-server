@@ -4,7 +4,7 @@
 }
 
 #inbox-header {
-  height: 58px;
+  height: 57px;
   padding: 6px 10px;
   border-left: 1px solid #d8d8d8;
   border-bottom: 1px solid #d8d8d8;
@@ -16,22 +16,28 @@
   font-size: 24px;
   padding-right: 10px;
 }
-#inbox-header .thread-header-icon {
+#inbox-header .inbox-header-icon {
   border:1px solid transparent;
   font-size: 25px;
   text-align: center;
   width: 35px;
   height: 35px;
-  margin-top: 6px;
+  margin-top: 5px;
+  margin-left: 5px;
 }
-#inbox-header .thread-header-icon:hover {
+#inbox-header .inbox-header-icon:hover {
   color: #72afd2;
 }
-#inbox-header .thread-header-icon.active {
+#inbox-header .btn-group.inbox-header-icon.open,
+#inbox-header .inbox-header-icon.active {
   border: 1px solid transparent;
   border-radius: 3px;
   background: #d8d8d8;
   color: #555;
+}
+#inbox-header .btn-group.inbox-header-icon.open .dropdown-toggle {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 #inbox-right {

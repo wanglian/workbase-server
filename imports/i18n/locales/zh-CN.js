@@ -54,6 +54,8 @@ export const locale_zh_cn = {
   "Files with count": "文件 ({{count}})",
   "Sent you an image": "发来一张图片",
   // user
+  "Users Management": "用户管理",
+  "User List": "用户列表",
   "New User": "创建用户",
   "Edit User": "修改用户",
   "Save": "保存",

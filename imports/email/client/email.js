@@ -1,12 +1,5 @@
 import './email.html';
 
-Template.EmailListItem.helpers({
-  icon() {
-    let c = ThreadCategories.get(this.category)
-    return this.read ? c.icon : c.iconUnread;
-  }
-});
-
 const DOMPurify = require('dompurify');
 Template.EmailContent.onRendered(function() {
   this.autorun(() => {

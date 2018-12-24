@@ -51,6 +51,7 @@ meteor build ../workbase-app --server=https://www.weaworking.com
 References
 - [Meteor](https://docs.meteor.com/)
 - [bootstrap](https://getbootstrap.com/docs/3.3/javascript/)
+- [FontAwesome](https://fontawesome.com/v4.7.0/icons/)
 - [AdminLTE](https://adminlte.io/themes/AdminLTE/index.html)
 - [Blaze](http://blazejs.org/api/templates.html)
 - [mailgun](https://documentation.mailgun.com/en/latest/api-routes.html)

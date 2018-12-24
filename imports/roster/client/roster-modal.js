@@ -68,7 +68,7 @@ AutoForm.hooks({
           console.log(err);
         } else {
           console.log(res);
-          Router.go('roster', {_id: res})
+          // Router.go('roster', {_id: res});
         }
         Modal.hide('AddRosterModal');
         this.done();

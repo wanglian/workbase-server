@@ -1,3 +1,4 @@
+import '../roster';
 import './roster';
 import './roster-modal';
 import './style.css';

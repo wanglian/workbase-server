@@ -1,21 +1,6 @@
 import './roster.html';
 
-Template.RosterMenu.events({
-  "click #btn-add-roster"(e, t) {
-    e.preventDefault();
-    Modal.show('AddRosterModal', null, {
-      backdrop: 'static',
-      keyboard: false
-    });
-  },
-  "click #btn-edit-roster"(e, t) {
-    e.preventDefault();
-    Modal.show('EditRosterModal', t.data, {
-      backdrop: 'static',
-      keyboard: false
-    });
-  }
-});
+Modal.allowMultiple = true;
 
 Template.RosterList.onRendered(function() {
   this.autorun(() => {
@@ -43,6 +28,33 @@ Template.RosterCard.events({
       } else {
         console.log(res);
       }
+    });
+  }
+});
+
+Template.RosterListModal.onRendered(function() {
+  this.subscribe("roster");
+});
+
+Template.RosterListModal.helpers({
+  users() {
+    return Users.find({"profile.channel": {$ne: true}}, {sort: {"profile.name": 1}});
+  }
+});
+
+Template.RosterListModal.events({
+  "click #btn-add-roster"(e, t) {
+    e.preventDefault();
+    Modal.show('AddRosterModal', null, {
+      backdrop: 'static',
+      keyboard: false
+    });
+  },
+  "click .btn-edit-roster"(e, t) {
+    e.preventDefault();
+    Modal.show('EditRosterModal', this, {
+      backdrop: 'static',
+      keyboard: false
     });
   }
 });

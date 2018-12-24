@@ -41,6 +41,14 @@
   display: block;
   font-size: 18px;
   font-weight: 600;
-  padding-right: 50px;
+  padding-right: 10px;
   color: #555;
+}
+body .btn-group-justified .btn {
+  border-top: none;
+  border-left: none;
+  border-radius: 0;
+}
+body .btn-group-justified .btn:last-child {
+  border-right: none;
 }
