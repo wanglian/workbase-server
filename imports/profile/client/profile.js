@@ -28,8 +28,10 @@ const FORM_SCHEMA = new SimpleSchema({
       options: [
         {label: I18n.t("Blue Skin"), value: "blue"},
         {label: I18n.t("Purple Skin"), value: "purple"},
-        {label: I18n.t("Blue Light"), value: "blue-light"},
-        {label: I18n.t("Purple Light"), value: "purple-light"}
+        {label: I18n.t("Black Skin"), value: "black"},
+        {label: I18n.t("Red Skin"), value: "red"},
+        {label: I18n.t("Green Skin"), value: "green"},
+        {label: I18n.t("Yellow Skin"), value: "yellow"}
       ]
     }
   },
@@ -62,6 +64,16 @@ Template.Profile.helpers({
 });
 
 Template.Profile.events({
+  "change form select[name=language]"(e, t) {
+    e.preventDefault();
+    Meteor.call('updateProfile', {language: $(e.target).val()}, (err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        document.location.reload(true);
+      }
+    });
+  },
   "change form select[name=skin]"(e, t) {
     e.preventDefault();
     Meteor.call('updateProfile', {skin: $(e.target).val()}, (err, res) => {
@@ -71,6 +83,10 @@ Template.Profile.events({
         document.location.reload(true);
       }
     });
+  },
+  "click #btn-cancel"(e, t) {
+    e.preventDefault();
+    history.go(-1);
   },
   "click #btn-upload-avatar"(e, t) {
     e.preventDefault();
