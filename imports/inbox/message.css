@@ -34,7 +34,7 @@
   float: left;
 }
 .messages .message-header-title {
-  padding: 0 15px 0 50px;
+  padding: 0 10px 0 50px;
   cursor: pointer;
 }
 .messages .message-header-name {

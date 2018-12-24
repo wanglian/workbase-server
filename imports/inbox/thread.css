@@ -34,7 +34,7 @@
   color: #f39c12;
 }
 #inbox-header .thread-subject {
-  margin: 8px 0;
+  margin: 10px 0;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

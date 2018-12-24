@@ -52,9 +52,6 @@ blockquote {
   }
   body #inbox-header {
     height: 62px;
-    padding: 10px;
-  }
-  body #inbox-header .btn-back {
-    margin-top: 8px;
+    padding: 8px 10px;
   }
 }

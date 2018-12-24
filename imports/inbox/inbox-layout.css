@@ -11,17 +11,17 @@
 /*  background: white;*/
 }
 #inbox-header .btn-back {
-  height: 30px;
-  margin-top: 8px;
-  font-size: 20px;
+  height: 34px;
+  margin-top: 6px;
+  font-size: 24px;
   padding-right: 10px;
 }
 #inbox-header .thread-header-icon {
   border:1px solid transparent;
-  font-size: 20px;
+  font-size: 25px;
   text-align: center;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   margin-top: 6px;
 }
 #inbox-header .thread-header-icon:hover {
