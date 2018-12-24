@@ -1,3 +1,6 @@
+- fancybox 不能播放mov格式影片
+
+直接从iphone上传的
 
 - APP Hot Code Push问题
 

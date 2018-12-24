@@ -18,7 +18,7 @@
         <div class="summary text-ellipsis text-muted">{{summary}}</div>
       </div>
     </div>
-    <div class="message-content">
+    <div class="message-content {{#if isNew}}animated flash{{/if}}">
       {{#if compare contentType '===' 'html'}}
         {{> EmailContent}}
       {{else}}

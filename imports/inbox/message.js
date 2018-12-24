@@ -2,6 +2,7 @@ import './message.html';
 import './message.css';
 
 import ClipboardJS from 'clipboard';
+import moment from 'moment';
 
 import '@fancyapps/fancybox';
 import '@fancyapps/fancybox/dist/jquery.fancybox.css';
@@ -37,6 +38,9 @@ Template.Message.onRendered(function() {
 Template.Message.helpers({
   showInternal() {
     return this.internal && this.thread().hasExternalMembers();
+  },
+  isNew() {
+    return this.createdAt > moment().subtract(10, 'seconds').toDate();
   },
   userName() {
     let user = this.user();

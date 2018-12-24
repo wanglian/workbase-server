@@ -5,6 +5,7 @@
 - 个人设置：语言，模板，邮件签名
 - 上传头像
 - fix Hot Code Push
+- 回复消息后增加flash效果：使用animate.css (ScrollReveal需要License)
 
 ## 12-22
 

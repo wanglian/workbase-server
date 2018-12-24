@@ -11,6 +11,7 @@
     "@babel/runtime": "^7.1.5",
     "@fancyapps/fancybox": "^3.5.6",
     "address-rfc2822": "^2.0.4",
+    "animate.css": "^3.7.0",
     "autosize": "^4.0.2",
     "aws-sdk": "^2.377.0",
     "bcrypt": "^3.0.2",
@@ -27,7 +28,6 @@
     "moment": "^2.22.2",
     "request": "^2.88.0",
     "sanitize-html": "^1.19.1",
-    "scrollreveal": "^4.0.5",
     "simpl-schema": "^1.5.3",
     "sweetalert2": "^7.32.4"
   },
