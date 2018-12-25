@@ -11,6 +11,6 @@ Meteor.methods({
     let user = Meteor.users.findOne(userId);
     let profile = user.profile;
     _.extend(profile, params);
-    return Users.update(userId, {$set: {profile}});
+    return Users.direct.update(userId, {$set: {profile}});
   }
 });
