@@ -31,5 +31,8 @@ Template.ChannelMenuItems.onCreated(function() {
 Template.ChannelMenuItems.helpers({
   channels() {
     return Users.find({"profile.type": 'Channels'});
+  },
+  inChannel(id) {
+    return Router.current().params.channel === id;
   }
 });

@@ -28,7 +28,7 @@
 
 <template name="ChannelMenuItems">
   {{#each channels}}
-    <li class="{{#if inRouter 'channel'}}active{{/if}}">
+    <li class="{{#if inChannel _id}}active{{/if}}">
       <a href="/channels/{{_id}}">
         <i class="fa fa-slack"></i> <span>{{name}}</span>
         {{#if countUnreadChannel _id}}
