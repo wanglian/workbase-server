@@ -3,7 +3,7 @@ Channels.create = (email, name) => {
     email,
     profile: {
       channel: true,
-      type: 'Channel',
+      type: 'Channels',
       name
     }
   });

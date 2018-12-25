@@ -5,7 +5,7 @@ Meteor.methods({
       email,
       password,
       profile: {
-        type: 'User',
+        type: 'Users',
         name,
         title: 'Admin',
         role: 'admin'}

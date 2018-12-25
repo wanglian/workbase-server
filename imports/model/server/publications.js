@@ -116,7 +116,7 @@ Meteor.publishComposite("messages", function(threadId, options) {
 });
 
 Meteor.publish("roster", function() {
-  return Users.find({"profile.channel": {$ne: true}}, {fields: {emails: 1, profile: 1}});
+  return Users.find({"profile.type": 'Users'}, {fields: {emails: 1, profile: 1}});
 });
 
 Meteor.publish("contacts", function() {

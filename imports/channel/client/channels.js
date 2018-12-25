@@ -30,6 +30,6 @@ Template.ChannelMenuItems.onCreated(function() {
 
 Template.ChannelMenuItems.helpers({
   channels() {
-    return Users.find({"profile.channel": true});
+    return Users.find({"profile.type": 'Channels'});
   }
 });

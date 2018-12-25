@@ -1,5 +1,5 @@
 // - profile
-//  - type: User/Channel
+//  - type: Users/Channels
 //  - name
 //  - title
 //  - skin: blue/blue-light/purple/purple-light/black/black-light/red/red-light/yellow/yellow-light
@@ -8,6 +8,7 @@ Users = Meteor.users;
 
 Users.helpers({
   className() {
+    if (this.profile && this.profile.type) return this.profile.type;
     return 'Users';
   },
   isAdmin() {

@@ -28,7 +28,7 @@ Template.ChannelListModal.onRendered(function() {
 
 Template.ChannelListModal.helpers({
   channels() {
-    return Users.find({"profile.channel": true}, {sort: {"profile.name": 1}});
+    return Users.find({"profile.type": 'Channels'}, {sort: {"profile.name": 1}});
   }
 });
 
@@ -84,7 +84,7 @@ Template.ChannelMembersModal.helpers({
   },
   users() {
     let memberIds = ChannelUsers.find({channelId: this._id}).map(cu => cu.userId);
-    return Users.find({_id: {$nin: memberIds}, "profile.channel": {$ne: true}});
+    return Users.find({_id: {$nin: memberIds}, "profile.type": 'Users'});
   }
 });
 

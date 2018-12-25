@@ -4,6 +4,7 @@
 
 - 频道管理（添加/修改/成员/日志）,保留原菜单形式
 - fix 用户修改profile不记录到用户管理日志
+- 修改 Users.profile.channel -> Users.profile.type: Users/Channels
 
 ## 12-24
 

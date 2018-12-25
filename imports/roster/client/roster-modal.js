@@ -46,7 +46,7 @@ Template.RosterListModal.onRendered(function() {
 
 Template.RosterListModal.helpers({
   users() {
-    return Users.find({"profile.channel": {$ne: true}}, {sort: {"profile.name": 1}});
+    return Users.find({"profile.type": 'Users'}, {sort: {"profile.name": 1}});
   }
 });
 

@@ -7,7 +7,7 @@ Meteor.methods({
     return Accounts.createUser({
       email,
       profile: {
-        type: 'User',
+        type: 'Users',
         name,
         title
       }

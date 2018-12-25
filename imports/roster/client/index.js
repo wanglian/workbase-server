@@ -27,7 +27,7 @@ RosterController = ApplicationController.extend({
   },
   data() {
     return {
-      users: Users.find({"profile.channel": {$ne: true}}, {sort: {"profile.name": 1}}),
+      users: Users.find({"profile.type": 'Users'}, {sort: {"profile.name": 1}}),
       user: this.user(),
       chat: this.chat(),
       hasRight: !!this.user(),
