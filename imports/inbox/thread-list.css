@@ -97,6 +97,10 @@ ul.list-group.threads .list-group-item.thread .thread-icon .unread {
   top: 13px;
   z-index: 999;
 }
-ul.list-group.threads .list-group-item.thread .action {
+ul.list-group .list-group-item .action {
   margin-left: 10px;
+  display: none;
+}
+ul.list-group .list-group-item:hover .action {
+  display: inline;
 }

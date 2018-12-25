@@ -60,14 +60,6 @@ Template.Message.events({
   "click a[data-fancybox=image]"(e, t) {
     // e.preventDefault();
   },
-  "mouseenter .message .message-header"(e, t) {
-    e.preventDefault();
-    $(e.target).find(".message-actions").removeClass('hide');
-  },
-  "mouseleave .message .message-header"(e, t) {
-    e.preventDefault();
-    $(e.target).find(".message-actions").addClass('hide');
-  },
   "click .message-header"(e, t) {
     e.preventDefault();
     // shift + click 折叠/展开全部

@@ -37,7 +37,7 @@
 .flat-panel .flat-panel-heading .flat-panel-title {
   color: #555;
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 }
 .flat-panel .flat-panel-heading .flat-panel-title i.fa {
@@ -52,38 +52,21 @@
 
 .members-list {
   overflow-x: hidden;
-  margin: 0 -12px 10px -12px;
+  margin: 0;
 }
 .members-list .members-item {
   border: none;
-  padding: 8px 10px 8px 12px;
+  padding: 8px 10px;
 }
 .members-list .members-item:hover {
   background: #fafafa;
 }
 .members-list .members-item .members-info {
   margin-left: 42px;
-  font-size: 12px;
   line-height: 16px;
   min-height: 30px;
 }
-.members-list .members-item .members-info span {
-  display: block;
-}
-.members-list .members-item .members-info .member-name {
+.members-list .members-item .members-info .name {
   color: #555;
-  font-weight: bold;
-  display: inline;
-}
-.members-list .members-item .members-info .member-organization {
-  font-size: 12px;
-  margin-top: 2px;
-}
-.members-list .members-item .li-manage-icon {
-  line-height: 30px;
-  margin-left: 10px;
-  opacity: 0;
-}
-.members-list .members-item:hover .li-manage-icon {
-  opacity: 1;
+  margin-right: 8px;
 }

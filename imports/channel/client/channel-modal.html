@@ -10,8 +10,8 @@
           {{#each channels}}
             <li class="list-group-item clearfix thread" id="{{_id}}">
               <div class="pull-right">
-                <a href="#" class="btn-edit-channel text-muted action"><i class="fa fa-pencil"></i></a>
-                <a href="#" class="btn-channel-members text-muted action"><i class="fa fa-users"></i></a>
+                <a href="#" class="btn-edit-channel text-muted action"><i class="fa fa-pencil"></i> {{_ 'Edit'}}</a>
+                <a href="#" class="btn-channel-members text-muted action"><i class="fa fa-users"></i> {{_ 'Members'}}</a>
               </div>
               <div class="thread-icon">
 
@@ -97,7 +97,7 @@
           <h4 class="modal-title">{{_ "Channel Members"}} - {{name}}</h4>
           <span class="text-muted">{{email}}</span>
         </div>
-        <div class="modal-body" style="height: calc(100vh - 141px); overflow: scroll;">
+        <div class="modal-body" style="height: calc(100vh - 141px); overflow: scroll; padding: 0;">
           <ul class="list-group members-list">
             {{#each members}}
               <li class="list-group-item members-item clearfix">
@@ -112,7 +112,9 @@
                   {{user.title}}
                   <span class="pull-right">
                     {{#unless isMe user}}
-                      <a href="#" class="btn btn-danger btn-sm btn-remove-member" data-id="{{user._id}}">{{_ "Remove"}}</a>
+                      <a href="#" class="btn-remove-member action text-muted" data-id="{{user._id}}">
+                        <i class="fa fa-remove"></i> {{_ "Remove"}}
+                      </a>
                     {{/unless}}
                   </span>
                   <span class="member-organization text-muted text-ellipsis">{{user.email}}</span>
@@ -135,7 +137,9 @@
                   </a>
                   {{title}}
                   <span class="pull-right">
-                    <a href="#" class="btn btn-success btn-sm btn-add-member" data-id="{{_id}}">{{_ "Add"}}</a>
+                    <a href="#" class="btn-add-member action text-muted" data-id="{{_id}}">
+                      <i class="fa fa-plus"></i> {{_ "Add"}}
+                    </a>
                   </span>
                   <span class="member-organization text-muted text-ellipsis">{{email}}</span>
                 </div>

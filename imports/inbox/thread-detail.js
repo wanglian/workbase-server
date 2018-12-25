@@ -34,14 +34,6 @@ Template.ThreadMembers.helpers({
 });
 
 Template.ThreadMembers.events({
-  "mouseenter .members-info"(e, t) {
-    e.preventDefault();
-    $(e.target).find(".btn-remove-member").removeClass('hide');
-  },
-  "mouseleave .members-info"(e, t) {
-    e.preventDefault();
-    $(e.target).find(".btn-remove-member").addClass('hide');
-  },
   "click .btn-remove-member"(e, t) {
     e.preventDefault();
 

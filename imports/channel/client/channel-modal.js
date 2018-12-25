@@ -84,7 +84,7 @@ Template.ChannelMembersModal.helpers({
   },
   users() {
     let memberIds = ChannelUsers.find({channelId: this._id}).map(cu => cu.userId);
-    return Users.find({_id: {$nin: memberIds}, "profile.type": 'Users'});
+    return Users.find({_id: {$nin: memberIds}, "profile.type": 'Users'}, {limit: 20}); // TODO: search
   }
 });
 

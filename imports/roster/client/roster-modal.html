@@ -10,7 +10,7 @@
           {{#each users}}
             <li class="list-group-item clearfix thread" id="{{_id}}">
               <div class="pull-right">
-                <a href="#" class="btn-edit-roster text-muted"><i class="fa fa-edit"></i></a>
+                <a href="#" class="btn-edit-roster text-muted action"><i class="fa fa-edit"></i> {{_ 'Edit'}}</a>
               </div>
               <div class="thread-icon">
                 {{> avatar user=this shape="circle" class="img-circle" size="small"}}

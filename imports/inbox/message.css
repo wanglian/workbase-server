@@ -13,6 +13,12 @@
   padding: 6px 10px;
   border-bottom: solid 1px white;
 }
+.messages .message-header .message-actions {
+  display: none;
+}
+.messages .message-header:hover .message-actions {
+  display: inline;
+}
 .messages .message-header .summary {
   display: none;
 }
@@ -21,7 +27,7 @@
   border-color: rgba(245,245,245, 1);
 }
 .messages .fold.message:hover .message-header {
-   border-color: rgba(249,249,249, 1);
+  border-color: rgba(249,249,249, 1);
 }
 .messages .fold.message .message-header .email,
 .messages .fold.message .message-content {
@@ -60,6 +66,7 @@
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
+
 /* markdown */
 .messages .message-content h1 {
   font-size: 28px;

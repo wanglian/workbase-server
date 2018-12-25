@@ -4,7 +4,10 @@ export const locale_zh_cn = {
   "Compose": "发消息",
   "Inbox": "收件箱",
   "Users": "用户",
+  "Add": "添加",
   "Remove": "删除",
+  "Edit": "编辑",
+  "Save": "保存",
   "Download": "下载",
   "View": "查看",
   // Time
@@ -58,7 +61,6 @@ export const locale_zh_cn = {
   "User List": "用户列表",
   "New User": "创建用户",
   "Edit User": "修改用户",
-  "Save": "保存",
   "User Name": "姓名",
   "Title": "职位",
   "Password": "密码",
@@ -71,8 +73,6 @@ export const locale_zh_cn = {
   "Edit Channel": "修改频道",
   "Channel Name": "频道名称",
   "Channel Members": "频道成员",
-  "Add": "添加",
-  "Remove": "移除",
   "Choose to add": "选择添加",
   // thread
   "Go back": "返回",
