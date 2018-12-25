@@ -1,4 +1,6 @@
 <template name="Roster">
+  {{> contentFor region="menu" template="RosterMenu" data=user}}
+
   {{#contentFor "title"}}
     <p class="navbar-text" style="color: white; font-weight: 600;">{{_ 'Users'}}</p>
   {{/contentFor}}
@@ -15,6 +17,18 @@
   <li class="{{#if inRouter 'roster'}}active{{/if}}">
     <a href="/roster"><i class="fa fa-address-book"></i> {{_ 'Users'}}</a>
   </li>
+</template>
+
+<template name="RosterMenu">
+  {{#if currentUser.isAdmin}}
+    <ul class="dropdown-menu" role="menu">
+      {{#if _id}}
+        <li><a href="#" id="btn-edit-roster"><i class="fa fa-edit"></i> {{_ "Edit User"}}</a></li>
+        <li class="divider"></li>
+      {{/if}}
+      <li><a href="#" id="btn-add-roster"><i class="fa fa-plus"></i> {{_ "New User"}}</a></li>
+    </ul>
+  {{/if}}
 </template>
 
 <template name="RosterList">

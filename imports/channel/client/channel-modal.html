@@ -1,3 +1,47 @@
+<template name="ChannelListModal">
+  <div class="modal fade modal-rounded full-screen">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'Channel List'}}</h4>
+        </div>
+        <ul class="list-group threads" style="height: calc(100vh - 121px); overflow: scroll;">
+          {{#each channels}}
+            <li class="list-group-item clearfix thread" id="{{_id}}">
+              <div class="pull-right">
+                <a href="#" class="btn-edit-channel text-muted action"><i class="fa fa-pencil"></i></a>
+                <a href="#" class="btn-channel-members text-muted action"><i class="fa fa-users"></i></a>
+              </div>
+              <div class="thread-icon">
+
+              </div>
+              <div class="thread-title">
+                <div class="thread-subject-wrap clearfix">
+                  <span class="thread-subject">{{name}}</span>
+                </div>
+                <div class="thread-message-wrap">
+                  <div class="thread-message text-muted">
+                    <div class="message-summary">
+                      <span class="text-ellipsis">
+                        {{email}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
+          <a href="#" id="btn-add-channel" class="btn btn-primary">{{_ "New Channel"}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <template name="AddChannelModal">
   <div class="modal fade modal-rounded">
     <div class="modal-dialog">
@@ -6,14 +50,16 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
           <h4 class="modal-title">{{_ "New Channel"}}</h4>
         </div>
-        <div class="modal-body">
-          {{#autoForm collection=formCollection schema=formSchema id="add-channel-form" type="normal"}}
+        {{#autoForm collection=formCollection schema=formSchema id="add-channel-form" type="normal"}}
+          <div class="modal-body">
             {{> afQuickField name="name"}}
             {{> afQuickField name="email" domain=domain}}
-            <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
+          </div>
+          <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "Discard"}}</button>
-          {{/autoForm}}
-        </div>
+            <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
+          </div>
+        {{/autoForm}}
       </div>
     </div>
   </div>
@@ -27,21 +73,23 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
           <h4 class="modal-title">{{_ "Edit Channel"}}</h4>
         </div>
-        <div class="modal-body">
-          {{#autoForm collection=formCollection schema=formSchema doc=this id="edit-channel-form" type="normal"}}
+        {{#autoForm collection=formCollection schema=formSchema doc=this id="edit-channel-form" type="normal"}}
+          <div class="modal-body">
             {{> afQuickField name="name" value=name}}
             {{> afQuickField name="email" domain=domain value=email}}
-            <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
+          </div>
+          <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "Discard"}}</button>
-          {{/autoForm}}
-        </div>
+            <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
+          </div>
+        {{/autoForm}}
       </div>
     </div>
   </div>
 </template>
 
 <template name="ChannelMembersModal">
-  <div class="modal fade modal-rounded">
+  <div class="modal fade modal-rounded full-screen">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -49,8 +97,8 @@
           <h4 class="modal-title">{{_ "Channel Members"}} - {{name}}</h4>
           <span class="text-muted">{{email}}</span>
         </div>
-        <div class="modal-body">
-          <ul class="list-group members-list" style="max-height: calc(100vh - 330px); overflow-y: auto;">
+        <div class="modal-body" style="height: calc(100vh - 141px); overflow: scroll;">
+          <ul class="list-group members-list">
             {{#each members}}
               <li class="list-group-item members-item clearfix">
                 <span class="pull-left">
@@ -74,7 +122,7 @@
           </ul>
           {{#if users.count}}
           <p class="page-header">{{_ "Choose to add"}}:</p>
-          <ul class="list-group members-list" style="max-height: calc(100vh - 330px); overflow-y: auto;">
+          <ul class="list-group members-list">
             {{#each users}}
               <li class="list-group-item members-item clearfix">
                 <span class="pull-left">
@@ -95,6 +143,9 @@
             {{/each}}
           </ul>
           {{/if}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
         </div>
       </div>
     </div>

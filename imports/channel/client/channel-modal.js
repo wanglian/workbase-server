@@ -22,6 +22,40 @@ const CHANNEL_FORM_SCHEMA = new SimpleSchema({
   }
 });
 
+Template.ChannelListModal.onRendered(function() {
+  this.subscribe("channel");
+});
+
+Template.ChannelListModal.helpers({
+  channels() {
+    return Users.find({"profile.channel": true}, {sort: {"profile.name": 1}});
+  }
+});
+
+Template.ChannelListModal.events({
+  "click #btn-add-channel"(e, t) {
+    e.preventDefault();
+    Modal.show('AddChannelModal', null, {
+      backdrop: 'static',
+      keyboard: false
+    });
+  },
+  "click .btn-edit-channel"(e, t) {
+    e.preventDefault();
+    Modal.show('EditChannelModal', this, {
+      backdrop: 'static',
+      keyboard: false
+    });
+  },
+  "click .btn-channel-members"(e, t) {
+    e.preventDefault();
+    Modal.show('ChannelMembersModal', this, {
+      backdrop: 'static',
+      keyboard: false
+    });
+  }
+});
+
 Template.AddChannelModal.helpers({
   formCollection() {
     return Users;

@@ -65,6 +65,8 @@ export const locale_zh_cn = {
   "Send Messages": "发消息",
   "Chat with": "与 {{name}} 的会话",
   // channel
+  "Channels Management": "频道管理",
+  "Channel List": "频道列表",
   "New Channel": "创建频道",
   "Edit Channel": "修改频道",
   "Channel Name": "频道名称",

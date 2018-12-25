@@ -4,7 +4,11 @@ Meteor.methods({
     let adminId = Accounts.createUser({
       email,
       password,
-      profile: {name, title: 'Admin', role: 'admin'}
+      profile: {
+        type: 'User',
+        name,
+        title: 'Admin',
+        role: 'admin'}
     });
 
     let instance = Instance.get();

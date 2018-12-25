@@ -13,6 +13,8 @@ Meteor.startup(() => {
 });
 
 Users.after.insert(function(userId, doc) {
+  if (doc.profile.type != 'User') return;
+
   let admin = Meteor.user();
   if (admin) {
     let thread = Threads.findOne({category: 'Roster'});
@@ -25,8 +27,8 @@ Users.after.insert(function(userId, doc) {
 });
 
 Users.after.update(function(userId, doc, fieldNames, modifier, options) {
-  console.log(fieldNames);
-  console.log(modifier);
+  if (doc.profile.type != 'User') return;
+
   let admin = Meteor.user();
   if (admin) {
     let thread = Threads.findOne({category: 'Roster'});
