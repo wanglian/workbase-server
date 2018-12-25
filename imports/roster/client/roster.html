@@ -6,14 +6,8 @@
   {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}
     {{> RosterList users=users user=user}}
 
-    {{#if chat}}
-      {{> contentFor region="header" template="ThreadHeader" data=chat}}
-      {{> contentFor region="right" template="Thread" data=chat}}
-      {{> contentFor region="sidebar" template="RosterCard" data=user}}
-    {{else}}
-      {{> contentFor region="header" template="RosterHeader" data=user}}
-      {{> contentFor region="right" template="RosterCard" data=user}}
-    {{/if}}
+    {{> contentFor region="header" template="RosterHeader" data=user}}
+    {{> contentFor region="right" template="RosterCard" data=user}}
   {{/Layout}}
 </template>
 
@@ -72,52 +66,6 @@
       </div>
     </div>
 
-    {{#unless hasChat}}
-      <a href="#" class="btn btn-primary btn-block" id="btn-chat">{{_ "Send Messages"}}</a>
-    {{/unless}}
-  </div>
-</template>
-
-<template name="RosterListModal">
-  <div class="modal fade modal-rounded full-screen">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ 'User List'}}</h4>
-        </div>
-        <ul class="list-group threads" style="height: calc(100vh - 121px); overflow: scroll;">
-          {{#each users}}
-            <li class="list-group-item clearfix thread" id="{{_id}}">
-              <div class="pull-right">
-                <a href="#" class="btn-edit-roster text-muted"><i class="fa fa-edit"></i></a>
-              </div>
-              <div class="thread-icon">
-                {{> avatar user=this shape="circle" class="img-circle" size="small"}}
-              </div>
-              <div class="thread-title">
-                <div class="thread-subject-wrap clearfix">
-                  <span class="thread-subject">{{name}}</span>
-                  <small class="text-muted">&nbsp;{{title}}</small>
-                </div>
-                <div class="thread-message-wrap">
-                  <div class="thread-message text-muted">
-                    <div class="message-summary">
-                      <span class="text-ellipsis">
-                        {{email}}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          {{/each}}
-        </ul>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
-          <a href="#" id="btn-add-roster" class="btn btn-primary">{{_ "New User"}}</a>
-        </div>
-      </div>
-    </div>
+    <a href="#" class="btn btn-primary btn-block" id="btn-chat">{{_ "Send Messages"}}</a>
   </div>
 </template>

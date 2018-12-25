@@ -1,3 +1,47 @@
+<template name="RosterListModal">
+  <div class="modal fade modal-rounded full-screen">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'User List'}}</h4>
+        </div>
+        <ul class="list-group threads" style="height: calc(100vh - 121px); overflow: scroll;">
+          {{#each users}}
+            <li class="list-group-item clearfix thread" id="{{_id}}">
+              <div class="pull-right">
+                <a href="#" class="btn-edit-roster text-muted"><i class="fa fa-edit"></i></a>
+              </div>
+              <div class="thread-icon">
+                {{> avatar user=this shape="circle" class="img-circle" size="small"}}
+              </div>
+              <div class="thread-title">
+                <div class="thread-subject-wrap clearfix">
+                  <span class="thread-subject">{{name}}</span>
+                  <small class="text-muted">&nbsp;{{title}}</small>
+                </div>
+                <div class="thread-message-wrap">
+                  <div class="thread-message text-muted">
+                    <div class="message-summary">
+                      <span class="text-ellipsis">
+                        {{email}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
+          <a href="#" id="btn-add-roster" class="btn btn-primary">{{_ "New User"}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <template name="AddRosterModal">
   <div class="modal fade modal-rounded">
     <div class="modal-dialog">
@@ -6,15 +50,17 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
           <h4 class="modal-title">{{_ 'New User'}}</h4>
         </div>
-        <div class="modal-body">
-          {{#autoForm collection=formCollection schema=formSchema id="add-roster-form" type="normal"}}
+        {{#autoForm collection=formCollection schema=formSchema id="add-roster-form" type="normal"}}
+          <div class="modal-body">
             {{> afQuickField name="name"}}
             {{> afQuickField name="email" domain=domain}}
             {{> afQuickField name="title"}}
-            <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
+          </div>
+          <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
-          {{/autoForm}}
-        </div>
+            <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
+          </div>
+        {{/autoForm}}
       </div>
     </div>
   </div>
