@@ -14,6 +14,12 @@ Meteor.methods({
     let profile = user.profile;
     _.extend(profile, params);
     return Users.direct.update(userId, {$set: {profile}});
+  },
+  updateLogin() {
+    logAccountAction('Login', {
+      user: Users.findOne(this.userId),
+      connection: this.connection
+    });
   }
 });
 
@@ -33,7 +39,7 @@ const logAccountAction = (action, attempt) => {
 };
 
 Accounts.onLogin(function(attempt) {
-  logAccountAction('Login', attempt);
+  // logAccountAction('Login', attempt);
 });
 
 Accounts.onLogout(function(attempt) {

@@ -42,6 +42,7 @@ AutoForm.hooks({
             type: "error"
           });
         } else {
+          Meteor.call("updateLogin");
           Router.go('/inbox');
         }
         this.done();
