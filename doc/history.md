@@ -7,6 +7,7 @@
 - 修改 Users.profile.channel -> Users.profile.type: Users/Channels
 - fix 修改模板skin显示不稳定的情况（原因是没有等到user数据加载完成）
 - selectize i18n: create/option_create
+- gallery查看图片
 
 ## 12-24
 
