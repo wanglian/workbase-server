@@ -23,21 +23,13 @@
     {{#unless read}}<span class="unread"></span>{{/unless}}
   </div>
   <div class="thread-title">
-    <div class="thread-subject-wrap">
-      <span class="thread-subject">{{title}}</span>
-      <small class="pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
-    </div>
-    <div class="thread-message-wrap">
-      <div class="thread-message text-muted">
-        <div class="message-summary">
-          <span class="text-ellipsis">
-            {{#if lastMessage}}
-              {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
-              {{lastMessage.summary}}
-            {{/if}}
-          </span>
-        </div>
-      </div>
+    <small class="pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
+    <div class="thread-subject text-ellipsis">{{title}}</div>
+    <div class="message-summary text-ellipsis">
+      {{#if lastMessage}}
+        {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
+        {{lastMessage.summary}}
+      {{/if}}
     </div>
   </div>
 </template>

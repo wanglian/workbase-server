@@ -32,39 +32,24 @@ ul.list-group.threads .list-group-item.thread.active {
 /* 话题标题和最新消息 */
 ul.list-group.threads .list-group-item.thread .thread-title {
   display: table-cell;
+  position: relative;
   width: 100%;
-  line-height: 1.2;
-}
-ul.list-group.threads .list-group-item.thread .thread-subject-wrap {
-  width: 100%;
-  display: inline-block;
-	position: relative;
-	line-height: 22px;
+  height: 40px;
 }
 ul.list-group.threads .list-group-item.thread .thread-subject {
-/*  position: absolute;*/
-/*  width: calc(100% - 60px);*/
+  position: absolute;
+  width: calc(100% - 50px);
   font-weight: 600;
 }
-ul.list-group.threads .list-group-item.thread .thread-message-wrap {
-  position: relative;
-  min-height: 18px;
-}
-ul.list-group.threads .list-group-item.thread .thread-message {
+ul.list-group.threads .list-group-item.thread .message-summary {
   position: absolute;
-  width: 100%;
+  top: 20px;
+  width: calc(100% - 20px);
 }
-ul.list-group.threads .list-group-item.thread .thread-message .message-summary,
-.channel-message .ellipsis-message-body .message-summary {
-  max-width: calc(100% - 45px);
-  display: inline-block;
-}
-ul.list-group.threads .list-group-item.thread .thread-message .message-files,
-.channel-message .ellipsis-message-body .message-files {
+ul.list-group.threads .list-group-item.thread .thread-message .message-files {
   line-height: 18px;
 }
-ul.list-group.threads .list-group-item.thread .thread-message .message-files span:last-child,
-.channel-message .ellipsis-message-body .message-files span:last-child {
+ul.list-group.threads .list-group-item.thread .thread-message .message-files span:last-child {
   padding-left: 5px;
 }
 /* 列表话题图标及未读话题提示 */

@@ -8,7 +8,7 @@ Meteor.startup(() => {
   let admin = Instance.admin();
   let thread = Threads.findOne({category: 'Channel'});
   if (!thread) {
-    let threadId = Threads.create(admin, 'Channel', 'Channel Management');
+    let threadId = Threads.create(admin, 'Channel', 'Channels Management');
     thread = Threads.findOne(threadId);
   }
 

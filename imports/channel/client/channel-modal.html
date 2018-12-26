@@ -14,21 +14,11 @@
                 <a href="#" class="btn-channel-members text-muted action"><i class="fa fa-users"></i> {{_ 'Members'}}</a>
               </div>
               <div class="thread-icon">
-
+                <button type="button"><i class="fa fa-slack"></i></button>
               </div>
               <div class="thread-title">
-                <div class="thread-subject-wrap clearfix">
-                  <span class="thread-subject">{{name}}</span>
-                </div>
-                <div class="thread-message-wrap">
-                  <div class="thread-message text-muted">
-                    <div class="message-summary">
-                      <span class="text-ellipsis">
-                        {{email}}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <div class="thread-subject">{{name}}</div>
+                <div class="message-summary text-ellipsis text-muted">{{email}}</div>
               </div>
             </li>
           {{/each}}
@@ -106,9 +96,7 @@
                 </span>
 
                 <div class="members-info">
-                  <a href="#" class="member-name text-ellipsis" data-toggle="popover-roster" data-placement="bottom">
-                  {{user.name}}
-                  </a>
+                  <strong class="name">{{user.name}}</strong>
                   {{user.title}}
                   <span class="pull-right">
                     {{#unless isMe user}}
@@ -117,7 +105,7 @@
                       </a>
                     {{/unless}}
                   </span>
-                  <span class="member-organization text-muted text-ellipsis">{{user.email}}</span>
+                  <div class="text-muted text-ellipsis">{{user.email}}</div>
                 </div>
               </li>
             {{/each}}
@@ -132,16 +120,14 @@
                 </span>
 
                 <div class="members-info">
-                  <a href="#" class="member-name text-ellipsis" data-toggle="popover-roster" data-placement="bottom">
-                  {{name}}
-                  </a>
+                  <strong class="name">{{name}}</strong>
                   {{title}}
                   <span class="pull-right">
                     <a href="#" class="btn-add-member action text-muted" data-id="{{_id}}">
                       <i class="fa fa-plus"></i> {{_ "Add"}}
                     </a>
                   </span>
-                  <span class="member-organization text-muted text-ellipsis">{{email}}</span>
+                  <div class="text-muted text-ellipsis">{{email}}</div>
                 </div>
               </li>
             {{/each}}
@@ -149,7 +135,7 @@
           {{/if}}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Confirm'}}</button>
         </div>
       </div>
     </div>

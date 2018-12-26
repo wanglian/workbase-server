@@ -16,19 +16,8 @@
                 {{> avatar user=this shape="circle" class="img-circle" size="small"}}
               </div>
               <div class="thread-title">
-                <div class="thread-subject-wrap clearfix">
-                  <span class="thread-subject">{{name}}</span>
-                  <small class="text-muted">&nbsp;{{title}}</small>
-                </div>
-                <div class="thread-message-wrap">
-                  <div class="thread-message text-muted">
-                    <div class="message-summary">
-                      <span class="text-ellipsis">
-                        {{email}}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                <div class="thread-subject">{{name}} <small class="text-muted">&nbsp;{{title}}</small></div>
+                <div class="message-summary text-ellipsis text-muted">{{email}}</div>
               </div>
             </li>
           {{/each}}

@@ -3,7 +3,6 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  display: block;
 }
 
 /* customize bootstrap */
@@ -40,8 +39,7 @@ blockquote {
   body small,
   body ul.files,
   body ul.list-group.threads .list-group-item.thread .thread-message,
-  body .members-list .members-item .members-info,
-  body .members-list .members-item .members-info .member-organization {
+  body .members-list .members-item .members-info {
     font-size: 14px !important;
   }
   body .navbar-collapse.pull-left+.navbar-custom-menu {
