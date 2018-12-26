@@ -7,7 +7,10 @@ Meteor.publish('instance', function() {
     Counts.publish(this, `count-unread-channel-${cu.channelId}`, ThreadUsers.find({userType: 'Channels', userId: cu.channelId, read: false}));
   });
 
-  return Instance.find({}, {fields: {domain: 1, company: 1, adminId: 1}});
+  return [
+    Instance.find({}, {fields: {domain: 1, company: 1, adminId: 1}}),
+    Threads.find({category: 'Account', userId: this.userId})
+  ];
 });
 
 const MIN_THREADS = 20;

@@ -28,7 +28,6 @@ const FORM_SCHEMA = new SimpleSchema({
       options: [
         {label: I18n.t("Blue Skin"), value: "blue"},
         {label: I18n.t("Purple Skin"), value: "purple"},
-        {label: I18n.t("Black Skin"), value: "black"},
         {label: I18n.t("Red Skin"), value: "red"},
         {label: I18n.t("Green Skin"), value: "green"},
         {label: I18n.t("Yellow Skin"), value: "yellow"}
@@ -46,11 +45,11 @@ const FORM_SCHEMA = new SimpleSchema({
   }
 });
 
-Template.Profile.onRendered(function() {
+Template.ProfileModal.onRendered(function() {
   autosize($('form textarea'));
 });
 
-Template.Profile.helpers({
+Template.ProfileModal.helpers({
   formCollection() {
     return Users;
   },
@@ -63,7 +62,7 @@ Template.Profile.helpers({
   }
 });
 
-Template.Profile.events({
+Template.ProfileModal.events({
   "change form select[name=language]"(e, t) {
     e.preventDefault();
     Meteor.call('updateProfile', {language: $(e.target).val()}, (err, res) => {
@@ -120,6 +119,7 @@ AutoForm.hooks({
             type: "info"
           });
         }
+        Modal.hide('ProfileModal');
         this.done();
       });
     }

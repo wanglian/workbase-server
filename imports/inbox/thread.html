@@ -1,6 +1,6 @@
 <template name="ThreadHeader">
   {{> InboxBackButton}}
-  {{> InboxSidebarButton}}
+  {{#if showDetails}}{{> InboxSidebarButton}}{{/if}}
 
   <div class="thread-subject">{{detailTitle}}</div>
 </template>
@@ -8,7 +8,10 @@
 <template name="ThreadMenu">
   <div class="btn-group btn-group-justified" role="group" aria-label="...">
     {{#each actions}}
-      <a href="#" class="btn btn-default btn-action"><i class="{{icon}} text-muted"></i> <span class="text-muted">{{title}}</span></a>
+      <a href="#" class="btn btn-default btn-action">
+        {{#if icon}}<i class="{{icon}} text-muted"></i>{{/if}}
+        <span class="text-muted">{{title}}</span>
+      </a>
     {{/each}}
   </div>
 </template>

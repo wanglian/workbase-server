@@ -24,6 +24,7 @@ export const locale_zh_cn = {
   "Remember Me": "记住我",
   "Login password not match": "登录密码错误",
   // profile
+  "My Account": "我的帐号",
   "Language": "语言",
   "Skin": "模板",
   "Signature": "邮件签名",

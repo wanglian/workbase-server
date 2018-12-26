@@ -1,0 +1,4 @@
+.modal.full-screen form#profile-form {
+  height: calc(100% - 141px);
+  overflow: scroll;
+}

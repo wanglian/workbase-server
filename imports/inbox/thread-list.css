@@ -38,7 +38,7 @@ ul.list-group.threads .list-group-item.thread .thread-title {
 }
 ul.list-group.threads .list-group-item.thread .thread-subject {
   position: absolute;
-  width: calc(100% - 50px);
+  width: calc(100% - 65px);
   font-weight: 600;
 }
 ul.list-group.threads .list-group-item.thread .message-summary {

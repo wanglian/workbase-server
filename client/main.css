@@ -27,6 +27,11 @@ blockquote {
 .modal.full-screen .modal-dialog .modal-content {
   height: 100%;
 }
+.modal.full-screen .modal-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
 
 @media (max-width: 991px) {
   body,

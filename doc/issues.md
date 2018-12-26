@@ -1,4 +1,8 @@
 
+- i18n问题：产品环境浏览器正常，APP上week不能显示中文
+
+发现问题是：Chrome正常，Safari不正常。因为iOS APP用的是Safari。
+
 - Markdown链接在新窗口打开
 
 https://github.com/markedjs/marked/pull/1371
