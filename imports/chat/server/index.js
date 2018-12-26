@@ -16,9 +16,9 @@ Meteor.methods({
     let user = Users.findOne(this.userId);
     let chatUser = Users.findOne(userId);
     if (chatUser) {
-      let tu = ThreadUsers.findOne({userType: 'Users', userId: this.userId, chat: userId});
+      let tu = ThreadUsers.findOne({userType: 'Users', userId: this.userId, "params.chat": userId});
       if (!tu) {
-        tu = ThreadUsers.findOne({userType: 'Users', userId: userId, chat: this.userId});
+        tu = ThreadUsers.findOne({userType: 'Users', userId: userId, "params.chat": this.userId});
         if (tu) {
           Threads.ensureMember(thread, user, {chat: userId});
         }

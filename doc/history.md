@@ -9,6 +9,7 @@
 - selectize i18n: create/option_create
 - gallery查看图片
 - 统一使用Router Controller，小屏幕下自动关闭左边菜单栏
+- fix 重复创建私聊
 
 ## 12-24
 

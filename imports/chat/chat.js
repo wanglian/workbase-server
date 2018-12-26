@@ -3,10 +3,11 @@ ThreadCategories.add("Chat", {
   iconUnread: "fa fa-comment",
   title(thread, detail=false) { // client only
     let chat = Users.findOne(thread.params.chat);
-    if (detail) {
-      return chat && I18n.t("Chat with", {name: chat.name()});
-    } else {
-      return chat && chat.name();
-    }
+    // if (detail) {
+    //   return chat && I18n.t("Chat with", {name: chat.name()});
+    // } else {
+    //   return chat && chat.name();
+    // }
+    return chat && chat.name();
   }
 });
