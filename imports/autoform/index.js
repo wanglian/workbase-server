@@ -35,6 +35,9 @@ selectizeEmail = (method, params) => {
           '<span class="selectize-label">' + escape(label) + '</span>' +
           (caption ? ' <span class="selectize-caption">&lt;' + escape(caption) + '&gt;</span>' : '') +
         '</div>';
+      },
+      option_create: function(data, escape) {
+        return '<div class="create">' + I18n.t("添加") + ' <strong>' + escape(data.input) + '</strong>&hellip;</div>';
       }
     },
     createFilter: function(input) {
@@ -52,31 +55,32 @@ selectizeEmail = (method, params) => {
 
       return false;
     },
-    create: function(input) {
-      var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
-      if (match) {
-        return {
-          email : match[2],
-          name  : $.trim(match[1])
-        };
-      } else if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-        // let def = $.Deferred();
-        // bootbox.prompt({
-        //   size: "small",
-        //   title: "Name for " + input,
-        //   callback: def.resolve
-        // });
-        // return def.promise().then(function(result) {
-        //   console.log(result);
-        //   return {name: result, email: input};
-        // });
-        let result = prompt("Please enter the name for" + input);
-        return {name: result, email: input};
-      } else {
-        alert('Invalid email address.');
-        return false;
-      }
-    },
+    create: true,
+    // create: function(input) {
+    //   var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+    //   if (match) {
+    //     return {
+    //       email : match[2],
+    //       name  : $.trim(match[1])
+    //     };
+    //   } else if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+    //     // let def = $.Deferred();
+    //     // bootbox.prompt({
+    //     //   size: "small",
+    //     //   title: "Name for " + input,
+    //     //   callback: def.resolve
+    //     // });
+    //     // return def.promise().then(function(result) {
+    //     //   console.log(result);
+    //     //   return {name: result, email: input};
+    //     // });
+    //     let result = prompt("Please enter the name for" + input);
+    //     return {name: result, email: input};
+    //   } else {
+    //     alert('Invalid email address.');
+    //     return false;
+    //   }
+    // },
     load: function(query, callback) {
       if (!query.length) return callback();
 

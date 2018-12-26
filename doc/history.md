@@ -5,7 +5,8 @@
 - 频道管理（添加/修改/成员/日志）,保留原菜单形式
 - fix 用户修改profile不记录到用户管理日志
 - 修改 Users.profile.channel -> Users.profile.type: Users/Channels
-- fix 修改模板skin（不稳定）
+- fix 修改模板skin显示不稳定的情况（原因是没有等到user数据加载完成）
+- selectize i18n: create/option_create
 
 ## 12-24
 
