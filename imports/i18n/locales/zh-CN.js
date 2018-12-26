@@ -90,7 +90,10 @@ export const locale_zh_cn = {
   // paginate
   "Load More": "查看更多",
   // reports
+  "System Reports": "统计报表",
   "Reports": "报表",
   "Daily Messages Counts": "消息日统计",
-  "Hourly Message Counts": "消息分时统计"
+  "Hourly Messages Counts": "消息分时统计",
+  "Outgoing": "外发消息",
+  "Incoming": "接收消息"
 };

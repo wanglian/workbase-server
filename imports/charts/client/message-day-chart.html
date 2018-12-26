@@ -1,36 +1,41 @@
-<template name="MessageDayChart">
-  {{#contentFor "title"}}
-    <p class="navbar-text" style="color: white; font-weight: 600;">{{_ 'Reports'}}</p>
-  {{/contentFor}}
-
-  <section class="content">
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{_ 'Daily Message Counts'}}</h3>
-      </div>
-      <div class="box-body">
-        <div class="chart">
-          <canvas id="message-day-chart" width="400" height="135"></canvas>
+<template name="MessagesDailyChart">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'Daily Messages Counts'}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="chart">
+            <canvas id="message-day-chart" width="400" height="350"></canvas>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "Confirm"}}</button>
         </div>
       </div>
     </div>
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">{{_ 'Hourly Message Counts'}}</h3>
-      </div>
-      <div class="box-body">
-        <div class="chart">
-          <canvas id="message-hour-chart" width="400" height="135"></canvas>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 </template>
 
-<template name="ChartItems">
-  <li class="{{#if inRouter 'charts'}}active{{/if}}">
-    <a href="/charts">
-      <i class="fa fa-bar-chart"></i> <span>{{_ 'Reports'}}</span>
-    </a>
-  </li>
+<template name="MessagesHourlyChart">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'Hourly Messages Counts'}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="chart">
+            <canvas id="message-hour-chart" width="400" height="350"></canvas>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "Confirm"}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

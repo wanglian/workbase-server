@@ -3,9 +3,10 @@
 # 12-26
 
 - 添加Thread扩展配置details，控制是否显示Details栏。（TODO：控制Details显示区块）
-- “我的帐号”做成Thread扩展：展示登录成功/失败/退出日志，将个人设置改为Modal，做进“我的帐号”。登录订阅我的帐号信息(Thread)
+- “我的帐号”做成Thread扩展category=Account：展示登录成功/失败/退出日志，将个人设置改为Modal，做进“我的帐号”。登录订阅我的帐号信息(Thread)
 - fix onLogin会在每次连接触发，太多。改成用户主动密码登录时才记录
 - fix Channel的话题列表: category=Email。Thread类型增多，这里有点不好理解了，规则是频道里只有Email话题。
+- 报表做成Thread扩展category=Charts
 
 ## 12-25
 

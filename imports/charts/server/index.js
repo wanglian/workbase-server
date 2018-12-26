@@ -1,6 +1,18 @@
+import '../charts';
 import './message-records';
 
 import moment from 'moment';
+
+Meteor.startup(() => {
+  let admin = Instance.admin();
+  let thread = Threads.findOne({category: 'Charts'});
+  if (!thread) {
+    let threadId = Threads.create(admin, 'Charts', 'System Reports');
+    thread = Threads.findOne(threadId);
+  }
+
+  Threads.ensureMember(thread, admin);
+});
 
 Messages.after.insert(function(userId, doc) {
   // let m = moment.utc(doc.createdAt);
