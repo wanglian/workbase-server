@@ -6,7 +6,7 @@ ApplicationController = RouteController.extend({
     this.subscribe("roster");
   },
   waitOn: function() {
-    if (Meteor.userId()) {
+    if (Meteor.user()) {
       return this.subscribe('instance');
     } else {
       this.redirect('/login');
