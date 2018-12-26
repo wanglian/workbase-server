@@ -1,9 +1,11 @@
 import './avatar-files';
 import './profile';
 
-Router.route('/profile', function () {
-  this.layout('ApplicationLayout');
-  this.render('Profile');
-}, {
+ProfileController = ApplicationController.extend({
+  template: 'Profile'
+});
+
+Router.route('/profile', {
   name: 'profile',
+  controller: 'ProfileController'
 });

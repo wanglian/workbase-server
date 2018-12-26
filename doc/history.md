@@ -8,6 +8,7 @@
 - fix 修改模板skin显示不稳定的情况（原因是没有等到user数据加载完成）
 - selectize i18n: create/option_create
 - gallery查看图片
+- 统一使用Router Controller，小屏幕下自动关闭左边菜单栏
 
 ## 12-24
 

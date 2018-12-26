@@ -5,11 +5,14 @@ ApplicationController = RouteController.extend({
   subscriptions() {
     this.subscribe("roster");
   },
-  waitOn: function() {
+  waitOn() {
     if (Meteor.user()) {
       return this.subscribe('instance');
     } else {
       this.redirect('/login');
     }
+  },
+  onAfterAction() {
+    $('body').removeClass('sidebar-open');
   }
 });
