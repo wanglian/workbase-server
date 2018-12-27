@@ -32,6 +32,9 @@ Users.helpers({
   address() {
     return `${this.name()} <${this.email()}>`;
   },
+  signature() {
+    return this.profile.signature || `${this.name()}\r\n${this.email()}`;
+  },
   skin() {
     return this.profile.skin || 'blue';
     // let skins = ['blue', 'blue-light', 'purple', 'purple-light', 'black', 'black-light', 'red', 'red-light', 'yellow', 'yellow-light'];

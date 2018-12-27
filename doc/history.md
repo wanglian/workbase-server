@@ -9,6 +9,7 @@
 - 报表做成Thread扩展category=Charts
 - fix i18n: 集中各模块设置
 - 统一话题下文件查看（gallery）
+- 外发邮件带上签名
 
 ## 12-25
 

@@ -1,5 +1,9 @@
 const request = require('request');
 
+const signature = (user, content) => {
+  return content + '\r\n\r\n' + user.signature();
+};
+
 Mailgun = {
   api_key: Meteor.settings.mailgun.key,
   domain:  Meteor.settings.public.domain,
@@ -24,7 +28,7 @@ Mailgun.send = (message) => {
     case 'image':
       let image = message.image();
       _.extend(params, {
-        html: `<img src="cid:${image.name}.${image.extension}"/>`,
+        html: signature(user, `<img src="cid:${image.name}.${image.extension}"/>`),
         inline: new Mailgun.client.Attachment({
           data: image.path,
           filename: image.name,
@@ -36,7 +40,7 @@ Mailgun.send = (message) => {
       break;
     default:
       _.extend(params, {
-        text: message.content // Markdown(message.content): 需要html邮件模板
+        text: signature(user, message.content) // Markdown(message.content): 需要html邮件模板
       });
     }
 
