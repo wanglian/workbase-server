@@ -33,13 +33,14 @@ InboxController = ApplicationController.extend({
     _.extend(query, {limit: this.limit() + this.perPage});
     let nextPath = this.route.path(this.params, {query});
     let hasMore = Counts.get('threads') > this.limit();
+    let thread = this.thread();
     return {
       threads:    Threads.find({}, {sort: {updatedAt: -1}}),
-      thread:     this.thread(),
+      thread:     thread,
       ready:      this.threadsSub.ready(),
       nextPath:   hasMore ? nextPath : null,
-      hasRight:   !!this.threadId(),
-      hasSidebar: !!this.params.query.detail
+      hasRight:   !!thread,
+      hasSidebar: !!thread && thread.showDetails && !!this.params.query.detail
     };
   }
 });

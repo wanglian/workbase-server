@@ -45,6 +45,10 @@ Threads.helpers({
     let c = ThreadCategories.get(this.category);
     return c && c.details;
   },
+  details() {
+    let c = ThreadCategories.get(this.category);
+    return c && c.details;
+  },
   actions() {
     let c = ThreadCategories.get(this.category);
     return typeof(c.actions) == "function" ? c.actions() : [];

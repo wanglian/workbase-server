@@ -5,6 +5,12 @@ import SimpleSchema from 'simpl-schema';
 import Swal from 'sweetalert2';
 
 Template.ThreadDetail.helpers({
+  threadDetailTemplate() {
+    return `ThreadDetail${this}`;
+  }
+});
+
+Template.ThreadDetailMembers.helpers({
   showAddMember() {
     let thread = this;
     // let currentUser = Meteor.user();
@@ -13,7 +19,7 @@ Template.ThreadDetail.helpers({
   }
 });
 
-Template.ThreadDetail.events({
+Template.ThreadDetailMembers.events({
   "click #btn-add-member"(e, t) {
     e.stopPropagation();
     Modal.show('AddThreadMemberModal', this, {

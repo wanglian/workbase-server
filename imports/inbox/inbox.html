@@ -10,7 +10,9 @@
 
     {{> contentFor region="header" template="ThreadHeader" data=thread}}
     {{> contentFor region="right" template="Thread" data=thread}}
-    {{> contentFor region="sidebar" template="ThreadDetail" data=thread}}
+    {{#if hasSidebar}}
+      {{> contentFor region="sidebar" template="ThreadDetail" data=thread}}
+    {{/if}}
   {{/Layout}}
 </template>
 

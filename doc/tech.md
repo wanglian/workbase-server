@@ -74,6 +74,7 @@ email.match(/noreply|no_reply|no-reply|do-not-reply|do_not_reply/i)
 - Account 我的帐号
 - Roster 用户管理
 - Channel 频道管理
+- Charts 报表
 
 ### 菜单
 

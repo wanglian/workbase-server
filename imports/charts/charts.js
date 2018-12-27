@@ -4,7 +4,7 @@ ThreadCategories.add("Charts", {
   title(thread, detail=false) { // client only
     return I18n.t(thread.subject);
   },
-  details: true,
+  details: ['Members'],
   actions() {
     return [
       {

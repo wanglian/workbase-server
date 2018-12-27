@@ -1,6 +1,10 @@
 # 开发进展
 
-# 12-26
+## 12-27
+
+- Thread扩展details配置项 About/Members
+
+## 12-26
 
 - 添加Thread扩展配置details，控制是否显示Details栏。（TODO：控制Details显示区块）
 - “我的帐号”做成Thread扩展category=Account：展示登录成功/失败/退出日志，将个人设置改为Modal，做进“我的帐号”。登录订阅我的帐号信息(Thread)
