@@ -13,6 +13,13 @@ blockquote {
   border-left: 4px solid #ddd;
 }
 
+/* fontawesome */
+.fa-1-2x {
+  font-size: 1.2em;
+  padding-top: 2px;
+  color: #5A5A5A;
+}
+
 /* customize fancybox */
 .fancybox-slide--iframe .fancybox-content {
   max-height : 100%;
