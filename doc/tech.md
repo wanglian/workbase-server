@@ -116,3 +116,10 @@ Template.RosterThreadActions.events({
   }
 });
 ```
+
+## 搜索
+
+点搜索框弹出modal
+先实现搜索主题
+实现话题内搜索
+最后实现全文检索

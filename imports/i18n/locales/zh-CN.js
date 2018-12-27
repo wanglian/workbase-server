@@ -10,6 +10,7 @@ export const locale_zh_cn = {
   "Save": "保存",
   "Download": "下载",
   "View": "查看",
+  "Cancel": "取消",
   // Time
   "Today": "今天",
   "Yesterday": "昨天",
@@ -89,6 +90,8 @@ export const locale_zh_cn = {
   "Confirm": "确定",
   // paginate
   "Load More": "查看更多",
+  // search
+  "Search": "搜索",
   // reports
   "System Reports": "统计报表",
   "Reports": "报表",

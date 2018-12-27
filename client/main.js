@@ -15,3 +15,4 @@ import '/imports/channel/client';
 import '/imports/roster/client';
 import '/imports/charts/client';
 import '/imports/cordova/client';
+import '/imports/search/client';

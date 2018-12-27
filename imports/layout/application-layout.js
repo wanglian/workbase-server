@@ -19,6 +19,13 @@ Template.ApplicationLayout.events({
       keyboard: false
     });
   },
+  "focus #search-form input[type=text]"(e, t) {
+    e.preventDefault();
+    Modal.show("SearchModal", null, {
+      backdrop: 'static',
+      keyboard: false
+    });
+  },
   "click #btn-sign-out"(e, t) {
     e.preventDefault();
     // history.go(-1);

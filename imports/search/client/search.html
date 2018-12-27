@@ -1,0 +1,19 @@
+<template name="SearchModal">
+  <div class="modal fade modal-rounded full-screen">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="{{_ 'Search'}}">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" data-dismiss="modal" aria-label="Close">{{_ 'Cancel'}}</button>
+            </span>
+          </div>
+        </div>
+        <ul class="list-group threads" style="height: calc(100vh - 65px); overflow: scroll;">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
