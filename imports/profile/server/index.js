@@ -39,6 +39,7 @@ const logAccountAction = (action, attempt) => {
 };
 
 Accounts.onLogin(function(attempt) {
+  // console.log("on login ..");
   // logAccountAction('Login', attempt);
 });
 

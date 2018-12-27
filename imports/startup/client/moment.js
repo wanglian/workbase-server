@@ -1,10 +1,8 @@
 let moment = require('moment');
 require('moment/locale/zh-cn');
 
-// i18n
-moment.locale(currentLanguage().toLowerCase());
-
 Template.registerHelper('formatSimpleDate', (date) => {
+  console.log(moment.locale());
   return moment(date).calendar(null, {
     sameDay: 'HH:mm',
     nextDay: `[${I18n.t('Tomorrow')}]`,
