@@ -21,8 +21,3 @@ Template.registerHelper('isMe', (user) => {
 Template.registerHelper('inRouter', function(router) {
   return Router.current().route.getName() === router;
 });
-
-currentLanguage = () => {
-  return window.navigator.language;
-};
-Template.registerHelper('currentLanguage', currentLanguage);

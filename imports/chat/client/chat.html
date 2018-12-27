@@ -6,11 +6,11 @@
   <div class="thread-title">
     <small class="pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
     <div class="thread-subject text-ellipsis">{{chat.name}}</div>
-    <div class="message-summary text-ellipsis">
-        {{#if lastMessage}}
-          {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
-          {{lastMessage.summary}}
-        {{/if}}
+    <div class="message-summary text-ellipsis text-muted">
+      {{#if lastMessage}}
+        {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
+        {{lastMessage.summary}}
+      {{/if}}
     </div>
   </div>
 </template>

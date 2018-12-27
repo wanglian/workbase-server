@@ -25,7 +25,7 @@
   <div class="thread-title">
     <small class="pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
     <div class="thread-subject text-ellipsis">{{title}}</div>
-    <div class="message-summary text-ellipsis">
+    <div class="message-summary text-ellipsis text-muted">
       {{#if lastMessage}}
         {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
         {{lastMessage.summary}}
