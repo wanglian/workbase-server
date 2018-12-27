@@ -8,6 +8,7 @@
 - fix Channel的话题列表: category=Email。Thread类型增多，这里有点不好理解了，规则是频道里只有Email话题。
 - 报表做成Thread扩展category=Charts
 - fix i18n: 集中各模块设置
+- 统一话题下文件查看（gallery）
 
 ## 12-25
 
