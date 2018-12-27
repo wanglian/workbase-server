@@ -1,5 +1,5 @@
 // - threadId
-// - userType: user, contact
+// - userType: Users, Contacts
 // - userId
 // - internal: boolean
 // - content
@@ -9,7 +9,34 @@
 // - summary
 // - emailId
 // - email: from, to, cc, time
+import { Index, MinimongoEngine } from 'meteor/easy:search'
+
 Messages = new Mongo.Collection('messages');
+
+MessagesIndex = new Index({
+  collection: Messages,
+  fields: ['content'],
+  engine: new MinimongoEngine({
+    selector(searchObject, options, aggregation) {
+      // retrieve the default selector
+      const selector = this.defaultConfiguration().selector(searchObject, options, aggregation);
+
+      // options.search.userId contains the userId of the logged in user
+      // selector.userType = 'Users';
+      // selector.userId = options.search.userId;
+
+      // filter for thread
+      if (options.search.props.threadId) {
+        selector.threadId = options.search.props.threadId;
+      }
+
+      return selector;
+    },
+    transform(doc) {
+      return Messages.findOne(doc._id);
+    }
+  })
+});
 
 Messages.helpers({
   user() {

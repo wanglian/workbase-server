@@ -26,6 +26,16 @@
   </div>
 </template>
 
+<template name="ThreadDetailSearch">
+  <div class="panel flat-panel">
+    <div class="flat-panel-heading">
+      <div class="flat-panel-title" id="btn-search">
+        <i class="fa fa-search"></i>{{_ 'Search Messages'}}
+        <i class="fa fa-chevron-right pull-right text-muted hide" style="font-size:22px;"></i></div>
+    </div>
+  </div>
+</template>
+
 <template name="ThreadDetailMembers">
   <div class="panel flat-panel">
     <div class="flat-panel-heading">
@@ -83,6 +93,28 @@
             <button type="submit" class="btn btn-primary">{{_ "Add"}}</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
           {{/autoForm}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="ThreadSearchModal">
+  <div class="modal fade full-screen">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="input-group">
+            {{> EasySearch.Input index=messagesIndex attributes=inputAttributes event='enter' noDocumentsOnEmpty=true}}
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" data-dismiss="modal" aria-label="Close">{{_ 'Cancel'}}</button>
+            </span>
+          </div>
+        </div>
+        <div class="modal-body messages" style="height: calc(100vh - 65px); overflow: scroll; padding: 0;">
+          {{#EasySearch.Each index=messagesIndex}}
+            {{> Message}}
+          {{/EasySearch.Each}}
         </div>
       </div>
     </div>
