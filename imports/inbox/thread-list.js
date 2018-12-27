@@ -11,7 +11,7 @@ Template.ThreadList.onRendered(function() {
   });
 });
 
-Template.ThreadList.helpers({
+Template.ThreadListItemTemplate.helpers({
   threadPath() {
     let currentRoute = Router.current();
     let params = _.defaults({_id: this._id}, currentRoute.params);

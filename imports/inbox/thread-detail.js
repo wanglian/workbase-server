@@ -10,6 +10,16 @@ Template.ThreadDetail.helpers({
   }
 });
 
+Template.ThreadDetailSearch.events({
+  "click #btn-search"(e, t) {
+    e.preventDefault();
+    Modal.show('ThreadSearchModal', this, {
+      backdrop: 'static',
+      keyboard: false
+    });
+  }
+});
+
 Template.ThreadDetailMembers.helpers({
   showAddMember() {
     let thread = this;
@@ -101,39 +111,5 @@ AutoForm.hooks({
         this.done();
       });
     }
-  }
-});
-
-Template.ThreadDetailSearch.events({
-  "click #btn-search"(e, t) {
-    e.preventDefault();
-    Modal.show('ThreadSearchModal', this, {
-      backdrop: 'static',
-      keyboard: false
-    });
-  }
-});
-
-Template.ThreadSearchModal.onCreated(function() {
-  // this.search = new ReactiveVar(false);
-});
-
-Template.ThreadSearchModal.onRendered(function() {
-  // this.autorun(() => {
-  //   let search = this.search.get();
-  //   this.subscribe("thread.search", search);
-  // });
-});
-
-Template.ThreadSearchModal.helpers({
-  messagesIndex: () => MessagesIndex,
-  inputAttributes() {
-    return {class: 'form-control', placeholder: I18n.t("Search")};
-  }
-});
-
-Template.ThreadSearchModal.events({
-  "focus input[type=text]"(e, t) {
-    MessagesIndex.getComponentMethods().addProps('threadId', t.data._id);
   }
 });

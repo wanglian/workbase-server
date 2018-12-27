@@ -3,6 +3,8 @@
 ## 12-27
 
 - Thread扩展details配置项 About/Members
+- 话题内搜索消息
+- 按主题搜索话题
 
 ## 12-26
 

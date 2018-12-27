@@ -67,3 +67,4 @@ References
 - [Meteor Template helpers](https://github.com/VeliovGroup/Meteor-Template-helpers/)
 - [i18next](https://www.i18next.com/)
 - [gm](http://aheckmann.github.io/gm/docs.html)
+- [Meteor Easy Search](http://matteodem.github.io/meteor-easy-search/getting-started/)

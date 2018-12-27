@@ -9,14 +9,16 @@
 // - summary
 // - emailId
 // - email: from, to, cc, time
-import { Index, MinimongoEngine } from 'meteor/easy:search'
+import { Index, MinimongoEngine } from 'meteor/easy:search';
 
 Messages = new Mongo.Collection('messages');
 
 MessagesIndex = new Index({
   collection: Messages,
   fields: ['content'],
+  defaultSearchOptions: {limit: 15},
   engine: new MinimongoEngine({
+    sort: () => { createdAt: -1 },
     selector(searchObject, options, aggregation) {
       // retrieve the default selector
       const selector = this.defaultConfiguration().selector(searchObject, options, aggregation);

@@ -1,9 +1,7 @@
 <template name="ThreadList">
   <ul class="list-group threads">
     {{#each threads}}
-      <a href="{{threadPath}}" class="list-group-item clearfix thread" id="{{_id}}">
-        {{> Template.dynamic template=listItemTemplate}}
-      </a>
+      {{> ThreadListItemTemplate}}
     {{/each}}
     {{#if ready}}
       {{#if nextPath}}
@@ -15,6 +13,12 @@
       <span class="list-group-item text-center text-muted thread small"><i class="fa fa-spinner fa-spin"></i></span>
     {{/if}}
   </ul>
+</template>
+
+<template name="ThreadListItemTemplate">
+  <a href="{{threadPath}}" class="list-group-item clearfix thread" id="{{_id}}">
+    {{> Template.dynamic template=listItemTemplate}}
+  </a>
 </template>
 
 <template name="ThreadListItem">
