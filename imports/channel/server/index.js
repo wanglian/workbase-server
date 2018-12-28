@@ -67,10 +67,11 @@ ChannelUsers.after.insert(function(userId, doc) {
   let admin = Meteor.user();
   if (admin) {
     let thread = Threads.findOne({category: 'Channel'});
+    let channel = Channels.findOne(doc.channelId);
     let member = this.transform();
     Threads.addMessage(thread, admin, {
       contentType: 'log',
-      content: `Add Channel Member: \r\n Channel: ${thread.user().name()} (${thread.user().email()}) \r\n User: ${member.user().name()} (${member.user().email()})`
+      content: `Add Channel Member: \r\n Channel: ${channel.name()} (${channel.email()}) \r\n User: ${member.user().name()} (${member.user().email()})`
     });
   }
 });
@@ -79,10 +80,11 @@ ChannelUsers.after.remove(function(userId, doc) {
   let admin = Meteor.user();
   if (admin) {
     let thread = Threads.findOne({category: 'Channel'});
+    let channel = Channels.findOne(doc.channelId);
     let member = this.transform();
     Threads.addMessage(thread, admin, {
       contentType: 'log',
-      content: `Remove Channel Member: \r\n Channel: ${thread.user().name()} (${thread.user().email()}) \r\n User: ${member.user().name()} (${member.user().email()})`
+      content: `Remove Channel Member: \r\n Channel: ${channel.name()} (${channel.email()}) \r\n User: ${member.user().name()} (${member.user().email()})`
     });
   }
 });
