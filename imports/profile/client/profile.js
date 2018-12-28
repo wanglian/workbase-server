@@ -114,10 +114,12 @@ AutoForm.hooks({
             type: "error"
           });
         } else {
-          Swal({
-            title: I18n.t("Profile Saved"),
-            type: "info"
-          });
+          if (res) {
+            Swal({
+              title: I18n.t("Profile Saved"),
+              type: "info"
+            });
+          }
         }
         Modal.hide('ProfileModal');
         this.done();

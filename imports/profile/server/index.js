@@ -10,12 +10,18 @@ Meteor.methods({
     });
 
     let user = Meteor.users.findOne(this.userId);
-    let profile = _.omitBy(params, (v, k, o) => { return v === user.profile[k]});
-    Users.direct.update(this.userId, {$set: {profile}});
+    let profile = user.profile;
+    let changedSet = _.omitBy(params, (v, k, o) => { return v === profile[k]});
+    if (!_.isEmpty(changedSet)) {
+      _.extend(profile, changedSet);
+      Users.direct.update(this.userId, {$set: {profile}});
 
-    // log
-    logAccountAction(user, `Update Profile: \r\n ${JSON.stringify(profile)}`);
-    return true;
+      // log
+      logAccountAction(user, `Update Profile: \r\n ${JSON.stringify(changedSet)}`);
+      return true;
+    }
+
+    return false;
   },
   updateLogin() {
     let user = Users.findOne(this.userId);
