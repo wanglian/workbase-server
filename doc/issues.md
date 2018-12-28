@@ -1,9 +1,18 @@
 
-- i18n问题：产品环境浏览器正常，APP上week不能显示中文
+- APP个人设置Modal，不能显示底部按钮。
+
+WEB没问题。
+
+- APP样式问题：搜索框不能固定在顶部，导致体验差
+
+在开发环境，浏览器不能复现。
+
+- i18n问题：产品环境浏览器正常，APP上week不能显示中文(done)
 
 发现问题是：Chrome正常，Safari不正常。因为iOS APP用的是Safari。
+原因是，i18n没有做完整，除了自己使用的i18next，momentjs/status等都要统一处理。已解决
 
-- Markdown链接在新窗口打开
+- Markdown链接在新窗口打开(done)
 
 https://github.com/markedjs/marked/pull/1371
 
@@ -28,16 +37,14 @@ https://css-tricks.com/guide-responsive-friendly-css-columns/
 
 直接从iphone上传的
 
-- APP Hot Code Push问题
 
-如果APP统一上架应用商店，但实际上需要连接各自的Server，并且从各自的Server上获取新代码。
-
-- 产品环境下用户切换时右侧内容不变
+- 产品环境下用户切换时右侧内容不变(done)
 
 只有一种情况：从会话视图切换到本人（非会话视图，如果会话视图存在则没问题）
-开发环境没问题
+开发环境没问题。
+已更改方案，避免此问题。
 
-- ViewerJS显示文件名问题
+- ViewerJS显示文件名问题(done)
 
 实现保存的文件名与原文件名是不一致的，而ViewerJS显示的是路径中的文件名。
 解决方案是修改模板
@@ -46,7 +53,7 @@ https://css-tricks.com/guide-responsive-friendly-css-columns/
 <div id = "documentName" style="display:none;"></div>
 ```
 
-- 外发inline图片文件名问题
+- 外发inline图片文件名问题(done)
 
 因为文件保存时使用的随机ID作为文件名，所以在inline中cid设置为这个随机ID。但是这样接收方就丢失了文件名信息。
 解决方案是同附件处理，mailgun-js提供了接口。
@@ -61,7 +68,7 @@ inline: new Mailgun.client.Attachment({
 }),
 ```
 
-- 旋转数组
+- 旋转数组(done)
 ```
 const rotateArray = (array, n) => {
   let a = _.clone(array);
@@ -79,7 +86,7 @@ const rotateArray = (array, n) => {
 };
 ```
 
-- 转发gmail邮件过来报错
+- 转发gmail邮件过来报错(done)
 ```
 W20181213-20:30:49.597(-5)? (STDERR) Error: request entity too large
 W20181213-20:30:49.601(-5)? (STDERR)     at makeError (/Users/wanglian/.meteor/packages/iron_router/.1.1.2.rl6539.wj6hk++os+web.browser+web.cordova/npm/node_modules/body-parser/node_modules/raw-body/index.js:154:15)

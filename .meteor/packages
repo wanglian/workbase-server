@@ -23,7 +23,6 @@ check
 session
 accounts-ui
 accounts-password
-underscore
 random
 
 aldeed:collection2

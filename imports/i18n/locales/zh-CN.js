@@ -92,6 +92,7 @@ export const locale_zh_cn = {
   "Load More": "查看更多",
   // search
   "Search": "搜索",
+  "Search Subjects": "搜索主题",
   "Search Messages": "搜索消息",
   // reports
   "System Reports": "统计报表",

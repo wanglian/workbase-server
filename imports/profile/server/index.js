@@ -9,23 +9,22 @@ Meteor.methods({
       avatar:    Match.Maybe(String)
     });
 
-    let userId = this.userId;
-    let user = Meteor.users.findOne(userId);
-    let profile = user.profile;
-    _.extend(profile, params);
-    return Users.direct.update(userId, {$set: {profile}});
+    let user = Meteor.users.findOne(this.userId);
+    let profile = _.omitBy(params, (v, k, o) => { return v === user.profile[k]});
+    Users.direct.update(this.userId, {$set: {profile}});
+
+    // log
+    logAccountAction(user, `Update Profile: \r\n ${JSON.stringify(profile)}`);
+    return true;
   },
   updateLogin() {
-    logAccountAction('Login', {
-      user: Users.findOne(this.userId),
-      connection: this.connection
-    });
+    let user = Users.findOne(this.userId);
+    let connection = this.connection;
+    logAccountAction(user, `Login from ${connection.clientAddress}: \r\n ${JSON.stringify(connection.httpHeaders)}`);
   }
 });
 
-const logAccountAction = (action, attempt) => {
-  let user = Users.findOne(attempt.user._id);
-  let connection = attempt.connection;
+const logAccountAction = (user, content) => {
   // Account
   let thread = Threads.findOne({category: 'Account', userId: user._id});
   if (!thread) {
@@ -33,9 +32,7 @@ const logAccountAction = (action, attempt) => {
     thread = Threads.findOne(threadId);
     Threads.ensureMember(thread, user);
   }
-  Threads.addMessage(thread, user, {
-    content: `${action} from ${attempt.connection.clientAddress}: \r\n ${JSON.stringify(attempt.connection.httpHeaders)}`
-  });
+  Threads.addMessage(thread, user, {content});
 };
 
 Accounts.onLogin(function(attempt) {
@@ -44,9 +41,13 @@ Accounts.onLogin(function(attempt) {
 });
 
 Accounts.onLogout(function(attempt) {
-  logAccountAction('Logout', attempt);
+  let user = Users.findOne(attempt.user._id);
+  let connection = attempt.connection;
+  logAccountAction(user, `Logout from ${connection.clientAddress}: \r\n ${JSON.stringify(connection.httpHeaders)}`);
 });
 
 Accounts.onLoginFailure(function(attempt) {
-  logAccountAction('Failed Login', attempt);
+  let user = Users.findOne(attempt.user._id);
+  let connection = attempt.connection;
+  logAccountAction(user, `Failed Login from ${connection.clientAddress}: \r\n ${JSON.stringify(connection.httpHeaders)}`);
 });

@@ -59,6 +59,7 @@ References
 - [autoform](https://github.com/aldeed/meteor-autoform)
 - [iron-router](http://iron-meteor.github.io/iron-router/)
 - [underscore](https://underscorejs.org)
+- [lodash](https://lodash.com/docs/4.17.11)
 - [momentjs](https://momentjs.com/docs/)
 - [chartjs](https://www.chartjs.org/)
 - [Meteor Files](https://github.com/VeliovGroup/Meteor-Files/wiki)

@@ -58,7 +58,7 @@ openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert workbase-pus
 
 ## Issues
 
-### 头像图片显示异常，css失去控制
+### 头像图片显示异常，css失去控制(done)
 
 https://github.com/meteor-utilities/avatar
 
@@ -68,7 +68,7 @@ However, since the CSS isn't generated when you build the project, you won't hav
 
 将生成的CSS放在项目文件中
 
-### Hot Code Push not working?
+### Hot Code Push not working?(done)
 
 ```
 2018-12-23 11:13:26.027477-0500 WorkBase[36883:7113363] Using APNS Notification
@@ -82,3 +82,10 @@ However, since the CSS isn't generated when you build the project, you won't hav
 ```
 https://github.com/meteor/cordova-plugin-meteor-webapp/pull/59#issuecomment-439452835
 https://stackoverflow.com/questions/53857422/hot-code-push-broken-in-meteor-1-8-cordova-apps-on-ios
+
+### APP Hot Code Push问题
+
+如果APP统一上架应用商店，但实际上需要连接各自的Server，并且从各自的Server上获取新代码。
+
+
+### 打开本地相册，多了一层

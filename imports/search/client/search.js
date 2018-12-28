@@ -7,7 +7,7 @@ Template.SearchModal.onRendered(function() {
 Template.SearchModal.helpers({
   threadsIndex: () => ThreadsIndex,
   inputAttributes() {
-    return {class: 'form-control', placeholder: I18n.t("Search")};
+    return {class: 'form-control', placeholder: I18n.t("Search Subjects")};
   }
 });
 
@@ -24,7 +24,7 @@ Template.ThreadSearchModal.onRendered(function() {
 Template.ThreadSearchModal.helpers({
   messagesIndex: () => MessagesIndex,
   inputAttributes() {
-    return {class: 'form-control', placeholder: I18n.t("Search")};
+    return {class: 'form-control', placeholder: I18n.t("Search Messages")};
   }
 });
 

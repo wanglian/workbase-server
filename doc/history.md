@@ -1,5 +1,10 @@
 # 开发进展
 
+## 12-28
+
+- 使用lodash替代underscore
+- 用户设置加上日志
+
 ## 12-27
 
 - Thread扩展details配置项 About/Members
