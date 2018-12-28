@@ -1,7 +1,9 @@
 import './search.html';
 
 Template.SearchModal.onRendered(function() {
-  $('.modal input[type=text]').focus();
+  this.$('.modal').on('shown.bs.modal', function (e) {
+    $('.modal input[type=text]').focus();
+  });
 });
 
 Template.SearchModal.helpers({
@@ -24,7 +26,9 @@ Template.SearchModal.events({
 });
 
 Template.ThreadSearchModal.onRendered(function() {
-  $('.modal input[type=text]').focus();
+  this.$('.modal').on('shown.bs.modal', function (e) {
+    $('.modal input[type=text]').focus();
+  });
 });
 
 Template.ThreadSearchModal.helpers({
