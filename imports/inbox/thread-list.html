@@ -16,7 +16,7 @@
 </template>
 
 <template name="ThreadListItemTemplate">
-  <a href="{{pathFor 'inbox' _id=_id}}" class="list-group-item clearfix thread" id="{{_id}}">
+  <a href="{{threadPath}}" class="list-group-item clearfix thread" id="{{_id}}">
     {{> Template.dynamic template=listItemTemplate}}
   </a>
 </template>
