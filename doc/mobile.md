@@ -89,3 +89,29 @@ https://stackoverflow.com/questions/53857422/hot-code-push-broken-in-meteor-1-8-
 
 
 ### 打开本地相册，多了一层
+
+
+### APP个人设置Modal，不能显示底部按钮
+
+WEB没问题。
+
+### APP样式问题：搜索框不能固定在顶部，导致体验差
+
+在开发环境，浏览器不能复现。
+
+### 消息里的超链接打不开(done)
+
+考虑使用
+https://github.com/apache/cordova-plugin-inappbrowser
+
+```
+let renderer = new Markdown.Renderer();
+renderer.link = function(href, title, text) {
+  href = `javascript: window.open('${href}', '_blank')`;
+  return Markdown.Renderer.prototype.link.call(this, href, title, text);
+};
+
+Markdown.setOptions({
+  renderer: renderer
+});
+```

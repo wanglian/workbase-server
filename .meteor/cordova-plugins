@@ -1,5 +1,6 @@
 cordova-plugin-camera@4.0.2
 cordova-plugin-device@2.0.2
+cordova-plugin-inappbrowser@3.0.0
 cordova-plugin-meteor-webapp@file:///Users/wanglian/Workspace/weaworking/cordova-plugin-meteor-webapp
 cordova-plugin-splashscreen@5.0.2
 cordova-plugin-statusbar@2.4.2

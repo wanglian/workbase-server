@@ -33,6 +33,10 @@ Meteor.startup(function() {
       error => { console.error(error); }
     );
 
+    document.addEventListener("deviceready", () => {
+      window.open = cordova.InAppBrowser.open;
+    }, false);
+
     // badge
     Tracker.autorun(() => {
       let count = Counts.get('count-unread-inbox');

@@ -53,7 +53,9 @@ Accounts.onLogout(function(attempt) {
 });
 
 Accounts.onLoginFailure(function(attempt) {
-  let user = Users.findOne(attempt.user._id);
-  let connection = attempt.connection;
-  logAccountAction(user, `Failed Login from ${connection.clientAddress}: \r\n ${JSON.stringify(connection.httpHeaders)}`);
+  if (attempt.user) {
+    let user = Users.findOne(attempt.user._id);
+    let connection = attempt.connection;
+    logAccountAction(user, `Failed Login from ${connection.clientAddress}: \r\n ${JSON.stringify(connection.httpHeaders)}`);
+  }
 });
