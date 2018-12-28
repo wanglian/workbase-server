@@ -13,7 +13,7 @@
         <div class="modal-body" style="height: calc(100vh - 65px); overflow: scroll; padding: 0;">
           <ul class="list-group threads">
             {{#EasySearch.Each index=threadsIndex}}
-              {{> ThreadListItemTemplate}}
+              {{> ThreadListItemTemplate thread}}
             {{/EasySearch.Each}}
           </ul>
         </div>

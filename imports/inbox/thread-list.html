@@ -16,7 +16,7 @@
 </template>
 
 <template name="ThreadListItemTemplate">
-  <a href="{{threadPath}}" class="list-group-item clearfix thread" id="{{_id}}">
+  <a href="{{pathFor 'inbox' _id=_id}}" class="list-group-item clearfix thread" id="{{_id}}">
     {{> Template.dynamic template=listItemTemplate}}
   </a>
 </template>
@@ -31,7 +31,9 @@
     <div class="thread-subject text-ellipsis">{{title}}</div>
     <div class="message-summary text-ellipsis text-muted">
       {{#if lastMessage}}
-        {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
+        {{#if lastMessage.user}}
+          {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
+        {{/if}}
         {{lastMessage.summary}}
       {{/if}}
     </div>

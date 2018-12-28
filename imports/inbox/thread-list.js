@@ -12,12 +12,12 @@ Template.ThreadList.onRendered(function() {
 });
 
 Template.ThreadListItemTemplate.helpers({
-  threadPath() {
-    let currentRoute = Router.current();
-    let params = _.defaults({_id: this._id}, currentRoute.params);
-    let query = currentRoute.params.query;
-    return currentRoute.route.path(params, {query});
-  },
+  // threadPath() {
+  //   let currentRoute = Router.current();
+  //   let params = _.defaults({_id: this._id}, currentRoute.params);
+  //   let query = currentRoute.params.query;
+  //   return currentRoute.route.path(params, {query});
+  // },
   listItemTemplate() {
     let tmpl = `${this.category}ListItem`;
     return eval(`Template.${tmpl}`) ? tmpl : 'ThreadListItem';

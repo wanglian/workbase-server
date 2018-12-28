@@ -8,6 +8,12 @@ Template.SearchModal.helpers({
   threadsIndex: () => ThreadsIndex,
   inputAttributes() {
     return {class: 'form-control', placeholder: I18n.t("Search Subjects")};
+  },
+  thread() {
+    // to reuse thread template
+    let doc = this;
+    doc._id = doc.__originalId;
+    return doc;
   }
 });
 

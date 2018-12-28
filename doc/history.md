@@ -4,6 +4,7 @@
 
 - 使用lodash替代underscore
 - 用户设置加上日志
+- fix search: 使用MongoDBEngine
 
 ## 12-27
 
