@@ -6,33 +6,7 @@
 // - lastMessageId
 // - createdAt
 // - updatedAt
-import { Index, MinimongoEngine } from 'meteor/easy:search';
-
 Threads = new Mongo.Collection('threads');
-
-ThreadsIndex = new Index({
-  collection: Threads,
-  fields: ['subject'],
-  defaultSearchOptions: {limit: 15},
-  engine: new MinimongoEngine({
-    sort: () => { updatedAt: -1 },
-    selector(searchObject, options, aggregation) {
-      // retrieve the default selector
-      const selector = this.defaultConfiguration().selector(searchObject, options, aggregation);
-
-      // options.search.userId contains the userId of the logged in user
-      // selector.userType = 'Users';
-      // selector.userId = options.search.userId;
-      let threadIds = ThreadUsers.find({userType: 'Users', userId: options.search.userId}).map(tu => tu.threadId);
-      selector._id = {$in: threadIds};
-      console.log(selector);
-      return selector;
-    },
-    transform(doc) {
-      return Threads.findOne(doc._id);
-    }
-  })
-});
 
 Threads.helpers({
   user() {
