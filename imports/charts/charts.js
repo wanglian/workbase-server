@@ -12,8 +12,7 @@ ThreadCategories.add("Charts", {
         icon: "fa fa-bar-chart",
         action() {
           Modal.show('MessagesDailyChart', null, {
-            backdrop: 'static',
-            keyboard: false
+            backdrop: 'static'
           });
         }
       },
@@ -22,8 +21,7 @@ ThreadCategories.add("Charts", {
         icon: "fa fa-bar-chart",
         action() {
           Modal.show('MessagesHourlyChart', null, {
-            backdrop: 'static',
-            keyboard: false
+            backdrop: 'static'
           });
         }
       }

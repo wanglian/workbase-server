@@ -15,16 +15,14 @@ Template.ApplicationLayout.events({
   "click #btn-send-email"(e, t) {
     e.preventDefault();
     Modal.show("SendEmailModal", null, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   },
   "focus #search-form input[name=search]"(e, t) {
     e.preventDefault();
     $(e.target).blur();
     Modal.show("SearchModal", null, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   },
   "click #btn-sign-out"(e, t) {

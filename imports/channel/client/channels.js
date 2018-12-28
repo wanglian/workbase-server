@@ -4,22 +4,19 @@ Template.ChannelMenu.events({
   "click #btn-channel-members"(e, t) {
     e.preventDefault();
     Modal.show('ChannelMembersModal', t.data.channel, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   },
   "click #btn-add-channel"(e, t) {
     e.preventDefault();
     Modal.show('AddChannelModal', null, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   },
   "click #btn-edit-channel"(e, t) {
     e.preventDefault();
     Modal.show('EditChannelModal', t.data.channel, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   }
 });

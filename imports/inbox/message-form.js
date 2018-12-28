@@ -84,8 +84,7 @@ Template.MessageForm.events({
       thread: t.data,
       file:   e.target.files[0]
     }, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
     $(e.target).val(""); // reset file input
   },
@@ -107,8 +106,7 @@ Template.MessageForm.events({
       thread: t.data,
       file:   e.target.files[0]
     }, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
     $(e.target).val(""); // reset file input
   }

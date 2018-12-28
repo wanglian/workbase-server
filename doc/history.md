@@ -7,6 +7,7 @@
 - fix search: 使用MongoDBEngine
 - fix app里打开链接
 - fix 搜索框focus
+- 允许用ESC关闭modal
 
 ## 12-27
 

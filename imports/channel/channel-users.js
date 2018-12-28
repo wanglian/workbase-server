@@ -24,8 +24,7 @@ ThreadCategories.add("Channel", {
         icon: "fa fa-list-ul",
         action() {
           Modal.show('ChannelListModal', null, {
-            backdrop: 'static',
-            keyboard: false
+            backdrop: 'static'
           });
         }
       },
@@ -34,8 +33,7 @@ ThreadCategories.add("Channel", {
         icon: "fa fa-plus",
         action() {
           Modal.show('AddChannelModal', null, {
-            backdrop: 'static',
-            keyboard: false
+            backdrop: 'static'
           });
         }
       }

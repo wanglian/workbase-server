@@ -11,8 +11,7 @@ ThreadCategories.add("Account", {
         title: I18n.t('Profile'),
         action() {
           Modal.show('ProfileModal', null, {
-            backdrop: 'static',
-            keyboard: false
+            backdrop: 'static'
           });
         }
       }

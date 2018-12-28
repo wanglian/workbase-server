@@ -95,8 +95,7 @@ Template.ProfileModal.events({
     Modal.show('AvatarUploadModal', {
       file: e.target.files[0]
     }, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
     $(e.target).val(""); // reset file input
   }

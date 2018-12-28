@@ -12,8 +12,7 @@ ThreadCategories.add("Roster", {
         icon: "fa fa-list-ul",
         action() {
           Modal.show('RosterListModal', null, {
-            backdrop: 'static',
-            keyboard: false
+            backdrop: 'static'
           });
         }
       },
@@ -22,8 +21,7 @@ ThreadCategories.add("Roster", {
         icon: "fa fa-plus",
         action() {
           Modal.show('AddRosterModal', null, {
-            backdrop: 'static',
-            keyboard: false
+            backdrop: 'static'
           });
         }
       }

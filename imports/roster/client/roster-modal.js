@@ -54,15 +54,13 @@ Template.RosterListModal.events({
   "click #btn-add-roster"(e, t) {
     e.preventDefault();
     Modal.show('AddRosterModal', null, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   },
   "click .btn-edit-roster"(e, t) {
     e.preventDefault();
     Modal.show('EditRosterModal', this, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   }
 });

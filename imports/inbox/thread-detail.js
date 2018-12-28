@@ -14,8 +14,7 @@ Template.ThreadDetailSearch.events({
   "click #btn-search"(e, t) {
     e.preventDefault();
     Modal.show('ThreadSearchModal', this, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   }
 });
@@ -33,8 +32,7 @@ Template.ThreadDetailMembers.events({
   "click #btn-add-member"(e, t) {
     e.stopPropagation();
     Modal.show('AddThreadMemberModal', this, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   }
 });

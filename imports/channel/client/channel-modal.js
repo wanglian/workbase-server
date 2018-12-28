@@ -36,22 +36,19 @@ Template.ChannelListModal.events({
   "click #btn-add-channel"(e, t) {
     e.preventDefault();
     Modal.show('AddChannelModal', null, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   },
   "click .btn-edit-channel"(e, t) {
     e.preventDefault();
     Modal.show('EditChannelModal', this, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   },
   "click .btn-channel-members"(e, t) {
     e.preventDefault();
     Modal.show('ChannelMembersModal', this, {
-      backdrop: 'static',
-      keyboard: false
+      backdrop: 'static'
     });
   }
 });
