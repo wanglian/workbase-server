@@ -10,6 +10,11 @@ App.info({
 
 App.accessRule('*');
 
+App.setPreference('KeyboardDisplayRequiresUserAction', false);
+App.setPreference('DisallowOverscroll', true); // don't want the WebView to rubber-band
+App.setPreference('BackupWebStorage', 'none');
+App.setPreference('KeyboardShrinksView', true); // shrink the WebView when the keyboard comes up
+
 App.icons({
   "app_store": "private/ios/icon-app_store.png",
   "iphone_2x": "private/ios/icon-iphone_2x.png",

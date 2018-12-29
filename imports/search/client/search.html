@@ -1,5 +1,5 @@
 <template name="SearchModal">
-  <div class="modal fade full-screen">
+  <div class="modal fade full-screen search">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -10,7 +10,7 @@
             </span>
           </div>
         </div>
-        <div class="modal-body" style="height: calc(100vh - 65px); overflow: scroll; padding: 0;">
+        <div class="modal-body">
           <ul class="list-group threads">
             {{#EasySearch.Each index=threadsIndex}}
               {{> ThreadListItemTemplate thread}}
@@ -23,7 +23,7 @@
 </template>
 
 <template name="ThreadSearchModal">
-  <div class="modal fade full-screen">
+  <div class="modal fade full-screen search">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -34,7 +34,7 @@
             </span>
           </div>
         </div>
-        <div class="modal-body messages" style="height: calc(100vh - 65px); overflow: scroll; padding: 0;">
+        <div class="modal-body messages">
           {{#EasySearch.Each index=messagesIndex}}
             {{> Message}}
           {{/EasySearch.Each}}

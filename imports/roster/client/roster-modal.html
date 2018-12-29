@@ -1,27 +1,29 @@
 <template name="RosterListModal">
-  <div class="modal fade modal-rounded full-screen">
+  <div class="modal fade full-screen">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
           <h4 class="modal-title">{{_ 'User List'}}</h4>
         </div>
-        <ul class="list-group threads" style="height: calc(100vh - 121px); overflow: scroll;">
-          {{#each users}}
-            <li class="list-group-item clearfix thread" id="{{_id}}">
-              <div class="pull-right">
-                <a href="#" class="btn-edit-roster text-muted action"><i class="fa fa-edit"></i> {{_ 'Edit'}}</a>
-              </div>
-              <div class="thread-icon">
-                {{> avatar user=this shape="circle" class="img-circle" size="small"}}
-              </div>
-              <div class="thread-title">
-                <div class="thread-subject">{{name}} <small class="text-muted">&nbsp;{{title}}</small></div>
-                <div class="message-summary text-ellipsis text-muted">{{email}}</div>
-              </div>
-            </li>
-          {{/each}}
-        </ul>
+        <div class="modal-body no-padding">
+          <ul class="list-group threads">
+            {{#each users}}
+              <li class="list-group-item clearfix thread" id="{{_id}}">
+                <div class="pull-right">
+                  <a href="#" class="btn-edit-roster text-muted action"><i class="fa fa-edit"></i> {{_ 'Edit'}}</a>
+                </div>
+                <div class="thread-icon">
+                  {{> avatar user=this shape="circle" class="img-circle" size="small"}}
+                </div>
+                <div class="thread-title">
+                  <div class="thread-subject">{{name}} <small class="text-muted">&nbsp;{{title}}</small></div>
+                  <div class="message-summary text-ellipsis text-muted">{{email}}</div>
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
           <a href="#" id="btn-add-roster" class="btn btn-primary">{{_ "New User"}}</a>

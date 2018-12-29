@@ -98,6 +98,14 @@ WEB没问题。
 ### APP样式问题：搜索框不能固定在顶部，导致体验差
 
 在开发环境，浏览器不能复现。
+因为键盘打开，页面滚动。
+
+KeyboardShrinksView 这个配置已弃用。
+
+https://medium.com/@im_rahul/safari-and-position-fixed-978122be5f29
+https://benfrain.com/preventing-body-scroll-for-modals-in-ios/
+https://github.com/lazd/iNoBounce
+
 
 ### 消息里的超链接打不开(done)
 
@@ -114,4 +122,12 @@ renderer.link = function(href, title, text) {
 Markdown.setOptions({
   renderer: renderer
 });
+```
+
+### 页面滚动不顺滑(done)
+
+momentum-scrolling 概念
+
+```
+-webkit-overflow-scrolling: touch
 ```

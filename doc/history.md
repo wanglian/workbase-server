@@ -1,5 +1,10 @@
 # 开发进展
 
+## 12-29
+
+- 重定义full screen modal样式
+- fix 三栏布局样式：小屏幕高度计算
+
 ## 12-28
 
 - 使用lodash替代underscore

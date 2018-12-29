@@ -32,11 +32,34 @@ blockquote {
   height: 100%;
 }
 .modal.full-screen .modal-dialog .modal-content {
-  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
+.modal.full-screen .modal-header,
+.modal.full-screen .modal-body,
 .modal.full-screen .modal-footer {
   position: absolute;
+  left: 0;
   width: 100%;
+}
+.modal.full-screen .modal-header {
+  top: 0;
+}
+.modal.full-screen .modal-body {
+  top: 56px;
+  bottom: 65px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.modal.full-screen .modal-footer {
+  bottom: 0;
+}
+/* search */
+.modal.full-screen.search .modal-body {
+  top: 65px;
   bottom: 0;
 }
 
@@ -55,21 +78,28 @@ blockquote {
     font-size: 14px !important;
   }
   body .navbar-collapse.pull-left+.navbar-custom-menu {
-    right: 0px;
+    right: 0px !important;
   }
   body .navbar-nav>.user-menu>.dropdown-menu>li.user-header {
-    height: 190px;
+    height: 190px !important;
   }
   body .navbar-nav>.user-menu>.dropdown-menu>li.user-header>p,
   body #inbox-header .thread-subject,
   body .thread-detail .box-header>.box-title {
-    font-size: 18px;
+    font-size: 18px !important;
   }
   body ul.list-group.threads .list-group-item.thread {
-    padding: 10px;
+    padding: 10px !important;
   }
   body #inbox-header {
-    height: 62px;
-    padding: 8px 10px;
+    height: 62px !important;
+    padding: 8px 10px !important;
+  }
+  body #inbox-left {
+    height: calc(100vh - 100px) !important;
+  }
+  body #inbox-right,
+  body #inbox-sidebar {
+    height: calc(100vh - 162px) !important;
   }
 }
