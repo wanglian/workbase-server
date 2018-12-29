@@ -7,6 +7,7 @@
 - iOS 点顶部状态栏，界面滚回到顶部
 - fix thread item path: 判断是否忽略detail
 - fix 自动生成"我的帐号"
+- fix 搜索排序
 
 ## 12-28
 

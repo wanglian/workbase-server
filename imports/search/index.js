@@ -5,7 +5,16 @@ ThreadsIndex = new Index({
   fields: ['subject'],
   defaultSearchOptions: {limit: 15},
   engine: new MongoDBEngine({
-    sort: () => { updatedAt: -1 },
+    sort() {
+      return {
+        updatedAt: -1
+      };
+    },
+    clientSort() {
+      return {
+        updatedAt: -1
+      };
+    },
     selector(searchObject, options, aggregation) {
       // retrieve the default selector
       const selector = this.defaultConfiguration().selector(searchObject, options, aggregation);
@@ -36,7 +45,16 @@ MessagesIndex = new Index({
   fields: ['content'],
   defaultSearchOptions: {limit: 15},
   engine: new MongoDBEngine({
-    sort: () => { createdAt: -1 },
+    sort() {
+      return {
+        createdAt: -1
+      };
+    },
+    clientSort() {
+      return {
+        createdAt: -1
+      };
+    },
     selector(searchObject, options, aggregation) {
       // retrieve the default selector
       const selector = this.defaultConfiguration().selector(searchObject, options, aggregation);
