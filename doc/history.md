@@ -5,6 +5,7 @@
 - 重定义full screen modal样式
 - fix 三栏布局样式：小屏幕高度计算
 - iOS 点顶部状态栏，界面滚回到顶部
+- fix thread item path: 判断是否忽略detail。
 
 ## 12-28
 
@@ -12,7 +13,7 @@
 - 用户设置加上日志
 - fix search: 使用MongoDBEngine
 - fix app里打开链接
-- fix 搜索框focus
+- fix 搜索框focus（APP仍然不行）
 - 允许用ESC关闭modal
 - fix add/remove频道成员日志
 - fix "My Account"确保自动生成：重新放在onLogin中，之前修改逻辑时移走了
