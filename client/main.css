@@ -51,8 +51,6 @@ blockquote {
 .modal.full-screen .modal-body {
   top: 56px;
   bottom: 65px;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 .modal.full-screen .modal-footer {
   bottom: 0;
@@ -61,6 +59,12 @@ blockquote {
 .modal.full-screen.search .modal-body {
   top: 65px;
   bottom: 0;
+}
+
+.scroll-box {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (max-width: 991px) {

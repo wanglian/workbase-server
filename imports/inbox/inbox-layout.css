@@ -1,7 +1,5 @@
 #inbox-left {
   height: calc(100vh - 50px);
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 #inbox-header {
@@ -45,9 +43,6 @@
   border-left: 1px solid #d8d8d8;
   border-right: 1px solid #d8d8d8;
   height: calc(100vh - 107px);
-  overflow-y: scroll;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
 }
 #inbox-right:last-child {
   border-right: none;
@@ -55,6 +50,4 @@
 
 #inbox-sidebar {
   height: calc(100vh - 107px);
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
 }

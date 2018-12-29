@@ -10,7 +10,7 @@
             </span>
           </div>
         </div>
-        <div class="modal-body">
+        <div class="modal-body scroll-box">
           <ul class="list-group threads">
             {{#EasySearch.Each index=threadsIndex}}
               {{> ThreadListItemTemplate thread}}
@@ -34,7 +34,7 @@
             </span>
           </div>
         </div>
-        <div class="modal-body messages">
+        <div class="modal-body scroll-box messages">
           {{#EasySearch.Each index=messagesIndex}}
             {{> Message}}
           {{/EasySearch.Each}}

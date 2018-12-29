@@ -1,7 +1,7 @@
 <template name="InboxLayout">
   <div class="container-fluid">
     <div class="row">
-      <div class="col {{col1Class hasRight hasSidebar}}" id="inbox-left">
+      <div class="col {{col1Class hasRight hasSidebar}} scroll-box" id="inbox-left">
         {{> yield}}
       </div>
       {{#if hasRight}}
@@ -9,11 +9,11 @@
           <div id="inbox-header">{{> yield 'header'}}</div>
           <div class="container-fluid">
             <div class="row">
-              <div class="col {{col21Class hasSidebar}}" id="inbox-right">
+              <div class="col {{col21Class hasSidebar}} scroll-box" id="inbox-right">
                 {{> yield 'right'}}
               </div>
               {{#if hasSidebar}}
-                <div class="col {{col22Class}}" id="inbox-sidebar">
+                <div class="col {{col22Class}} scroll-box" id="inbox-sidebar">
                   {{> yield 'sidebar'}}
                 </div>
               {{/if}}

@@ -91,7 +91,7 @@ https://stackoverflow.com/questions/53857422/hot-code-push-broken-in-meteor-1-8-
 ### 打开本地相册，多了一层
 
 
-### APP个人设置Modal，不能显示底部按钮
+### APP个人设置Modal，不能显示底部按钮(done)
 
 WEB没问题。
 
@@ -105,6 +105,8 @@ KeyboardShrinksView 这个配置已弃用。
 https://medium.com/@im_rahul/safari-and-position-fixed-978122be5f29
 https://benfrain.com/preventing-body-scroll-for-modals-in-ios/
 https://github.com/lazd/iNoBounce
+http://luxiyalu.com/how-to-prevent-body-from-scrolling/
+https://benfrain.com/preventing-body-scroll-for-modals-in-ios/
 
 
 ### 消息里的超链接打不开(done)
@@ -131,3 +133,16 @@ momentum-scrolling 概念
 ```
 -webkit-overflow-scrolling: touch
 ```
+
+### iOS点顶部状态栏页面回到顶部？(done)
+
+https://stackoverflow.com/questions/10715052/phonegap-scroll-top-on-statusbar-tap
+
+cordova-plugin-statusbar 提供了事件
+
+```
+window.addEventListener('statusTap', function() {
+  $('.scroll-box').animate({ scrollTop: 0 }, "fast");
+});
+```
+将需要滚动的区块加上 scroll-box

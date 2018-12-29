@@ -37,6 +37,10 @@ Meteor.startup(function() {
       window.open = cordova.InAppBrowser.open;
     }, false);
 
+    window.addEventListener('statusTap', function() {
+      $('.scroll-box').animate({ scrollTop: 0 }, "fast");
+    });
+
     // badge
     Tracker.autorun(() => {
       let count = Counts.get('count-unread-inbox');

@@ -7,7 +7,7 @@
           <h4 class="modal-title">{{_ "Profile"}}</h4>
         </div>
         {{#autoForm collection=formCollection schema=formSchema id="profile-form" doc=currentUser.profile type="normal"}}
-          <div class="modal-body">
+          <div class="modal-body scroll-box">
             <div class="form-group">
               {{> avatar user=currentUser shape="circle" class="img-circle form-group" size="profile"}}
               <input type="file" style="display:none;" id="avatar-file" accept="image/*"/>
