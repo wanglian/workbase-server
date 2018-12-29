@@ -35,8 +35,8 @@ const ensureAccountThread = (user) => {
   if (!thread) {
     let threadId = Threads.create(user, 'Account', 'My Account');
     thread = Threads.findOne(threadId);
-    Threads.ensureMember(thread, user);
   }
+  Threads.ensureMember(thread, user);
   return thread;
 };
 const logAccountAction = (user, content) => {
@@ -47,8 +47,8 @@ const logAccountAction = (user, content) => {
 
 Accounts.onLogin(function(attempt) {
   // console.log("on login ..");
-  // logAccountAction('Login', attempt);
-  ensureAccountThread(attempt.user);
+  let user = Users.findOne(attempt.user._id);
+  ensureAccountThread(user);
 });
 
 Accounts.onLogout(function(attempt) {

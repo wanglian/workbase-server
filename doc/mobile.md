@@ -95,7 +95,7 @@ https://stackoverflow.com/questions/53857422/hot-code-push-broken-in-meteor-1-8-
 
 WEB没问题。
 
-### APP样式问题：搜索框不能固定在顶部，导致体验差
+### APP样式问题：搜索框不能自动focus，不能固定在顶部
 
 在开发环境，浏览器不能复现。
 因为键盘打开，页面滚动。

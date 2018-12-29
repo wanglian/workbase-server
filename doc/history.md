@@ -5,7 +5,8 @@
 - 重定义full screen modal样式
 - fix 三栏布局样式：小屏幕高度计算
 - iOS 点顶部状态栏，界面滚回到顶部
-- fix thread item path: 判断是否忽略detail。
+- fix thread item path: 判断是否忽略detail
+- fix 自动生成"我的帐号"
 
 ## 12-28
 
