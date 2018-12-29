@@ -30,20 +30,25 @@ Meteor.methods({
   }
 });
 
-const logAccountAction = (user, content) => {
-  // Account
+const ensureAccountThread = (user) => {
   let thread = Threads.findOne({category: 'Account', userId: user._id});
   if (!thread) {
     let threadId = Threads.create(user, 'Account', 'My Account');
     thread = Threads.findOne(threadId);
     Threads.ensureMember(thread, user);
   }
+  return thread;
+};
+const logAccountAction = (user, content) => {
+  // Account
+  let thread = ensureAccountThread(user);
   Threads.addMessage(thread, user, {content});
 };
 
 Accounts.onLogin(function(attempt) {
   // console.log("on login ..");
   // logAccountAction('Login', attempt);
+  ensureAccountThread(attempt.user);
 });
 
 Accounts.onLogout(function(attempt) {

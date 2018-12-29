@@ -9,6 +9,7 @@
 - fix 搜索框focus
 - 允许用ESC关闭modal
 - fix add/remove频道成员日志
+- fix "My Account"确保自动生成：重新放在onLogin中，之前修改逻辑时移走了
 
 ## 12-27
 
