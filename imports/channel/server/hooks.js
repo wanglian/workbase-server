@@ -1,5 +1,6 @@
 Threads.before.insert(function(userId, doc) {
-  if (doc.userType === 'Channel') {
+  if (doc.userType === 'Channels') {
+    // TODO: 这里的逻辑还有问题，Channel话题的回复不需要ThreadUser
     doc.scope = "protected";
   }
 });

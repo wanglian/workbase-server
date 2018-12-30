@@ -1,6 +1,7 @@
 // - userType
 // - userId
 // - messageId
+// - internal
 // - year
 // - month
 // - day

@@ -3,16 +3,15 @@ import './message-records';
 
 import moment from 'moment';
 
-Instance.after.update(function(userId, doc, fieldNames, modifier, options) {
-  // admin
-  if (fieldNames.includes('adminId')) {
-    let admin = Instance.admin();
-    let thread = Threads.findOne({category: 'Charts'});
-    if (!thread) {
-      let threadId = Threads.create(admin, 'Charts', 'System Reports');
-      thread = Threads.findOne(threadId);
-    }
+Meteor.startup(function() {
+  Threads.upsert({category: 'Charts'}, {$set: {subject: 'System Reports'}});
+});
 
+Accounts.onLogin(function(attempt) {
+  // admin
+  let admin = Instance.admin();
+  if (admin._id === attempt.user._id) {
+    let thread = Threads.findOne({category: 'Charts'});
     Threads.ensureMember(thread, admin);
   }
 });
