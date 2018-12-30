@@ -5,8 +5,11 @@ import SimpleSchema from 'simpl-schema';
 
 SimpleSchema.extendOptions(['autoform']);
 
-const REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
-                    '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+// https://emailregex.com/
+// /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ // W3C input[type=email]
+const REGEX_EMAIL = '[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+[\.]+[a-zA-Z0-9-]+'; // 改进：必须有.
+// const REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+//                     '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
 
 // - method: Meteor method name to load data
 // - params:
@@ -44,12 +47,12 @@ selectizeEmail = (method, params) => {
       var match, regex;
 
       // email@address.com
-      regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+      regex = new RegExp('^' + REGEX_EMAIL + '$');
       match = input.match(regex);
       if (match) return !this.options.hasOwnProperty(match[0]);
 
       // name <email@address.com>
-      regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+      regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$');
       match = input.match(regex);
       if (match) return !this.options.hasOwnProperty(match[2]);
 
@@ -89,7 +92,7 @@ selectizeEmail = (method, params) => {
           console.log(err);
           callback();
         } else {
-          console.log(res);
+          // console.log(res);
           callback(res);
         }
       });
