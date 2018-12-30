@@ -1,3 +1,4 @@
+// query current user's channels
 Meteor.publishComposite('channels', function() {
   if (!this.userId) return this.ready();
 
@@ -13,6 +14,10 @@ Meteor.publishComposite('channels', function() {
       }
     ]
   };
+});
+
+Meteor.publish('channel.list', function() {
+  return Channels.find({"profile.type": 'Channels'});
 });
 
 Meteor.publishComposite('channel.members', function(channel) {

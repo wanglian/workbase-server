@@ -5,6 +5,9 @@ ChannelUsers = new Mongo.Collection('channel-users');
 Channels = Meteor.users;
 
 ChannelUsers.helpers({
+  channel() {
+    return Users.findOne(this.channelId);
+  },
   user() {
     return Users.findOne(this.userId);
   }

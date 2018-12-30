@@ -8,6 +8,9 @@
         </div>
         <div class="modal-body scroll-box no-padding">
           <ul class="list-group threads">
+            {{#unless channels.count}}
+              <li class="list-group-item thread">{{_ 'None'}}</li>
+            {{/unless}}
             {{#each channels}}
               <li class="list-group-item clearfix thread" id="{{_id}}">
                 <div class="pull-right">
@@ -90,6 +93,9 @@
         </div>
         <div class="modal-body scroll-box">
           <ul class="list-group members-list">
+            {{#unless members.count}}
+              <li class="list-group-item members-item">{{_ 'None'}}</li>
+            {{/unless}}
             {{#each members}}
               <li class="list-group-item members-item clearfix">
                 <span class="pull-left">
@@ -100,11 +106,9 @@
                   <strong class="name">{{user.name}}</strong>
                   {{user.title}}
                   <span class="pull-right">
-                    {{#unless isMe user}}
-                      <a href="#" class="btn-remove-member action text-muted" data-id="{{user._id}}">
-                        <i class="fa fa-remove"></i> {{_ "Remove"}}
-                      </a>
-                    {{/unless}}
+                    <a href="#" class="btn-remove-member action text-muted" data-id="{{user._id}}">
+                      <i class="fa fa-remove"></i> {{_ "Remove"}}
+                    </a>
                   </span>
                   <div class="text-muted text-ellipsis">{{user.email}}</div>
                 </div>

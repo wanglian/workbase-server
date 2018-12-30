@@ -3,10 +3,7 @@ Meteor.methods({
     check(name, String);
     check(email, String);
 
-    let id = Channels.create(email, name);
-    ChannelUsers.ensureMember(id, this.userId);
-
-    return id;
+    return Channels.create(email, name);
   },
   editChannel(id, email, name) {
     check(id, String);

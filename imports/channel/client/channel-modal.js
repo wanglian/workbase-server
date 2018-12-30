@@ -23,7 +23,7 @@ const CHANNEL_FORM_SCHEMA = new SimpleSchema({
 });
 
 Template.ChannelListModal.onRendered(function() {
-  this.subscribe("channel");
+  this.subscribe("channel.list");
 });
 
 Template.ChannelListModal.helpers({
