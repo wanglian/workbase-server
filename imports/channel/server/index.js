@@ -4,15 +4,18 @@ import './functions';
 import './methods';
 import './publications';
 
-Meteor.startup(() => {
-  let admin = Instance.admin();
-  let thread = Threads.findOne({category: 'Channel'});
-  if (!thread) {
-    let threadId = Threads.create(admin, 'Channel', 'Channels Management');
-    thread = Threads.findOne(threadId);
-  }
+Instance.after.update(function(userId, doc, fieldNames, modifier, options) {
+  // admin
+  if (fieldNames.includes('adminId')) {
+    let admin = Instance.admin();
+    let thread = Threads.findOne({category: 'Channel'});
+    if (!thread) {
+      let threadId = Threads.create(admin, 'Channel', 'Channels Management');
+      thread = Threads.findOne(threadId);
+    }
 
-  Threads.ensureMember(thread, admin);
+    Threads.ensureMember(thread, admin);
+  }
 });
 
 const WELCOME_CHANNEL_MAIL = {
@@ -36,7 +39,7 @@ Channels.after.insert(function(userId, doc) {
 });
 
 Channels.after.insert(function(userId, doc) {
-  if (doc.profile.type != 'Channel') return;
+  if (doc.profile.type != 'Channels') return;
 
   let admin = Meteor.user();
   if (admin) {
@@ -50,7 +53,7 @@ Channels.after.insert(function(userId, doc) {
 });
 
 Channels.after.update(function(userId, doc, fieldNames, modifier, options) {
-  if (doc.profile.type != 'Channel') return;
+  if (doc.profile.type != 'Channels') return;
 
   let admin = Meteor.user();
   if (admin) {

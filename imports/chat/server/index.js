@@ -1,5 +1,32 @@
 import '../chat';
 
+// from owner to member
+const WELCOME_MAIL = {
+  subject: () => {
+    return `${Instance.company()} 欢迎你！`;
+  },
+  content: (user) => {
+    return `你好，${user.name()}！
+我们为你开通了工作帐号，你可以在这里
+- 收发邮件
+- 与工作伙伴即时沟通
+
+如有任何问题，可以在这里给我发消息。`;
+  }
+};
+
+Accounts.onLogin(function(attempt) {
+  let user = Users.findOne(attempt.user._id);
+  // welcome
+  if (ThreadUsers.find({category: 'Chat', userType: 'Users', userId: user._id}).count() === 0) {
+    let admin = Instance.admin();
+    let thread = Threads.startChat(admin, user);
+    Threads.addMessage(thread, admin, {
+      content: WELCOME_MAIL.content(user)
+    });
+  }
+});
+
 Messages.before.insert(function(userId, doc) {
   let thread = Threads.findOne(doc.threadId);
   if (thread.category === 'Chat') {
@@ -9,6 +36,21 @@ Messages.before.insert(function(userId, doc) {
   }
 });
 
+Threads.startChat = (user, chatUser) => {
+  let tu = ThreadUsers.findOne({userType: 'Users', userId: user._id, "params.chat": chatUser._id});
+  tu = tu || ThreadUsers.findOne({userType: 'Users', userId: chatUser._id, "params.chat": user._id});
+
+  let threadId = tu && tu.threadId;
+  if (!threadId) {
+    threadId = Threads.create(user, 'Chat', 'Chat');
+  }
+
+  let thread = Threads.findOne(threadId);
+  Threads.ensureMember(thread, user, {chat: chatUser._id});
+
+  return thread;
+};
+
 Meteor.methods({
   startChat(userId) {
     check(userId, String);
@@ -16,21 +58,8 @@ Meteor.methods({
     let user = Users.findOne(this.userId);
     let chatUser = Users.findOne(userId);
     if (chatUser) {
-      let tu = ThreadUsers.findOne({userType: 'Users', userId: this.userId, "params.chat": userId});
-      if (!tu) {
-        tu = ThreadUsers.findOne({userType: 'Users', userId: userId, "params.chat": this.userId});
-        if (tu) {
-          Threads.ensureMember(thread, user, {chat: userId});
-        }
-      }
-
-      let threadId = tu && tu.threadId;
-      if (!threadId) {
-        threadId = Threads.create(user, 'Chat', 'Chat');
-        thread = Threads.findOne(threadId);
-        Threads.ensureMember(thread, user, {chat: userId});
-      }
-      return threadId;
+      let thread = Threads.startChat(user, chatUser);
+      return thread._id;
     }
   }
 });

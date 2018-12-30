@@ -1,3 +1,6 @@
+- 用户logout时，meteor会自动更新Users信息。而修改用户日志是监听Users的修改，用户logout信息所以会在管理日志中出现(done)
+
+将日志放在Methods层，即业务层。用户行为日志是利用回调onLogin/onLogout/onLoginFailer，也是业务回调。
 
 - i18n问题：产品环境浏览器正常，APP上week不能显示中文(done)
 
