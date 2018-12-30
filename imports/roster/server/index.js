@@ -13,7 +13,7 @@ Meteor.startup(() => {
 });
 
 Users.after.insert(function(userId, doc) {
-  if (doc.profile.type != 'User') return;
+  if (doc.profile.type != 'Users') return;
 
   let admin = Meteor.user();
   if (admin) {
@@ -27,7 +27,7 @@ Users.after.insert(function(userId, doc) {
 });
 
 Users.after.update(function(userId, doc, fieldNames, modifier, options) {
-  if (doc.profile.type != 'User') return;
+  if (doc.profile.type != 'Users') return;
 
   let admin = Meteor.user();
   if (admin) {

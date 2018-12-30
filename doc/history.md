@@ -9,6 +9,7 @@
 - fix 自动生成"我的帐号"
 - fix 搜索排序
 - fix email regex @后必须有点
+- fix 用户管理日志
 - 分享（初步）
 - 研究Amazon SES作为邮件能力。SMTP发送；接收到Bucket，可用lambda处理
 
