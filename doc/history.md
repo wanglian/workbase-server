@@ -1,4 +1,4 @@
-# 开发进展
+# 产品进展
 
 ## 12-29
 
@@ -8,6 +8,7 @@
 - fix thread item path: 判断是否忽略detail
 - fix 自动生成"我的帐号"
 - fix 搜索排序
+- 研究Amazon SES作为邮件能力。SMTP发送；接收到Bucket，可用lambda处理
 
 ## 12-28
 

@@ -75,6 +75,10 @@ email.match(/noreply|no_reply|no-reply|do-not-reply|do_not_reply/i)
 - Roster 用户管理
 - Channel 频道管理
 - Charts 报表
+- Shares 分享
+
+Announcement 通知公告
+Shares 分享 个人角度
 
 ### 菜单
 

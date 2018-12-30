@@ -94,6 +94,8 @@ export const locale_zh_cn = {
   "Search": "搜索",
   "Search Subjects": "搜索主题",
   "Search Messages": "搜索消息",
+  // shares
+  "Shares": "分享",
   // reports
   "System Reports": "统计报表",
   "Reports": "报表",
