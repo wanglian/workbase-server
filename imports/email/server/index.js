@@ -24,18 +24,17 @@ Meteor.methods({
 });
 
 Messages.after.insert(function(userId, doc) {
+  // 忽略：内部消息和来自外部的消息
   if (doc.userType === 'Contacts' || doc.internal) return;
 
-  let message = this.transform();
-  let promise = new Promise(function(resolve, reject) {
+  new Promise(function(resolve, reject) {
     try {
-      Mailgun.send(message);
+      Mailgun.send(this.transform());
       resolve();
     } catch (e) {
       reject(e);
     }
-  });
-  promise.catch((e) => {
+  }).catch((e) => {
     console.log("[mailgun] send error:");
     console.log(e);
   });

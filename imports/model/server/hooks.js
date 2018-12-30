@@ -34,20 +34,14 @@ Messages.before.insert(function(userId, doc) {
   if (ThreadUsers.find({threadId: doc.threadId, userType: 'Contacts'}).count() === 0) {
     _.extend(doc, {internal: true});
   }
-  switch(doc.contentType) {
-  case 'image':
-    doc.summary = I18n.t('Image Message');
-    break;
-  default:
-    let strippedText = purgeHtml(doc.content)
-    if (!strippedText) {
-      // image
-      if (/<img src/.test(doc.content)) {
-        strippedText = I18n.t('Image Message');
-      } else {
-        strippedText = I18n.t('No content');
-      }
+
+  let strippedText = purgeHtml(doc.content);
+  if (!strippedText) {
+    // image
+    if (/<img src/.test(doc.content)) {
+      doc.contentType = 'image';
     }
+  } else {
     doc.summary = strippedText.slice(0, 250);
   }
 });

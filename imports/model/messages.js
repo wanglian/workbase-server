@@ -18,6 +18,20 @@ Messages.helpers({
   thread() {
     return Threads.findOne(this.threadId);
   },
+  summaryLocalized() {
+    clientOnly();
+
+    if (_.isEmpty(this.summary)) {
+      return I18n.t("No content");
+    }
+
+    switch(this.contentType) {
+    case 'image':
+      return I18n.t('Image Message');
+    default:
+      return this.summary;
+    }
+  },
   image() {
     return this.contentType === 'image' && this.inlineFileIds && Files.findOne(this.inlineFileIds[0]);
   },
