@@ -72,7 +72,7 @@ Meteor.publishComposite("threads", function(options) {
 Meteor.publish("thread", function(threadId) {
   check(threadId, String);
 
-  let userIds = ThreadUsers.find({threadId, userType: 'Users'}).map(tu => tu.userId);
+  let userIds = ThreadUsers.find({threadId, userType: {$in: ['Users', 'Channels']}}).map(tu => tu.userId);
   let contactIds = ThreadUsers.find({threadId, userType: 'Contacts'}).map(tu => tu.userId);
 
   return [

@@ -4,5 +4,7 @@ cordova-plugin-inappbrowser@3.0.0
 cordova-plugin-meteor-webapp@file:///Users/wanglian/Workspace/weaworking/cordova-plugin-meteor-webapp
 cordova-plugin-splashscreen@5.0.2
 cordova-plugin-statusbar@2.4.2
+cordova-plugin-wkwebview-engine@1.1.4
+cordova-plugin-wkwebview-inputfocusfix@1.0.2
 cordova.plugins.diagnostic@4.0.10
 phonegap-plugin-push@2.2.3

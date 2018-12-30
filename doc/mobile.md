@@ -1,5 +1,7 @@
 # Mobile APP
 
+- [Cordova](https://cordova.apache.org/docs/en/latest/config_ref/index.html#preference)
+
 ## iOS
 
 ```
@@ -95,7 +97,7 @@ https://stackoverflow.com/questions/53857422/hot-code-push-broken-in-meteor-1-8-
 
 WEB没问题。
 
-### APP样式问题：搜索框不能自动focus，不能固定在顶部
+### APP样式问题：搜索框不能自动focus(done)，不能固定在顶部
 
 在开发环境，浏览器不能复现。
 因为键盘打开，页面滚动。
@@ -108,6 +110,9 @@ https://github.com/lazd/iNoBounce
 http://luxiyalu.com/how-to-prevent-body-from-scrolling/
 https://benfrain.com/preventing-body-scroll-for-modals-in-ios/
 
+解决
+https://github.com/onderceylan/cordova-plugin-wkwebview-inputfocusfix
+同时使用 https://github.com/apache/cordova-plugin-wkwebview-engine
 
 ### 消息里的超链接打不开(done)
 
