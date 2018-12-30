@@ -11,6 +11,8 @@ export const locale_zh_cn = {
   "Download": "下载",
   "View": "查看",
   "Cancel": "取消",
+  "Empty": "空",
+  "None": "无",
   // Time
   "Today": "今天",
   "Yesterday": "昨天",

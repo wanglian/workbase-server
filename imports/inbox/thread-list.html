@@ -1,5 +1,8 @@
 <template name="ThreadList">
   <ul class="list-group threads">
+    {{#unless threads.count}}
+      <li class="list-group-item thread text-muted">{{_ 'Empty'}}</li>
+    {{/unless}}
     {{#each threads}}
       {{> ThreadListItemTemplate}}
     {{/each}}
