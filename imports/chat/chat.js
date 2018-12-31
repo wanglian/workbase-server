@@ -1,7 +1,7 @@
 ThreadCategories.add("Chat", {
   icon: "fa fa-comment-o",
   iconUnread: "fa fa-comment",
-  details: ['Search'],
+  details: ['Search', 'Files'],
   title(thread, detail=false) {
     clientOnly();
 

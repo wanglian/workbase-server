@@ -1,11 +1,11 @@
 <template name="FileViewLink">
   {{#if compare (filetype type)  '===' 'image'}}
-    <a href="{{fileURL this}}" data-fancybox='thread' data-caption="{{name}}" class="action pull-right">
+    <a href="{{fileURL this}}" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
       <i class="fa fa-eye"></i>{{_ 'View'}}
     </a>
   {{/if}}
   {{#if compare (filetype type)  '===' 'video'}}
-    <a href="{{fileURL this}}?play=true" data-fancybox='thread' data-caption="{{name}}" class="action pull-right">
+    <a href="{{fileURL this}}?play=true" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
       <i class="fa fa-eye"></i>{{_ 'View'}}
     </a>
   {{/if}}
@@ -15,35 +15,35 @@
         <source src="{{fileURL this}}?play=true" type={{type}}>
       </audio>
     </div>
-    <a href="#" data-fancybox='thread' data-src="#content-{{_id}}" data-caption="{{name}}" class="action pull-right">
+    <a href="#" data-fancybox='thread' data-src="#content-{{_id}}" data-caption="{{name}}" class="action text-muted">
       <i class="fa fa-eye"></i>{{_ 'View'}}
     </a>
   {{/if}}
   {{#if compare (filetype type)  '===' 'text'}}
-    <a href="#" data-fancybox='thread' data-type="iframe" data-src="{{fileURL this}}" data-caption="{{name}}" class="action pull-right">
+    <a href="#" data-fancybox='thread' data-type="iframe" data-src="{{fileURL this}}" data-caption="{{name}}" class="action text-muted">
       <i class="fa fa-eye"></i>{{_ 'View'}}
     </a>
   {{/if}}
   {{#if compare (filetype type)  '===' 'pdf|odf'}}
-    <a href="#" data-fancybox='thread' data-type="iframe" data-src="/ViewerJS/index.html#..{{fileURL this 'original' '/'}}" data-caption="{{name}}" class="action pull-right">
+    <a href="#" data-fancybox='thread' data-type="iframe" data-src="/ViewerJS/index.html#..{{fileURL this 'original' '/'}}" data-caption="{{name}}" class="action text-muted">
       <i class="fa fa-eye"></i>{{_ 'View'}}
     </a>
   {{/if}}
   {{#if compare (filetype type)  '===' 'word|excel|ppt'}}
-    <a href="#" data-fancybox='thread' data-type="iframe" data-src="https://view.officeapps.live.com/op/embed.aspx?src={{fileURL this}}" data-caption="{{name}}" class="action pull-right">
+    <a href="#" data-fancybox='thread' data-type="iframe" data-src="https://view.officeapps.live.com/op/embed.aspx?src={{fileURL this}}" data-caption="{{name}}" class="action text-muted">
       <i class="fa fa-eye"></i>{{_ 'View'}}
     </a>
   {{/if}}
 </template>
 
 <template name="FileDownloadLink">
-  <a href="{{fileURL this 'original'}}?download=true" download="{{name}}" target="_blank" class="action pull-right">
+  <a href="{{fileURL this 'original'}}?download=true" download="{{name}}" target="_blank" class="action text-muted">
     <i class="fa fa-download"></i>{{_ 'Download'}}
   </a>
 </template>
 
 <template name="FileRemoveLink">
-  <a href="#" class="btn-remove-file action pull-right text-muted"><i class="fa fa-times"></i>{{_ 'Remove'}}</a>
+  <a href="#" class="btn-remove-file action text-muted"><i class="fa fa-times"></i>{{_ 'Remove'}}</a>
 </template>
 
 <template name="FileUploadModal">
@@ -64,6 +64,29 @@
           {{/with}}
         </div>
       </div>
+    </div>
+  </div>
+</template>
+
+<template name="ThreadDetailFiles">
+  <div class="panel flat-panel">
+    <div class="flat-panel-heading">
+      <a data-parent="#thread-detail-accordion" href="#thread-files" data-toggle="collapse">
+        <div class="flat-panel-title"><i class="fa fa-paperclip text-primary"></i>{{_ 'Files with count' count=count}}</div>
+      </a>
+    </div>
+    <div id="thread-files" class="flat-panel-body panel-collapse collapse">
+      <ul class="files nav nav-pills nav-stacked collapse in" id="files-list-{{_id}}" aria-expanded="true">
+        {{#each files}}
+          <li>
+            {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
+            <div class="actions pull-right">
+              {{> FileViewLink}}
+              {{> FileDownloadLink}}
+            </div>
+          </li>
+        {{/each}}
+      </ul>
     </div>
   </div>
 </template>

@@ -39,8 +39,10 @@
             {{#each files}}
               <li>
                 {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
-                {{> FileDownloadLink}}
-                {{> FileViewLink}}
+                <div class="actions pull-right">
+                  {{> FileViewLink}}
+                  {{> FileDownloadLink}}
+                </div>
               </li>
             {{/each}}
           </ul>

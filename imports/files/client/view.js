@@ -69,3 +69,20 @@ Template.FileUploadModal.helpers({
     return Template.instance().currentUpload.get();
   }
 });
+
+Template.ThreadDetailFiles.onRendered(function() {
+  this.subscribe("thread.files", this.data._id);
+  this.autorun(() => {
+    let data = Template.currentData();
+    this.subscribe("thread.files", data._id);
+  });
+});
+
+Template.ThreadDetailFiles.helpers({
+  count() {
+    return Counts.get(`count-files-${this._id}`);
+  },
+  files() {
+    return Files.find({"meta.relations": {$elemMatch: {threadId: this._id, messageId: {$exists: true}}}}, {sort: {createdAt: -1}}).cursor;
+  }
+});

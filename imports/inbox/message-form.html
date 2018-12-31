@@ -2,12 +2,14 @@
   {{#autoForm collection=formCollection schema=formSchema id="message-form" threadId=_id}}
     {{> afQuickField name="content"}}
     {{#if pendingFiles.count}}
-    <ul class="files nav nav-pills nav-stacked">
+    <ul class="files nav nav-pills nav-stacked" style="margin-bottom: 10px;">
       {{#each pendingFiles}}
         <li>
           {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
-          {{> FileRemoveLink}}
-          {{> FileViewLink}}
+          <div class="actions pull-right">
+            {{> FileViewLink}}
+            {{> FileRemoveLink}}
+          </div>
         </li>
       {{/each}}
     </ul>

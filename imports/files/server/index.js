@@ -35,6 +35,13 @@ Meteor.publish("thread.files.pending", function(threadId) {
   return Files.find({"meta.relations": {$elemMatch: {threadId, userId: this.userId, messageId: null}}}).cursor;
 });
 
+Meteor.publish("thread.files", function(threadId) {
+  check(threadId, String);
+  let query = {"meta.relations": {$elemMatch: {threadId, messageId: {$exists: true}}}};
+  Counts.publish(this, `count-files-${threadId}`, Files.find(query).cursor);
+  return Files.find(query, {sort: {createdAt: -1}, limit: 12}).cursor;
+});
+
 Meteor.methods({
   "files.remove"(id) {
     check(id, String);

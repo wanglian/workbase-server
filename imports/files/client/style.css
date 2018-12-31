@@ -1,0 +1,23 @@
+ul.files {
+/*  font-size: 14px;*/
+}
+ul.files li {
+  padding: 0 5px;
+}
+ul.files .actions {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: rgba(249,249,249, 1);
+}
+ul.files .action {
+  display: none;
+  border: none;
+  padding: 0 10px 0 0;
+}
+ul.files li:hover {
+  background: rgba(249,249,249, 1);
+}
+ul.files li:hover .action {
+  display: inline;
+}

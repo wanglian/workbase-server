@@ -31,8 +31,9 @@
 .flat-panel .flat-panel-heading {
   border-radius: 0px;
   font-weight: 500;
-  padding: 16px 12px;
+  padding: 10px 12px;
   border: none;
+  background: #F7F7F7;
 }
 .flat-panel .flat-panel-heading .flat-panel-title {
   color: #555;
@@ -46,8 +47,8 @@
   text-align: center;
 }
 .flat-panel .flat-panel-body {
-  padding: 0px 12px;
-  margin-bottom: 12px;
+/*  border-top: solid 1px #F1F1F1;*/
+  padding: 12px;
 }
 
 .members-list {
