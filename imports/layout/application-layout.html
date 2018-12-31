@@ -78,34 +78,32 @@
       </nav>
     </header>
     <aside class="main-sidebar">
-      <aside class="main-sidebar">
-        <section class="sidebar">
-          <!-- search form -->
-          <form action="#" method="get" class="sidebar-form" id="search-form">
-            <div class="input-group">
-              <input type="text" name="search" class="form-control" placeholder="{{_ 'Search'}}">
-              <span class="input-group-btn">
-                <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-          </form>
-          <ul class="sidebar-menu">
-            <li class="{{#if inRouter 'inbox'}}active{{/if}}">
-              <a href="/inbox">
-                <i class="fa fa-inbox"></i> <span>{{_ 'Inbox'}}</span>
-                {{#if countUnread}}
-                  <span class="pull-right-container">
-                    <span class="label label-danger pull-right">{{countUnread}}</span>
-                  </span>
-                {{/if}}
-              </a>
-            </li>
-            {{> RosterMenuItem}}
-            {{> ChannelMenuItems}}
-          </ul>
-        </section>
-      </aside>
+      <section class="sidebar">
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form" id="search-form">
+          <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="{{_ 'Search'}}">
+            <span class="input-group-btn">
+              <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </form>
+        <ul class="sidebar-menu">
+          <li class="{{#if inRouter 'inbox'}}active{{/if}}">
+            <a href="/inbox">
+              <i class="fa fa-inbox"></i> <span>{{_ 'Inbox'}}</span>
+              {{#if countUnread}}
+                <span class="pull-right-container">
+                  <span class="label label-danger pull-right">{{countUnread}}</span>
+                </span>
+              {{/if}}
+            </a>
+          </li>
+          {{> RosterMenuItem}}
+          {{> ChannelMenuItems}}
+        </ul>
+      </section>
     </aside>
     <div class="content-wrapper">
       {{> yield}}

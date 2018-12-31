@@ -2,6 +2,14 @@ import './inbox-layout.html';
 import './inbox-layout.css';
 
 Template.InboxLayout.helpers({
+  rowClass(right, sidebar) {
+    if (right) {
+      if (sidebar) {
+        return "with-right with-sidebar";
+      }
+      return "with-right";
+    }
+  },
   col1Class(right, sidebar) {
     if (right) {
       if (sidebar) {

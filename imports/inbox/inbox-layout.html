@@ -1,26 +1,22 @@
 <template name="InboxLayout">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row {{rowClass hasRight hasSidebar}}">
       <div class="col {{col1Class hasRight hasSidebar}} scroll-box" id="inbox-left">
         {{> yield}}
       </div>
-      {{#if hasRight}}
-        <div class="col {{col2Class hasSidebar}}">
+        <div class="col {{col2Class hasSidebar}}" id="inbox-main">
           <div id="inbox-header">{{> yield 'header'}}</div>
           <div class="container-fluid">
             <div class="row">
               <div class="col {{col21Class hasSidebar}} scroll-box" id="inbox-right">
                 {{> yield 'right'}}
               </div>
-              {{#if hasSidebar}}
                 <div class="col {{col22Class}} scroll-box" id="inbox-sidebar">
                   {{> yield 'sidebar'}}
                 </div>
-              {{/if}}
             </div>
           </div>
         </div>
-      {{/if}}
     </div>
   </div>
 </template>

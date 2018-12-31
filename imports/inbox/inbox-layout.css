@@ -1,7 +1,12 @@
 #inbox-left {
   height: calc(100vh - 50px);
 }
-
+#inbox-main {
+  display: none;
+}
+.with-right #inbox-main {
+  display: block;
+}
 #inbox-header {
   height: 57px;
   padding: 6px 10px;
@@ -50,4 +55,8 @@
 
 #inbox-sidebar {
   height: calc(100vh - 107px);
+  display: none;
+}
+.with-sidebar #inbox-sidebar {
+  display: block;
 }
