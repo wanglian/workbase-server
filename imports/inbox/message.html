@@ -24,7 +24,7 @@
       {{else}}
         {{#markdown}}{{{content}}}{{/markdown}}
         {{#if compare contentType '===' 'image'}}
-          <a href="{{image.link 'original'}}" data-fancybox="thread" data-caption="{{image.name}}">
+          <a href="{{image.link 'original'}}" data-fancybox="thread" data-caption="{{summary}}">
             <img src="{{image.link 'thumbnail'}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
           </a>
         {{/if}}
