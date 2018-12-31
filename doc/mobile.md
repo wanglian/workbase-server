@@ -112,7 +112,12 @@ https://benfrain.com/preventing-body-scroll-for-modals-in-ios/
 
 解决
 https://github.com/onderceylan/cordova-plugin-wkwebview-inputfocusfix
-同时使用 https://github.com/apache/cordova-plugin-wkwebview-engine
+同时使用
+https://github.com/apache/cordova-plugin-wkwebview-engine
+提供了三个配置
+- CordovaWebViewEngine: CDVWKWebViewEngine
+- AllowBackForwardNavigationGestures: true
+- Allow3DTouchLinkPreview: false
 
 ### 消息里的超链接打不开(done)
 

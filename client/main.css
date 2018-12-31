@@ -55,6 +55,9 @@ blockquote {
 .modal.full-screen .modal-footer {
   bottom: 0;
 }
+.close {
+  font-size: 26px;
+}
 /* search */
 .modal.full-screen.search .modal-body {
   top: 65px;

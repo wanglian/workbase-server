@@ -11,6 +11,7 @@
 - 取消频道欢迎消息
 - Roster/Channel/Charts/Shares 初始化分离：创建Thread/添加ThreadUser，创建放在startup，添加放在Login(区分角色)
 - fix ios 搜索框不能自动focus
+- ios app 启用左右滑动导航
 
 ## 12-29
 
