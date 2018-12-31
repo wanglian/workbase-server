@@ -79,7 +79,10 @@
       <ul class="files nav nav-pills nav-stacked collapse in" id="files-list-{{_id}}" aria-expanded="true">
         {{#each files}}
           <li>
-            {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
+            {{{fileicon type}}} {{name}}
+            <div class="small text-muted">
+               {{formatDayWithTime createdAt}} ({{filesize size}})
+            </div>
             <div class="actions pull-right">
               {{> FileViewLink}}
               {{> FileDownloadLink}}
