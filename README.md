@@ -69,3 +69,4 @@ References
 - [i18next](https://www.i18next.com/)
 - [gm](http://aheckmann.github.io/gm/docs.html)
 - [Meteor Easy Search](http://matteodem.github.io/meteor-easy-search/getting-started/)
+- [w3schools CSS](https://www.w3schools.com/css/default.asp)
