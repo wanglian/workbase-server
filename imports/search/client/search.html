@@ -12,12 +12,28 @@
         </div>
         <div class="modal-body scroll-box">
           <ul class="list-group threads">
+            {{#EasySearch.IfNoResults index=threadsIndex}}
+              <div>{{_ 'Empty'}}</div>
+            {{/EasySearch.IfNoResults}}
+            {{#EasySearch.IfSearching index=threadsIndex}}
+              <div>{{> spinner}}</div>
+            {{/EasySearch.IfSearching}}
             {{#EasySearch.Each index=threadsIndex}}
               {{> ThreadListItemTemplate thread}}
             {{/EasySearch.Each}}
           </ul>
         </div>
       </div>
+    </div>
+  </div>
+</template>
+
+<template name="ThreadDetailSearch">
+  <div class="panel flat-panel">
+    <div class="flat-panel-heading">
+      <div class="flat-panel-title" id="btn-search">
+        <i class="fa fa-search"></i>{{_ 'Search Messages'}}
+        <i class="fa fa-chevron-right pull-right text-muted hide" style="font-size:22px;"></i></div>
     </div>
   </div>
 </template>
@@ -35,6 +51,12 @@
           </div>
         </div>
         <div class="modal-body scroll-box messages">
+          {{#EasySearch.IfNoResults index=messagesIndex}}
+            <div>{{_ 'Empty'}}</div>
+          {{/EasySearch.IfNoResults}}
+          {{#EasySearch.IfSearching index=messagesIndex}}
+            <div>{{> spinner}}</div>
+          {{/EasySearch.IfSearching}}
           {{#EasySearch.Each index=messagesIndex}}
             {{> Message}}
           {{/EasySearch.Each}}

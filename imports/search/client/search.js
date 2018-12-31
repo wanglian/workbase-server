@@ -25,6 +25,15 @@ Template.SearchModal.events({
   }
 });
 
+Template.ThreadDetailSearch.events({
+  "click #btn-search"(e, t) {
+    e.preventDefault();
+    Modal.show('ThreadSearchModal', this, {
+      backdrop: 'static'
+    });
+  }
+});
+
 Template.ThreadSearchModal.onRendered(function() {
   this.$('.modal').on('shown.bs.modal', function(e) {
     $('.modal input[type=text]').focus();

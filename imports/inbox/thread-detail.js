@@ -10,15 +10,6 @@ Template.ThreadDetail.helpers({
   }
 });
 
-Template.ThreadDetailSearch.events({
-  "click #btn-search"(e, t) {
-    e.preventDefault();
-    Modal.show('ThreadSearchModal', this, {
-      backdrop: 'static'
-    });
-  }
-});
-
 Template.ThreadDetailMembers.helpers({
   showAddMember() {
     let thread = this;
