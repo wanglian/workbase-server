@@ -4,7 +4,7 @@
     "domain": "xxx.com"
   },
   "modules": {
-    "storage": "S3"
+    "storage": "S3/GridFS"
   },
   "mailgun": {
     "key": "key-xxx"

@@ -1,4 +1,5 @@
 import S3 from './s3';
+import GridFS from './gridfs';
 
 Storage = {
   type: 'local',
@@ -33,10 +34,13 @@ Storage = {
 };
 
 Storage.addOption('S3', S3);
+Storage.addOption('GridFS', GridFS);
 
 let modules = Meteor.settings.modules;
-if (modules) {
+if (modules && _.keys(Storage.options).includes(modules.storage)) {
   Storage.load(modules.storage);
+} else {
+  Storage.load('GridFS');
 }
 
 export default Storage;

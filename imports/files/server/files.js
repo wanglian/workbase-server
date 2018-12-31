@@ -12,9 +12,9 @@ import createThumbnails from './image-processing';
 Files = new FilesCollection({
   debug: false, // Change to `true` for debugging
   collectionName: 'files',
-  storagePath: '/tmp/workbase/uploads/files',
+  storagePath: 'uploads/files',
   allowClientCode: false, // Disallow remove files from Client
-  // Start moving files to AWS:S3
+  // Start moving files to Storage
   // after fully received by the Meteor server
   onAfterUpload(fileRef) {
     try {
@@ -37,24 +37,13 @@ Files = new FilesCollection({
     }
   },
   // Intercept access to the file
-  // And redirect request to AWS:S3
+  // And redirect request to Storage
   interceptDownload(http, fileRef, version) {
-    let path;
-
-    if (fileRef && fileRef.versions && fileRef.versions[version] && fileRef.versions[version].meta && fileRef.versions[version].meta.pipePath) {
-      path = fileRef.versions[version].meta.pipePath;
-    }
-
-    if (path) {
-      return Storage.stream(this, http, fileRef, version, path);
-    }
-    // While file is not yet uploaded to AWS:S3
-    // It will be served file from FS
-    return false;
+    return Storage.stream(this, http, fileRef, version);
   }
 });
 
-// Intercept FilesCollection's remove method to remove file from AWS:S3
+// Intercept FilesCollection's remove method to remove file from Storage
 let _origRemove = Files.remove;
 Files.remove = function(search) {
   Storage.remove(this, search);

@@ -81,7 +81,13 @@ const uploadToS3 = (collection, fileRef) => {
   });
 };
 
-const streamFromS3 = (collection, http, fileRef, version, path) => {
+const streamFromS3 = (collection, http, fileRef, version) => {
+  let path;
+  if (fileRef && fileRef.versions && fileRef.versions[version] && fileRef.versions[version].meta && fileRef.versions[version].meta.pipePath) {
+    path = fileRef.versions[version].meta.pipePath;
+  }
+  if (!path) return false;
+
   // If file is successfully moved to AWS:S3
   // We will pipe request to AWS:S3
   // So, original link will stay always secure

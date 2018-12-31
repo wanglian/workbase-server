@@ -4,7 +4,7 @@ import createThumbnails from './image-processing';
 AvatarFiles = new FilesCollection({
   debug: false, // Change to `true` for debugging
   collectionName: 'avatar-files',
-  storagePath: '/tmp/workbase/uploads/avatars',
+  storagePath: 'uploads/avatars',
   allowClientCode: false, // Disallow remove files from Client
   // Start moving files to AWS:S3
   // after fully received by the Meteor server
