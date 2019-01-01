@@ -1,6 +1,6 @@
 <template name="Shared">
-  {{#contentFor "title"}}
-    {{> SharedTitle}}
+  {{#contentFor "menu"}}
+    {{> SharedMenu}}
   {{/contentFor}}
 
   <div class="shared-messages">
@@ -37,7 +37,13 @@
   </div>
 </template>
 
-<template name="SharedTitle">
-  <p class="navbar-text" style="color: white; font-weight: 600;">{{_ 'Shared'}}</p>
-  <p class="navbar-text"><a href="#" id="btn-share" class="navbar-link"><i class="fa fa-pencil text-gray"></i></a></p>
+<template name="SharedMenu">
+  <p class="navbar-text pull-left menu-title">{{_ 'Shared'}}</p>
+  <div class="navbar-custom-menu">
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="#" id="btn-share" class="navbar-link menu-title"><i class="fa fa-pencil"></i></a>
+      </li>
+    </ul>
+  </div>
 </template>

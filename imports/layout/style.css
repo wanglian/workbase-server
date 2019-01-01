@@ -26,6 +26,25 @@ body .page-header {
   font-size: 14px;
 }
 
+.menu-title {
+  color: white;
+  font-weight: 600;
+}
+
+.sidebar .sidebar-menu.email {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.sidebar .email #btn-sign-out {
+  cursor: pointer;
+  display: none;
+}
+.sidebar .email:hover #btn-sign-out {
+  display: block;
+}
+
 /* meteor status */
 .status-bar {
   bottom: 0;

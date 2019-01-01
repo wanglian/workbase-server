@@ -18,67 +18,31 @@
       </a>
       <nav class="navbar navbar-static-top">
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle visible-xs" data-toggle="offcanvas" role="button">
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
           <span class="sr-only">Toggle navigation</span>
         </a>
 
-        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></a>
-              {{> yield "menu"}}
-            </li>
-          </ul>
-          {{> yield "title"}}
-
-          <form class="navbar-form navbar-left hide" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
-            </div>
-          </form>
-        </div>
-
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-            <li>
-              <a href="#" id="btn-send-email">
-                <i class="fa fa-send" data-toggle="tooltip" data-placement="left" title="{{_ 'Compose'}}"></i>
-                <span class="hidden-xs">{{_ 'Compose'}}</span>
-              </a>
-            </li>
-            <!-- User Account: style can be found in dropdown.less -->
-            <li class="dropdown user user-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                {{> avatar user=currentUser shape="circle" class="img-circle user-image" size="tiny"}}
-                <span class="hidden-sm hidden-xs">{{currentUser.profile.name}}</span>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- User image -->
-                <li class="user-header">
-                  {{> avatar user=currentUser shape="circle" class="img-circle align-center" size="xlarge"}}
-                  <p>
-                    {{currentUser.name}}
-                    <small>{{currentUser.title}}</small>
-                    <small>{{currentUser.email}}</small>
-                  </p>
-                </li>
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                  <div class="pull-left">
-                    <a href="/profile" class="btn btn-default">{{_ 'Profile'}}</a>
-                  </div>
-                  <div class="pull-right">
-                    <a href="#" class="btn btn-default" id="btn-sign-out">{{_ 'Sign out'}}</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+        {{> yield 'menu'}}
       </nav>
     </header>
     <aside class="main-sidebar">
       <section class="sidebar">
+        <ul class="sidebar-menu email">
+          <li class="header text-ellipsis">
+            {{currentUser.email}}
+            <span class="text-muted pull-right" id="btn-sign-out">{{_ 'Sign out'}}</span>
+          </li>
+        </ul>
+        <div class="user-panel">
+          <div class="pull-left image">
+            {{> avatar user=currentUser shape="circle" class="img-circle align-center" size="medium"}}
+          </div>
+          <div class="pull-left info">
+            <p>{{currentUser.name}}</p>
+            <i class="fa fa-circle text-success"></i>
+            <span class="text-muted">{{currentUser.title}}</span>
+          </div>
+        </div>
         <!-- search form -->
         <form action="#" method="get" class="sidebar-form" id="search-form">
           <div class="input-group">

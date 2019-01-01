@@ -1,8 +1,6 @@
 <template name="Channels">
-  {{> contentFor region="menu" template="ChannelMenu"}}
-
-  {{#contentFor "title"}}
-    <p class="navbar-text" style="color: white; font-weight: 600;">{{channel.address}}</p>
+  {{#contentFor "menu"}}
+    <p class="navbar-text text-ellipsis menu-title">{{channel.address}}</p>
   {{/contentFor}}
 
   {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}

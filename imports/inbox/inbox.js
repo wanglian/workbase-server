@@ -1,15 +1,9 @@
 import './inbox.html';
 
 Template.InboxMenu.events({
-  "click #btn-add-channel"(e, t) {
+  "click #btn-send-email"(e, t) {
     e.preventDefault();
-    Modal.show('AddChannelModal', null, {
-      backdrop: 'static'
-    });
-  },
-  "click #btn-add-roster"(e, t) {
-    e.preventDefault();
-    Modal.show('AddRosterModal', null, {
+    Modal.show("SendEmailModal", null, {
       backdrop: 'static'
     });
   }

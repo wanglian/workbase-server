@@ -1,8 +1,6 @@
 <template name="Inbox">
-  {{> contentFor region="menu" template="InboxMenu"}}
-
-  {{#contentFor "title"}}
-    <p class="navbar-text" style="color: white; font-weight: 600;">{{_ 'Inbox'}}</p>
+  {{#contentFor "menu"}}
+    {{> InboxMenu}}
   {{/contentFor}}
 
   {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}
@@ -17,11 +15,16 @@
 </template>
 
 <template name="InboxMenu">
-  {{#if currentUser.isAdmin}}
-    <ul class="dropdown-menu" role="menu">
-      <li><a href="#" id="btn-add-roster"><i class="fa fa-plus"></i> {{_ "New User"}}</a></li>
-      <li class="divider"></li>
-      <li><a href="#" id="btn-add-channel"><i class="fa fa-plus"></i> {{_ "New Channel"}}</a></li>
+  <p class="navbar-text pull-left menu-title">{{_ 'Inbox'}}</p>
+
+  <div class="navbar-custom-menu">
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="#" id="btn-send-email">
+          <i class="fa fa-send" data-toggle="tooltip" data-placement="left" title="{{_ 'Compose'}}"></i>
+          <span class="hidden-xs">{{_ 'Compose'}}</span>
+        </a>
+      </li>
     </ul>
-  {{/if}}
+  </div>
 </template>

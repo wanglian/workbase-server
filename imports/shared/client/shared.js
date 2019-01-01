@@ -36,9 +36,10 @@ Template.Shared.events({
   }
 });
 
-Template.SharedTitle.events({
+Template.SharedMenu.events({
   "click #btn-share"(e, t) {
     e.preventDefault();
     $('#shared-form').toggleClass("hide");
+    $('#shared-form textarea').focus();
   }
 });

@@ -1,5 +1,5 @@
 export const locale_zh_cn = {
-  "Sign out": "注销",
+  "Sign out": "退出",
   "Profile": "个人设置",
   "Compose": "发消息",
   "Inbox": "收件箱",
