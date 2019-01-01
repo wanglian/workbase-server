@@ -4,7 +4,7 @@ import './channel-modal';
 
 ChannelController = ApplicationController.extend({
   template: 'Channels',
-  perPage: 20,
+  perPage: 25,
   channel() {
     return this.params.channel;
   },

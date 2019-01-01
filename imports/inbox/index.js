@@ -9,7 +9,7 @@ import './style.css';
 
 InboxController = ApplicationController.extend({
   template: 'Inbox',
-  perPage: 20,
+  perPage: 25,
   subscriptions() {
     this.threadsSub = this.subscribe("threads", {limit: this.limit()});
     let threadId = this.threadId();
