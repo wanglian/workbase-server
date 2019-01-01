@@ -32,6 +32,7 @@ Threads.helpers({
   isReplyable() {
     let count = ThreadUsers.find({threadId: this._id}).count();
     let countContacts = ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).count();
+    // 无内部用户参与的外部邮件，且外部邮件无须回复
     return count === 1 || (count - countContacts) > 1 || this.hasReplyableExternalMembers();
   },
   hasOwner(user) {

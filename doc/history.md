@@ -1,5 +1,9 @@
 # 产品进展
 
+## 1-1
+
+- 回复消息(可回复的话题才有)，外发邮件带上回复信息（TODO）
+
 ## 12-31
 
 - 改进dropdown，打开时页面链接失效（解决一次点击多个响应造成的困扰）
@@ -47,13 +51,13 @@
 
 ## 12-27
 
-- Thread扩展details配置项 About/Members
+- Thread扩展details配置项 About/Members（控制Details显示区块）
 - 话题内搜索消息
 - 按主题搜索话题
 
 ## 12-26
 
-- 添加Thread扩展配置details，控制是否显示Details栏。（TODO：控制Details显示区块）
+- 添加Thread扩展配置details，控制是否显示Details栏
 - “我的帐号”做成Thread扩展category=Account：展示登录成功/失败/退出日志，将个人设置改为Modal，做进“我的帐号”。登录订阅我的帐号信息(Thread)
 - fix onLogin会在每次连接触发，太多。改成用户主动密码登录时才记录
 - fix Channel的话题列表: category=Email。Thread类型增多，这里有点不好理解了，规则是频道里只有Email话题。
@@ -83,7 +87,7 @@
 
 ## 12-23
 
-- 个人设置：语言，模板，邮件签名
+- 个人设置：语言，模板skin，邮件签名
 - 上传头像
 - fix Hot Code Push
 - 回复消息后增加flash效果：使用animate.css (ScrollReveal需要License)
@@ -94,7 +98,7 @@
 - 改进moment，时间显示国际化
 - 连接状态栏国际化
 - 按用户浏览器环境本地化
-- 界面skin，默认blue。用户可设置（TODO）
+- 界面skin，默认blue。用户可设置
 - 消息输入框禁止手动调节（宽度）
 - app加上camera支持 cordova-plugin-camera （不然打不开camera）
 - app发布带上server参数，以支持Hot Code Push

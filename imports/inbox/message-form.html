@@ -1,6 +1,14 @@
 <template name="MessageForm">
   {{#autoForm collection=formCollection schema=formSchema id="message-form" threadId=_id}}
     {{> afQuickField name="content"}}
+
+    {{#with parentMessage}}
+      <div>
+        <a href="#" id="btn-remove-quote" class="small text-muted pull-right" style="margin-right: 10px;">{{_ "Remove"}}</a>
+        {{> QuotedMessage}}
+      </div>
+    {{/with}}
+
     {{#if pendingFiles.count}}
     <ul class="files nav nav-pills nav-stacked" style="margin-bottom: 10px;">
       {{#each pendingFiles}}
@@ -14,6 +22,7 @@
       {{/each}}
     </ul>
     {{/if}}
+
     <div class="clearfix">
       <div class="btn-group pull-right">
         <button type="submit" class="btn btn-primary">{{_ 'Send'}}</button>

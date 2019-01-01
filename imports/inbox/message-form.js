@@ -63,6 +63,10 @@ Template.MessageForm.helpers({
   formSchema() {
     return MESSAGE_SCHEMA;
   },
+  parentMessage() {
+    let m = Session.get(`message-draft-parent-${this._id}`);
+    return m && Messages._transform(m);
+  },
   pendingFiles() {
     return Files.find({"meta.relations": {$elemMatch: {threadId: this._id, messageId: null}}}, {sort: {"meta.relations.createdAt": -1}});
   }
@@ -74,6 +78,10 @@ Template.MessageForm.events({
     if (e.ctrlKey && e.which === 13) {
       t.$("form").submit();
     }
+  },
+  "click #btn-remove-quote"(e, t) {
+    e.preventDefault();
+    Session.set(`message-draft-parent-${this.threadId}`);
   },
   "click #btn-file"(e, t) {
     e.preventDefault();
@@ -119,15 +127,19 @@ AutoForm.hooks({
 
       let threadId = this.formAttributes.threadId;
       let fileIds = Files.find({"meta.relations": {$elemMatch: {threadId, messageId: null, type: 'file'}}}).map(f => f._id);
+      let parentMessage = Session.get(`message-draft-parent-${threadId}`);
+      let parentMessageId = parentMessage && parentMessage._id;
       Meteor.call('sendMessage', threadId, {
-        content: insertDoc.content,
+        content:  insertDoc.content,
         internal: insertDoc.internal,
+        parentId: parentMessageId,
         fileIds
       }, (err, res) => {
         if (err) {
           console.log(err);
         } else {
           console.log(res);
+          Session.set(`message-draft-parent-${threadId}`);
           autosize($("form textarea"));
           // $("form textarea").focus();
         }

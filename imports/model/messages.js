@@ -4,6 +4,7 @@
 // - internal: boolean
 // - content
 // - contentType: text/html/image/log
+// - parentId:
 // - fileIds: [fileId]
 // - inlineFileIds: [fileId]
 // - summary
@@ -17,6 +18,9 @@ Messages.helpers({
   },
   thread() {
     return Threads.findOne(this.threadId);
+  },
+  parent() {
+    return Messages.findOne(this.parentId);
   },
   summaryLocalized() {
     clientOnly();

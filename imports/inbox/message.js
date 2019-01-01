@@ -81,6 +81,11 @@ Template.MessageActions.onRendered(function() {
 });
 
 Template.MessageActions.events({
+  "click .btn-reply"(e, t) {
+    e.stopPropagation();
+    Session.set(`message-draft-parent-${t.data.threadId}`, t.data);
+    $("form#message-form textarea").focus();
+  },
   "click .btn-copy"(e, t) {
     e.stopPropagation();
     clipboard(t.data.content, e);

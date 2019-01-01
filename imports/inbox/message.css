@@ -91,3 +91,8 @@
   max-width: 100%;
   cursor: zoom-in;
 }
+
+.quoted-message .title a {
+  color: #333;
+  font-weight: 600;
+}

@@ -27,7 +27,7 @@ Messages.after.insert(function(userId, doc) {
   // 忽略：内部消息和来自外部的消息
   if (doc.userType === 'Contacts' || doc.internal) return;
 
-  new Promise(function(resolve, reject) {
+  new Promise((resolve, reject) => {
     try {
       Mailgun.send(this.transform());
       resolve();

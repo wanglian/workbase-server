@@ -9,6 +9,7 @@ Meteor.methods({
       contentType:   Match.Maybe(String),
       content:       String,
       internal:      Match.Maybe(Boolean),
+      parentId:      Match.Maybe(String),
       fileIds:       Match.Maybe([String]),
       inlineFileIds: Match.Maybe([String])
     });
