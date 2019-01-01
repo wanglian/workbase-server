@@ -1,7 +1,6 @@
 // - company
 // - domain
 // - adminId
-// - sharedId
 Instance = new Mongo.Collection('instance');
 
 Instance.get = () => {

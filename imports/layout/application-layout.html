@@ -39,7 +39,6 @@
           </div>
           <div class="pull-left info">
             <p>{{currentUser.name}}</p>
-            <i class="fa fa-circle text-success"></i>
             <span class="text-muted">{{currentUser.title}}</span>
           </div>
         </div>
@@ -66,16 +65,7 @@
           </li>
           {{> RosterMenuItem}}
           {{> ChannelMenuItems}}
-          <li>
-            <a href="/shared">
-              <i class="fa fa-connectdevelop"></i> <span>{{_ 'Shared'}}</span>
-              {{#if true}}
-                <span class="pull-right-container">
-                  <span class="label label-danger pull-right">&nbsp;</span>
-                </span>
-              {{/if}}
-            </a>
-          </li>
+          {{> SharedMenuItem}}
         </ul>
       </section>
     </aside>

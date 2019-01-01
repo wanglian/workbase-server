@@ -3,47 +3,76 @@
     {{> SharedMenu}}
   {{/contentFor}}
 
-  <div class="shared-messages">
-    <div id="shared-form" class="hide">{{> MessageForm sharedThread}}</div>
+  {{#Layout template="InboxLayout"}}
+    <div class="shared-messages">
+      <div id="shared-form" class="hide">{{> MessageForm sharedThread}}</div>
 
-    {{#unless messages.count}}
-      <div class="text-muted">{{_ 'Empty'}}</div>
-    {{/unless}}
-    {{#each messages}}
-      <div class="message">
-        {{> avatar user=user shape="circle" class="img-circle pull-left" size="small"}}
-        <div class="message-body">
-          <div class="name">{{user.name}}</div>
-          {{> MessageContent}}
-          <div class="text-muted small">
-            <a href="#" class="pull-right btn-comment text-muted"><i class="fa fa-comment-o"></i> {{_ 'Comment'}}</a>
-            {{formatDayWithTime createdAt}}
+      {{#each messages}}
+        <div class="message">
+          {{> avatar user=user shape="circle" class="img-circle pull-left" size="small"}}
+          <div class="message-body">
+            <div class="name">{{user.name}}</div>
+            {{> MessageContent}}
+            <div class="text-muted small">
+              <a href="#" class="pull-right btn-comment text-muted"><i class="fa fa-comment-o"></i> {{_ 'Comment'}}</a>
+              {{formatDayWithTime createdAt}}
+            </div>
+            <ul class="nav nav-pills nav-stacked comments">
+              {{#each comments}}
+                <li><span class="user">{{user.name}}</span>: {{content}}</li>
+              {{/each}}
+            </ul>
           </div>
-          <ul class="nav nav-pills nav-stacked comments">
-            {{#each comments}}
-              <li><span class="user">{{user.name}}</span>: {{content}}</li>
-            {{/each}}
-          </ul>
         </div>
-      </div>
-    {{/each}}
-    {{#if ready}}
-      {{#if nextPath}}
-        <div class="text-center"><a href="{{nextPath}}" class="text-muted small">{{_ "Load More"}}</a></div>
+      {{/each}}
+      {{#if ready}}
+        {{#if nextPath}}
+          <div class="text-center"><a href="{{nextPath}}" class="text-muted small">{{_ "Load More"}}</a></div>
+        {{/if}}
+      {{else}}
+        <div class="text-center text-muted small"><i class="fa fa-spinner fa-spin"></i></div>
       {{/if}}
-    {{else}}
-      <div class="text-center text-muted small"><i class="fa fa-spinner fa-spin"></i></div>
-    {{/if}}
-  </div>
+    </div>
+  {{/Layout}}
+</template>
+
+<template name="SharedMenuItem">
+  <li>
+    <a href="/shared">
+      <i class="fa fa-connectdevelop"></i> <span>{{_ 'Discovery'}}</span>
+      {{#unless shared.read}}
+        <span class="pull-right-container">
+          <span class="label pull-right"><i class="fa fa-circle text-red"></i></span>
+        </span>
+      {{/unless}}
+    </a>
+  </li>
 </template>
 
 <template name="SharedMenu">
-  <p class="navbar-text pull-left menu-title">{{_ 'Shared'}}</p>
+  <p class="navbar-text pull-left menu-title">{{_ 'Discovery'}}</p>
   <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
       <li>
-        <a href="#" id="btn-share" class="navbar-link menu-title"><i class="fa fa-pencil"></i></a>
+        <a href="#" id="btn-share" class="navbar-link menu-title">
+          <i class="fa fa-pencil"></i>
+          <span class="hidden-xs">{{_ 'Share'}}</span>
+        </a>
       </li>
     </ul>
+  </div>
+</template>
+
+<template name="ShareModal">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'Share'}}</h4>
+        </div>
+        {{> MessageForm sharedThread}}
+      </div>
+    </div>
   </div>
 </template>

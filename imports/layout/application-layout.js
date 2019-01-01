@@ -13,6 +13,7 @@ Template.ApplicationLayout.onRendered(function() {
     let count = Counts.get('count-unread-inbox');
     document.title = (count > 0) ? `(${count}) ${title}` : title;
   });
+  this.subscribe("shared.thread");
 });
 
 Template.ApplicationLayout.events({

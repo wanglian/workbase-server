@@ -5,18 +5,15 @@ let sharedThread;
 Meteor.startup(function() {
   Threads.upsert({category: 'Shared'}, {$set: {subject: 'Shared', scope: 'public'}});
   sharedThread = Threads.findOne({category: 'Shared'});
-  if (Instance.get().sharedId != sharedThread._id) {
-    Instance.update({}, {$set: {sharedId: sharedThread._id}});
-  }
 });
 
 Accounts.onLogin(function(attempt) {
   // console.log("on login ..");
-  // let user = Users.findOne(attempt.user._id);
-  // let thread = Threads.findOne({category: 'Shared'});
-  // if (thread) {
-  //   Threads.ensureMember(thread, user);
-  // }
+  let user = Users.findOne(attempt.user._id);
+  let thread = Threads.findOne({category: 'Shared'});
+  if (thread) {
+    Threads.ensureMember(thread, user);
+  }
 });
 
 Meteor.methods({
@@ -29,6 +26,21 @@ Meteor.methods({
       parentId: messageId,
       content: comment
     });
+  }
+});
+
+Meteor.publishComposite("shared.thread", function() {
+  return {
+    find() {
+      return Threads.find({category: 'Shared'});
+    },
+    children: [
+      {
+        find(thread) {
+          return ThreadUsers.find({threadId: thread._id, userType: 'Users', userId: this.userId});
+        }
+      }
+    ]
   }
 });
 

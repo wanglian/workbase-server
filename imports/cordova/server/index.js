@@ -33,6 +33,7 @@ Messages.after.insert(function(userId, doc) {
     pushToUser(tu.user(), message).then((result) => {
       // console.log("[push] " + tu.userId + ' - ' + message._id);
     }).catch((e) => {
+      console.log("Push error:")
       console.log(e);
     });
   });
@@ -66,6 +67,19 @@ const pushToUser = (to, message) => {
           text
         });
         break;
+      case 'Shared':
+        if (message.parentId) {
+          _.extend(params, {
+            title: `${from.internalName()} ${I18n.getFixedT(to.profile.language)("sent a comment")}`,
+            text: message.summary
+          });
+        } else {
+          _.extend(params, {
+            title: `${from.internalName()} ${I18n.getFixedT(to.profile.language)("shared")}`,
+            text: message.summary
+          });
+        }
+        break;
       default:
         _.extend(params, {
           title: from.internalName() + ': ' + thread.subject,
@@ -73,7 +87,7 @@ const pushToUser = (to, message) => {
         });
       }
 
-      // console.log(params);
+      console.log(params);
       Push.send(params);
 
       resolve(true);

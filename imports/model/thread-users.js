@@ -1,5 +1,6 @@
 // - threadId
 // - category: Email, ..
+// - scope
 // - userType: Users, Contacts, ..
 // - userId
 // - role: owner, member(default)

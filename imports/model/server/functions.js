@@ -31,6 +31,7 @@ Threads.ensureMember = (thread, user, params) => {
       userType,
       userId,
       category: thread.category,
+      scope: thread.scope,
       read,
       role,
       params

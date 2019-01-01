@@ -98,8 +98,11 @@ export const locale_zh_cn = {
   "Search Subjects": "搜索主题",
   "Search Messages": "搜索消息",
   // shared
-  "Shared": "发现",
+  "Discovery": "发现",
+  "Share": '分享',
+  "Shared": "添加分享",
   "Comment": "评论",
+  "sent a comment": "添加评论",
   // reports
   "System Reports": "统计报表",
   "Reports": "报表",
