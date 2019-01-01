@@ -5,6 +5,7 @@
 - 回复消息(可回复的话题才有)，外发邮件带上回复信息（TODO）
 - 话题列表每页显示调整为25，考虑到大屏幕尽量不要留空(tesla全屏)
 - 小屏幕（手机）在LOGO栏显示未读消息数
+- 分享从收件箱中独立出来
 
 ## 12-31
 
@@ -23,7 +24,7 @@
 - 重构频道管理日志
 - 频道管理：创建时不把管理员加入，管理员可将自己加入或删除。相应地增加频道列表数据发布，修改用户的频道列表查询
 - 取消频道欢迎消息
-- Roster/Channel/Charts/Shares 初始化分离：创建Thread/添加ThreadUser，创建放在startup，添加放在Login(区分角色)
+- Roster/Channel/Charts/Shared 初始化分离：创建Thread/添加ThreadUser，创建放在startup，添加放在Login(区分角色)
 - fix ios 搜索框不能自动focus
 - ios app 启用左右滑动导航
 

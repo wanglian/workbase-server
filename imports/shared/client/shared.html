@@ -1,0 +1,43 @@
+<template name="Shared">
+  {{#contentFor "title"}}
+    {{> SharedTitle}}
+  {{/contentFor}}
+
+  <div class="shared-messages">
+    <div id="shared-form" class="hide">{{> MessageForm sharedThread}}</div>
+
+    {{#unless messages.count}}
+      <div class="text-muted">{{_ 'Empty'}}</div>
+    {{/unless}}
+    {{#each messages}}
+      <div class="message">
+        {{> avatar user=user shape="circle" class="img-circle pull-left" size="small"}}
+        <div class="message-body">
+          <div class="name">{{user.name}}</div>
+          {{> MessageContent}}
+          <div class="text-muted small">
+            <a href="#" class="pull-right btn-comment text-muted"><i class="fa fa-comment-o"></i> {{_ 'Comment'}}</a>
+            {{formatDayWithTime createdAt}}
+          </div>
+          <ul class="nav nav-pills nav-stacked comments">
+            {{#each comments}}
+              <li><span class="user">{{user.name}}</span>: {{content}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    {{/each}}
+    {{#if ready}}
+      {{#if nextPath}}
+        <div class="text-center"><a href="{{nextPath}}" class="text-muted small">{{_ "Load More"}}</a></div>
+      {{/if}}
+    {{else}}
+      <div class="text-center text-muted small"><i class="fa fa-spinner fa-spin"></i></div>
+    {{/if}}
+  </div>
+</template>
+
+<template name="SharedTitle">
+  <p class="navbar-text" style="color: white; font-weight: 600;">{{_ 'Shared'}}</p>
+  <p class="navbar-text"><a href="#" id="btn-share" class="navbar-link"><i class="fa fa-pencil text-gray"></i></a></p>
+</template>

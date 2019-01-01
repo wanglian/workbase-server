@@ -36,7 +36,7 @@ InboxController = ApplicationController.extend({
     let thread = this.thread();
     return {
       threads:    Threads.find({}, {sort: {updatedAt: -1}}),
-      thread:     thread,
+      thread,
       ready:      this.threadsSub.ready(),
       nextPath:   hasMore ? nextPath : null,
       hasRight:   !!thread,

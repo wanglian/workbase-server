@@ -39,9 +39,6 @@ Template.Message.helpers({
   showInternal() {
     return this.internal && this.thread().hasExternalMembers();
   },
-  isNew() {
-    return this.createdAt > moment().subtract(10, 'seconds').toDate();
-  },
   userName() {
     let user = this.user();
     if (!user) return;
@@ -73,6 +70,12 @@ Template.Message.events({
     } else {
       $(e.target).closest(".message").toggleClass("fold");
     }
+  }
+});
+
+Template.MessageContent.helpers({
+  isNew() {
+    return this.createdAt > moment().subtract(10, 'seconds').toDate();
   }
 });
 

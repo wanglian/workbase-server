@@ -18,41 +18,45 @@
         <div class="summary text-ellipsis text-muted">{{summary}}</div>
       </div>
     </div>
-    <div class="message-content {{#if isNew}}animated flash{{/if}}">
-      {{#if compare contentType '===' 'html'}}
-        {{> EmailContent}}
-      {{else}}
-        {{#markdown}}{{{content}}}{{/markdown}}
-        {{#if compare contentType '===' 'image'}}
-          <a href="{{image.link 'original'}}" data-fancybox="thread" data-caption="{{summary}}">
-            <img src="{{image.link 'thumbnail'}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
-          </a>
-        {{/if}}
-      {{/if}}
+    {{> MessageContent}}
+  </div>
+</template>
 
-      {{#with parent}}
-        {{> QuotedMessage}}
-      {{/with}}
-
-      {{#if files.count}}
-        <div>
-          <span href="#" class="files-count" data-toggle="collapse" data-target="#files-list-{{_id}}" aria-expanded="true">
-            {{_ 'Files with count' count=files.count}} <span class="collapse-arrow"><i class="fa fa-caret-down"></i></span>
-          </span>
-          <ul class="files nav nav-pills nav-stacked collapse in" id="files-list-{{_id}}" aria-expanded="true">
-            {{#each files}}
-              <li>
-                {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
-                <div class="actions pull-right">
-                  {{> FileViewLink}}
-                  {{> FileDownloadLink}}
-                </div>
-              </li>
-            {{/each}}
-          </ul>
-        </div>
+<template name="MessageContent">
+  <div class="message-content {{#if isNew}}animated flash{{/if}}">
+    {{#if compare contentType '===' 'html'}}
+      {{> EmailContent}}
+    {{else}}
+      {{#markdown}}{{{content}}}{{/markdown}}
+      {{#if compare contentType '===' 'image'}}
+        <a href="{{image.link 'original'}}" data-fancybox="thread" data-caption="{{summary}}">
+          <img src="{{image.link 'thumbnail'}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
+        </a>
       {{/if}}
-    </div>
+    {{/if}}
+
+    {{#with parent}}
+      {{> QuotedMessage}}
+    {{/with}}
+
+    {{#if files.count}}
+      <div>
+        <span href="#" class="files-count" data-toggle="collapse" data-target="#files-list-{{_id}}" aria-expanded="true">
+          {{_ 'Files with count' count=files.count}} <span class="collapse-arrow"><i class="fa fa-caret-down"></i></span>
+        </span>
+        <ul class="files nav nav-pills nav-stacked collapse in" id="files-list-{{_id}}" aria-expanded="true">
+          {{#each files}}
+            <li>
+              {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
+              <div class="actions pull-right">
+                {{> FileViewLink}}
+                {{> FileDownloadLink}}
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
   </div>
 </template>
 

@@ -29,7 +29,7 @@ Template.Thread.onRendered(function() {
       limit = this.limit.get();
       this.ready.set(false);
       let _this = this;
-      this.subscribe("messages", data._id, {limit}, {
+      this.subscribe("thread.messages", data._id, {limit}, {
         onReady() {
           _this.ready.set(true);
         },

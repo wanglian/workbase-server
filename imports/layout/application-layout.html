@@ -102,6 +102,16 @@
           </li>
           {{> RosterMenuItem}}
           {{> ChannelMenuItems}}
+          <li>
+            <a href="/shared">
+              <i class="fa fa-connectdevelop"></i> <span>{{_ 'Shared'}}</span>
+              {{#if true}}
+                <span class="pull-right-container">
+                  <span class="label label-danger pull-right">&nbsp;</span>
+                </span>
+              {{/if}}
+            </a>
+          </li>
         </ul>
       </section>
     </aside>

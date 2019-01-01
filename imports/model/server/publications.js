@@ -8,7 +8,7 @@ Meteor.publish('instance', function() {
   });
 
   return [
-    Instance.find({}, {fields: {domain: 1, company: 1, adminId: 1}}),
+    Instance.find({}, {fields: {domain: 1, company: 1, adminId: 1, sharedId: 1}}),
     Threads.find({category: 'Account', userId: this.userId})
   ];
 });
@@ -85,7 +85,7 @@ Meteor.publish("thread", function(threadId) {
 
 const MIN_MESSAGES = 20;
 const MAX_MESSAGES = 1000;
-Meteor.publishComposite("messages", function(threadId, options) {
+Meteor.publishComposite("thread.messages", function(threadId, options) {
   check(threadId, String);
   check(options, {
     limit: Match.Maybe(Number)

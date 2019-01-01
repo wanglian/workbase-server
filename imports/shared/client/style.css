@@ -1,0 +1,27 @@
+.shared-messages .message {
+  background: white;
+  padding: 10px;
+  border-bottom: solid 1px #F1F1F1;
+}
+.shared-messages .message-body {
+  padding-left: 42px;
+}
+.shared-messages .message-body .name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+ul.comments {
+  background: #ecf0f5;
+  margin-top: 5px;
+}
+ul.comments li {
+  padding: 2px 5px;
+  border-bottom: solid 1px #FAFAFA;
+}
+ul.comments li:last-child {
+  border-bottom: none;
+}
+ul.comments li .user {
+  font-weight: 600;
+}
