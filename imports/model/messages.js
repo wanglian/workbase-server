@@ -25,15 +25,15 @@ Messages.helpers({
   summaryLocalized() {
     clientOnly();
 
-    if (_.isEmpty(this.summary)) {
-      return I18n.t("No content");
+    if (!_.isEmpty(this.summary)) {
+      return this.summary;
     }
 
     switch(this.contentType) {
     case 'image':
       return I18n.t('Image Message');
     default:
-      return this.summary;
+      return I18n.t("No content");
     }
   },
   image() {
