@@ -20,7 +20,7 @@
 
 <template name="ThreadListItemTemplate">
   <a href="{{threadPath}}" class="list-group-item clearfix thread" id="{{_id}}">
-    {{> Template.dynamic template=listItemTemplate}}
+    {{> Template.dynamic template=listTemplate}}
   </a>
 </template>
 
@@ -40,5 +40,14 @@
         {{lastMessage.summaryLocalized}}
       {{/if}}
     </div>
+  </div>
+</template>
+
+<template name="SimpleThreadListItem">
+  <div class="thread-icon">
+    <button type="button"><i class="{{icon}}"></i></button>
+  </div>
+  <div class="thread-title">
+    <div class="thread-subject text-ellipsis">{{title}}</div>
   </div>
 </template>

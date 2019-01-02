@@ -24,10 +24,6 @@ Template.ThreadListItemTemplate.helpers({
     } else {
       return Router.routes['inbox'].path({_id: this._id});
     }
-  },
-  listItemTemplate() {
-    let tmpl = `${this.category}ListItem`;
-    return eval(`Template.${tmpl}`) ? tmpl : 'ThreadListItem';
   }
 });
 
@@ -35,5 +31,12 @@ Template.ThreadListItem.helpers({
   icon() {
     let c = ThreadCategories.get(this.category)
     return this.read ? c.icon : c.iconUnread;
+  }
+});
+
+Template.SimpleThreadListItem.helpers({
+  icon() {
+    let c = ThreadCategories.get(this.category)
+    return c.icon;
   }
 });

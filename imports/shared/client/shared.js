@@ -25,7 +25,7 @@ Template.Shared.helpers({
     return Messages.find({threadId: thread._id, parentId: {$exists: false}}, {sort: {createdAt: -1}});
   },
   comments() {
-    return Messages.find({parentId: this._id}, {sort: {createdAt: -1}});
+    return Messages.find({parentId: this._id}, {sort: {createdAt: 1}});
   }
 });
 

@@ -30,6 +30,8 @@ matb33:collection-hooks
 dburles:collection-helpers
 reywood:publish-composite
 tmeasday:publish-counts
+easy:search
+percolate:migrations
 
 iron:router
 
@@ -52,5 +54,3 @@ ostrio:files
 fileer:size
 ostrio:templatehelpers
 raix:push
-easy:search
-percolate:migrations

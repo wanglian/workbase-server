@@ -49,3 +49,15 @@ Router.route('/inbox/:_id?', {
   name: 'inbox',
   controller: 'InboxController'
 });
+
+Threads.helpers({
+  listTemplate(mode) {
+    if (mode === 'simple') {
+      let tmpl = `Simple${this.category}ListItem`;
+      return eval(`Template.${tmpl}`) ? tmpl : 'SimpleThreadListItem';
+    } else {
+      let tmpl = `${this.category}ListItem`;
+      return eval(`Template.${tmpl}`) ? tmpl : 'ThreadListItem';
+    }
+  }
+});

@@ -14,3 +14,12 @@
     </div>
   </div>
 </template>
+
+<template name="SimpleChatListItem">
+  <div class="thread-icon">
+    {{> avatar user=chat shape="circle" class="img-circle" size="medium"}}
+  </div>
+  <div class="thread-title">
+    <div class="thread-subject text-ellipsis">{{chat.name}}</div>
+  </div>
+</template>

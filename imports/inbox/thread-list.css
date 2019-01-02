@@ -85,3 +85,10 @@ ul.list-group .list-group-item .action {
 ul.list-group .list-group-item:hover .action {
   display: inline;
 }
+
+ul.threads.simple .list-group-item .thread-subject {
+  padding-top: 8px;
+}
+ul.threads.simple .list-group-item.message {
+  border-bottom: none !important;
+}

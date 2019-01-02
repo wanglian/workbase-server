@@ -16,10 +16,10 @@ Meteor.publish('instance', function() {
 const MIN_THREADS = 20;
 const MAX_THREADS = 200;
 Meteor.publishComposite("threads", function(options) {
-  check(options, {
+  check(options, Match.Maybe({
     category: Match.Maybe(String),
     limit: Match.Maybe(Number)
-  });
+  }));
 
   let conditions = {scope: 'private', userType: 'Users', userId: this.userId};
   let category = options && options.category;

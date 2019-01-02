@@ -67,9 +67,68 @@
         <i class="fa fa-reply"></i>
       </button>
     {{/if}}
+    <button type="button" class="btn btn-sm btn-default btn-forward" data-toggle="tooltip" title="{{_ 'Forward'}}">
+      <i class="fa fa-mail-forward"></i>
+    </button>
     <button type="button" class="btn btn-sm btn-default btn-copy" data-toggle="tooltip" title="{{_ 'Copy'}}">
       <i class="fa fa-copy"></i>
     </button>
+  </div>
+</template>
+
+<template name="MessageForwardModal">
+  <div class="modal fade full-screen">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-MessageForwardModal">&times;</button>
+          <h4 class="modal-title">{{_ "Select a session"}}</h4>
+        </div>
+        <div class="modal-body no-padding">
+          <ul class="list-group threads">
+            {{#each threads}}
+              <a href="#" class="list-group-item clearfix thread btn-select-thread" id="{{_id}}">
+                {{> Template.dynamic template=listTemplate}}
+              </a>
+            {{/each}}
+            {{#if ready}}
+              {{#unless threads.count}}
+                <li class="list-group-item thread text-muted">{{_ 'Empty'}}</li>
+              {{/unless}}
+            {{else}}
+              <span class="list-group-item text-center text-muted thread small"><i class="fa fa-spinner fa-spin"></i></span>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="MessageForwardPreviewModal">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ "Send to"}}</h4>
+        </div>
+        <div class="modal-body" style="padding-top: 0; padding-bottom: 0;">
+          <ul class="list-group threads simple">
+            <li class="list-group-item clearfix thread">
+              {{#with thread}}
+                {{> Template.dynamic template=(listTemplate 'simple')}}
+              {{/with}}
+            </li>
+            <a href="#" class="list-group-item thread message">{{message.summaryLocalized}}</a>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
+          <button type="button" class="btn btn-primary" id="btn-forward-message">{{_ "Send"}}</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
