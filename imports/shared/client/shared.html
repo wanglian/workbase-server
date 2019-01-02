@@ -9,7 +9,9 @@
 
       {{#each messages}}
         <div class="message">
-          {{> avatar user=user shape="circle" class="img-circle pull-left" size="small"}}
+          {{#LinkToUser}}
+            {{> avatar user=user shape="circle" class="img-circle pull-left" size="small"}}
+          {{/LinkToUser}}
           <div class="message-body">
             <div class="name">{{user.name}}</div>
             {{> MessageContent}}
@@ -39,7 +41,7 @@
 <template name="SharedMenuItem">
   <li class="{{#if inRouter 'shared'}}active{{/if}}">
     <a href="/shared">
-      <i class="fa fa-connectdevelop"></i> <span>{{_ 'Discovery'}}</span>
+      <i class="fa fa-connectdevelop"></i> <span>{{_ 'Discover'}}</span>
       {{#unless shared.read}}
         <span class="pull-right-container">
           <span class="label pull-right"><i class="fa fa-circle text-red"></i></span>
@@ -50,7 +52,7 @@
 </template>
 
 <template name="SharedMenu">
-  <p class="navbar-text pull-left menu-title">{{_ 'Discovery'}}</p>
+  <p class="navbar-text pull-left menu-title">{{_ 'Discover'}}</p>
   <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
       <li>

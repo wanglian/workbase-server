@@ -45,3 +45,13 @@ Template.RosterCard.events({
     });
   }
 });
+
+Template.LinkToUser.events({
+  "click .btn-user"(e, t) {
+    if (this.userType === 'Users') {
+      e.preventDefault();
+      e.stopPropagation();
+      Router.go('roster', {_id: this.userId});
+    }
+  }
+});
