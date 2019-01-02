@@ -12,6 +12,10 @@ blockquote {
   padding: 3px 10px;
   border-left: 4px solid #ddd;
 }
+body .navbar-text {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 /* fontawesome */
 .fa-1-2x {
@@ -86,10 +90,6 @@ blockquote {
   }
   body .navbar-collapse.pull-left+.navbar-custom-menu {
     right: 0px !important;
-  }
-  body .navbar-text {
-    margin-left: 10px;
-    margin-right: 10px;
   }
   body .navbar-nav>.user-menu>.dropdown-menu>li.user-header {
     height: 190px !important;

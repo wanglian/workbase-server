@@ -1,4 +1,5 @@
 import '../both';
+import './migrations';
 import './welcome';
 
 Meteor.startup(function() {

@@ -1,6 +1,6 @@
 Meteor.publish('instance', function() {
   if (this.userId){
-    Counts.publish(this, 'count-unread-inbox', ThreadUsers.find({userType: 'Users', userId: this.userId, read: false}));
+    Counts.publish(this, 'count-unread-inbox', ThreadUsers.find({scope: 'private', userType: 'Users', userId: this.userId, read: false}));
   }
 
   ChannelUsers.find({userId: this.userId}).forEach((cu) => {
