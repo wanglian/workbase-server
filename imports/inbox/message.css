@@ -47,11 +47,16 @@
   font-weight: bold;
   color: #555;
 }
-.messages .message-content {
+.message-content {
   padding-top: 15px;
   overflow: scroll;
 }
-.messages .message-content iframe {
+.message-content img.img-thumbnail {
+  max-height: 350px;
+  max-width: 100%;
+  cursor: zoom-in;
+}
+.message-content iframe {
   height: 0px;
   width: 100%;
   overflow-y: hidden;
@@ -85,11 +90,6 @@
 }
 .messages .message-content h6 {
   font-size: 14px;
-}
-.messages .message-content img.img-thumbnail {
-  max-height: 350px;
-  max-width: 100%;
-  cursor: zoom-in;
 }
 
 .quoted-message .title a {

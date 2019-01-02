@@ -120,7 +120,12 @@
                 {{> Template.dynamic template=(listTemplate 'simple')}}
               {{/with}}
             </li>
-            <a href="#" class="list-group-item thread message">{{message.summaryLocalized}}</a>
+            <div style="display: none;" id="content-{{message._id}}">
+              {{> MessageContent message}}
+            </div>
+            <a href="#" data-fancybox data-src="#content-{{message._id}}" class="list-group-item thread message">
+              {{message.summaryLocalized}}
+            </a>
           </ul>
         </div>
         <div class="modal-footer">
