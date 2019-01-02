@@ -6,3 +6,13 @@ body .user-panel {
   bottom: 0;
   cursor: pointer;
 }
+body .user-panel .avatar-tiny {
+  display: none;
+}
+body.sidebar-collapse .user-panel .status,
+body.sidebar-collapse .user-panel .avatar-mlarge {
+  display: none;
+}
+body.sidebar-collapse .user-panel .avatar-tiny {
+  display: block;
+}

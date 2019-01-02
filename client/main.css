@@ -56,6 +56,9 @@ body .navbar-text {
   top: 56px;
   bottom: 65px;
 }
+.modal.full-screen.no-footer .modal-body {
+  bottom: 0;
+}
 .modal.full-screen .modal-footer {
   bottom: 0;
 }

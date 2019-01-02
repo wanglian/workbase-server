@@ -1,5 +1,22 @@
 # 开发日志
 
+## 1-2
+
+### modal 全屏样式
+
+- 采用absolute定位
+- modal-body 滚动
+```
+.modal.full-screen
+.modal.full-screen.no-footer
+```
+
+### 区域滚动样式
+
+```
+.scroll-box
+```
+
 ## 1-1
 
 ### Docker Repo

@@ -77,14 +77,14 @@
 </template>
 
 <template name="MessageForwardModal">
-  <div class="modal fade full-screen">
+  <div class="modal fade full-screen no-footer">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-MessageForwardModal">&times;</button>
           <h4 class="modal-title">{{_ "Select a session"}}</h4>
         </div>
-        <div class="modal-body no-padding">
+        <div class="modal-body no-padding scroll-box">
           <ul class="list-group threads">
             {{#each threads}}
               <a href="#" class="list-group-item clearfix thread btn-select-thread" id="{{_id}}">
