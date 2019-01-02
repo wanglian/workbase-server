@@ -37,7 +37,7 @@
 </template>
 
 <template name="SharedMenuItem">
-  <li>
+  <li class="{{#if inRouter 'shared'}}active{{/if}}">
     <a href="/shared">
       <i class="fa fa-connectdevelop"></i> <span>{{_ 'Discovery'}}</span>
       {{#unless shared.read}}

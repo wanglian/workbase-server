@@ -101,7 +101,7 @@ Template.Thread.events({
 Template.ThreadMenu.events({
   "click .btn-action"(e, t) {
     e.preventDefault();
-    this.action.apply(this);
+    this.action.apply(this, [e]);
   }
 });
 

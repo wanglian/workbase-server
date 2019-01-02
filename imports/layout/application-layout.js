@@ -2,10 +2,6 @@ import './application-layout.html';
 import './send-email-modal';
 import './style.css';
 
-Template.ApplicationLayout.onCreated(function() {
-  this.dropdownEnhenced = false;
-});
-
 Template.ApplicationLayout.onRendered(function() {
   $('#btn-send-email [data-toggle="tooltip"]').tooltip({delay: 1000}); // not working?
   Tracker.autorun(() => {
@@ -13,7 +9,6 @@ Template.ApplicationLayout.onRendered(function() {
     let count = Counts.get('count-unread-inbox');
     document.title = (count > 0) ? `(${count}) ${title}` : title;
   });
-  this.subscribe("shared.thread");
 });
 
 Template.ApplicationLayout.events({
@@ -23,10 +18,5 @@ Template.ApplicationLayout.events({
     Modal.show("SearchModal", null, {
       backdrop: 'static'
     });
-  },
-  "click #btn-sign-out"(e, t) {
-    e.preventDefault();
-    // history.go(-1);
-    Meteor.logout();
   }
 });

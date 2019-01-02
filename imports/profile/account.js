@@ -14,6 +14,13 @@ ThreadCategories.add("Account", {
             backdrop: 'static'
           });
         }
+      },
+      {
+        title: I18n.t('Sign out'),
+        action(e) {
+          e.preventDefault();
+          Meteor.logout();
+        }
       }
     ]
   }

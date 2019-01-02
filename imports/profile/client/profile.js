@@ -45,6 +45,14 @@ const FORM_SCHEMA = new SimpleSchema({
   }
 });
 
+Template.ProfilePanel.events({
+  "click .user-panel"(e, t) {
+    e.preventDefault();
+    let account = Threads.findOne({category: 'Account', userId: Meteor.userId()});
+    Router.go('inbox', {_id: account._id});
+  }
+});
+
 Template.ProfileModal.onRendered(function() {
   autosize($('form textarea'));
 });

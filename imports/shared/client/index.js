@@ -27,3 +27,7 @@ Router.route('/shared', {
   name: 'shared',
   controller: 'SharedController'
 });
+
+Accounts.onLogin(function(attempt) {
+  Meteor.subscribe("shared.thread");
+});

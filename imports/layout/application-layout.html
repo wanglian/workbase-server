@@ -27,21 +27,7 @@
     </header>
     <aside class="main-sidebar">
       <section class="sidebar">
-        <ul class="sidebar-menu email">
-          <li class="header text-ellipsis">
-            {{currentUser.email}}
-            <span class="text-muted pull-right" id="btn-sign-out">{{_ 'Sign out'}}</span>
-          </li>
-        </ul>
-        <div class="user-panel">
-          <div class="pull-left image">
-            {{> avatar user=currentUser shape="circle" class="img-circle align-center" size="mlarge"}}
-          </div>
-          <div class="pull-left info">
-            <p>{{currentUser.name}}</p>
-            <span class="text-muted">{{currentUser.title}}</span>
-          </div>
-        </div>
+        {{> ProfilePanel}}
         <!-- search form -->
         <form action="#" method="get" class="sidebar-form" id="search-form">
           <div class="input-group">
@@ -53,6 +39,10 @@
           </div>
         </form>
         <ul class="sidebar-menu">
+          <li class="header text-ellipsis hide">
+            <span class="pull-right"><i class="fa fa-circle text-success"></i></span>
+            {{currentUser.email}}
+          </li>
           <li class="{{#if inRouter 'inbox'}}active{{/if}}">
             <a href="/inbox">
               <i class="fa fa-inbox"></i> <span>{{_ 'Inbox'}}</span>
