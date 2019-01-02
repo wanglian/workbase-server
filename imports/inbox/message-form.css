@@ -11,6 +11,7 @@ textarea.form-control {
   border-radius: 4px;
   border: 1px solid #ccc;
   resize: none;
+  padding: 6px;
 }
 textarea.form-control:focus {
   border-color: #66afe9;

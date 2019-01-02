@@ -9,7 +9,7 @@
     <div class="message-summary text-ellipsis text-muted">
       {{#if lastMessage}}
         {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
-        {{lastMessage.summary}}
+        {{lastMessage.summaryLocalized}}
       {{/if}}
     </div>
   </div>

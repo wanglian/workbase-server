@@ -22,18 +22,24 @@ Messages.helpers({
   parent() {
     return Messages.findOne(this.parentId);
   },
-  summaryLocalized() {
-    clientOnly();
-
+  summaryLocalized(lang) {
     if (!_.isEmpty(this.summary)) {
       return this.summary;
     }
 
+    let key;
     switch(this.contentType) {
     case 'image':
-      return I18n.t('Image Message');
+      key = 'Image Message';
+      break;
     default:
-      return I18n.t("No content");
+      key = "No content";
+    }
+
+    if (Meteor.isClient) {
+      return I18n.t(key);
+    } else {
+      return I18n.getFixedT(lang)(key);
     }
   },
   image() {

@@ -14,6 +14,11 @@
 .shared-messages .message-body .message-content {
   margin-bottom: 10px;
 }
+.shared-messages .message-body .message-content img.img-thumbnail {
+  max-height: 350px;
+  max-width: 100%;
+  cursor: zoom-in;
+}
 ul.comments {
   background: #ecf0f5;
   margin-top: 5px;
