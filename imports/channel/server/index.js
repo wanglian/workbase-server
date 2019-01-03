@@ -5,7 +5,7 @@ import './methods';
 import './publications';
 
 Meteor.startup(function() {
-  Threads.upsert({category: 'Channel'}, {$set: {subject: 'Channels Management'}});
+  Threads.upsert({category: 'Channel'}, {$set: {subject: 'Channels Management', scope: 'private'}});
 });
 
 Accounts.onLogin(function(attempt) {

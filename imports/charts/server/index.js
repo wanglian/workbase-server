@@ -4,7 +4,7 @@ import './message-records';
 import moment from 'moment';
 
 Meteor.startup(function() {
-  Threads.upsert({category: 'Charts'}, {$set: {subject: 'System Reports'}});
+  Threads.upsert({category: 'Charts'}, {$set: {subject: 'System Reports', scope: 'private'}});
 });
 
 Accounts.onLogin(function(attempt) {

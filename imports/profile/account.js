@@ -15,6 +15,12 @@ ThreadCategories.add("Account", {
           });
         }
       },
+      // {
+      //   title: I18n.t('Shares'),
+      //   action() {
+      //     Router.go('shared', {_id: Meteor.userId()});
+      //   }
+      // },
       {
         title: I18n.t('Sign out'),
         action(e) {

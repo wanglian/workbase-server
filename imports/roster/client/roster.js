@@ -48,10 +48,10 @@ Template.RosterCard.events({
 
 Template.LinkToUser.events({
   "click .btn-user"(e, t) {
-    if (this.userType === 'Users') {
+    if (this.user.className() === 'Users') {
       e.preventDefault();
       e.stopPropagation();
-      Router.go('roster', {_id: this.userId});
+      Router.go('roster', {_id: this.user._id});
     }
   }
 });

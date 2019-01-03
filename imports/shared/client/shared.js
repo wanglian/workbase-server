@@ -16,20 +16,13 @@ Template.Shared.onRendered(function() {
   });
 });
 
-Template.Shared.helpers({
-  sharedThread() {
-    return Threads.findOne({category: 'Shared'});
-  },
-  messages() {
-    let thread = Threads.findOne({category: 'Shared'});
-    return Messages.find({threadId: thread._id, parentId: {$exists: false}}, {sort: {createdAt: -1}});
-  },
+Template.SharedMessage.helpers({
   comments() {
     return Messages.find({parentId: this._id}, {sort: {createdAt: 1}});
   }
 });
 
-Template.Shared.events({
+Template.SharedMessage.events({
   "click .btn-comment"(e, t) {
     e.preventDefault();
 

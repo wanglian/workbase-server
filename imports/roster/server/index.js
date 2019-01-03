@@ -2,7 +2,7 @@ import '../roster';
 import './methods';
 
 Meteor.startup(function() {
-  Threads.upsert({category: 'Roster'}, {$set: {subject: 'Users Management'}});
+  Threads.upsert({category: 'Roster'}, {$set: {subject: 'Users Management', scope: 'private'}});
 });
 
 Accounts.onLogin(function(attempt) {

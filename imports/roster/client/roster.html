@@ -65,10 +65,10 @@
         <ul class="nav nav-stacked">
           <li><a class="text-muted text-ellipsis">{{email}}</a></li>
           <li>
-            <a href="#" class="text-muted text-ellipsis">
+            {{#LinkToUserShared user=this class="text-muted text-ellipsis"}}
               <b>{{_ 'Shares'}}</b>
               <span class="pull-right"><i class="fa fa-chevron-right"></i></span>
-            </a>
+            {{/LinkToUserShared}}
           </li>
         </ul>
       </div>

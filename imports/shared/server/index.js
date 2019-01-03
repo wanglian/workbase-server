@@ -46,19 +46,26 @@ Meteor.publishComposite("shared.thread", function() {
 
 const MIN_MESSAGES = 20;
 const MAX_MESSAGES = 1000;
-Meteor.publishComposite("shared.messages", function(options) {
-  check(options, {
+Meteor.publishComposite("shared.messages", function(userId, options) {
+  check(userId, Match.Maybe(String));
+  check(options, Match.Maybe({
     limit: Match.Maybe(Number)
-  });
+  }));
 
   let limit = options && options.limit || MIN_MESSAGES;
 
   let threadId = sharedThread._id;
-  Counts.publish(this, "shared.messages", Messages.find({threadId, parentId: {$exists: false}}, {sort: {createdAt: -1}}));
+  let conditions = {threadId, parentId: {$exists: false}};
+  let countName = "shared.messages";
+  if (userId) {
+    _.extend(conditions, {userId});
+    countName = `shared.messages.${userId}`;
+  }
+  Counts.publish(this, countName, Messages.find(conditions, {sort: {createdAt: -1}}));
 
   return {
     find() {
-      return Messages.find({threadId}, {
+      return Messages.find(conditions, {
         sort: {createdAt: -1},
         limit: Math.min(limit, MAX_MESSAGES)
       });

@@ -5,27 +5,10 @@
 
   {{#Layout template="InboxLayout"}}
     <div class="shared-messages">
-      <div id="shared-form" class="{{#if messages.count}}hide{{/if}}">{{> MessageForm sharedThread}}</div>
+      <div id="shared-form" class="{{#if messages.count}}hide{{/if}}">{{> MessageForm thread}}</div>
 
       {{#each messages}}
-        <div class="message">
-          {{#LinkToUser}}
-            {{> avatar user=user shape="circle" class="img-circle pull-left" size="small"}}
-          {{/LinkToUser}}
-          <div class="message-body">
-            <div class="name">{{user.name}}</div>
-            {{> MessageContent}}
-            <div class="text-muted small">
-              <a href="#" class="pull-right btn-comment text-muted"><i class="fa fa-comment-o"></i> {{_ 'Comment'}}</a>
-              {{formatDayWithTime createdAt}}
-            </div>
-            <ul class="nav nav-pills nav-stacked comments">
-              {{#each comments}}
-                <li><span class="user">{{user.name}}</span>: {{content}}</li>
-              {{/each}}
-            </ul>
-          </div>
-        </div>
+        {{> SharedMessage}}
       {{/each}}
       {{#if ready}}
         {{#unless messages.count}}
@@ -39,6 +22,27 @@
       {{/if}}
     </div>
   {{/Layout}}
+</template>
+
+<template name="SharedMessage">
+  <div class="message">
+    {{#LinkToUser user=user}}
+      {{> avatar user=user shape="circle" class="img-circle pull-left" size="small"}}
+    {{/LinkToUser}}
+    <div class="message-body">
+      <div class="name">{{user.name}}</div>
+      {{> MessageContent}}
+      <div class="text-muted small">
+        <a href="#" class="pull-right btn-comment text-muted"><i class="fa fa-comment-o"></i> {{_ 'Comment'}}</a>
+        {{formatDayWithTime createdAt}}
+      </div>
+      <ul class="nav nav-pills nav-stacked comments">
+        {{#each comments}}
+          <li><span class="user">{{user.name}}</span>: {{content}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
 </template>
 
 <template name="SharedMenuItem">
@@ -55,29 +59,27 @@
 </template>
 
 <template name="SharedMenu">
-  <p class="navbar-text pull-left menu-title">{{_ 'Discover'}}</p>
+  <p class="navbar-text pull-left menu-title">
+    {{#if user}}
+      {{user.name}}
+    {{else}}
+      {{_ 'Discover'}}
+    {{/if}}
+  </p>
+  {{#if compare user '!|' (isMe user)}}
   <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
       <li>
         <a href="#" id="btn-share" class="navbar-link menu-title">
-          <i class="fa fa-pencil"></i>
+          <i class="fa fa-camera"></i>
           <span class="hidden-xs">{{_ 'Share'}}</span>
         </a>
       </li>
     </ul>
   </div>
+  {{/if}}
 </template>
 
-<template name="ShareModal">
-  <div class="modal fade modal-rounded">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ 'Share'}}</h4>
-        </div>
-        {{> MessageForm sharedThread}}
-      </div>
-    </div>
-  </div>
+<template name="LinkToUserShared">
+  <a href="/shared/{{user._id}}" class="{{class}}">{{> UI.contentBlock}}</a>
 </template>
