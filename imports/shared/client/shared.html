@@ -5,7 +5,7 @@
 
   {{#Layout template="InboxLayout"}}
     <div class="shared-messages">
-      <div id="shared-form" class="hide">{{> MessageForm sharedThread}}</div>
+      <div id="shared-form" class="{{#if messages.count}}hide{{/if}}">{{> MessageForm sharedThread}}</div>
 
       {{#each messages}}
         <div class="message">
@@ -28,6 +28,9 @@
         </div>
       {{/each}}
       {{#if ready}}
+        {{#unless messages.count}}
+          <div class="todo"></div>
+        {{/unless}}
         {{#if nextPath}}
           <div class="text-center"><a href="{{nextPath}}" class="text-muted small">{{_ "Load More"}}</a></div>
         {{/if}}

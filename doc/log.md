@@ -17,6 +17,45 @@
 .scroll-box
 ```
 
+### 界面的前后切换
+
+cordova里用到 https://github.com/apache/cordova-plugin-wkwebview-engine
+并且打开配置 AllowBackForwardNavigationGestures: true
+这样可以左右滑动来切换界面。
+但是仅仅这样体验不够好，期望能够做一些控制，做到Native的效果。
+直接的想法是对history做控制。
+这个插件研究一下 https://github.com/ReactTraining/history
+重点在对history的控制。
+结合IronRouter，有下面的方案
+```
+// 设置一个起点
+Router.onBeforeAction(function() {
+  if (_.isEmpty(this.params._id) && (!history.state || history.state.index != 1)) {
+    console.log("start");
+    history.replaceState({index: 0}, null, location.href);
+    history.pushState({index: 1}, null, location.href);
+  }
+  this.next();
+}, {
+  only: ['inbox']
+});
+// 在起点时不再回退，并且打开菜单
+window.onpopstate = function(event) {
+  if (event.state && event.state.index === 0) {
+    console.log("stop");
+    history.go(1);
+    $('body').addClass("sidebar-open");
+  }
+};
+```
+AdminLTE的sidebar不支持swipe。
+综合考虑，想去掉AllowBackForwardNavigationGestures的功能，完全使用应用内导航。
+
+参考
+https://hammerjs.github.io/
+https://stackoverflow.com/questions/16182993/how-to-prevent-a-browser-from-going-back-forward-in-history-when-scrolling-horiz
+https://www.sitepoint.com/javascript-history-pushstate/
+
 ## 1-1
 
 ### Docker Repo

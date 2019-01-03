@@ -5,28 +5,41 @@ Files.collection.before.insert(function(userId, doc) {
   _.extend(doc, {createdAt: new Date()});
 });
 
-Messages.after.insert(function(userId, doc) {
-  if (doc.fileIds) {
-    Files.update({
-      "meta.relations.threadId":  doc.threadId,
-      "meta.relations.userType":  doc.userType,
-      "meta.relations.userId":    doc.userId,
-      "meta.relations.type":      'file',
-      "meta.relations.messageId": null,
+const updateRelations = (message, type, fileIds) => {
+  // 两种情况
+  // 1 新消息：更改关系的messageId
+  // 2 非新消息（转发等）：添加一条关系
+  let count = Files.collection.update({
+    _id: {$in: fileIds},
+    "meta.relations.messageId": null
+  }, {
+    $set: {"meta.relations.$.messageId": message._id}
+  }, {"multi": true});
+
+  if (count === 0) {
+    Files.collection.update({
+      _id: {$in: fileIds}
     }, {
-      $set: {"meta.relations.$.messageId": this._id}
-    }, {"multi": true});
+      $push: {
+        "meta.relations": {
+          threadId:  message.threadId,
+          messageId: message._id,
+          userType:  message.userType,
+          userId:    message.userId,
+          type,
+          createdAt: new Date()
+        }
+      }
+    });
+  }
+};
+Messages.after.insert(function(userId, doc) {
+  let message = this.transform();
+  if (doc.fileIds) {
+    updateRelations(message, 'file', doc.fileIds);
   }
   if (doc.inlineFileIds) {
-    Files.update({
-      "meta.relations.threadId":  doc.threadId,
-      "meta.relations.userType":  doc.userType,
-      "meta.relations.userId":    doc.userId,
-      "meta.relations.type":      'inline',
-      "meta.relations.messageId": null,
-    }, {
-      $set: {"meta.relations.$.messageId": this._id}
-    }, {"multi": true});
+    updateRelations(message, 'inline', doc.inlineFileIds);
   }
 });
 

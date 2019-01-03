@@ -68,7 +68,7 @@ Template.MessageForm.helpers({
     return m && Messages._transform(m);
   },
   pendingFiles() {
-    return Files.find({"meta.relations": {$elemMatch: {threadId: this._id, messageId: null}}}, {sort: {"meta.relations.createdAt": -1}});
+    return Files.find({"meta.relations": {$elemMatch: {threadId: this._id, type: 'file', messageId: null}}}, {sort: {"meta.relations.createdAt": -1}});
   }
 });
 

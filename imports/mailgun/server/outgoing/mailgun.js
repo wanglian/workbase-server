@@ -9,6 +9,15 @@ Mailgun = {
   domain:  Meteor.settings.public.domain,
 };
 Mailgun.client = require('mailgun-js')({apiKey: Mailgun.api_key, domain: Mailgun.domain});
+
+const buildMailgunAttachment = (file) => {
+  return new Mailgun.client.Attachment({
+    data:        request({encoding: null, url: Files.link(file)}),
+    filename:    file.name,
+    contentType: file.type,
+    knownLength: file.size
+  });
+};
 Mailgun.send = (message) => {
   let threadId = message.threadId;
   let contacts = ThreadUsers.find({threadId, userType: 'Contacts'}).map(tu => Contacts.findOne(tu.userId));
@@ -29,12 +38,7 @@ Mailgun.send = (message) => {
       let image = message.image();
       _.extend(params, {
         html: signature(user, `<img src="cid:${image.name}.${image.extension}"/>`),
-        inline: new Mailgun.client.Attachment({
-          data: image.path,
-          filename: image.name,
-          knownLength: image.size,
-          contentType: image.type
-        }),
+        inline: buildMailgunAttachment(image),
         'v:MessageType': 'image'
       });
       break;
@@ -48,14 +52,7 @@ Mailgun.send = (message) => {
     let files = message.files();
     if (files && files.count() > 0) {
       _.extend(params, {
-        attachment: files.map((file) => {
-          return new Mailgun.client.Attachment({
-            data:        request({encoding: null, url: Files.link(file)}),
-            filename:    file.name,
-            contentType: file.type,
-            knownLength: file.size
-          });
-        })
+        attachment: files.map(file => buildMailgunAttachment(file))
       });
     }
 

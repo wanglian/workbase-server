@@ -43,7 +43,7 @@ Messages.helpers({
     }
   },
   image() {
-    return this.contentType === 'image' && this.inlineFileIds && Files.findOne(this.inlineFileIds[0]);
+    return this.contentType === 'image' && this.inlineFileIds && Files.collection.findOne(this.inlineFileIds[0]);
   },
   files() {
     return this.fileIds && Files.find({_id: {$in: this.fileIds}});
