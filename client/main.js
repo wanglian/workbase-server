@@ -2,9 +2,9 @@
 import '/imports/model';
 import '/imports/i18n/client';
 import '/imports/startup/client';
-import '/imports/files/client';
 import '/imports/autoform';
 import '/imports/layout';
+import '/imports/files/client';
 import '/imports/website/client';
 import '/imports/profile/client';
 import '/imports/inbox';

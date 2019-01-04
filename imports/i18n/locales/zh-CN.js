@@ -60,6 +60,7 @@ export const locale_zh_cn = {
   "Write something": "这一刻的想法",
   "Image Message": "[图片]",
   "No content": "没有内容",
+  "Files": "文件",
   "Files with count": "文件 ({{count}})",
   "Sent you an image": "发来一张图片",
   // user

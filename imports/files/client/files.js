@@ -13,3 +13,9 @@ Files = new FilesCollection({
     return 'Please upload file, with size equal or less than 50MB';
   }
 });
+
+// Files.collection.helpers({
+//   user() {
+//     return Users.findOne(this.userId);
+//   }
+// });

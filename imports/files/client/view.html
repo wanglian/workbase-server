@@ -1,3 +1,39 @@
+<template name="FilesMenuItem">
+  {{#if currentUser.isAdmin}}
+    <li class="{{#if inRouter 'files'}}active{{/if}}">
+      <a href="/files"><i class="fa fa-paperclip"></i> <span>{{_ 'Files'}}</span></a>
+    </li>
+  {{/if}}
+</template>
+
+<template name="Files">
+  {{#contentFor "menu"}}
+    <p class="navbar-text pull-left menu-title">
+      {{_ 'Files'}} ({{count}})
+    </p>
+  {{/contentFor}}
+
+  {{#Layout template="InboxLayout"}}
+    <ul class="list-group threads files">
+      {{#unless files.count}}
+        <li class="list-group-item thread text-muted">{{_ 'Empty'}}</li>
+      {{/unless}}
+      {{#each files}}
+        <li class="list-group-item thread" data-user-id="{{userId}}">{{> FileItem}}</li>
+      {{/each}}
+      {{#if ready}}
+        {{#if nextPath}}
+          <a href="{{nextPath}}" class="list-group-item text-center text-muted thread small">
+            {{_ "Load More"}}
+          </a>
+        {{/if}}
+      {{else}}
+        <span class="list-group-item text-center text-muted thread small"><i class="fa fa-spinner fa-spin"></i></span>
+      {{/if}}
+    </ul>
+  {{/Layout}}
+</template>
+
 <template name="FileViewLink">
   {{#if compare (filetype type)  '===' 'image'}}
     <a href="{{fileURL this}}" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
@@ -81,18 +117,20 @@
           <li>{{_ 'None'}}</li>
         {{/unless}}
         {{#each files}}
-          <li>
-            {{{fileicon type}}} {{name}}
-            <div class="small text-muted">
-               {{formatDayWithTime createdAt}} ({{filesize size}})
-            </div>
-            <div class="actions pull-right">
-              {{> FileViewLink}}
-              {{> FileDownloadLink}}
-            </div>
-          </li>
+          <li>{{> FileItem}}</li>
         {{/each}}
       </ul>
     </div>
+  </div>
+</template>
+
+<template name="FileItem">
+  {{{fileicon type}}} {{name}}
+  <div class="small text-muted">
+    {{formatDayWithTime createdAt}} ({{filesize size}})
+  </div>
+  <div class="actions pull-right">
+    {{> FileViewLink}}
+    {{> FileDownloadLink}}
   </div>
 </template>

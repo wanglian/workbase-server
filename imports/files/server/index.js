@@ -45,14 +45,28 @@ Messages.after.insert(function(userId, doc) {
 
 Meteor.publish("thread.files.pending", function(threadId) {
   check(threadId, String);
+
   return Files.find({"meta.relations": {$elemMatch: {threadId, userId: this.userId, messageId: null}}}).cursor;
 });
 
 Meteor.publish("thread.files", function(threadId) {
   check(threadId, String);
+
   let query = {"meta.relations": {$elemMatch: {threadId, messageId: {$exists: true}}}};
   Counts.publish(this, `count-files-${threadId}`, Files.find(query).cursor);
   return Files.find(query, {sort: {createdAt: -1}, limit: 12}).cursor;
+});
+
+const MIN_FILES = 20;
+const MAX_FILES = 200;
+Meteor.publish("files", function(options) {
+  check(options, Match.Maybe({
+    limit: Match.Maybe(Number)
+  }));
+
+  Counts.publish(this, 'files', Files.find({}).cursor);
+  let limit = options && options.limit || MIN_FILES;
+  return Files.find({}, {sort: {createdAt: -1}, limit: Math.min(limit, MAX_FILES)}).cursor;
 });
 
 Meteor.methods({
