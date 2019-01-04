@@ -58,9 +58,35 @@ Template.SharedMenuItem.helpers({
 });
 
 Template.SharedMenu.events({
+  "click #btn-share-image"(e, t) {
+    e.preventDefault();
+    $('#image-file').click();
+  },
+  "change #image-file"(e, t) {
+    console.log("image selected");
+    Modal.show('ImageMessageModal', {
+      thread: this.thread,
+      file:   e.target.files[0]
+    }, {
+      backdrop: 'static'
+    });
+    $(e.target).val(""); // reset file input
+  },
   "click #btn-share"(e, t) {
     e.preventDefault();
-    $('#shared-form').toggleClass("hide");
-    $('#shared-form textarea').focus();
+    Modal.show('ShareModal', this.thread, {
+      backdrop: 'static'
+    });
   }
+});
+
+Template.ShareModal.onRendered(function() {
+  this.subscribe("thread.files.pending", this.data._id);
+  $(document).on("message.sent", (e, options) => {
+    $('#btn-close-ShareModal').click();
+  });
+});
+
+Template.ShareModal.onDestroyed(function() {
+  $(document).off("message.sent");
 });

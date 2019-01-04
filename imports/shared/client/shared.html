@@ -5,8 +5,6 @@
 
   {{#Layout template="InboxLayout"}}
     <div class="shared-messages">
-      <div id="shared-form" class="{{#if messages.count}}hide{{/if}}">{{> MessageForm thread}}</div>
-
       {{#each messages}}
         {{> SharedMessage}}
       {{/each}}
@@ -78,19 +76,41 @@
     {{/if}}
   </p>
   {{#if compare user '!|' (isMe user)}}
-  <div class="navbar-custom-menu">
-    <ul class="nav navbar-nav">
-      <li>
-        <a href="#" id="btn-share" class="navbar-link menu-title">
-          <i class="fa fa-camera"></i>
-          <span class="hidden-xs">{{_ 'Share'}}</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown">
+            <i class="fa fa-camera"></i>
+            <span class="hidden-xs">{{_ 'Share'}}</span>
+          </a>
+          <ul class="dropdown-menu">
+            <input type="file" style="display:none;" id="image-file" accept="image/*"/>
+            <li><a href="#" id="btn-share-image">{{_ 'Share Image'}}</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" id="btn-share">{{_ 'Share Files'}}</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   {{/if}}
 </template>
 
 <template name="LinkToUserShared">
   <a href="/shared/{{user._id}}" class="{{class}}">{{> UI.contentBlock}}</a>
+</template>
+
+<template name="ShareModal">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-ShareModal">&times;</button>
+          <h4 class="modal-title">{{_ "Share"}}</h4>
+        </div>
+        <div class="modal-body no-padding">
+          {{> MessageForm thread=this}}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

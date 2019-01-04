@@ -29,7 +29,7 @@ Template.MessageForm.onRendered(function() {
   let threadId;
 
   this.autorun(() => {
-    let data = Template.currentData();
+    let data = Template.currentData().thread;
     if (data && data._id != threadId) {
       // save
       if (threadId) {
@@ -52,7 +52,7 @@ Template.MessageForm.onDestroyed(function() {
   // save draft
   let textarea = $('#message-form textarea');
   if (textarea) {
-    Session.set(`message-draft-${this.data._id}`, textarea.val());
+    Session.set(`message-draft-${this.data.thread._id}`, textarea.val());
   }
 });
 
@@ -64,11 +64,11 @@ Template.MessageForm.helpers({
     return MESSAGE_SCHEMA;
   },
   parentMessage() {
-    let m = Session.get(`message-draft-parent-${this._id}`);
+    let m = Session.get(`message-draft-parent-${this.thread._id}`);
     return m && Messages._transform(m);
   },
   pendingFiles() {
-    return Files.find({"meta.relations": {$elemMatch: {threadId: this._id, type: 'file', messageId: null}}}, {sort: {"meta.relations.createdAt": -1}});
+    return Files.find({"meta.relations": {$elemMatch: {threadId: this.thread._id, type: 'file', messageId: null}}}, {sort: {"meta.relations.createdAt": -1}});
   }
 });
 
@@ -89,7 +89,7 @@ Template.MessageForm.events({
   },
   "change #file"(e, t) {
     Modal.show('FileUploadModal', {
-      thread: t.data,
+      thread: this.thread,
       file:   e.target.files[0]
     }, {
       backdrop: 'static'
@@ -111,7 +111,7 @@ Template.MessageForm.events({
   "change #image-file"(e, t) {
     console.log("image selected");
     Modal.show('ImageMessageModal', {
-      thread: t.data,
+      thread: this.thread,
       file:   e.target.files[0]
     }, {
       backdrop: 'static'
@@ -142,6 +142,8 @@ AutoForm.hooks({
           Session.set(`message-draft-parent-${threadId}`);
           autosize($("form textarea"));
           // $("form textarea").focus();
+          // fire event
+          $(document).trigger("message.sent", {id: res});
         }
       });
       this.done();

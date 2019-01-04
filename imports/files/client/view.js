@@ -6,7 +6,7 @@ Template.FileRemoveLink.events({
   "click .btn-remove-file"(e, t) {
     e.preventDefault();
     Swal({
-      title: I18n.t("confirm remove file"),
+      title: I18n.t("Confirm remove file"),
       type: 'warning',
       position: 'center-end',
       showCancelButton: true,

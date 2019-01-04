@@ -1,5 +1,12 @@
 # 开发日志
 
+## 1-3
+
+### 考虑WEB界面元素的APP Native化
+
+https://github.com/apache/cordova-plugin-dialogs
+
+
 ## 1-2
 
 ### modal 全屏样式

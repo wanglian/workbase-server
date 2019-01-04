@@ -1,10 +1,19 @@
 Meteor.publish('instance', function() {
   if (this.userId){
-    Counts.publish(this, 'count-unread-inbox', ThreadUsers.find({scope: 'private', userType: 'Users', userId: this.userId, read: false}));
+    Counts.publish(this, 'count-unread-inbox', ThreadUsers.find({
+      scope: 'private',
+      userType: 'Users',
+      userId: this.userId,
+      read: false
+    }));
   }
 
   ChannelUsers.find({userId: this.userId}).forEach((cu) => {
-    Counts.publish(this, `count-unread-channel-${cu.channelId}`, ThreadUsers.find({userType: 'Channels', userId: cu.channelId, read: false}));
+    Counts.publish(this, `count-unread-channel-${cu.channelId}`, ThreadUsers.find({
+      userType: 'Channels',
+      userId: cu.channelId,
+      read: false
+    }));
   });
 
   return [

@@ -1,5 +1,5 @@
 <template name="MessageForm">
-  {{#autoForm collection=formCollection schema=formSchema id="message-form" threadId=_id}}
+  {{#autoForm collection=formCollection schema=formSchema id="message-form" threadId=thread._id}}
     {{> afQuickField name="content"}}
 
     {{#with parentMessage}}
@@ -26,22 +26,24 @@
     <div class="clearfix">
       <div class="btn-group pull-right">
         <button type="submit" class="btn btn-primary">{{_ 'Send'}}</button>
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="#" id="btn-load-image"><i class="fa fa-image"></i>{{_ "Send Image"}}</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#" id="btn-markdown"><i class="fa fa-file-code-o"></i>{{_ "Send Markdown"}}</a></li>
-          </ul>
-        </div>
+        {{#if options}}
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="#" id="btn-load-image"><i class="fa fa-image"></i>{{_ "Send Image"}}</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#" id="btn-markdown"><i class="fa fa-file-code-o"></i>{{_ "Send Markdown"}}</a></li>
+            </ul>
+          </div>
+        {{/if}}
       </div>
       <input type="file" style="display:none;" id="image-file" accept="image/*"/>
       <input type="file" style="display:none;" id="file"/>
       <div id="message-form-actions" class="text-muted">
         <a href="#" class="form-action text-muted" id="btn-file"><i class="fa fa-paperclip"></i> {{_ 'Add File'}}</a>
-        {{#if hasReplyableExternalMembers}}
+        {{#if thread.hasReplyableExternalMembers}}
           {{> afFieldInput name="internal"}}
         {{/if}}
       </div>
