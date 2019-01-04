@@ -17,6 +17,16 @@ Accounts.onLogin(function(attempt) {
 });
 
 Meteor.methods({
+  toggleLikeMessage(messageId) {
+    check(messageId, String);
+
+    let message = Messages.findOne(messageId);
+    if (message.hasReact(this.userId, 'like')) {
+      Messages.update(messageId, {$pull: {"reacts.like": this.userId}});
+    } else {
+      Messages.update(messageId, {$push: {"reacts.like": this.userId}});
+    }
+  },
   addComment(messageId, comment) {
     check(messageId, String);
     check(comment, String);

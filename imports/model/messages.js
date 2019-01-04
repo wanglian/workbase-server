@@ -10,6 +10,7 @@
 // - summary
 // - emailId
 // - email: from, to, cc, time
+// - reacts: like [userId]
 Messages = new Mongo.Collection('messages');
 
 Messages.helpers({
@@ -41,6 +42,12 @@ Messages.helpers({
     } else {
       return I18n.getFixedT(lang)(key);
     }
+  },
+  hasReact(userId, action) {
+    return this.reacts && this.reacts[action] && this.reacts[action].includes(userId);
+  },
+  countReact(action) {
+    return this.reacts && this.reacts[action] && this.reacts[action].length;
   },
   image() {
     return this.contentType === 'image' && this.inlineFileIds && Files.collection.findOne(this.inlineFileIds[0]);

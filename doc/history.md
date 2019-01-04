@@ -5,6 +5,7 @@
 - fix 外发邮件图片链接
 - fix 文件关联
 - 查看用户的分享
+- 分享点赞。增加字段 Message.reacts.like=[] reacts可扩展
 
 ## 1-2
 

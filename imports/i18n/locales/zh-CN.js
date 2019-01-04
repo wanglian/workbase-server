@@ -13,6 +13,7 @@ export const locale_zh_cn = {
   "Cancel": "取消",
   "Empty": "空",
   "None": "无",
+  "Like": "点赞",
   // Time
   "Today": "今天",
   "Yesterday": "昨天",

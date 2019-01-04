@@ -53,6 +53,8 @@ References
 - [bootstrap](https://getbootstrap.com/docs/3.3/javascript/)
 - [FontAwesome](https://fontawesome.com/v4.7.0/icons/)
 - [AdminLTE](https://adminlte.io/themes/AdminLTE/index.html)
+- [AdminLTE 2.3](https://adminlte.io/themes/AdminLTE/documentation/index.html)
+- [AdminLTE 2.4](https://adminlte.io/docs/2.4/js-layout)
 - [Blaze](http://blazejs.org/api/templates.html)
 - [mailgun](https://documentation.mailgun.com/en/latest/api-routes.html)
 - [mailgun-js](https://github.com/bojand/mailgun-js)

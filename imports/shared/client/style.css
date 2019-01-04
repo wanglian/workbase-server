@@ -11,6 +11,9 @@
   font-weight: 600;
   margin-bottom: 10px;
 }
+.shared-messages .message-body .action {
+  margin-left: 10px;
+}
 .shared-messages .message-body .message-content {
   margin-bottom: 10px;
 }

@@ -33,7 +33,18 @@
       <div class="name">{{user.name}}</div>
       {{> MessageContent}}
       <div class="text-muted small">
-        <a href="#" class="pull-right btn-comment text-muted"><i class="fa fa-comment-o"></i> {{_ 'Comment'}}</a>
+        <a href="#" class="pull-right btn-comment text-muted action"><i class="fa fa-comment-o"></i> {{_ 'Comment'}}</a>
+        {{#if liked}}
+          <a href="#" class="pull-right btn-like text-muted action">
+            {{countReact 'like'}}
+            <i class="fa fa-heart"></i> {{_ 'Cancel'}}
+          </a>
+        {{else}}
+          <a href="#" class="pull-right btn-like text-muted action">
+            {{countReact 'like'}}
+            <i class="fa fa-heart-o"></i> {{_ 'Like'}}
+          </a>
+        {{/if}}
         {{formatDayWithTime createdAt}}
       </div>
       <ul class="nav nav-pills nav-stacked comments">

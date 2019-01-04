@@ -1,5 +1,5 @@
 <template name="SendEmailModal">
-  <div class="modal fade modal-rounded">
+  <div class="modal fade full-screen">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -7,7 +7,7 @@
           <h4 class="modal-title">{{_ 'New Message'}}</h4>
         </div>
         {{#autoForm collection=formCollection schema=formSchema id="send-email-form" type="normal"}}
-          <div class="modal-body">
+          <div class="modal-body scroll-box">
             {{> afQuickField name="to"}}
             {{> afQuickField name="subject"}}
             {{> afQuickField name="content"}}

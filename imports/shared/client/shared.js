@@ -17,12 +17,19 @@ Template.Shared.onRendered(function() {
 });
 
 Template.SharedMessage.helpers({
+  liked() {
+    return this.hasReact(Meteor.userId(), 'like');
+  },
   comments() {
     return Messages.find({parentId: this._id}, {sort: {createdAt: 1}});
   }
 });
 
 Template.SharedMessage.events({
+  "click .btn-like"(e, t) {
+    e.preventDefault();
+    Meteor.call("toggleLikeMessage", this._id);
+  },
   "click .btn-comment"(e, t) {
     e.preventDefault();
 
