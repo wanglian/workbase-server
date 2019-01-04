@@ -43,7 +43,10 @@ Meteor.startup(function() {
 
     // badge
     Tracker.autorun(() => {
+      // inbox
       let count = Counts.get('count-unread-inbox');
+      // shared
+      let shared = ThreadUsers.findOne({category: 'Shared', userType: 'Users', userId: Meteor.userId()});
       Push.setBadge(count);
     });
   }

@@ -6,6 +6,7 @@
 - fix 文件关联
 - 查看用户的分享
 - 分享点赞。增加字段 Message.reacts.like=[] reacts可扩展
+- fix 分享的未读状态影响APP的未读数显示
 
 ## 1-2
 
