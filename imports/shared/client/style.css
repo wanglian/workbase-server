@@ -36,3 +36,15 @@ ul.comments li:last-child {
 ul.comments li .user {
   font-weight: 600;
 }
+
+@media (max-width: 991px) {
+  .share-menu .dropdown-menu {
+    right: 0 !important;
+  }
+  .share-menu .dropdown-menu li a {
+    color: #777 !important;
+  }
+  .share-menu .dropdown-menu li.divider {
+    background: #EEE !important;
+  }
+}
