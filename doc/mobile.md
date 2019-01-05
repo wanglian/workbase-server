@@ -156,3 +156,35 @@ window.addEventListener('statusTap', function() {
 });
 ```
 将需要滚动的区块加上 scroll-box
+
+### 邮件内的链接在APP上点不开（done）
+
+https://issues.apache.org/jira/browse/CB-10753
+InAppBrowser will not work with iframe embedded
+
+https://stackoverflow.com/questions/37727960/how-to-open-a-new-window-by-a-link-within-an-iframe#38072439
+这个帖子下面提到了这个插件 https://github.com/trendsales/cordova-iframe-navigation
+装上后可以了，甚至不需要对a.href做window.open处理，直接会在手机的浏览器打开。
+但是安装插件有点问题，这个插件没有打TAG，不能指定版本号。于是通过github地址安装，但是
+```
+While installing Cordova plugins:
+   error: Meteor no longer supports installing Cordova plugins from arbitrary tarball URLs. You can
+   either add a plugin from a Git URL with a SHA reference, or from a local path. (Attempting to
+   install from
+   https://github.com/trendsales/cordova-iframe-navigation/commit/4c276b668488f94a52087e27dc84e49314ad28f9.)
+```
+但还是通过tarball安装上了
+```
+https://github.com/trendsales/cordova-iframe-navigation/tarball/4c276b668488f94a52087e27dc84e49314ad28f9
+```
+没有明白 a Git URL with a SHA reference 是什么意思。
+https://developer.github.com/v3/git/refs/
+
+同时要打开cordova设置
+```
+App.accessRule('*', {type: 'intent'});
+App.accessRule('*', {type: 'navigation'});
+```
+
+https://github.com/apache/cordova-plugin-whitelist
+

@@ -9,6 +9,8 @@ App.info({
 });
 
 App.accessRule('*');
+App.accessRule('*', {type: 'intent'});
+App.accessRule('*', {type: 'navigation'});
 
 App.setPreference('KeyboardDisplayRequiresUserAction', false);
 App.setPreference('DisallowOverscroll', true); // don't want the WebView to rubber-band
