@@ -12,7 +12,7 @@ blockquote {
   padding: 3px 10px;
   border-left: 4px solid #ddd;
 }
-body .navbar-text {
+.navbar-text {
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -85,6 +85,13 @@ body .navbar-text {
   body .flat-panel .flat-panel-heading .flat-panel-title {
     font-size: 16px !important;
   }
+  /* 消除字体放大到16px的影响 */
+  body .main-header .sidebar-toggle {
+    padding: 15px 15px 13px;
+  }
+  body .navbar-text {
+    margin-bottom: 13px;
+  }
   body small,
   body ul.files,
   body ul.list-group.threads .list-group-item.thread .thread-message,
@@ -108,12 +115,5 @@ body .navbar-text {
   body #inbox-header {
     height: 62px !important;
     padding: 8px 10px !important;
-  }
-  body #inbox-left {
-    height: calc(100vh - 100px) !important;
-  }
-  body #inbox-right,
-  body #inbox-sidebar {
-    height: calc(100vh - 162px) !important;
   }
 }

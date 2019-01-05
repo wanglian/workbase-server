@@ -60,3 +60,13 @@
 .with-sidebar #inbox-sidebar {
   display: block;
 }
+
+@media (max-width: 767px) {
+  body #inbox-left {
+    height: calc(100vh - 100px) !important;
+  }
+  body #inbox-right,
+  body #inbox-sidebar {
+    height: calc(100vh - 162px) !important;
+  }
+}
