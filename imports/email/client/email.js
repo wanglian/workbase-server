@@ -6,10 +6,9 @@ Template.EmailContent.onRendered(function() {
     let data = Template.currentData();
 
     if (data && data.content) {
-      let template = Template.instance();
-      let frame = template.$('iframe');
+      let frame = this.$('iframe');
       let content = DOMPurify.sanitize(data.content) + '<style>body {font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; margin: 0px; overflow-y: hidden; font-size: 14px; font-weight: 400; color: #333;} img {max-width: 100% !important; height: auto !important; cursor: zoom-in;} a img {cursor: pointer;} em {background: yellow;}</style>';
-      let frameContent = frame.get(0).contentWindow.document;
+      let frameContent = frame[0].contentWindow.document;
       frameContent.open();
       frameContent.write(content);
       frameContent.close();
@@ -18,15 +17,11 @@ Template.EmailContent.onRendered(function() {
       //   filter(img) { if (!$(img).closest('a').length) { return true; }}
       // }));
       _.each(frame.contents().find('a'), (aTag) => { aTag.target = '_blank'; });
-      template.$(".spinner").remove();
-      // $(template.parent().find('.relation-content')).removeClass('hide');
+      this.$(".spinner").remove();
       frame.css("height", frameContent.body.offsetHeight + 'px');
-      // $(template.parent().find('.relation-content')).addClass('hide');
       // Chrome
       frame.load(() => {
-        // $(template.parent().find('.relation-content')).removeClass('hide');
         frame.css("height", frameContent.body.offsetHeight + 'px');
-        // $(template.parent().find('.relation-content')).addClass('hide');
       });
     }
   });

@@ -42,6 +42,11 @@ Mailgun.send = (message) => {
         'v:MessageType': 'image'
       });
       break;
+    case 'html':
+      _.extend(params, {
+        html: signature(user, message.content) // Markdown(message.content): 需要html邮件模板
+      });
+      break;
     default:
       _.extend(params, {
         text: signature(user, message.content) // Markdown(message.content): 需要html邮件模板
