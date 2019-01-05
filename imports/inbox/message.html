@@ -27,7 +27,7 @@
 <template name="MessageContent">
   <div class="message-content {{#if isNew}}animated flash{{/if}}">
     {{#if compare contentType '===' 'html'}}
-      {{> EmailContent}}
+      {{> EmailContent message=this}}
     {{else}}
       {{#markdown}}{{{content}}}{{/markdown}}
       {{#if compare contentType '===' 'image'}}
@@ -41,25 +41,29 @@
       {{> QuotedMessage}}
     {{/with}}
 
-    {{#if files.count}}
-      <div>
-        <span href="#" class="files-count" data-toggle="collapse" data-target="#files-list-{{_id}}" aria-expanded="true">
-          {{_ 'Files with count' count=files.count}} <span class="collapse-arrow"><i class="fa fa-caret-down"></i></span>
-        </span>
-        <ul class="files nav nav-pills nav-stacked collapse in" id="files-list-{{_id}}" aria-expanded="true">
-          {{#each files}}
-            <li>
-              {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
-              <div class="actions pull-right">
-                {{> FileViewLink}}
-                {{> FileDownloadLink}}
-              </div>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-    {{/if}}
+    {{> MessageFiles}}
   </div>
+</template>
+
+<template name="MessageFiles">
+  {{#if files.count}}
+    <div>
+      <span href="#" class="files-count" data-toggle="collapse" data-target="#files-list-{{_id}}" aria-expanded="true">
+        {{_ 'Files with count' count=files.count}} <span class="collapse-arrow"><i class="fa fa-caret-down"></i></span>
+      </span>
+      <ul class="files nav nav-pills nav-stacked collapse in" id="files-list-{{_id}}" aria-expanded="true">
+        {{#each files}}
+          <li>
+            {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
+            <div class="actions pull-right">
+              {{> FileViewLink}}
+              {{> FileDownloadLink}}
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
 </template>
 
 <template name="MessageActions">
@@ -122,10 +126,7 @@
                 {{> Template.dynamic template=(listTemplate 'simple')}}
               {{/with}}
             </li>
-            <div style="display: none;" id="content-{{message._id}}">
-              {{> MessageContent message}}
-            </div>
-            <a href="#" data-fancybox data-src="#content-{{message._id}}" class="list-group-item thread message">
+            <a href="#" id="btn-view-message" class="list-group-item thread message">
               {{message.summaryLocalized}}
             </a>
           </ul>
@@ -133,6 +134,35 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
           <button type="button" class="btn btn-primary" id="btn-forward-message">{{_ "Send"}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="MessageModal">
+  <div class="modal fade full-screen no-footer message">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-MessageForwardModal">&times;</button>
+          <h4 class="modal-title">{{_ "View message"}}</h4>
+        </div>
+        <div class="modal-body scroll-box">
+          <div class="message-content">
+            {{#if compare contentType '===' 'html'}}
+              {{> EmailContent message=this modal=".modal.message"}}
+            {{else}}
+              {{#markdown}}{{{content}}}{{/markdown}}
+              {{#if compare contentType '===' 'image'}}
+                <a href="{{fileURL image 'original'}}" data-fancybox="thread" data-caption="{{summary}}">
+                  <img src="{{fileURL image 'thumbnail'}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
+                </a>
+              {{/if}}
+            {{/if}}
+
+            {{> MessageFiles}}
+          </div>
         </div>
       </div>
     </div>

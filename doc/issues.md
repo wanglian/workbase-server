@@ -1,4 +1,20 @@
-- 用户logout时，meteor会自动更新Users信息。而修改用户日志是监听Users的修改，用户logout信息所以会在管理日志中出现(done)
+# Issues
+
+
+## 1-4
+### 转发消息预览，不能查看邮件内容
+
+看起来原因是在Modal中，iframe初始化时高度计算为0。
+https://stackoverflow.com/questions/25565716/load-iframe-in-bootstrap-modal
+在modal事件shown.bs.modal中处理
+```
+$('.modal').on('shown.bs.modal',function(){
+  $(this).find('iframe').attr('src','http://www.google.com')
+})
+```
+
+## 2018
+### 用户logout时，meteor会自动更新Users信息。而修改用户日志是监听Users的修改，用户logout信息所以会在管理日志中出现(done)
 
 将日志放在Methods层，即业务层。用户行为日志是利用回调onLogin/onLogout/onLoginFailer，也是业务回调。
 

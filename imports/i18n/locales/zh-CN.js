@@ -94,6 +94,7 @@ export const locale_zh_cn = {
   "Forward": "转发",
   "Forward message to": "转发消息到",
   "Send to": "发送给",
+  "View message": "查看消息",
   "Add Members": "添加成员",
   "confirm remove member": "确定移除 {{name}}?",
   "Confirm": "确定",

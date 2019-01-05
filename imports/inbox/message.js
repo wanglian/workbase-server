@@ -134,6 +134,12 @@ Template.MessageForwardModal.events({
 });
 
 Template.MessageForwardPreviewModal.events({
+  "click #btn-view-message"(e, t) {
+    e.preventDefault();
+    Modal.show('MessageModal', this.message, {
+      backdrop: 'static'
+    });
+  },
   "click #btn-forward-message"(e, t) {
     e.preventDefault();
     let message = this.message;
