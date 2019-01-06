@@ -1,0 +1,14 @@
+<template name="ApplicationStatus">
+  {{#if connected}}
+    {{> UI.contentBlock}}
+  {{else}}
+    <div class="status-bar text-center">
+      {{#if connecting}}
+        <i class="fa fa-spinner fa-spin"></i>
+        {{_ 'Connecting'}}
+      {{else}}
+        <a href='#' id="btn-connect" title="{{_ 'Click to Reconnect'}}">{{_ 'Disconnected'}}</a>
+      {{/if}}
+    </div>
+  {{/if}}
+</template>

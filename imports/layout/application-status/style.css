@@ -1,0 +1,16 @@
+.status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  z-index: 9999;
+  color: white;
+  background: inherit;
+  height: 50px;
+}
+.status-bar a,
+.status-bar a:hover {
+  text-decoration: none;
+  color: white;
+}

@@ -1,3 +1,4 @@
+import './application-status';
 import './application-layout';
 import './application-controller';
 

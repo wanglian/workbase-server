@@ -1,7 +1,6 @@
 <template name="ApplicationLayout">
   {{#AdminLTE skin=currentUser.skin fixed=true sidebarMini=true loadingTemplate="spinner"}}
-    {{> status}}
-    <!-- your html here -->
+  <!-- your html here -->
     <header class="main-header">
       <!-- Logo -->
       <a href="/inbox" class="logo">
@@ -17,6 +16,9 @@
         </span>
       </a>
       <nav class="navbar navbar-static-top">
+        {{#ApplicationStatus}}
+          <!-- todo -->
+        {{/ApplicationStatus}}
         <!-- Sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
           <span class="sr-only">Toggle navigation</span>
@@ -68,20 +70,4 @@
     <!-- This div must placed right after the sidebar for it to work-->
     <div class="control-sidebar-bg"></div>
   {{/AdminLTE}}
-</template>
-
-<template name="status_default">
-  {{#unless connected}}
-    <div class="status-bar text-center alert alert-warning">
-      <strong>
-        <span class="fa fa-warning"></span>
-        {{message}}
-      </strong>
-      {{extraMessage}}
-
-      {{#if showReconnect}}
-        <a href="#" class="alert-link">{{reconnectLabel}}</a>
-      {{/if}}
-    </div>
-  {{/unless}}
 </template>

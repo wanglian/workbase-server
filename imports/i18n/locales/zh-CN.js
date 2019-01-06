@@ -1,4 +1,7 @@
 export const locale_zh_cn = {
+  "Connecting": "连接中",
+  "Disconnected": "未连接",
+  "Click to Reconnect": "点按重连",
   "Sign out": "退出",
   "Profile": "个人设置",
   "Compose": "发消息",
@@ -72,7 +75,9 @@ export const locale_zh_cn = {
   "Title": "职位",
   "Password": "密码",
   "Send Messages": "发消息",
+  "Chat": "私聊",
   "Chat with": "与 {{name}} 的会话",
+  "Create Group Chat": "创建群聊",
   // channel
   "Channels Management": "频道管理",
   "Channel List": "频道列表",
@@ -108,8 +113,8 @@ export const locale_zh_cn = {
   "Discover": "发现",
   "Share": '分享',
   "Shares": '分享',
-  "Share Image": "图片",
-  "Share Files": "文件",
+  "Share Image": "分享图片",
+  "Share Files": "分享文件",
   "Shared": "添加分享",
   "Comment": "评论",
   "sent a comment": "添加评论",

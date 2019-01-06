@@ -15,9 +15,6 @@ const setLocale = (lng) => {
   I18n.changeLanguage(lng);
   // moment
   moment.locale(lng.toLowerCase());
-  // status
-  if (lng === 'zh-CN') lng = 'zh';
-  TAPi18n.setLanguage(lng);
 }
 
 // default: browser
