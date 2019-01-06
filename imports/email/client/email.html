@@ -4,3 +4,15 @@
   </div>
   <iframe frameborder="0" src="about:blank"></iframe>
 </template>
+
+<template name="ThreadDetailEmail">
+  <div class="panel flat-panel">
+    <div class="flat-panel-heading">
+      <div class="flat-panel-title"><i class="fa fa-envelope-o text-green"></i> {{_ 'Email'}}</div>
+    </div>
+    <div class="flat-panel-body">
+      <p style="font-size: 16px;">{{subject}}</p>
+      <div class="small text-muted">{{_ "Sent by and when" name=user.name time=(formatDayWithTime createdAt)}}</div>
+    </div>
+  </div>
+</template>

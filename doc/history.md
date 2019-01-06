@@ -5,6 +5,7 @@
 - 重构连接状态栏，弃用插件，自己实现
 - 展现Chat信息（为做群聊做准备）
 - improve Landing page
+- improve Email详情
 
 ## 1-5
 

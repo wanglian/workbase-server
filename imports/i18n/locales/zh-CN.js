@@ -91,6 +91,7 @@ export const locale_zh_cn = {
   "About": "详情",
   "Members": "成员",
   "Created by and when": "{{name}} 创建于 {{time}}",
+  "Sent by and when": "{{name}} 发送于 {{time}}",
   "mail to": "发给",
   "mail cc": "抄送",
   "Copy": "复制消息",
