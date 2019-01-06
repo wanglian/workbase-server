@@ -147,6 +147,9 @@ MailgunEmails.parseEmail = async (doc) => {
       contentType = 'image';
       content = "";
       break;
+    case 'text':
+      contentType = 'text';
+      break;
     default:
       //
     }

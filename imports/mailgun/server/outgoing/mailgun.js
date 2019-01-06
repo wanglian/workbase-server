@@ -1,7 +1,11 @@
 const request = require('request');
 
-const signature = (user, content) => {
-  return content + '\r\n\r\n' + user.signature();
+const signature = (user, content, contentType) => {
+  let signature = user.signature();
+  if (contentType != 'text') {
+    signature = Markdown(signature);
+  }
+  return content + '\r\n\r\n' + signature;
 };
 
 Mailgun = {
@@ -37,19 +41,20 @@ Mailgun.send = (message) => {
     case 'image':
       let image = message.image();
       _.extend(params, {
-        html: signature(user, `<img src="cid:${image.name}.${image.extension}"/>`),
+        html: signature(user, `<img src="cid:${image.name}.${image.extension}"/>`, 'image'),
         inline: buildMailgunAttachment(image),
         'v:MessageType': 'image'
       });
       break;
     case 'html':
       _.extend(params, {
-        html: signature(user, message.content) // Markdown(message.content): 需要html邮件模板
+        html: signature(user, message.content, 'html') // Markdown(message.content): 需要html邮件模板
       });
       break;
     default:
       _.extend(params, {
-        text: signature(user, message.content) // Markdown(message.content): 需要html邮件模板
+        text: signature(user, message.content, 'text'), // Markdown(message.content): 需要html邮件模板
+        'v:MessageType': 'text'
       });
     }
 
