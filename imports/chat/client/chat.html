@@ -23,3 +23,34 @@
     <div class="thread-subject text-ellipsis">{{chat.name}}</div>
   </div>
 </template>
+
+<template name="ThreadDetailChat">
+  <div class="panel flat-panel">
+    <div class="flat-panel-heading">
+      <div class="flat-panel-title"><i class="fa fa-comment-o text-success"></i> {{_ 'Chat'}}</div>
+    </div>
+    <div class="flat-panel-body no-padding">
+      <ul class="list-group members-list">
+        {{#with chat}}
+          {{#LinkToUser user=this class="list-group-item members-item clearfix"}}
+            <span class="pull-left">
+              {{> avatar user=this shape="circle" class="img-circle pull-left" size="small"}}
+            </span>
+            <div class="members-info">
+              <strong class="name">{{name}}</strong> <span>{{title}}</span>
+              <div class="text-muted text-ellipsis">{{email}}</div>
+            </div>
+          {{/LinkToUser}}
+        {{/with}}
+        <a href="#" class="list-group-item members-item clearfix hide" id="btn-create-group">
+          <span class="pull-left icon">
+            <i class="fa fa-plus"></i>
+          </span>
+          <div class="members-info" style="line-height: 35px;">
+            <span>{{_ "Create Group Chat"}}</span>
+          </div>
+        </a>
+      </ul>
+    </div>
+  </div>
+</template>

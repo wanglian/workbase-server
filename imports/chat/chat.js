@@ -1,7 +1,13 @@
+Threads.helpers({
+  chat() {
+    return Users.findOne(this.params.chat);
+  }
+});
+
 ThreadCategories.add("Chat", {
   icon: "fa fa-comment-o",
   iconUnread: "fa fa-comment",
-  details: ['Search', 'Files'],
+  details: ['Chat', 'Search', 'Files'],
   title(thread, detail=false) {
     clientOnly();
 
