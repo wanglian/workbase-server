@@ -5,6 +5,7 @@
 - fix iOS APP不能打开邮件内的链接：用手机系统的浏览器打开。
 - fix iPad上样式（字体放大的影响到顶部栏的高度，屏幕控制的BUG）
 - fix 外发邮件签名，支持markdown格式。三种格式(html/image/text)，html/image外发邮件都须把签名markdown转成html
+- fix 关闭modal。当打开多层modal后，失去context，Modal.hide('modal-name')不起作用，改用触发关闭按钮
 
 ## 1-4
 

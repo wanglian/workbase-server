@@ -149,8 +149,7 @@ Template.MessageForwardPreviewModal.events({
       fileIds:       message.fileIds,
       inlineFileIds: message.inlineFileIds
     }, (err, res) => {
-      Modal.hide('MessageForwardPreviewModal');
-      // Modal.hide('MessageForwardModal');
+      $('#btn-close-MessageForwardPreviewModal').click();
       $('#btn-close-MessageForwardModal').click();
     });
   }
