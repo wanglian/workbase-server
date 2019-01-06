@@ -26,16 +26,7 @@
 
 <template name="MessageContent">
   <div class="message-content {{#if isNew}}animated flash{{/if}}">
-    {{#if compare contentType '===' 'html'}}
-      {{> EmailContent message=this}}
-    {{else}}
-      {{#markdown}}{{{content}}}{{/markdown}}
-      {{#if compare contentType '===' 'image'}}
-        <a href="{{fileURL image 'original'}}" data-fancybox="thread" data-caption="{{summary}}">
-          <img src="{{fileURL image 'thumbnail'}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
-        </a>
-      {{/if}}
-    {{/if}}
+    {{> Template.dynamic template=contentTemplate data=templateData}}
 
     {{#with parent}}
       {{> QuotedMessage}}
@@ -43,6 +34,24 @@
 
     {{> MessageFiles}}
   </div>
+</template>
+
+<template name="TextContent">
+  {{#with message}}
+    {{#markdown}}{{{content}}}{{/markdown}}
+  {{/with}}
+</template>
+
+<template name="ImageContent">
+  {{#with message}}
+    <a href="{{fileURL image 'original'}}" data-fancybox="thread" data-caption="{{summary}}">
+      <img src="{{fileURL image 'thumbnail'}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>
+    </a>
+  {{/with}}
+</template>
+
+<template name="LogContent">
+  {{{content}}}
 </template>
 
 <template name="MessageFiles">

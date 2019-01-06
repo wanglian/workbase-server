@@ -26,6 +26,8 @@ Meteor.methods({
 Messages.after.insert(function(userId, doc) {
   // 忽略：内部消息和来自外部的消息
   if (doc.userType === 'Contacts' || doc.internal) return;
+  // 忽略：日志
+  if (doc.contentType === 'log') return;
 
   new Promise((resolve, reject) => {
     try {

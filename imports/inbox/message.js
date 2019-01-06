@@ -76,6 +76,37 @@ Template.Message.events({
 Template.MessageContent.helpers({
   isNew() {
     return this.createdAt > moment().subtract(10, 'seconds').toDate();
+  },
+  contentTemplate() {
+    switch(this.contentType) {
+    case 'html':
+      return 'EmailContent';
+    case 'image':
+      return 'ImageContent';
+    case 'log':
+      return 'LogContent';
+    default:
+      return 'TextContent';
+    }
+  },
+  templateData() {
+    return {
+      message: this
+    }
+  }
+});
+
+Template.LogContent.helpers({
+  content() {
+    let data = this.message.content;
+    switch(data.action) {
+    case 'thread.add_members':
+      return I18n.t("add_thread_member", data.params);
+    case 'thread.remove_member':
+      return I18n.t("remove_thread_member", data.params);
+    default:
+      return data;
+    }
   }
 });
 

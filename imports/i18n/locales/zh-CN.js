@@ -104,6 +104,9 @@ export const locale_zh_cn = {
   "Add Members": "添加成员",
   "confirm remove member": "确定移除 {{name}}?",
   "Confirm": "确定",
+  "add_thread_member": "添加成员: {{emails}}",
+  "add_thread_member_plural": "添加成员: {{emails}}",
+  "remove_thread_member": "删除成员: {{email}}",
   // paginate
   "Load More": "查看更多",
   // search

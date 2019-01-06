@@ -12,6 +12,9 @@ export const locale_en_us = {
   "mail to": "to",
   "mail cc": "cc",
   "confirm remove member": "Are you sure to remove {{name}}?",
+  "add_thread_member": "Added {{count}} member: {{emails}}",
+  "add_thread_member_plural": "Added {{count}} members: {{emails}}",
+  "remove_thread_member": "Removed member: {{email}}",
   // reports
   "System Reports": "Reports",
   "Daily Messages Counts": "Daily",

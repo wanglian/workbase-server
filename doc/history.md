@@ -6,6 +6,7 @@
 - 展现Chat信息（为做群聊做准备）
 - improve Landing page
 - improve Email详情
+- 话题成员管理记录日志
 
 ## 1-5
 

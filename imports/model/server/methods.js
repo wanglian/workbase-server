@@ -54,9 +54,14 @@ Meteor.methods({
     check(threadId, String);
     check(emails, String);
 
+    let user = Users.findOne(this.userId);
+    // TODO: 权限
+
     let thread = Threads.findOne(threadId);
     let members = Contacts.parse(emails);
     members.forEach(c => Threads.ensureMember(thread, c));
+
+    logThreadMemberAdmin(thread, user, {action: "thread.add_members", params: {count: members.length, emails: members.map(m => m.address()).join(", ")}});
     return members.length;
   },
   removeThreadMember(threadId, userType, userId) {
@@ -64,6 +69,17 @@ Meteor.methods({
     check(userType, String);
     check(userId, String);
 
+    let user = Users.findOne(this.userId);
+    let thread = Threads.findOne(threadId);
+    let member = eval(userType).findOne(userId);
     ThreadUsers.remove({threadId, userType, userId});
+    logThreadMemberAdmin(thread, user, {action: "thread.remove_member", params: {email: member.address()}});
   }
 });
+
+const logThreadMemberAdmin = (thread, user, content) => {
+  Threads.addMessage(thread, user, {
+    contentType: 'log',
+    content
+  });
+}
