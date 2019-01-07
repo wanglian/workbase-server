@@ -44,6 +44,15 @@ ThreadCategories.add("Channel", {
   }
 });
 
+ThreadCategories.add("LiveChat", {
+  icon: "fa fa-commenting-o",
+  iconUnread: "fa fa-commenting",
+  title(thread, detail=false) { // client only
+    return I18n.t(thread.subject);
+  },
+  details: ['Members']
+});
+
 LogTypes.add("channel.new", { i18nKey: "log_new_channel" });
 LogTypes.add("channel.edit", { i18nKey: "log_edit_channel" });
 LogTypes.add("channel.member.add", { i18nKey: "log_add_channel_member" });

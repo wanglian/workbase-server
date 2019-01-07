@@ -33,9 +33,10 @@ ChannelController = ApplicationController.extend({
     _.extend(query, {limit: this.limit() + this.perPage});
     let nextPath = this.route.path(this.params, {query});
     let hasMore = Counts.get(`channel.threads.${this.channel()}`) > this.limit();
+    let channelId = this.channel();
     return {
-      channel:    Users.findOne(this.channel()),
-      threads:    Threads.find({category: 'Email'}, {sort: {updatedAt: -1}}),
+      channel:    Users.findOne(channelId),
+      threads:    Threads.find({channelId}, {sort: {updatedAt: -1}}),
       thread:     this.thread(),
       ready:      this.threadsSub.ready(),
       nextPath:   hasMore ? nextPath : null,

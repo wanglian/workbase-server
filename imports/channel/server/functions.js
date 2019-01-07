@@ -2,7 +2,6 @@ Channels.create = (email, name) => {
   return Accounts.createUser({
     email,
     profile: {
-      channel: true,
       type: 'Channels',
       name
     }

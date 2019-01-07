@@ -1,0 +1,29 @@
+<template name="Contact">
+  {{#AdminLTE page="login" loadingTemplate="spinner"}}
+    <div class="login-box">
+      <div class="login-logo">
+        <a href="/" title="{{company}}"><img src="/assets/workbase.png" width=150></a>
+      </div>
+      <!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">{{_ "Chat with us"}}</p>
+
+        {{#autoForm collection=formCollection schema=formSchema id="contact-form" type="normal"}}
+          {{> afQuickField name="name"}}
+          {{> afQuickField name="email"}}
+          {{> afQuickField name="content"}}
+          <div class="form-actions clearfix">
+            <button type="submit" class="btn btn-primary">{{_ "Send"}}</button>
+          </div>
+        {{/autoForm}}
+
+        <!-- /.social-auth-links -->
+
+        <!-- <a href="#">I forgot my password</a><br> -->
+        <!-- <a href="#" class="text-center">Register a new membership</a> -->
+
+      </div>
+      <!-- /.login-box-body -->
+    </div>
+  {{/AdminLTE}}
+</template>
