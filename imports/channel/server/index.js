@@ -50,8 +50,13 @@ Channels.after.insert(function(userId, doc) {
 
   let admin = Meteor.user();
   if (admin) {
-    let user = this.transform();
-    logChannelAdmin(admin, `New Channel: ${user.name()} - ${user.email()}`);
+    let channel = this.transform();
+    logChannelAdmin(admin, {
+      action: 'channel.new',
+      params: {
+        channel: channel.address()
+      }
+    });
   }
 });
 
@@ -60,8 +65,14 @@ Channels.after.update(function(userId, doc, fieldNames, modifier, options) {
 
   let admin = Meteor.user();
   if (admin) {
-    let user = this.transform();
-    logChannelAdmin(admin, `Edit Channel: ${user._id} \r\n Previous: ${this.previous.profile.name} - ${this.previous.emails[0].address} \r\n Update: ${user.name()} - ${user.email()}`);
+    let channel = this.transform();
+    logChannelAdmin(admin, {
+      action: 'channel.edit',
+      params: {
+        prev: Channels._transform(this.previous).address(),
+        now: channel.address()
+      }
+    });
   }
 });
 
@@ -70,7 +81,13 @@ ChannelUsers.after.insert(function(userId, doc) {
   if (admin) {
     let channel = Channels.findOne(doc.channelId);
     let member = this.transform();
-    logChannelAdmin(admin, `Add Channel Member: \r\n Channel: ${channel.name()} (${channel.email()}) \r\n User: ${member.user().name()} (${member.user().email()})`);
+    logChannelAdmin(admin, {
+      action: 'channe.member.add',
+      params: {
+        channel: channel.address(),
+        member: member.user().address()
+      }
+    });
   }
 });
 
@@ -79,6 +96,12 @@ ChannelUsers.after.remove(function(userId, doc) {
   if (admin) {
     let channel = Channels.findOne(doc.channelId);
     let member = this.transform();
-    logChannelAdmin(admin, `Remove Channel Member: \r\n Channel: ${channel.name()} (${channel.email()}) \r\n User: ${member.user().name()} (${member.user().email()})`);
+    logChannelAdmin(admin, {
+      action: 'channe.member.remove',
+      params: {
+        channel: channel.address(),
+        member: member.user().address()
+      }
+    });
   }
 });

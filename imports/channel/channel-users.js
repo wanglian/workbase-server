@@ -43,3 +43,8 @@ ThreadCategories.add("Channel", {
     ]
   }
 });
+
+LogTypes.add("channel.new", { i18nKey: "log_new_channel" });
+LogTypes.add("channel.edit", { i18nKey: "log_edit_channel" });
+LogTypes.add("channel.member.add", { i18nKey: "log_add_channel_member" });
+LogTypes.add("channel.member.remove", { i18nKey: "log_remove_channel_member" });

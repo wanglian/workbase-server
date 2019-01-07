@@ -17,7 +17,7 @@
           {{#if email.to}}<div>{{_ 'mail to'}} {{email.to}}</div>{{/if}}
           {{#if email.cc}}<div>{{_ 'mail cc'}} {{email.cc}}</div>{{/if}}
         </div>
-        <div class="summary text-ellipsis text-muted">{{summary}}</div>
+        <div class="summary text-ellipsis text-muted">{{{summaryLocalized}}}</div>
       </div>
     </div>
     {{> MessageContent}}
@@ -50,10 +50,6 @@
   {{/with}}
 </template>
 
-<template name="LogContent">
-  {{{content}}}
-</template>
-
 <template name="MessageFiles">
   {{#if files.count}}
     <div>
@@ -77,17 +73,21 @@
 
 <template name="MessageActions">
   <div class="btn-group message-actions pull-right">
-    {{#if thread.isReplyable}}
-      <button type="button" class="btn btn-sm btn-default btn-reply" data-toggle="tooltip" title="{{_ 'Reply'}}">
-        <i class="fa fa-reply"></i>
+    {{#unless compare contentType '===' 'log'}}
+      {{#if thread.isReplyable}}
+        <button type="button" class="btn btn-sm btn-default btn-reply" data-toggle="tooltip" title="{{_ 'Reply'}}">
+          <i class="fa fa-reply"></i>
+        </button>
+      {{/if}}
+      <button type="button" class="btn btn-sm btn-default btn-forward" data-toggle="tooltip" title="{{_ 'Forward'}}">
+        <i class="fa fa-mail-forward"></i>
       </button>
-    {{/if}}
-    <button type="button" class="btn btn-sm btn-default btn-forward" data-toggle="tooltip" title="{{_ 'Forward'}}">
-      <i class="fa fa-mail-forward"></i>
-    </button>
-    <button type="button" class="btn btn-sm btn-default btn-copy" data-toggle="tooltip" title="{{_ 'Copy'}}">
-      <i class="fa fa-copy"></i>
-    </button>
+      {{#if compare contentType '===' 'text'}}
+        <button type="button" class="btn btn-sm btn-default btn-copy" data-toggle="tooltip" title="{{_ 'Copy'}}">
+          <i class="fa fa-copy"></i>
+        </button>
+      {{/if}}
+    {{/unless}}
   </div>
 </template>
 

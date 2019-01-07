@@ -30,18 +30,22 @@ Messages.before.insert(function(userId, doc) {
   // 2 若没有选择，则默认为外部消息
   // 3 再判断：没有外部联系人时为内部消息（程序判断）
   // 第二条和第三条不可交换！（不然会覆盖第一条）
-  _.defaults(doc, {internal: false});
+  _.defaults(doc, {internal: false, contentType: 'text'});
   if (ThreadUsers.find({threadId: doc.threadId, userType: 'Contacts'}).count() === 0) {
     _.extend(doc, {internal: true});
   }
 
-  let strippedText = purgeHtml(doc.content);
-  if (!strippedText) {
-    // image
-    if (/<img src/.test(doc.content)) {
-      doc.contentType = 'image';
-    }
+  if (doc.contentType === 'log') {
+    doc.summary = doc.content;
   } else {
-    doc.summary = strippedText.slice(0, 250);
+    let strippedText = purgeHtml(doc.content);
+    if (!strippedText) {
+      // image
+      if (/<img src/.test(doc.content)) {
+        doc.contentType = 'image';
+      }
+    } else {
+      doc.summary = strippedText.slice(0, 250);
+    }
   }
 });

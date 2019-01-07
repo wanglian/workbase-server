@@ -62,7 +62,7 @@ export const locale_zh_cn = {
   "Confirm remove file": "确认删除文件?",
   "Write something": "这一刻的想法",
   "Image Message": "[图片]",
-  "No content": "没有内容",
+  "No content": "[没有内容]",
   "Files": "文件",
   "Files with count": "文件 ({{count}})",
   "Sent you an image": "发来一张图片",
@@ -109,6 +109,17 @@ export const locale_zh_cn = {
   "remove_thread_member": "删除成员: {{email}}",
   // paginate
   "Load More": "查看更多",
+  // log
+  "log_login": "帐号登录: 来自 {{ip}}",
+  "log_login_failed": "帐号登录失败: 来自 {{ip}}",
+  "log_logout": "帐号退出: 来自 {{ip}}",
+  "log_update_profile": "更新个人设置: {{set}}",
+  "log_new_user": "添加用户: {{user}} - {{set}}",
+  "log_edit_user": "修改用户: {{user}} - {{set}}",
+  "log_new_channel": "添加频道: {{channel}}",
+  "log_edit_channel": "修改频道: {{prev}} => {{now}}",
+  "log_add_channel_member": "添加频道成员: {{channel}} - {{member}}",
+  "log_remove_channel_member": "删除频道成员: {{channel}} - {{member}}",
   // search
   "Search": "搜索",
   "Search Subjects": "搜索主题",

@@ -127,3 +127,14 @@ Template.RosterThreadActions.events({
 先实现搜索主题
 实现话题内搜索
 最后实现全文检索
+
+
+## 日志（Feed消息）
+
+contentType = 'log'
+content
+- action
+- params
+展现
+action - i18n.key
+I18n.t(key, params)

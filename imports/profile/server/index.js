@@ -16,8 +16,7 @@ Meteor.methods({
       _.extend(profile, changedSet);
       Users.direct.update(this.userId, {$set: {profile}});
 
-      // log
-      logAccountAction(user, `Update Profile: \r\n ${JSON.stringify(changedSet)}`);
+      logAccountAction(user, {action: 'profile.update', params: {set: JSON.stringify(changedSet)}});
       return true;
     }
 
@@ -26,7 +25,7 @@ Meteor.methods({
   updateLogin() {
     let user = Users.findOne(this.userId);
     let connection = this.connection;
-    logAccountAction(user, `Login from ${connection.clientAddress}: \r\n ${JSON.stringify(connection.httpHeaders)}`);
+    logAccountAction(user, {action: 'login', params: {ip: connection.clientAddress, meta: connection.httpHeaders}});
   }
 });
 
@@ -42,7 +41,10 @@ const ensureAccountThread = (user) => {
 const logAccountAction = (user, content) => {
   // Account
   let thread = ensureAccountThread(user);
-  Threads.addMessage(thread, user, {content});
+  Threads.addMessage(thread, user, {
+    contentType: 'log',
+    content
+  });
 };
 
 Accounts.onLogin(function(attempt) {
@@ -54,13 +56,13 @@ Accounts.onLogin(function(attempt) {
 Accounts.onLogout(function(attempt) {
   let user = Users.findOne(attempt.user._id);
   let connection = attempt.connection;
-  logAccountAction(user, `Logout from ${connection.clientAddress}: \r\n ${JSON.stringify(connection.httpHeaders)}`);
+  logAccountAction(user, {action: 'logout', params: {ip: connection.clientAddress, meta: connection.httpHeaders}});
 });
 
 Accounts.onLoginFailure(function(attempt) {
   if (attempt.user) {
     let user = Users.findOne(attempt.user._id);
     let connection = attempt.connection;
-    logAccountAction(user, `Failed Login from ${connection.clientAddress}: \r\n ${JSON.stringify(connection.httpHeaders)}`);
+    logAccountAction(user, {action: 'login.failed', params: {ip: connection.clientAddress, meta: connection.httpHeaders}});
   }
 });

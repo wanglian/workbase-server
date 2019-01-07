@@ -1,4 +1,5 @@
 import './inbox-layout';
+import './log-message';
 import './inbox';
 import './thread';
 import './message';

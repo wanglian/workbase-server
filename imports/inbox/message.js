@@ -96,20 +96,6 @@ Template.MessageContent.helpers({
   }
 });
 
-Template.LogContent.helpers({
-  content() {
-    let data = this.message.content;
-    switch(data.action) {
-    case 'thread.add_members':
-      return I18n.t("add_thread_member", data.params);
-    case 'thread.remove_member':
-      return I18n.t("remove_thread_member", data.params);
-    default:
-      return data;
-    }
-  }
-});
-
 Template.MessageActions.onRendered(function() {
   $('.message-actions [data-toggle="tooltip"]').tooltip({container: 'body', trigger: 'hover', delay: 1000});
 });

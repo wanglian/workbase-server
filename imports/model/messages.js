@@ -24,18 +24,20 @@ Messages.helpers({
     return Messages.findOne(this.parentId);
   },
   summaryLocalized(lang) {
+    try {
+      let t = MessageTypes.get(this.contentType);
+      if (t && t.summaryLocalized) {
+        return t.summaryLocalized(this, lang);
+      }
+    } catch (e) {
+      // console.log(e);
+    }
+
     if (!_.isEmpty(this.summary)) {
       return this.summary;
     }
 
-    let key;
-    switch(this.contentType) {
-    case 'image':
-      key = 'Image Message';
-      break;
-    default:
-      key = "No content";
-    }
+    let key = "No content";
 
     if (Meteor.isClient) {
       return I18n.t(key);
@@ -56,3 +58,59 @@ Messages.helpers({
     return this.fileIds && Files.find({_id: {$in: this.fileIds}});
   }
 });
+
+let _messageTypes = {};
+MessageTypes = {
+  add(type, defs) {
+    let _obj = {};
+    _obj[type] = defs;
+    _.extend(_messageTypes, _obj);
+  },
+  get(type) {
+    return _messageTypes[type];
+  }
+};
+
+MessageTypes.add('text');
+MessageTypes.add('html');
+MessageTypes.add('image', {
+  summaryLocalized(message, lang) {
+    if (!_.isEmpty(message.summary)) {
+      return message.summary;
+    }
+
+    let key = 'Image Message';
+
+    if (Meteor.isClient) {
+      return I18n.t(key);
+    } else {
+      return I18n.getFixedT(lang)(key);
+    }
+  }
+});
+MessageTypes.add('log', {
+  summaryLocalized(message, lang) {
+    let s = message.summary;
+    let log = LogTypes.get(s.action);
+    let key = log.i18nKey;
+    let params = s.params;
+
+    if (Meteor.isClient) {
+      return I18n.t(key, params);
+    } else {
+      return I18n.getFixedT(lang)(key, params);
+    }
+  }
+});
+
+let _logTypes = {}; // i18nKey
+LogTypes = {
+  add(type, defs) {
+    let _obj = {};
+    _obj[type] = defs;
+    _.extend(_logTypes, _obj);
+  },
+  get(type) {
+    return _logTypes[type];
+  }
+};

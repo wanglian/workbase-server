@@ -15,7 +15,13 @@ Meteor.methods({
 
     let admin = Users.findOne(this.userId);
     let user = Users.findOne(userId);
-    logUserAdmin(admin, `New User: ${user.email()} \r\n ${JSON.stringify(user.profile)}`);
+    logUserAdmin(admin, {
+      action: 'user.new',
+      params: {
+        user: user.email(),
+        set: JSON.stringify(user.profile)
+      }
+    });
 
     return userId;
   },
@@ -48,7 +54,13 @@ Meteor.methods({
       }
 
       let admin = Users.findOne(this.userId);
-      logUserAdmin(admin, `Edit User: ${user.email()} \r\n ${JSON.stringify(changes)}`);
+      logUserAdmin(admin, {
+        action: 'user.edit',
+        params: {
+          user: user.email(),
+          set: JSON.stringify(changes)
+        }
+      });
 
       return id;
     }

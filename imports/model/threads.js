@@ -60,6 +60,14 @@ Threads.helpers({
 });
 
 let categories = {};
+// - icon
+// - iconUnread
+// - details [] 详情模块
+// - title
+// - actions [] 菜单
+//  - icon
+//  - title
+//  - action function
 ThreadCategories = {
   add: (category, defs) => {
     let _obj = {};

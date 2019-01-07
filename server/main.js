@@ -1,7 +1,6 @@
 // basic
-import '/imports/model/server';
-import '/imports/i18n/server';
 import '/imports/startup/server';
+import '/imports/i18n/server';
 import '/imports/files/server';
 import '/imports/chat/server';
 import '/imports/email/server';
