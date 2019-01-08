@@ -12,7 +12,7 @@ Accounts.onLogin(function(attempt) {
   let admin = Instance.admin();
   if (admin._id === attempt.user._id) {
     let thread = Threads.findOne({category: 'Charts'});
-    Threads.ensureMember(thread, admin);
+    Threads.ensureMember(thread, admin, {admin: true});
   }
 });
 

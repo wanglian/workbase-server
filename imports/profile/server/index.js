@@ -29,13 +29,50 @@ Meteor.methods({
   }
 });
 
+Meteor.publishComposite("admin.threads", function() {
+  return {
+    find() {
+      return ThreadUsers.find({userType: 'Users', userId: this.userId, "params.admin": true}, {
+        sort: {updatedAt: -1}
+      });
+    },
+    children: [
+      {
+        find(tu) {
+          return Threads.find({_id: tu.threadId}, {
+            transform: (doc) => {
+              doc.read = tu.read;
+              doc.params = tu.params;
+              return doc;
+            }
+          });
+        },
+        children: [
+          {
+            find(thread) {
+              return Messages.find({_id: thread.lastMessageId});
+            },
+            children: [
+              {
+                find(message) {
+                  return eval(message.userType).find({_id: message.userId});
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  };
+});
+
 const ensureAccountThread = (user) => {
   let thread = Threads.findOne({category: 'Account', userId: user._id});
   if (!thread) {
     let threadId = Threads.create(user, 'Account', 'My Account');
     thread = Threads.findOne(threadId);
   }
-  Threads.ensureMember(thread, user);
+  Threads.ensureMember(thread, user, {admin: true});
   return thread;
 };
 const logAccountAction = (user, content) => {

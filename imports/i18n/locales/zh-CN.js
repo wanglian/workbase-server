@@ -17,6 +17,7 @@ export const locale_zh_cn = {
   "Empty": "空",
   "None": "无",
   "Like": "点赞",
+  "System Settings": "管理",
   // Time
   "Today": "今天",
   "Yesterday": "昨天",

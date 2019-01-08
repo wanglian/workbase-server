@@ -35,7 +35,7 @@ Threads.ensureMember = (thread, user, params) => {
       read,
       role,
       params
-    })
+    });
   }
 };
 

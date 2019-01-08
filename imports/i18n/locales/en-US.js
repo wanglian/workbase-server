@@ -1,4 +1,5 @@
 export const locale_en_us = {
+  "System Settings": "Settings",
   // message
   "Send Image": "Image",
   "Send Images": "Images",

@@ -4,6 +4,9 @@ body .user-panel {
   left: 0;
   right: 0;
   bottom: 0;
+}
+body .user-panel .image,
+body .user-panel .name {
   cursor: pointer;
 }
 body .user-panel .info {
