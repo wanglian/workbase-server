@@ -2,7 +2,6 @@ import './setup';
 import './login';
 import './landing';
 import './layout';
-import './contact';
 
 Router.configure({
   layoutTemplate: 'DefaultLayout',
@@ -15,12 +14,6 @@ Router.route('/', function() {
   this.render('Landing');
 }, {
   name: 'landing'
-});
-
-Router.route('/contact', function() {
-  this.render('Contact');
-}, {
-  name: 'contact'
 });
 
 Router.route('/login', function() {

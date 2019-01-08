@@ -15,4 +15,5 @@ import '/imports/roster/client';
 import '/imports/charts/client';
 import '/imports/search/client';
 import '/imports/shared/client';
+import '/imports/live-chat/client';
 import '/imports/cordova/client';

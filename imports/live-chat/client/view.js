@@ -1,4 +1,4 @@
-import './contact.html';
+import './view.html';
 
 import SimpleSchema from 'simpl-schema';
 import Swal from 'sweetalert2';

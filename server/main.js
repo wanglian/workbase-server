@@ -13,4 +13,5 @@ import '/imports/roster/server';
 import '/imports/charts/server';
 import '/imports/search/server';
 import '/imports/shared/server';
+import '/imports/live-chat/server';
 import '/imports/cordova/server';

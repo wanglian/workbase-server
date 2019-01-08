@@ -133,6 +133,8 @@ export const locale_zh_cn = {
   "Shared": "添加分享",
   "Comment": "评论",
   "sent a comment": "添加评论",
+  // live chat
+  "Live Chat Management": "Live Chat",
   // reports
   "System Reports": "统计报表",
   "Reports": "报表",
