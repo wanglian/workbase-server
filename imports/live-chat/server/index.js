@@ -13,8 +13,11 @@ Accounts.onLogin(function(attempt) {
   }
 });
 
-Threads.startLiveChat = (contact, user) => {
-  let tu = ThreadUsers.findOne({userType: 'Contacts', userId: contact._id, "params.livechat": user._id});
+// - channel
+// - contact
+// - email Email联系人的原始邮箱信息
+Threads.startLiveChat = (channel, contact, email) => {
+  let tu = ThreadUsers.findOne({userType: 'Contacts', userId: contact._id, "params.chat": channel._id});
 
   let threadId = tu && tu.threadId;
   if (!threadId) {
@@ -22,8 +25,8 @@ Threads.startLiveChat = (contact, user) => {
   }
 
   let thread = Threads.findOne(threadId);
-  Threads.ensureMember(thread, contact, {chat: user._id});
-  Threads.ensureMember(thread, user, {chat: contact._id});
+  Threads.ensureMember(thread, contact, {chat: channel._id, email});
+  Threads.ensureMember(thread, channel, {chat: contact._id, email});
 
   return thread;
 };
@@ -34,12 +37,14 @@ Meteor.methods({
     check(name, Match.Maybe(String));
     check(content, String);
 
-    let contact = Contacts.parseOne(`${name} <${email}>`);
+    let address = `${name} <${email}>`;
+    let contact = Contacts.parseOne(address);
     let channel = Channels.findOne({"profile.type": 'Channels', "profile.livechat": true});
     if (channel) {
-      let thread = Threads.startLiveChat(contact, channel);
+      let thread = Threads.startLiveChat(channel, contact, address);
       return Threads.addMessage(thread, contact, {
-        content
+        content,
+        email: {from: address} // 保存联系人原始信息
       });
     }
   }

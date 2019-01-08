@@ -1,8 +1,14 @@
+// Threads.helpers({
+//   liveChatUser() {
+//     return Contacts.findOne()
+//   }
+// });
+
 ThreadCategories.add("LiveChat", {
   icon: "fa fa-commenting-o",
   iconUnread: "fa fa-commenting",
   title(thread, detail=false) { // client only
-    return I18n.t(thread.subject);
+    return thread.params && thread.params.email || I18n.t(thread.subject);
   },
   details: ['Members']
 });
