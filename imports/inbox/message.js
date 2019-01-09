@@ -96,6 +96,12 @@ Template.MessageContent.helpers({
   }
 });
 
+Template.ImageContent.helpers({
+  isGif() {
+    return this.type === 'image/gif';
+  }
+});
+
 Template.MessageActions.onRendered(function() {
   $('.message-actions [data-toggle="tooltip"]').tooltip({container: 'body', trigger: 'hover', delay: 1000});
 });
