@@ -17,7 +17,7 @@ export const locale_zh_cn = {
   "Empty": "空",
   "None": "无",
   "Like": "点赞",
-  "System Settings": "管理",
+  "System Settings": "系统管理",
   // Time
   "Today": "今天",
   "Yesterday": "昨天",
@@ -131,11 +131,12 @@ export const locale_zh_cn = {
   "Shares": '分享',
   "Share Image": "分享图片",
   "Share Files": "分享文件",
-  "Shared": "添加分享",
+  "Shared": "分享",
   "Comment": "评论",
   "sent a comment": "添加评论",
   // live chat
-  "Live Chat Management": "Live Chat",
+  "Live Chat": "在线客服",
+  "Live Chat Management": "在线客服",
   // reports
   "System Reports": "统计报表",
   "Reports": "报表",

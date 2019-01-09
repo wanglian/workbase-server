@@ -25,8 +25,8 @@ ThreadCategories.add("AdminLiveChat", {
       {
         title: I18n.t('Members'),
         action() {
-          let channel = Channels.findOne({"profile.type": 'Channels', "profile.livechat": true});
-          Modal.show('ChannelMembersModal', channel, {
+          let thread = Threads.findOne({category: 'AdminLiveChat'});
+          Modal.show('ChannelMembersModal', {_id: thread.params.channelId}, {
             backdrop: 'static'
           });
         }

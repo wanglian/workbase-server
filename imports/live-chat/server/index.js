@@ -1,7 +1,21 @@
 import '../live-chat';
 
+// TODO protect live.chat
+const createLiveChat = () => {
+  let email = `live.chat@${Instance.domain()}`;
+  let channel = Accounts.findUserByEmail(email);
+  return channel && channel._id || Accounts.createUser({
+    email,
+    profile: {
+      type: 'Channels',
+      name: 'Live Chat',
+      livechat: true
+    }
+  });
+};
+
 Meteor.startup(function() {
-  Threads.upsert({category: 'AdminLiveChat'}, {$set: {subject: 'Live Chat Management', scope: 'private'}});
+  Threads.findOne({category: 'AdminLiveChat'}) || Threads.create(null, 'AdminLiveChat', 'Live Chat Management', 'admin');
 });
 
 Accounts.onLogin(function(attempt) {
@@ -9,14 +23,15 @@ Accounts.onLogin(function(attempt) {
   let admin = Instance.admin();
   if (admin._id === attempt.user._id) {
     let thread = Threads.findOne({category: 'AdminLiveChat'});
-    Threads.ensureMember(thread, admin, {admin: true});
+    let channelId = createLiveChat();
+    Threads.ensureMember(thread, admin, {channelId});
   }
 });
 
 // - channel
 // - contact
 // - email Email联系人的原始邮箱信息
-Threads.startLiveChat = (channel, contact, email) => {
+const startLiveChat = (channel, contact, email) => {
   let tu = ThreadUsers.findOne({userType: 'Contacts', userId: contact._id, "params.chat": channel._id});
 
   let threadId = tu && tu.threadId;
@@ -32,7 +47,7 @@ Threads.startLiveChat = (channel, contact, email) => {
 };
 
 Meteor.methods({
-  sendLiveChat(email, name, content) {
+  sendLiveChatMessage(email, name, content) {
     check(email, String);
     check(name, Match.Maybe(String));
     check(content, String);
@@ -41,7 +56,7 @@ Meteor.methods({
     let contact = Contacts.parseOne(address);
     let channel = Channels.findOne({"profile.type": 'Channels', "profile.livechat": true});
     if (channel) {
-      let thread = Threads.startLiveChat(channel, contact, address);
+      let thread = startLiveChat(channel, contact, address);
       return Threads.addMessage(thread, contact, {
         content,
         email: {from: address} // 保存联系人原始信息

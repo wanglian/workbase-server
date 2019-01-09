@@ -3,8 +3,11 @@ import '../shared';
 let sharedThread;
 
 Meteor.startup(function() {
-  Threads.upsert({category: 'Shared'}, {$set: {subject: 'Shared', scope: 'public'}});
   sharedThread = Threads.findOne({category: 'Shared'});
+  if (!sharedThread) {
+    let id = Threads.create(null, 'Shared', 'Shared', 'public');
+    sharedThread = Threads.findOne(id);
+  }
 });
 
 Accounts.onLogin(function(attempt) {

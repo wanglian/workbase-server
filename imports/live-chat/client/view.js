@@ -45,7 +45,7 @@ AutoForm.hooks({
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
-      Meteor.call('sendLiveChat', insertDoc.email, insertDoc.name, insertDoc.content, (err, res) => {
+      Meteor.call('sendLiveChatMessage', insertDoc.email, insertDoc.name, insertDoc.content, (err, res) => {
         if (err) {
           console.log(err);
         } else {

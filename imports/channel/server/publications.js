@@ -20,19 +20,26 @@ Meteor.publish('channel.list', function() {
   return Channels.find({"profile.type": 'Channels'});
 });
 
-Meteor.publishComposite('channel.members', function(channel) {
-  check(channel, String);
+Meteor.publishComposite('channel.members', function(channelId) {
+  check(channelId, String);
   if (!this.userId) return this.ready();
 
   return {
     find() {
-      return ChannelUsers.find({channelId: channel});
+      return Channels.find({_id: channelId});
     },
     children: [
       {
-        find(channelUser) {
-          return Users.find({_id: channelUser.userId}, {fields: {emails: 1, profile: 1}})
-        }
+        find(channel) {
+          return ChannelUsers.find({channelId: channel._id});
+        },
+        children: [
+          {
+            find(channelUser) {
+              return Users.find({_id: channelUser.userId}, {fields: {emails: 1, profile: 1}})
+            }
+          }
+        ]
       }
     ]
   };

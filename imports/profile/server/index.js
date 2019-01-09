@@ -32,7 +32,7 @@ Meteor.methods({
 Meteor.publishComposite("admin.threads", function() {
   return {
     find() {
-      return ThreadUsers.find({userType: 'Users', userId: this.userId, "params.admin": true}, {
+      return ThreadUsers.find({userType: 'Users', userId: this.userId, scope: 'admin'}, {
         sort: {updatedAt: -1}
       });
     },
@@ -72,7 +72,7 @@ const ensureAccountThread = (user) => {
     let threadId = Threads.create(user, 'Account', 'My Account');
     thread = Threads.findOne(threadId);
   }
-  Threads.ensureMember(thread, user, {admin: true});
+  Threads.ensureMember(thread, user);
   return thread;
 };
 const logAccountAction = (user, content) => {

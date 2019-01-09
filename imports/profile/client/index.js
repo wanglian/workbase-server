@@ -34,7 +34,7 @@ AdminController = ApplicationController.extend({
     let query = _.clone(this.params.query);
     let thread = this.thread();
     return {
-      threads:    Threads.find({"params.admin": true}, {sort: {updatedAt: -1}}),
+      threads:    Threads.find({scope: 'admin'}, {sort: {updatedAt: -1}}),
       thread,
       ready:      this.threadsSub.ready(),
       hasRight:   !!thread,

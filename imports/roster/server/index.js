@@ -2,7 +2,7 @@ import '../roster';
 import './methods';
 
 Meteor.startup(function() {
-  Threads.upsert({category: 'Roster'}, {$set: {subject: 'Users Management', scope: 'private'}});
+  Threads.findOne({category: 'Roster'}) || Threads.create(null, 'Roster', 'Users Management', 'admin');
 });
 
 Accounts.onLogin(function(attempt) {
@@ -10,6 +10,6 @@ Accounts.onLogin(function(attempt) {
   let admin = Instance.admin();
   if (admin._id === attempt.user._id) {
     let thread = Threads.findOne({category: 'Roster'});
-    Threads.ensureMember(thread, admin, {admin: true});
+    Threads.ensureMember(thread, admin);
   }
 });

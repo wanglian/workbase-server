@@ -20,10 +20,12 @@ Accounts.onLogin(function(attempt) {
   // welcome
   if (ThreadUsers.find({category: 'Chat', userType: 'Users', userId: user._id}).count() === 0) {
     let admin = Instance.admin();
-    let thread = Threads.startChat(admin, user);
-    Threads.addMessage(thread, admin, {
-      content: WELCOME_MAIL.content(user)
-    });
+    if (admin._id != user._id) {
+      let thread = Threads.startChat(admin, user);
+      Threads.addMessage(thread, admin, {
+        content: WELCOME_MAIL.content(user)
+      });
+    }
   }
 });
 

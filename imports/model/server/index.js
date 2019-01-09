@@ -5,6 +5,7 @@ import './methods';
 import './publications';
 
 Meteor.startup(function() {
+  Users._ensureIndex({"profile.type": 1});
   ThreadUsers._ensureIndex({category: 1});
   ThreadUsers._ensureIndex({threadId: 1});
   ThreadUsers._ensureIndex({userType: 1});

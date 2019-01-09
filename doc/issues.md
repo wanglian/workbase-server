@@ -1,5 +1,81 @@
 # Issues
 
+## 1-8
+
+### 不明sub错误
+
+看不到跟代码相关的信息。
+原因是publishComposite用混了。用publishComposite但没有按它的返回格式。
+
+```
+I20190108-19:11:03.014(-5)? Exception from sub thread id FaqrA6wQyDyG9ZhEq { Error: Match error: Expected plain object
+I20190108-19:11:03.014(-5)?     at check (packages/check/match.js:36:17)
+I20190108-19:11:03.014(-5)?     at new Publication (packages/reywood:publish-composite/lib/publication.js:11:9)
+I20190108-19:11:03.014(-5)?     at instanceOptions.forEach.opt (packages/reywood:publish-composite/lib/publish_composite.js:16:25)
+I20190108-19:11:03.014(-5)?     at Array.forEach (<anonymous>)
+I20190108-19:11:03.014(-5)?     at Subscription.publish (packages/reywood:publish-composite/lib/publish_composite.js:15:25)
+I20190108-19:11:03.014(-5)?     at packages/matb33_collection-hooks.js:307:21
+I20190108-19:11:03.014(-5)?     at Meteor.EnvironmentVariable.EVp.withValue (packages/meteor.js:1304:12)
+I20190108-19:11:03.015(-5)?     at Subscription._handler (packages/matb33_collection-hooks.js:306:28)
+I20190108-19:11:03.015(-5)?     at maybeAuditArgumentChecks (packages/ddp-server/livedata_server.js:1767:12)
+I20190108-19:11:03.015(-5)?     at DDP._CurrentPublicationInvocation.withValue (packages/ddp-server/livedata_server.js:1043:15)
+I20190108-19:11:03.015(-5)?     at Meteor.EnvironmentVariable.EVp.withValue (packages/meteor.js:1304:12)
+I20190108-19:11:03.015(-5)?     at Subscription._runHandler (packages/ddp-server/livedata_server.js:1041:51)
+I20190108-19:11:03.015(-5)?     at Session._startSubscription (packages/ddp-server/livedata_server.js:859:9)
+I20190108-19:11:03.015(-5)?     at Session.sub (packages/ddp-server/livedata_server.js:625:12)
+I20190108-19:11:03.016(-5)?     at packages/ddp-server/livedata_server.js:559:43
+I20190108-19:11:03.016(-5)?   message: 'Match error: Expected plain object',
+I20190108-19:11:03.016(-5)?   path: '',
+I20190108-19:11:03.016(-5)?   sanitizedError:
+I20190108-19:11:03.016(-5)?    { Error: Match failed [400]
+I20190108-19:11:03.016(-5)?     at errorClass.<anonymous> (packages/check/match.js:91:27)
+I20190108-19:11:03.017(-5)?     at new errorClass (packages/meteor.js:725:17)
+I20190108-19:11:03.017(-5)?     at check (packages/check/match.js:36:17)
+I20190108-19:11:03.017(-5)?     at new Publication (packages/reywood:publish-composite/lib/publication.js:11:9)
+I20190108-19:11:03.017(-5)?     at instanceOptions.forEach.opt (packages/reywood:publish-composite/lib/publish_composite.js:16:25)
+I20190108-19:11:03.017(-5)?     at Array.forEach (<anonymous>)
+I20190108-19:11:03.017(-5)?     at Subscription.publish (packages/reywood:publish-composite/lib/publish_composite.js:15:25)
+I20190108-19:11:03.017(-5)?     at packages/matb33_collection-hooks.js:307:21
+I20190108-19:11:03.018(-5)?     at Meteor.EnvironmentVariable.EVp.withValue (packages/meteor.js:1304:12)
+I20190108-19:11:03.018(-5)?     at Subscription._handler (packages/matb33_collection-hooks.js:306:28)
+I20190108-19:11:03.018(-5)?     at maybeAuditArgumentChecks (packages/ddp-server/livedata_server.js:1767:12)
+I20190108-19:11:03.018(-5)?     at DDP._CurrentPublicationInvocation.withValue (packages/ddp-server/livedata_server.js:1043:15)
+I20190108-19:11:03.018(-5)?     at Meteor.EnvironmentVariable.EVp.withValue (packages/meteor.js:1304:12)
+I20190108-19:11:03.018(-5)?     at Subscription._runHandler (packages/ddp-server/livedata_server.js:1041:51)
+I20190108-19:11:03.019(-5)?     at Session._startSubscription (packages/ddp-server/livedata_server.js:859:9)
+I20190108-19:11:03.019(-5)?     at Session.sub (packages/ddp-server/livedata_server.js:625:12)
+I20190108-19:11:03.019(-5)?      isClientSafe: true,
+I20190108-19:11:03.019(-5)?      error: 400,
+I20190108-19:11:03.019(-5)?      reason: 'Match failed',
+I20190108-19:11:03.019(-5)?      details: undefined,
+I20190108-19:11:03.019(-5)?      message: 'Match failed [400]',
+I20190108-19:11:03.020(-5)?      errorType: 'Meteor.Error' },
+I20190108-19:11:03.020(-5)?   errorType: 'Match.Error' }
+I20190108-19:11:03.020(-5)? Sanitized and reported to the client as: { Error: Match failed [400]
+I20190108-19:11:03.020(-5)?     at errorClass.<anonymous> (packages/check/match.js:91:27)
+I20190108-19:11:03.020(-5)?     at new errorClass (packages/meteor.js:725:17)
+I20190108-19:11:03.020(-5)?     at check (packages/check/match.js:36:17)
+I20190108-19:11:03.020(-5)?     at new Publication (packages/reywood:publish-composite/lib/publication.js:11:9)
+I20190108-19:11:03.021(-5)?     at instanceOptions.forEach.opt (packages/reywood:publish-composite/lib/publish_composite.js:16:25)
+I20190108-19:11:03.021(-5)?     at Array.forEach (<anonymous>)
+I20190108-19:11:03.021(-5)?     at Subscription.publish (packages/reywood:publish-composite/lib/publish_composite.js:15:25)
+I20190108-19:11:03.021(-5)?     at packages/matb33_collection-hooks.js:307:21
+I20190108-19:11:03.021(-5)?     at Meteor.EnvironmentVariable.EVp.withValue (packages/meteor.js:1304:12)
+I20190108-19:11:03.021(-5)?     at Subscription._handler (packages/matb33_collection-hooks.js:306:28)
+I20190108-19:11:03.022(-5)?     at maybeAuditArgumentChecks (packages/ddp-server/livedata_server.js:1767:12)
+I20190108-19:11:03.022(-5)?     at DDP._CurrentPublicationInvocation.withValue (packages/ddp-server/livedata_server.js:1043:15)
+I20190108-19:11:03.022(-5)?     at Meteor.EnvironmentVariable.EVp.withValue (packages/meteor.js:1304:12)
+I20190108-19:11:03.022(-5)?     at Subscription._runHandler (packages/ddp-server/livedata_server.js:1041:51)
+I20190108-19:11:03.022(-5)?     at Session._startSubscription (packages/ddp-server/livedata_server.js:859:9)
+I20190108-19:11:03.022(-5)?     at Session.sub (packages/ddp-server/livedata_server.js:625:12)
+I20190108-19:11:03.022(-5)?   isClientSafe: true,
+I20190108-19:11:03.023(-5)?   error: 400,
+I20190108-19:11:03.023(-5)?   reason: 'Match failed',
+I20190108-19:11:03.023(-5)?   details: undefined,
+I20190108-19:11:03.023(-5)?   message: 'Match failed [400]',
+I20190108-19:11:03.023(-5)?   errorType: 'Meteor.Error' }
+```
+
 
 ## 1-4
 ### 转发消息预览，不能查看邮件内容

@@ -5,7 +5,7 @@ import './methods';
 import './publications';
 
 Meteor.startup(function() {
-  Threads.upsert({category: 'Channel'}, {$set: {subject: 'Channels Management', scope: 'private'}});
+  Threads.findOne({category: 'Channel'}) || Threads.create(null, 'Channel', 'Channels Management', 'admin');
 });
 
 Accounts.onLogin(function(attempt) {
@@ -13,7 +13,7 @@ Accounts.onLogin(function(attempt) {
   let admin = Instance.admin();
   if (admin._id === attempt.user._id) {
     let thread = Threads.findOne({category: 'Channel'});
-    Threads.ensureMember(thread, admin, {admin: true});
+    Threads.ensureMember(thread, admin);
   }
 });
 
@@ -36,72 +36,3 @@ Accounts.onLogin(function(attempt) {
 //     }
 //   }
 // });
-
-const logChannelAdmin = (admin, content) => {
-  let thread = Threads.findOne({category: 'Channel'});
-  Threads.addMessage(thread, admin, {
-    contentType: 'log',
-    content
-  });
-};
-
-Channels.after.insert(function(userId, doc) {
-  if (doc.profile.type != 'Channels') return;
-
-  let admin = Meteor.user();
-  if (admin) {
-    let channel = this.transform();
-    logChannelAdmin(admin, {
-      action: 'channel.new',
-      params: {
-        channel: channel.address()
-      }
-    });
-  }
-});
-
-Channels.after.update(function(userId, doc, fieldNames, modifier, options) {
-  if (doc.profile.type != 'Channels') return;
-
-  let admin = Meteor.user();
-  if (admin) {
-    let channel = this.transform();
-    logChannelAdmin(admin, {
-      action: 'channel.edit',
-      params: {
-        prev: Channels._transform(this.previous).address(),
-        now: channel.address()
-      }
-    });
-  }
-});
-
-ChannelUsers.after.insert(function(userId, doc) {
-  let admin = Meteor.user();
-  if (admin) {
-    let channel = Channels.findOne(doc.channelId);
-    let member = this.transform();
-    logChannelAdmin(admin, {
-      action: 'channe.member.add',
-      params: {
-        channel: channel.address(),
-        member: member.user().address()
-      }
-    });
-  }
-});
-
-ChannelUsers.after.remove(function(userId, doc) {
-  let admin = Meteor.user();
-  if (admin) {
-    let channel = Channels.findOne(doc.channelId);
-    let member = this.transform();
-    logChannelAdmin(admin, {
-      action: 'channe.member.remove',
-      params: {
-        channel: channel.address(),
-        member: member.user().address()
-      }
-    });
-  }
-});

@@ -4,7 +4,7 @@ import './message-records';
 import moment from 'moment';
 
 Meteor.startup(function() {
-  Threads.upsert({category: 'Charts'}, {$set: {subject: 'System Reports', scope: 'private'}});
+  Threads.findOne({category: 'Charts'}) || Threads.create(null, 'Charts', 'System Reports', 'admin');
 });
 
 Accounts.onLogin(function(attempt) {
@@ -12,7 +12,7 @@ Accounts.onLogin(function(attempt) {
   let admin = Instance.admin();
   if (admin._id === attempt.user._id) {
     let thread = Threads.findOne({category: 'Charts'});
-    Threads.ensureMember(thread, admin, {admin: true});
+    Threads.ensureMember(thread, admin);
   }
 });
 

@@ -76,6 +76,9 @@ Template.ChannelMembersModal.onRendered(function() {
 });
 
 Template.ChannelMembersModal.helpers({
+  channel() {
+    return Channels.findOne(this._id);
+  },
   members() {
     return ChannelUsers.find({channelId: this._id});
   },

@@ -1,17 +1,16 @@
 <template name="ProfilePanel">
   <div class="user-panel">
-    <div class="pull-left image link-profile">
+    <div class="pull-left image">
       {{> avatar user=currentUser shape="circle" class="img-circle align-center" size="mlarge"}}
       {{> avatar user=currentUser shape="circle" class="img-circle align-center" size="tiny"}}
     </div>
     <div class="pull-left info">
       <p>
-        <span class="name link-profile">{{currentUser.name}}</span>
+        <span class="name">{{currentUser.name}}</span>
         <i class="fa fa-circle text-success pull-right"></i>
       </p>
       <div class="text-muted">
         {{currentUser.title}}
-        <a href="/admin" class="pull-right text-muted" id="btn-system-settings"><i class="fa fa-cog"></i></a>
       </div>
     </div>
   </div>
@@ -86,4 +85,14 @@
 
 <template name="AdminMenu">
   <p class="navbar-text pull-left menu-title">{{_ 'System Settings'}}</p>
+</template>
+
+<template name="AdminMenuItem">
+  {{#if currentUser.isAdmin}}
+  <li class="{{#if inRouter 'admin'}}active{{/if}}">
+    <a href="/admin">
+      <i class="fa fa-cog"></i> <span>{{_ 'System Settings'}}</span>
+    </a>
+  </li>
+  {{/if}}
 </template>

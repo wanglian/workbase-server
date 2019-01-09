@@ -1,7 +1,7 @@
 Threads.create = (user, category, subject, scope="private") => {
   return Threads.insert({
-    userType: user.className(),
-    userId: user._id,
+    userType: user && user.className(),
+    userId: user && user._id,
     category,
     subject,
     scope

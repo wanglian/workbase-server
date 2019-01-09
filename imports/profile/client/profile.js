@@ -46,14 +46,10 @@ const FORM_SCHEMA = new SimpleSchema({
 });
 
 Template.ProfilePanel.events({
-  "click .user-panel .link-profile"(e, t) {
+  "click .user-panel"(e, t) {
     e.preventDefault();
     let account = Threads.findOne({category: 'Account', userId: Meteor.userId()});
     Router.go('inbox', {_id: account._id});
-  },
-  "click #btn-system-settings"(e, t) {
-    e.preventDefault();
-    Router.go('admin');
   }
 });
 

@@ -1,6 +1,6 @@
 // - category: Email
 // - subject
-// - scope: private - only members can reply; protected - everyone can reply; public - everyone can search & view
+// - scope: private - only members can reply; protected - everyone can reply; public - everyone can search & view; admin - admin threads
 // - userType
 // - userId: created by
 // - lastMessageId
