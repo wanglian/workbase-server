@@ -109,3 +109,10 @@ Template.ThreadDetailFiles.helpers({
     return Files.find({"meta.relations": {$elemMatch: {threadId: this._id, messageId: {$exists: true}}}}, {sort: {createdAt: -1}}).cursor;
   }
 });
+
+Template.FileItem.helpers({
+  user() {
+    let meta = this.meta.relations[0];
+    return meta.userType && eval(meta.userType).findOne(meta.userId);
+  }
+});

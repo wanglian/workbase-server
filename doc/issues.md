@@ -1,5 +1,9 @@
 # Issues
 
+## 1-10
+
+### gmail收到的邮件，附件都在content-id-map
+
 ## 1-8
 
 ### 不明sub错误

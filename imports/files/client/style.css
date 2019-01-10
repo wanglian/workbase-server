@@ -1,3 +1,7 @@
+div.files {
+  border-top: solid 1px #f1f1f1;
+  padding: 8px 0;
+}
 ul.files li {
   padding: 0 5px;
 }

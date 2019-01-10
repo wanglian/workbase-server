@@ -131,7 +131,10 @@
 <template name="FileItem">
   {{{fileicon type}}} {{name}}
   <div class="small text-muted">
-    {{formatDayWithTime createdAt}} ({{filesize size}})
+    {{user.internalName}} ({{filesize size}})
+  </div>
+  <div class="small text-muted">
+    {{formatDayWithTime createdAt}}
   </div>
   <div class="actions pull-right">
     {{> FileViewLink}}

@@ -109,7 +109,14 @@ MailgunEmails.parseEmail = async (doc) => {
       // attachment: url,name,content-type,size
       try {
         // cid
-        let type = attachment.cid ? 'inline' : 'file';
+        let type = 'file';
+        if (attachment.cid) {
+          let regex = new RegExp("cid:" + attachment.cid, 'g');
+          if (regex.test(content)) {
+            type = 'inline';
+            content= content.replace(regex, url);
+          }
+        }
         let {fileId, url} = await uploadFile(authURL(attachment.url), attachment.name, {
           relations: [
             {
@@ -121,13 +128,9 @@ MailgunEmails.parseEmail = async (doc) => {
             }
           ]
         });
-        if (attachment.cid) {
-          let regex = new RegExp("cid:" + attachment.cid, 'g');
-          if (regex.test(content)) {
-            content= content.replace(regex, url);
-            delete attachments[index];
-            inlineFileIds.push(fileId);
-          }
+        if (type === 'inline') {
+          inlineFileIds.push(fileId);
+          // delete attachments[index];
         } else {
           fileIds.push(fileId);
         }
