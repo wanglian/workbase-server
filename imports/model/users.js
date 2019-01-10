@@ -3,7 +3,9 @@
 //  - livechat: Boolean // for Channels
 //  - name
 //  - title
+//  - language
 //  - skin: blue/blue-light/purple/purple-light/black/black-light/red/red-light/yellow/yellow-light
+//  - signature
 
 Users = Meteor.users;
 

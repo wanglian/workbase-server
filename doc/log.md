@@ -1,5 +1,12 @@
 # 开发日志
 
+## Meteor Email
+
+https://docs.meteor.com/api/email.html
+
+内置支持通过Mailgun发送，300/day限制（需要部署到meteor平台）
+https://www.mailgun.com/blog/native-mailgun-integration-lets-meteor-apps-send-email
+
 ## 1-3
 
 ### 考虑WEB界面元素的APP Native化

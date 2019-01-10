@@ -1,6 +1,11 @@
 # Channel
 
 频道的标识是Email，是一种特殊的用户。
+频道话题的特点
+- 没有成员概念（抽到频道层）
+- 没有个人状态（没有ThreadUser）
+- 消息以频道标识发出（带上个人姓名）
+
 ```
 Channel extends User {
   "profile.type": "Channels"

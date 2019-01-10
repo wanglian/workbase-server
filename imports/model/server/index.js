@@ -6,7 +6,12 @@ import './publications';
 
 Meteor.startup(function() {
   Users._ensureIndex({"profile.type": 1});
+  Users._ensureIndex({"profile.name": 1});
+  Contacts._ensureIndex({"email": 1});
+  Contacts._ensureIndex({"profile.name": 1});
+  Threads._ensureIndex({category: 1});
   ThreadUsers._ensureIndex({category: 1});
+  ThreadUsers._ensureIndex({scope: 1});
   ThreadUsers._ensureIndex({threadId: 1});
   ThreadUsers._ensureIndex({userType: 1});
   ThreadUsers._ensureIndex({userId: 1});

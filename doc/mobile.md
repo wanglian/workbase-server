@@ -88,6 +88,16 @@ https://stackoverflow.com/questions/53857422/hot-code-push-broken-in-meteor-1-8-
 ### APP Hot Code Push问题
 
 如果APP统一上架应用商店，但实际上需要连接各自的Server，并且从各自的Server上获取新代码。
+https://stackoverflow.com/questions/30680804/configure-meteor-mobile-app-to-connect-to-different-server-at-runtime
+
+https://geeklearning.io/how-to-add-specific-configuration-parameters-to-ios-p-list-and-android-manifest/
+
+iOS Settings Bundle
+https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/AccessingPreferenceValues/AccessingPreferenceValues.html#//apple_ref/doc/uid/10000059i-CH3-SW1
+https://github.com/apla/me.apla.cordova.app-preferences
+
+Cordova框架理解
+https://www.cnblogs.com/cr330326/p/7082821.html
 
 
 ### 打开本地相册，多了一层

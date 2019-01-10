@@ -1,5 +1,9 @@
 # Call Stack
 
+- Channel - ChannelUser
+- Thread  - ThreadUser
+- Message
+
 ## Models
 
 ### Messages
