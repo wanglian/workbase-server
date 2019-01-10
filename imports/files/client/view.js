@@ -2,6 +2,29 @@ import './view.html';
 
 import Swal from 'sweetalert2';
 
+Template.FileEditNameLink.events({
+  "click .btn-edit-file-name"(e, t) {
+    e.preventDefault();
+    Swal({
+      title: I18n.t('Edit file name'),
+      input: 'text',
+      inputValue: this.name,
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: I18n.t("Save"),
+      cancelButtonText: I18n.t("Discard"),
+      showLoaderOnConfirm: true,
+      allowOutsideClick: false
+    }).then((result) => {
+      if (result.value) {
+        Meteor.call("files.updateFilename", this._id, result.value);
+      }
+    })
+  }
+});
+
 Template.FileRemoveLink.events({
   "click .btn-remove-file"(e, t) {
     e.preventDefault();

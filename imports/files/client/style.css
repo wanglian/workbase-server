@@ -5,13 +5,13 @@ ul.files .actions {
   position: absolute;
   right: 0;
   bottom: 0;
-  background: rgba(249,249,249, 1);
+  background: white;
 }
 ul.files .action {
   display: none;
   border: none;
   font-size: 12px;
-  padding: 0 10px 0 0;
+  padding: 0 5px;
 }
 ul.files li:hover {
   background: rgba(249,249,249, 1);

@@ -70,6 +70,11 @@ Meteor.publish("files", function(options) {
 });
 
 Meteor.methods({
+  "files.updateFilename"(id, filename) {
+    check(id, String);
+    check(filename, String);
+    Files.collection.update(id, {$set: {name: filename}});
+  },
   "files.remove"(id) {
     check(id, String);
     Files.remove({_id: id, userId: this.userId}, function(err) {

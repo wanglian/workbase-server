@@ -72,14 +72,18 @@
   {{/if}}
 </template>
 
+<template name="FileEditNameLink">
+  <a href="#" class="btn-edit-file-name action text-muted"><i class="fa fa-pencil"></i> {{_ 'Edit file name'}}</a>
+</template>
+
 <template name="FileDownloadLink">
   <a href="{{fileURL this 'original'}}?download=true" download="{{name}}" target="_blank" class="action text-muted">
-    <i class="fa fa-download"></i>{{_ 'Download'}}
+    <i class="fa fa-download"></i> {{_ 'Download'}}
   </a>
 </template>
 
 <template name="FileRemoveLink">
-  <a href="#" class="btn-remove-file action text-muted"><i class="fa fa-times"></i>{{_ 'Remove'}}</a>
+  <a href="#" class="btn-remove-file action text-muted"><i class="fa fa-times"></i> {{_ 'Remove'}}</a>
 </template>
 
 <template name="FileUploadModal">

@@ -47,7 +47,7 @@ Template.SharedMessage.events({
       if (result.value) {
         Meteor.call("addComment", this._id, result.value);
       }
-    })
+    });
   }
 });
 

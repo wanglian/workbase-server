@@ -60,6 +60,7 @@ export const locale_zh_cn = {
   "Send Image Message": "发送图片",
   "Add File": "添加文件",
   "Uploading": "上传",
+  "Edit file name": "修改文件名",
   "Confirm remove file": "确认删除文件?",
   "Write something": "这一刻的想法",
   "Image Message": "[图片]",
