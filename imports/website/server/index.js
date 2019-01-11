@@ -3,7 +3,12 @@ Meteor.methods({
     check(company, String);
     check(domain, String);
 
-    Instance.update({}, {$set: {company, domain}});
+    let instance = Instance.findOne();
+    if (instance) {
+      Instance.update({}, {$set: {company, domain}});
+    } else {
+      Instance.insert({company, domain});
+    }
   },
   setupEmail(type, params) {
     check(type, String);
@@ -33,7 +38,7 @@ Meteor.methods({
     }));
 
     switch(type) {
-    case 's3':
+    case 'S3':
       Instance.update({}, {$set: {"modules.storage": {
         type: 'S3',
         s3: params
@@ -67,4 +72,9 @@ Meteor.methods({
 
     return adminId;
   }
+});
+
+Meteor.publish("setup", function() {
+  if (Users.find().count() > 0) return this.ready();
+  return Instance.find();
 });

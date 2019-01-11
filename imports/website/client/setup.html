@@ -26,34 +26,38 @@
               <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
               <p>{{_ 'Admin Account'}}</p>
             </div>
+            <div class="stepwizard-step hide">
+              <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a>
+              <p>{{_ 'Done'}}</p>
+            </div>
           </div>
         </div>
 
         {{#autoForm collection=formCollection schema=formSchema id="setup-form" type="normal"}}
           <div class="setup-content clearfix" id="step-1">
             <h3>{{_ 'Set Company Info'}}</h3>
-            {{> afQuickField name="company"}}
-            {{> afQuickField name="domain"}}
+            {{> afQuickField name="company" value=instance.company}}
+            {{> afQuickField name="domain"  value=instance.domain}}
             <button class="btn btn-primary btn-next pull-right" type="button" data-panel="company">{{_ 'Next Step'}}</button>
           </div>
           <div class="setup-content clearfix hide" id="step-2">
             <h3>{{_ 'Set Email Config'}}</h3>
-            {{> afQuickField name="emailType"}}
-            <div id="mailgun-key">{{> afQuickField name="mailgun"}}</div>
+            {{> afQuickField name="emailType" value=instance.modules.email.type}}
+            <div id="mailgun-key">{{> afQuickField name="mailgun" value=instance.modules.email.mailgun.key}}</div>
             <button class="btn btn-default btn-prev pull-left" type="button">{{_ 'Previous Step'}}</button>
             <button class="btn btn-primary btn-next pull-right" type="button" data-panel="email">{{_ 'Next Step'}}</button>
           </div>
           <div class="setup-content clearfix hide" id="step-3">
             <h3>{{_ 'Set File Storage'}}</h3>
-            {{> afQuickField name="storageType"}}
-            <div id="s3-config" class="hide">
-              {{> afQuickField name="s3Key"}}
-              {{> afQuickField name="s3Secret"}}
-              {{> afQuickField name="s3Bucket"}}
-              {{> afQuickField name="s3Region"}}
+            {{> afQuickField name="storageType" value=instance.modules.storage.type}}
+            <div id="s3-config" class="{{#unless s3Selected}}hide{{/unless}}">
+              {{> afQuickField name="s3Key"    value=instance.modules.storage.s3.key}}
+              {{> afQuickField name="s3Secret" value=instance.modules.storage.s3.secret}}
+              {{> afQuickField name="s3Bucket" value=instance.modules.storage.s3.bucket}}
+              {{> afQuickField name="s3Region" value=instance.modules.storage.s3.region}}
             </div>
             <button class="btn btn-default btn-prev pull-left" type="button">{{_ 'Previous Step'}}</button>
-            <button class="btn btn-primary btn-next pull-right" type="button" data-panel="s3">{{_ 'Next Step'}}</button>
+            <button class="btn btn-primary btn-next pull-right" type="button" data-panel="S3">{{_ 'Next Step'}}</button>
           </div>
           <div class="setup-content clearfix hide" id="step-4">
             <h3>{{_ 'Set Admin Account'}}</h3>
@@ -61,7 +65,17 @@
             {{> afQuickField name="email" domain=domain}}
             {{> afQuickField name="password"}}
             <button class="btn btn-default btn-prev pull-left" type="button">{{_ 'Previous Step'}}</button>
-            <button class="btn btn-primary pull-right" type="submit">{{_ "Save"}}</button>
+            <button class="btn btn-primary btn-next pull-right" type="button">{{_ "Done"}}</button>
+          </div>
+          <div class="setup-content clearfix text-center hide" id="step-5">
+            <div class="form-group" style="margin: 30px 0;">
+              <span class="doing">
+                <i class="fa fa-spin fa-cog fa-2x"></i><br/>
+                {{_ 'You are almost there'}}
+              </span>
+              <span class="done hide text-success">{{_ 'You are all set'}}</span>
+            </div>
+            <button class="btn btn-primary hide" type="submit">{{_ "Sign In"}}</button>
           </div>
         {{/autoForm}}
 

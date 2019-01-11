@@ -11,7 +11,8 @@ const signature = (user, content, contentType) => {
 
 Mailgun = {
   setup() {
-    let modules = Instance.get().modules;
+    let instance = Instance.get();
+    let modules = instance && instance.modules;
     let email = modules && modules.email;
     if (email && email.type === 'mailgun') {
       Mailgun.api_key = email.mailgun.key;

@@ -2,9 +2,10 @@ import './setup.html';
 import './setup.css';
 
 import SimpleSchema from 'simpl-schema';
+import Swal from 'sweetalert2';
 
 Template.Setup.onRendered(function() {
-
+  this.subscribe("setup");
 });
 
 Template.Setup.events({
@@ -60,7 +61,7 @@ Template.Setup.events({
           nextStepWizard.removeAttr('disabled').trigger('click');
         });
         break;
-      case "s3":
+      case "S3":
         Meteor.call("setupS3", $('select[name=storageType]').val(), {
           key: $('input[name=s3Key]').val(),
           secret: $('input[name=s3Secret]').val(),
@@ -70,6 +71,13 @@ Template.Setup.events({
           nextStepWizard.removeAttr('disabled').trigger('click');
         });
         break;
+      default:
+        nextStepWizard.removeAttr('disabled').trigger('click');
+        Meteor.setTimeout(() => {
+          $('#step-5 span.doing').addClass('hide');
+          $('#step-5 span.done').removeClass('hide');
+          $('#step-5 button[type=submit]').removeClass('hide');
+        }, 2000);
       }
     }
   },
@@ -85,7 +93,7 @@ Template.Setup.events({
   "change select[name=storageType]"(e, t) {
     e.preventDefault();
 
-    if($(e.target).val() === 's3') {
+    if($(e.target).val() === 'S3') {
       $('#s3-config').removeClass('hide');
     } else {
       $('#s3-config').addClass('hide');
@@ -94,6 +102,13 @@ Template.Setup.events({
 });
 
 Template.Setup.helpers({
+  instance() {
+    return Instance.findOne();
+  },
+  s3Selected() {
+    let instance = Instance.findOne();
+    return instance && instance.modules && instance.modules.storage && instance.modules.storage.type === 'S3';
+  },
   formCollection() {
     return Instance;
   },
@@ -129,7 +144,7 @@ Template.Setup.helpers({
       },
       mailgun: {
         type: String,
-        max: 30,
+        max: 40,
         autoform: {
           type: 'text',
           label: 'Mailgun Key'
@@ -144,7 +159,7 @@ Template.Setup.helpers({
           firstOption: I18n.t("Local Storage"),
           options: [{
             label: "Amazon S3",
-            value: 's3'
+            value: 'S3'
           }]
         }
       },
@@ -223,7 +238,6 @@ AutoForm.hooks({
           console.log(err);
         } else {
           console.log(res);
-          Router.go('/login');
         }
         this.done();
       });

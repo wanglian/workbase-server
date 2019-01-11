@@ -38,6 +38,9 @@ export const locale_zh_cn = {
   "Local Storage": "本地存储",
   "Admin Account": "帐号",
   "Set Admin Account": "管理员帐号",
+  "Done": "完成",
+  "You are almost there": "正在设置 ...",
+  "You are all set": "系统设置完成！",
   // login
   "Sign in to start your session": "",
   "Sign In": "登录",

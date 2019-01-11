@@ -37,7 +37,8 @@ Storage.addOption('S3', S3);
 Storage.addOption('GridFS', GridFS);
 
 Storage.setup = () => {
-  let modules = Instance.get().modules;
+  let instance = Instance.get();
+  let modules = instance && instance.modules;
   let storage = modules && modules.storage;
   if (!storage) return false;
 

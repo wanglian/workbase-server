@@ -15,14 +15,19 @@ export const locale_en_us = {
   "Local Storage": "Local",
   "Admin Account": "Account",
   "Set Admin Account": "Setup Admin Account",
+  "You are almost there": "In one second ...",
+  "You are all set": "You are all set!",
   // message
   "Send Image": "Image",
   "Send Images": "Images",
   "Image Message": "[Image]",
   "Files with count": "Files ({{count}})",
   // user
+  "Users Management": "Users",
   "Send Messages": "Messages",
   "Chat with": "Chat with {{name}}",
+  // channel
+  "Channels Management": "Channels",
   // thread
   "Created by and when": "Created by{{name}} at {{time}}",
   "mail to": "to",
@@ -42,6 +47,8 @@ export const locale_en_us = {
   "log_edit_channel": "Channel updated: {{prev}} => {{now}}",
   "log_add_channel_member": "Member added: {{channel}} - {{member}}",
   "log_remove_channel_member": "Member removed: {{channel}} - {{member}}",
+  // live chat
+  "Live Chat Management": "Live Chat",
   // reports
   "System Reports": "Reports",
   "Daily Messages Counts": "Daily",
