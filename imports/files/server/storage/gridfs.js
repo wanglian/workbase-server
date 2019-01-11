@@ -4,13 +4,10 @@ import Grid from 'gridfs-stream';
 import { MongoInternals } from 'meteor/mongo';
 import fs from 'fs';
 
-let gfs;
-if (Meteor.isServer) {
-  gfs = Grid(
-    MongoInternals.defaultRemoteCollectionDriver().mongo.db,
-    MongoInternals.NpmModule
-  );
-}
+let gfs = Grid(
+  MongoInternals.defaultRemoteCollectionDriver().mongo.db,
+  MongoInternals.NpmModule
+);
 
 const uploadToGridFS = (collection, fileRef) => {
   Object.keys(fileRef.versions).forEach(versionName => {

@@ -8,11 +8,61 @@
       <div class="login-box-body">
         <p class="login-box-msg">{{_ "Setup your system"}}</p>
 
+        <div class="stepwizard">
+          <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step">
+              <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+              <p>{{_ 'Company Info'}}</p>
+            </div>
+            <div class="stepwizard-step">
+              <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+              <p>{{_ 'Email Config'}}</p>
+            </div>
+            <div class="stepwizard-step">
+              <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+              <p>{{_ 'File Storage'}}</p>
+            </div>
+            <div class="stepwizard-step">
+              <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+              <p>{{_ 'Admin Account'}}</p>
+            </div>
+          </div>
+        </div>
+
         {{#autoForm collection=formCollection schema=formSchema id="setup-form" type="normal"}}
-          {{> afQuickField name="name"}}
-          {{> afQuickField name="email" domain=domain}}
-          {{> afQuickField name="password"}}
-          <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
+          <div class="setup-content clearfix" id="step-1">
+            <h3>{{_ 'Set Company Info'}}</h3>
+            {{> afQuickField name="company"}}
+            {{> afQuickField name="domain"}}
+            <button class="btn btn-primary btn-next pull-right" type="button" data-panel="company">{{_ 'Next Step'}}</button>
+          </div>
+          <div class="setup-content clearfix hide" id="step-2">
+            <h3>{{_ 'Set Email Config'}}</h3>
+            {{> afQuickField name="emailType"}}
+            <div id="mailgun-key">{{> afQuickField name="mailgun"}}</div>
+            <button class="btn btn-default btn-prev pull-left" type="button">{{_ 'Previous Step'}}</button>
+            <button class="btn btn-primary btn-next pull-right" type="button" data-panel="email">{{_ 'Next Step'}}</button>
+          </div>
+          <div class="setup-content clearfix hide" id="step-3">
+            <h3>{{_ 'Set File Storage'}}</h3>
+            {{> afQuickField name="storageType"}}
+            <div id="s3-config" class="hide">
+              {{> afQuickField name="s3Key"}}
+              {{> afQuickField name="s3Secret"}}
+              {{> afQuickField name="s3Bucket"}}
+              {{> afQuickField name="s3Region"}}
+            </div>
+            <button class="btn btn-default btn-prev pull-left" type="button">{{_ 'Previous Step'}}</button>
+            <button class="btn btn-primary btn-next pull-right" type="button" data-panel="s3">{{_ 'Next Step'}}</button>
+          </div>
+          <div class="setup-content clearfix hide" id="step-4">
+            <h3>{{_ 'Set Admin Account'}}</h3>
+            {{> afQuickField name="name"}}
+            {{> afQuickField name="email" domain=domain}}
+            {{> afQuickField name="password"}}
+            <button class="btn btn-default btn-prev pull-left" type="button">{{_ 'Previous Step'}}</button>
+            <button class="btn btn-primary pull-right" type="submit">{{_ "Save"}}</button>
+          </div>
         {{/autoForm}}
 
       </div>

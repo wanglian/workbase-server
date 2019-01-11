@@ -1,4 +1,5 @@
 const request = require('request');
+const MailgunClient = require('mailgun-js');
 
 const signature = (user, content, contentType) => {
   let signature = user.signature();
@@ -9,10 +10,27 @@ const signature = (user, content, contentType) => {
 };
 
 Mailgun = {
-  api_key: Meteor.settings.mailgun.key,
-  domain:  Meteor.settings.public.domain,
+  setup() {
+    let modules = Instance.get().modules;
+    let email = modules && modules.email;
+    if (email && email.type === 'mailgun') {
+      Mailgun.api_key = email.mailgun.key;
+      Mailgun.domain = Instance.domain();
+
+      /* Check settings existence */
+      /* This is the best practice for app security */
+      if (!Mailgun.api_key || !Mailgun.domain) {
+        throw new Meteor.Error(401, 'Missing Mailgun settings');
+      }
+
+      Mailgun.client = MailgunClient({apiKey: Mailgun.api_key, domain: Mailgun.domain});
+    }
+  }
 };
-Mailgun.client = require('mailgun-js')({apiKey: Mailgun.api_key, domain: Mailgun.domain});
+
+Meteor.startup(function() {
+  Mailgun.setup();
+});
 
 const buildMailgunAttachment = (file) => {
   return new Mailgun.client.Attachment({

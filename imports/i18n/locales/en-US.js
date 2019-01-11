@@ -1,5 +1,20 @@
 export const locale_en_us = {
   "System Settings": "Settings",
+  // setup
+  "Previous Step": "Previous",
+  "Next Step": "Next",
+  "Company Info": "Company",
+  "Set Company Info": "Company Info",
+  "Company": "Name",
+  "Domain": "Domain",
+  "Email Config": "Email",
+  "Set Email Config": "Setup Email",
+  "Email Disabled": "Disabled",
+  "File Storage": "Storage",
+  "Set File Storage": "Setup Files Storage",
+  "Local Storage": "Local",
+  "Admin Account": "Account",
+  "Set Admin Account": "Setup Admin Account",
   // message
   "Send Image": "Image",
   "Send Images": "Images",

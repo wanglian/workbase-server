@@ -176,7 +176,7 @@ MailgunEmails.parseEmail = async (doc) => {
 const URL = Npm.require('url');
 const authURL = (url) => {
   let re = URL.parse(url);
-  re.auth = "api:" + Meteor.settings.mailgun.key;
+  re.auth = "api:" + Instance.get().modules.email.mailgun.key;
   return re.format();
 };
 

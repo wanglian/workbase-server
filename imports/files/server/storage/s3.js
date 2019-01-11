@@ -6,32 +6,41 @@ import stream from 'stream';
 import moment from 'moment';
 
 /* Example: S3='{"s3":{"key": "xxx", "secret": "xxx", "bucket": "xxx", "region": "xxx""}}' meteor */
-if (process.env.S3) {
-  Meteor.settings.s3 = JSON.parse(process.env.S3).s3;
-}
+// if (process.env.S3) {
+//   Meteor.settings.s3 = JSON.parse(process.env.S3).s3;
+// }
 
-const s3Conf = Meteor.settings.s3 || {};
 const bound  = Meteor.bindEnvironment((callback) => {
   return callback();
 });
 
-/* Check settings existence in `Meteor.settings` */
-/* This is the best practice for app security */
-if (!s3Conf || !s3Conf.key || !s3Conf.secret || !s3Conf.bucket || !s3Conf.region) {
-  throw new Meteor.Error(401, 'Missing Meteor file settings');
-}
+let s3Conf, s3Client;
 
-// Create a new S3 object
-const s3Client = new S3Client({
-  secretAccessKey: s3Conf.secret,
-  accessKeyId: s3Conf.key,
-  region: s3Conf.region,
-  // sslEnabled: true, // optional
-  httpOptions: {
-    timeout: 6000,
-    agent: false
+const setupS3 = () => {
+  let modules = Instance.get().modules;
+  let storage = modules && modules.storage;
+  if (storage && storage.type === 'S3') {
+    s3Conf = storage.s3;
+
+    /* Check settings existence */
+    /* This is the best practice for app security */
+    if (!s3Conf || !s3Conf.key || !s3Conf.secret || !s3Conf.bucket || !s3Conf.region) {
+      throw new Meteor.Error(401, 'Missing Meteor file settings');
+    }
+
+    // Create a new S3 object
+    s3Client = new S3Client({
+      secretAccessKey: s3Conf.secret,
+      accessKeyId: s3Conf.key,
+      region: s3Conf.region,
+      // sslEnabled: true, // optional
+      httpOptions: {
+        timeout: 6000,
+        agent: false
+      }
+    });
   }
-});
+};
 
 const uploadToS3 = (collection, fileRef) => {
   let now = moment();
@@ -161,6 +170,7 @@ const removeFromS3 = (collection, search) => {
 };
 
 export default {
+  setup:  setupS3,
   upload: uploadToS3,
   stream: streamFromS3,
   remove: removeFromS3

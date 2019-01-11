@@ -36,11 +36,23 @@ Storage = {
 Storage.addOption('S3', S3);
 Storage.addOption('GridFS', GridFS);
 
-let modules = Meteor.settings.modules;
-if (modules && _.keys(Storage.options).includes(modules.storage)) {
-  Storage.load(modules.storage);
-} else {
-  Storage.load('GridFS');
-}
+Storage.setup = () => {
+  let modules = Instance.get().modules;
+  let storage = modules && modules.storage;
+  if (!storage) return false;
+
+  switch(storage.type) {
+  case 'S3':
+    Storage.load('S3');
+    S3.setup();
+    break;
+  default:
+    Storage.load('GridFS');
+  }
+};
+
+Meteor.startup(function() {
+  Storage.setup();
+});
 
 export default Storage;
