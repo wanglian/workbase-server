@@ -1,4 +1,15 @@
 export const locale_en_us = {
+  "website_product_slogan": "Better Communication <br/> Better Collaboration",
+  "website_product_desc": "A Secure and Simple Solution for Your Company",
+  "website_get_started": "Get Started",
+  "website_feature_secure": "Secure",
+  "website_desc_secure": "Own your data absolutely. Control your information safely.",
+  "website_feature_simple": "Simple",
+  "website_desc_simple": "One click to get started. Available wherever you are and whatever device you have handy, without any special training.",
+  "website_feature_solved": "Solved",
+  "website_desc_solved": "Full stack, a hight start point for your company. Solve your problems easily.",
+  "website_contact_us": "Contact Us",
+  "website_copyright": "2019 WorkBase, all rights reserved",
   "System Settings": "Settings",
   // setup
   "Previous Step": "Previous",
@@ -49,6 +60,7 @@ export const locale_en_us = {
   "log_remove_channel_member": "Member removed: {{channel}} - {{member}}",
   // live chat
   "Live Chat Management": "Live Chat",
+  "Thanks A Lot": "Thanks!",
   // reports
   "System Reports": "Reports",
   "Daily Messages Counts": "Daily",

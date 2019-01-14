@@ -15,7 +15,7 @@ Template.Contact.helpers({
         max: 50,
         autoform: {
           type: 'text',
-          label: I18n.t('Name'),
+          label: I18n.t('User Name'),
         }
       },
       email: {
@@ -52,8 +52,8 @@ AutoForm.hooks({
           console.log(res);
           Swal({
             type: 'success',
-            title: 'Thanks',
-            text: "We'll reach you soon"
+            title: I18n.t("Thanks A Lot"),
+            text: I18n.t("We will reach you soon")
             // footer: '<a href>Why do I have this issue?</a>'
           })
         }

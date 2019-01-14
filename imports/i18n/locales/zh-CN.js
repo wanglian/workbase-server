@@ -1,4 +1,15 @@
 export const locale_zh_cn = {
+  "website_product_slogan": "高效沟通, 高效协作",
+  "website_product_desc": "为您的企业构建安全简单、面向未来的工作方式",
+  "website_get_started": "立即开启",
+  "website_feature_secure": "安全",
+  "website_desc_secure": "Own your data absolutely. Control your information safely.",
+  "website_feature_simple": "简单",
+  "website_desc_simple": "One click to get started. Available wherever you are and whatever device you have handy, without any special training.",
+  "website_feature_solved": "全面",
+  "website_desc_solved": "Full stack, a hight start point for your company. Solve your problems easily.",
+  "website_contact_us": "联系我们",
+  "website_copyright": "2019 WorkBase, 版权所有",
   "Connecting": "连接中",
   "Disconnected": "未连接",
   "Click to Reconnect": "点按重连",
@@ -153,6 +164,9 @@ export const locale_zh_cn = {
   // live chat
   "Live Chat": "在线客服",
   "Live Chat Management": "在线客服",
+  "Chat with us": "与我们联系",
+  "Thanks A Lot": "非常感谢！",
+  "We will reach you soon": "我们会尽快回复",
   // reports
   "System Reports": "统计报表",
   "Reports": "报表",
