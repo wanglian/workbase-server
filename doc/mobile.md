@@ -14,6 +14,9 @@ meteor add cordova:cordova-plugin-statusbar@2.4.2
 meteor add cordova:cordova.plugins.diagnostic@4.0.10
 meteor add cordova:phonegap-plugin-push@2.2.3
 
+// 新的xcode环境需要初始化
+pod setup
+
 meteor run ios-device --settings settings.json --mobile-server=https://www.weaworking.com
 // 在XCode中配置
 // 1 签名
@@ -83,6 +86,7 @@ However, since the CSS isn't generated when you build the project, you won't hav
 2018-12-23 11:13:26.484305-0500 WorkBase[36883:7113175] ERROR: {"line":36,"column":30,"sourceURL":"http://localhost:12880/plugins/cordova-plugin-meteor-webapp/www/webapp_local_server.js"}
 ```
 https://github.com/meteor/cordova-plugin-meteor-webapp/pull/59#issuecomment-439452835
+更新：已合并，直接使用原插件
 https://stackoverflow.com/questions/53857422/hot-code-push-broken-in-meteor-1-8-cordova-apps-on-ios
 
 ### APP Hot Code Push问题
@@ -189,6 +193,11 @@ https://github.com/trendsales/cordova-iframe-navigation/tarball/4c276b668488f94a
 ```
 没有明白 a Git URL with a SHA reference 是什么意思。
 https://developer.github.com/v3/git/refs/
+
+更新：Installing a plugin from Git
+```
+meteor add cordova:cordova-iframe-navigation@https://github.com/trendsales/cordova-iframe-navigation.git#4c276b668488f94a52087e27dc84e49314ad28f9
+```
 
 同时要打开cordova设置
 ```
