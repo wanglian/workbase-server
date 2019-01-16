@@ -38,6 +38,7 @@ ecmascript-runtime-server@0.7.1
 ejson@1.1.0
 email@1.2.3
 es5-shim@4.8.0
+feit:server-picker@0.0.1
 fetch@0.1.0
 fileer:size@0.0.2
 fortawesome:fontawesome@4.7.0

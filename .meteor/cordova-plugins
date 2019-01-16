@@ -1,4 +1,5 @@
 cordova-iframe-navigation@https://github.com/trendsales/cordova-iframe-navigation.git#4c276b668488f94a52087e27dc84e49314ad28f9
+cordova-plugin-app-preferences@https://github.com/andipavllo/me.apla.cordova.app-preferences.git#59f4c3af540d0adb21366defe5c249437d77e8f4
 cordova-plugin-camera@4.0.2
 cordova-plugin-device@2.0.2
 cordova-plugin-inappbrowser@3.0.0

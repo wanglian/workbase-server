@@ -35,6 +35,17 @@ Meteor.startup(function() {
 
     document.addEventListener("deviceready", () => {
       window.open = cordova.InAppBrowser.open;
+
+      // server
+      let prefs = plugins.appPreferences;
+      prefs.fetch((value) => {
+        console.log("We got a setting: " + value);
+        if (value) {
+          window.localStorage.setItem("__root_url", value);
+        }
+      }, (error) => {
+        console.log("Failed to retrieve a setting: " + error);
+      }, 'server');
     }, false);
 
     window.addEventListener('statusTap', function() {
