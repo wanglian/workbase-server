@@ -8,7 +8,6 @@
     <div class="thread-subject text-ellipsis">{{chat.name}}</div>
     <div class="message-summary text-ellipsis text-muted">
       {{#if lastMessage}}
-        {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
         {{lastMessage.summaryLocalized}}
       {{/if}}
     </div>
