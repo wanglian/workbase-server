@@ -23,6 +23,19 @@ Meteor.methods({
       return Threads.addMessage(thread, user, params);
     }
   },
+  updateMessage(messageId, params) {
+    check(messageId, String);
+    check(params, {
+      content: String
+    });
+
+    let message = Messages.findOne(messageId);
+    // 限于本人修改，文本消息
+    if (message && this.userId === message.userId && message.contentType === 'text') {
+      return Messages.update(messageId, {$set: {content: params.content, updateUserId: this.userId}});
+    }
+    return false;
+  },
   queryContacts(keyword) {
     check(keyword, String);
 

@@ -1,0 +1,29 @@
+<template name="EditMessageButton">
+  {{#if canEdit}}
+    <button type="button" class="btn btn-sm btn-default btn-edit" data-toggle="tooltip" title="{{_ 'Edit'}}">
+      <i class="fa fa-edit"></i>
+    </button>
+  {{/if}}
+</template>
+
+<template name="EditMessageModal">
+  <div class="modal fade full-screen">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ "Edit Message"}}</h4>
+        </div>
+        {{#autoForm collection=formCollection schema=formSchema id="edit-message-form" doc=this}}
+          <div class="modal-body scroll-box">
+            {{> afQuickField name="content"}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
+            <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
+          </div>
+        {{/autoForm}}
+      </div>
+    </div>
+  </div>
+</template>

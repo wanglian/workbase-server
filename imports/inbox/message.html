@@ -16,6 +16,9 @@
         <div class="email text-muted small">
           {{#if email.to}}<div>{{_ 'mail to'}} {{email.to}}</div>{{/if}}
           {{#if email.cc}}<div>{{_ 'mail cc'}} {{email.cc}}</div>{{/if}}
+          {{#if updateUserId}}
+            {{_ "Message Edited By and When" user=updateUser.name time=(formatDayWithTime updatedAt)}}
+          {{/if}}
         </div>
         <div class="summary text-ellipsis text-muted">{{{summaryLocalized}}}</div>
       </div>
@@ -80,6 +83,7 @@
 
 <template name="MessageActions">
   <div class="btn-group message-actions pull-right">
+    {{> EditMessageButton}}
     {{#unless compare contentType '===' 'log'}}
       {{#if thread.isReplyable}}
         <button type="button" class="btn btn-sm btn-default btn-reply" data-toggle="tooltip" title="{{_ 'Reply'}}">

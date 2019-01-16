@@ -49,3 +49,8 @@ Messages.before.insert(function(userId, doc) {
     }
   }
 });
+
+Messages.before.update(function(userId, doc, fieldNames, modifier, options) {
+  modifier.$set = modifier.$set || {};
+  modifier.$set.updatedAt = new Date();
+});

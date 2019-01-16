@@ -11,11 +11,15 @@
 // - emailId
 // - email: from, to, cc, time
 // - reacts: like [userId]
+// - updateUserId
 Messages = new Mongo.Collection('messages');
 
 Messages.helpers({
   user() {
     return eval(this.userType).findOne(this.userId);
+  },
+  updateUser() {
+    return Users.findOne(this.updateUserId);
   },
   thread() {
     return Threads.findOne(this.threadId);

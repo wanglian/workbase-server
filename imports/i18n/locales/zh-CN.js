@@ -94,6 +94,8 @@ export const locale_zh_cn = {
   "Files": "文件",
   "Files with count": "文件 ({{count}})",
   "Sent you an image": "发来一张图片",
+  "Edit Message": "修改消息",
+  "Message Edited By and When": "{{user}} 修改于 {{time}}",
   // user
   "Users Management": "用户管理",
   "User List": "用户列表",

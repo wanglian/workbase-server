@@ -1,0 +1,9 @@
+#edit-message-form .form-group {
+  height: 100%;
+  margin: 0;
+}
+
+#edit-message-form textarea {
+  height: 100%;
+  max-height: 100%;
+}
