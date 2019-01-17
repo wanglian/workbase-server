@@ -16,8 +16,9 @@ App.setPreference('KeyboardDisplayRequiresUserAction', false);
 App.setPreference('DisallowOverscroll', true); // don't want the WebView to rubber-band
 App.setPreference('BackupWebStorage', 'none');
 App.setPreference('KeyboardShrinksView', true); // shrink the WebView when the keyboard comes up
-App.setPreference('CordovaWebViewEngine', 'CDVWKWebViewEngine'); // ios
-App.setPreference('AllowBackForwardNavigationGestures', true); // ios
+App.setPreference('CordovaWebViewEngine', 'CDVWKWebViewEngine', 'ios');
+App.setPreference('AllowBackForwardNavigationGestures', true, 'ios');
+App.setPreference('Allow3DTouchLinkPreview', false, 'ios');
 
 App.icons({
   "app_store": "private/ios/icon-app_store.png",
