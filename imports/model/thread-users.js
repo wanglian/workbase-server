@@ -15,7 +15,7 @@ ThreadUsers.helpers({
     return Threads.findOne(this.threadId);
   },
   user() {
-    return eval(this.userType).findOne(this.userId);
+    return Users.findOne(this.userId);
   },
   isOwner() {
     return this.role === 'owner';

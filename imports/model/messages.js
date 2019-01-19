@@ -16,7 +16,7 @@ Messages = new Mongo.Collection('messages');
 
 Messages.helpers({
   user() {
-    return eval(this.userType).findOne(this.userId);
+    return Users.findOne(this.userId);
   },
   updateUser() {
     return Users.findOne(this.updateUserId);

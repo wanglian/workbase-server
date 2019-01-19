@@ -14,7 +14,7 @@ Threads = new Mongo.Collection('threads');
 
 Threads.helpers({
   user() {
-    return eval(this.userType).findOne(this.userId);
+    return Users.findOne(this.userId);
   },
   threadUsers() {
     return ThreadUsers.find({threadId: this._id}, {fields: {read: 0}});

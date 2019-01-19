@@ -11,8 +11,7 @@ Users = Meteor.users;
 
 Users.helpers({
   className() {
-    if (this.profile && this.profile.type) return this.profile.type;
-    return 'Users';
+    return this.profile && this.profile.type || 'Users';
   },
   isAdmin() {
     return this.profile && this.profile.role === 'admin';
@@ -24,6 +23,9 @@ Users.helpers({
     return this.profile.name;
   },
   internalName() {
+    if (this.className() === 'Contacts') {
+      return this.address();
+    }
     return this.name();
   },
   email() {

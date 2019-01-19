@@ -55,7 +55,7 @@ Meteor.publishComposite("admin.threads", function() {
             children: [
               {
                 find(message) {
-                  return eval(message.userType).find({_id: message.userId});
+                  return Users.find({_id: message.userId});
                 }
               }
             ]

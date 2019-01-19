@@ -67,7 +67,7 @@ Meteor.publishComposite("threads", function(options) {
             children: [
               {
                 find(message) {
-                  return eval(message.userType).find({_id: message.userId});
+                  return Users.find({_id: message.userId});
                 }
               }
             ]
@@ -78,18 +78,28 @@ Meteor.publishComposite("threads", function(options) {
   };
 });
 
-Meteor.publish("thread", function(threadId) {
+Meteor.publishComposite("thread", function(threadId) {
   check(threadId, String);
 
-  let userIds = ThreadUsers.find({threadId, userType: {$in: ['Users', 'Channels']}}).map(tu => tu.userId);
-  let contactIds = ThreadUsers.find({threadId, userType: 'Contacts'}).map(tu => tu.userId);
-
-  return [
-    Threads.find({_id: threadId}),
-    ThreadUsers.find({threadId}, {fields: {read: 0}}),
-    Users.find({_id: {$in: userIds}}, {fields: {emails: 1, profile: 1}}),
-    Contacts.find({_id: {$in: contactIds}})
-  ]
+  return {
+    find() {
+      return Threads.find({_id: threadId});
+    },
+    children: [
+      {
+        find(thread) {
+          return ThreadUsers.find({threadId}, {fields: {read: 0}});
+        },
+        children: [
+          {
+            find(threadUser) {
+              return Users.find({_id: threadUser.userId}, {fields: {emails: 1, profile: 1}});
+            }
+          }
+        ]
+      }
+    ]
+  };
 });
 
 const MIN_MESSAGES = 20;
@@ -132,5 +142,5 @@ Meteor.publish("roster", function() {
 });
 
 Meteor.publish("contacts", function() {
-  return Contacts.find({}, {fields: {email: 1, profile: 1}});
+  return Users.find({"profile.type": 'Contacts'}, {fields: {emails: 1, profile: 1}});
 });

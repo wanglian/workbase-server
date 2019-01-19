@@ -113,6 +113,6 @@ Template.ThreadDetailFiles.helpers({
 Template.FileItem.helpers({
   user() {
     let meta = this.meta.relations[0];
-    return meta.userType && eval(meta.userType).findOne(meta.userId);
+    return meta.userType && Users.findOne(meta.userId);
   }
 });

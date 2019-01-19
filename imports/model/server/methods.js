@@ -41,11 +41,9 @@ Meteor.methods({
 
     let search = {$or: [
       {"profile.name": {$regex: keyword, $options: 'i'}},
-      {email: {$regex: keyword, $options: 'i'}}
+      {"emails.address": {$regex: keyword, $options: 'i'}}
     ]};
-    let contacts = Contacts.find(_.extend(search, {noreply: {$ne: true}}), {limit: 5}).map(c => [{name: c.name(), email: c.email}]);
-    let users = Users.find(search, {limit: 5}).map(c => [{name: c.name(), email: c.email()}]);
-    return _.union(users, contacts);
+    return Users.find(search, {limit: 12}).map(c => [{name: c.name(), email: c.email()}]);
   },
   queryContactsForThread(keyword, params) {
     check(keyword, String);
@@ -57,11 +55,9 @@ Meteor.methods({
 
     let search = {$or: [
       {"profile.name": {$regex: keyword, $options: 'i'}},
-      {email: {$regex: keyword, $options: 'i'}}
+      {"emails.address": {$regex: keyword, $options: 'i'}}
     ]};
-    let contacts = Contacts.find(_.extend(search, {_id: {$nin: contactIds}, noreply: {$ne: true}}), {limit: 5}).map(c => [{name: c.name(), email: c.email}]);
-    let users = Users.find(_.extend(search, {_id: {$nin: userIds}}), {limit: 5}).map(c => [{name: c.name(), email: c.email()}]);
-    return _.union(users, contacts);
+    return Users.find(_.extend(search, {_id: {$nin: userIds}}), {limit: 5}).map(c => [{name: c.name(), email: c.email()}]);
   },
   addThreadMembers(threadId, emails) {
     check(threadId, String);
@@ -84,7 +80,7 @@ Meteor.methods({
 
     let user = Users.findOne(this.userId);
     let thread = Threads.findOne(threadId);
-    let member = eval(userType).findOne(userId);
+    let member = Users.findOne(userId);
     ThreadUsers.remove({threadId, userType, userId});
     logThreadMemberAdmin(thread, user, {action: "thread.remove_member", params: {email: member.address()}});
   }

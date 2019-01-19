@@ -94,7 +94,7 @@ Meteor.publishComposite("channel.threads", function(channel, options) {
             children: [
               {
                 find(message) {
-                  return eval(message.userType).find({_id: message.userId});
+                  return Users.find({_id: message.userId});
                 }
               }
             ]

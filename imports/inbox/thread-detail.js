@@ -44,7 +44,7 @@ Template.ThreadMembers.events({
 
     let userType = $(e.target).data("type");
     let userId = $(e.target).data("id");
-    let user = eval(userType).findOne(userId);
+    let user = Users.findOne(userId);
 
     Swal({
       title: I18n.t("confirm remove member", {name: user.name()}),

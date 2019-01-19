@@ -57,19 +57,21 @@ const parseEmailAddress = (emails) => {
 };
 Contacts.findOrCreateByAddress = (attrs) => {
   let email = attrs.address;
+  let contact = Accounts.findUserByEmail(email);
+
   if (attrs.host() === Instance.domain()) {
-    return Accounts.findUserByEmail(email);
+    return contact;
   } else {
-    let contact = Contacts.findOne({email});
     if (!contact) {
       let noreply = !!email.match(/noreply|no_reply|no-reply|do-not-reply|do_not_reply/i);
-      contactId = Contacts.insert({
+      let contactId = Accounts.createUser({
         email,
-        noreply,
         profile: {
-          name: attrs.name() || attrs.user()
+          type: 'Contacts',
+          name: attrs.name() || attrs.user(),
+          noreply
         }
-      });
+      })
       contact = Contacts.findOne(contactId);
     }
     return contact;
