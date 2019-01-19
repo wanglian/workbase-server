@@ -61,6 +61,8 @@ export const locale_en_us = {
   "log_edit_channel": "Channel updated: {{prev}} => {{now}}",
   "log_add_channel_member": "Member added: {{channel}} - {{member}}",
   "log_remove_channel_member": "Member removed: {{channel}} - {{member}}",
+  "log_add_thread_members": "Added {{count}} members: {{emails}}",
+  "log_remove_thread_member": "Removed member: {{email}}",
   // live chat
   "Live Chat Management": "Live Chat",
   "Thanks A Lot": "Thanks!",

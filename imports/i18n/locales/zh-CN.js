@@ -152,6 +152,8 @@ export const locale_zh_cn = {
   "log_edit_channel": "修改频道: {{prev}} => {{now}}",
   "log_add_channel_member": "添加频道成员: {{channel}} - {{member}}",
   "log_remove_channel_member": "删除频道成员: {{channel}} - {{member}}",
+  "log_add_thread_members": "添加{{count}}个成员: {{emails}}",
+  "log_remove_thread_member": "删除成员: {{email}}",
   // search
   "Search": "搜索",
   "Search Subjects": "搜索主题",

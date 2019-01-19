@@ -70,7 +70,7 @@ Meteor.methods({
     let members = userIds.map(userId => Users.findOne(userId));
     members.forEach(c => Threads.ensureMember(thread, c));
 
-    logThreadMemberAdmin(thread, user, {action: "thread.add_members", params: {count: members.length, emails: members.map(m => m.address()).join(", ")}});
+    logThreadMemberAdmin(thread, user, {action: "thread.members.add", params: {count: members.length, emails: members.map(m => m.address()).join(", ")}});
     return members.length;
   },
   removeThreadMember(threadId, userType, userId) {
@@ -82,7 +82,7 @@ Meteor.methods({
     let thread = Threads.findOne(threadId);
     let member = Users.findOne(userId);
     ThreadUsers.remove({threadId, userType, userId});
-    logThreadMemberAdmin(thread, user, {action: "thread.remove_member", params: {email: member.address()}});
+    logThreadMemberAdmin(thread, user, {action: "thread.members.remove", params: {email: member.address()}});
   }
 });
 

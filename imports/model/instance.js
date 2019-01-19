@@ -29,3 +29,15 @@ Instance.admin = () => {
   let instance = Instance.get();
   return instance && instance.adminId && Users.findOne(instance.adminId);
 };
+
+let _logTypes = {}; // i18nKey
+LogTypes = {
+  add(type, defs) {
+    let _obj = {};
+    _obj[type] = defs;
+    _.extend(_logTypes, _obj);
+  },
+  get(type) {
+    return _logTypes[type];
+  }
+};

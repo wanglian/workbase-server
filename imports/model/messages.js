@@ -106,15 +106,3 @@ MessageTypes.add('log', {
     }
   }
 });
-
-let _logTypes = {}; // i18nKey
-LogTypes = {
-  add(type, defs) {
-    let _obj = {};
-    _obj[type] = defs;
-    _.extend(_logTypes, _obj);
-  },
-  get(type) {
-    return _logTypes[type];
-  }
-};
