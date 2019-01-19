@@ -9,6 +9,7 @@ import '/imports/profile/client';
 import '/imports/inbox';
 import '/imports/email/client';
 import '/imports/chat/client';
+import '/imports/group/client';
 // modules
 import '/imports/channel/client';
 import '/imports/roster/client';

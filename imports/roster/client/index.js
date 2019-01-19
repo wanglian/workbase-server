@@ -6,7 +6,7 @@ import './style.css';
 RosterController = ApplicationController.extend({
   template: 'Roster',
   subscriptions() {
-    this.subscribe("roster");
+    // this.subscribe("roster");
     this.subscribe("threads", {category: "Chat"});
     let chat = this.chat();
     let threadId = chat && chat._id;

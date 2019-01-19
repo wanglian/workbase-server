@@ -41,7 +41,7 @@ const ROSTER_FORM_SCHEMA = new SimpleSchema({
 });
 
 Template.RosterListModal.onRendered(function() {
-  this.subscribe("roster");
+  // this.subscribe("roster");
 });
 
 Template.RosterListModal.helpers({

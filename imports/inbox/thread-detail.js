@@ -14,7 +14,7 @@ Template.ThreadDetailMembers.helpers({
     let thread = this;
     // let currentUser = Meteor.user();
     // return thread.category === 'Email' && thread.hasOwner(currentUser);
-    return thread.category === 'Email';
+    return _.includes(['Email', 'Group'], thread.category);
   }
 });
 

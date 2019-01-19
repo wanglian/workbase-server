@@ -41,34 +41,8 @@
             </div>
           {{/LinkToUser}}
         {{/with}}
-        <a href="#" class="list-group-item members-item clearfix hide" id="btn-create-group">
-          <span class="pull-left icon">
-            <i class="fa fa-plus"></i>
-          </span>
-          <div class="members-info" style="line-height: 35px;">
-            <span>{{_ "Create Group Chat"}}</span>
-          </div>
-        </a>
+        {{> LinkToCreateGroup}}
       </ul>
-    </div>
-  </div>
-</template>
-
-<template name="ChooseUsersModal">
-  <div class="modal fade full-screen">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ 'Select Users'}}</h4>
-        </div>
-        <div class="modal-body scroll-box no-padding">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
-          <a href="#" id="btn-add-channel" class="btn btn-primary">{{_ "New Channel"}}</a>
-        </div>
-      </div>
     </div>
   </div>
 </template>

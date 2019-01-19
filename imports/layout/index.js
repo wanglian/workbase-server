@@ -5,4 +5,5 @@ import './application-controller';
 Accounts.onLogin(function(attempt) {
   Meteor.subscribe("instance");
   Meteor.subscribe("roster");
+  Meteor.subscribe("contacts");
 });

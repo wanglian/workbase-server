@@ -1,0 +1,21 @@
+<template name="LinkToCreateGroup">
+  <a href="#" class="list-group-item members-item clearfix" id="btn-create-group">
+    <span class="pull-left icon">
+      <i class="fa fa-plus"></i>
+    </span>
+    <div class="members-info" style="line-height: 35px;">
+      <span>{{_ "Create Group Chat"}}</span>
+    </div>
+  </a>
+</template>
+
+<template name="ThreadDetailGroup">
+  <div class="panel flat-panel">
+    <div class="flat-panel-heading">
+      <div class="flat-panel-title"><i class="fa fa-comments-o text-success"></i> {{_ 'Group'}}</div>
+    </div>
+    <div class="flat-panel-body">
+      <div class="small text-muted">{{_ "Created by and when" name=user.name time=(formatDayWithTime createdAt)}}</div>
+    </div>
+  </div>
+</template>
