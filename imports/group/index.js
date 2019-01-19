@@ -3,3 +3,5 @@ ThreadCategories.add("Group", {
   iconUnread: "fa fa-comments",
   details: ['Group', 'Search', 'Members', 'Files']
 });
+
+LogTypes.add("group.create", { i18nKey: "log_create_group" });

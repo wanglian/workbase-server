@@ -154,6 +154,7 @@ export const locale_zh_cn = {
   "log_remove_channel_member": "删除频道成员: {{channel}} - {{member}}",
   "log_add_thread_members": "添加{{count}}个成员: {{emails}}",
   "log_remove_thread_member": "删除成员: {{email}}",
+  "log_create_group": "{{user}} 发起了群聊",
   // group
   "Group": "群聊",
   // search

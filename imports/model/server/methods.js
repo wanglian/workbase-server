@@ -91,4 +91,4 @@ const logThreadMemberAdmin = (thread, user, content) => {
     contentType: 'log',
     content
   });
-}
+};

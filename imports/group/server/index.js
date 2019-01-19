@@ -38,6 +38,18 @@ Meteor.methods({
     let user = Users.findOne(this.userId);
     let users = userIds.map(userId => Users.findOne(userId));
     let thread = Threads.startGroup(user, users);
+
+    logGroup(thread, user, {
+      action: "group.create",
+      params: {user: user.name()}
+    });
     return thread._id;
   }
 });
+
+const logGroup = (thread, user, content) => {
+  Threads.addMessage(thread, user, {
+    contentType: 'log',
+    content
+  });
+};

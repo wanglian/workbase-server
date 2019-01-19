@@ -17,6 +17,7 @@ Template.LinkToCreateGroup.events({
             console.log(err);
           } else {
             console.log(res);
+            Router.go('inbox', {_id: res});
           }
           $('#SelectUsersModal button[class=close]').click();
         })
