@@ -44,6 +44,8 @@ export const locale_en_us = {
   "Created by and when": "Created by{{name}} at {{time}}",
   "mail to": "to",
   "mail cc": "cc",
+  "Selected Users": "{{count}} selected",
+  "Enter to search": "Search ...",
   "confirm remove member": "Are you sure to remove {{name}}?",
   "add_thread_member": "Added {{count}} member: {{emails}}",
   "add_thread_member_plural": "Added {{count}} members: {{emails}}",

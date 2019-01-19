@@ -59,15 +59,15 @@ Meteor.methods({
     ]};
     return Users.find(_.extend(search, {_id: {$nin: userIds}}), {limit: 5}).map(c => [{name: c.name(), email: c.email()}]);
   },
-  addThreadMembers(threadId, emails) {
+  addThreadMembers(threadId, userIds) {
     check(threadId, String);
-    check(emails, String);
+    check(userIds, [String]);
 
     let user = Users.findOne(this.userId);
     // TODO: 权限
 
     let thread = Threads.findOne(threadId);
-    let members = Contacts.parse(emails);
+    let members = userIds.map(userId => Users.findOne(userId));
     members.forEach(c => Threads.ensureMember(thread, c));
 
     logThreadMemberAdmin(thread, user, {action: "thread.add_members", params: {count: members.length, emails: members.map(m => m.address()).join(", ")}});
