@@ -10,13 +10,13 @@
 </template>
 
 <template name="ThreadDetailGroup">
-  <div class="panel flat-panel">
+  <div class="panel flat-panel thread-detail">
     <div class="flat-panel-heading">
       <div class="flat-panel-title"><i class="fa fa-comments-o text-success"></i> {{_ 'Group'}}</div>
     </div>
     <div class="flat-panel-body">
       {{#if name}}
-        <h4>{{name}}</h4>
+        <div class="title">{{name}}</div>
       {{/if}}
       <div class="small text-muted">
         {{_ "Created by and when" name=user.name time=(formatDayWithTime createdAt)}}

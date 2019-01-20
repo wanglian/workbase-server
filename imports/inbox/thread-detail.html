@@ -1,6 +1,6 @@
 <template name="ThreadDetail">
-  <div class="thread-detail">
-    <div class="box box-widget" id="thread-detail-accordion">
+  <div class="thread-details">
+    <div class="box box-widget" id="thread-details-accordion">
       {{#let thread=this}}
         {{#each details}}
           {{> Template.dynamic template=threadDetailTemplate data=thread}}
@@ -11,9 +11,9 @@
 </template>
 
 <template name="ThreadDetailAbout">
-  <div class="panel flat-panel">
+  <div class="panel flat-panel thread-detail">
     <div class="flat-panel-body">
-      <h4>{{subject}}</h4>
+      <div class="title">{{subject}}</div>
       <div class="small text-muted">{{_ "Created by and when" name=user.name time=(formatDayWithTime createdAt)}}</div>
     </div>
   </div>
@@ -22,7 +22,7 @@
 <template name="ThreadDetailMembers">
   <div class="panel flat-panel">
     <div class="flat-panel-heading">
-      <a data-parent="#thread-detail-accordion" href="#members" data-toggle="collapse">
+      <a data-parent="#thread-details-accordion" href="#members" data-toggle="collapse">
         {{#if showAddMember}}
           <a href="#" id="btn-add-member" class="pull-right small text-muted"><i class="fa fa-plus-circle"></i> {{_ "Add"}}</a>
         {{/if}}

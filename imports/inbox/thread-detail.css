@@ -1,19 +1,19 @@
-.thread-detail {
+.thread-details {
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
   background-color: #fff;
   padding: 0px;
 }
-.thread-detail .box {
+.thread-details .box {
   margin-bottom: 0px;
   height: 100%;
 }
-.thread-detail .box-header.with-border {
+.thread-details .box-header.with-border {
   background: #F7F7F7;
-  padding: 15px 12px;
+  padding: 10px;
 }
-.thread-detail .box-header>.box-title {
+.thread-details .box-header>.box-title {
   font-size: 16px;
   font-weight: 500;
   color: #555;
@@ -31,7 +31,7 @@
 .flat-panel .flat-panel-heading {
   border-radius: 0px;
   font-weight: 500;
-  padding: 10px 12px;
+  padding: 10px;
   border: none;
   background: #F7F7F7;
 }
@@ -48,7 +48,11 @@
 }
 .flat-panel .flat-panel-body {
 /*  border-top: solid 1px #F1F1F1;*/
-  padding: 12px;
+  padding: 10px;
+}
+.flat-panel.thread-detail .flat-panel-body .title {
+  padding-bottom: 10px;
+  font-size: 16px;
 }
 
 .members-list {

@@ -155,7 +155,7 @@ export const locale_zh_cn = {
   "log_add_thread_members": "添加{{count}}个成员: {{emails}}",
   "log_remove_thread_member": "删除成员: {{email}}",
   "log_create_group": "{{user}} 发起了群聊",
-  "log_update_group_name": "修改群名称 {{name}}",
+  "log_update_group_name": "群名称改为 {{name}}",
   // group
   "Group": "群聊",
   "Modify Group Name": "修改群名称",

@@ -106,7 +106,7 @@ blockquote {
   }
   body .navbar-nav>.user-menu>.dropdown-menu>li.user-header>p,
   body #inbox-header .thread-subject,
-  body .thread-detail .box-header>.box-title {
+  body .thread-details .box-header>.box-title {
     font-size: 18px !important;
   }
   body ul.list-group.threads .list-group-item.thread {
