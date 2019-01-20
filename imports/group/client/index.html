@@ -15,7 +15,13 @@
       <div class="flat-panel-title"><i class="fa fa-comments-o text-success"></i> {{_ 'Group'}}</div>
     </div>
     <div class="flat-panel-body">
-      <div class="small text-muted">{{_ "Created by and when" name=user.name time=(formatDayWithTime createdAt)}}</div>
+      {{#if name}}
+        <h4>{{name}}</h4>
+      {{/if}}
+      <div class="small text-muted">
+        {{_ "Created by and when" name=user.name time=(formatDayWithTime createdAt)}}
+        <a href="#" id="btn-modify-group-name">{{_ "Modify Group Name"}}</a>
+      </div>
     </div>
   </div>
 </template>

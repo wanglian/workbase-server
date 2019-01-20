@@ -18,7 +18,7 @@ ThreadCategories.add("Roster", {
       },
       {
         title: I18n.t('New User'),
-        icon: "fa fa-plus",
+        icon: "fa fa-user-plus",
         action() {
           Modal.show('AddRosterModal', null, {
             backdrop: 'static'

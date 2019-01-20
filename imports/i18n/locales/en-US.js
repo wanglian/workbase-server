@@ -63,6 +63,7 @@ export const locale_en_us = {
   "log_remove_channel_member": "Member removed: {{channel}} - {{member}}",
   "log_add_thread_members": "Added {{count}} members: {{emails}}",
   "log_remove_thread_member": "Removed member: {{email}}",
+  "log_update_group_name": "Modified group name: {{name}}",
   // live chat
   "Live Chat Management": "Live Chat",
   "Thanks A Lot": "Thanks!",

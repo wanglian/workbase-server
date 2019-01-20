@@ -41,7 +41,6 @@ Template.SharedMessage.events({
       showCancelButton: true,
       confirmButtonText: I18n.t("Send"),
       cancelButtonText: I18n.t("Discard"),
-      showLoaderOnConfirm: true,
       allowOutsideClick: false
     }).then((result) => {
       if (result.value) {

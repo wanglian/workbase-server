@@ -4,7 +4,7 @@ const updateGroupSubject = (threadId) => {
   let thread = Threads.findOne(threadId);
   let members = thread.members();
   Threads.update(threadId, {$set: {
-    subject: members.map(m => m.name()).join(', ')
+    subject: members.map(m => m.name()) // array
   }});
 };
 
@@ -44,6 +44,20 @@ Meteor.methods({
       params: {user: user.name()}
     });
     return thread._id;
+  },
+  updateGroupName(threadId, name) {
+    check(threadId, String);
+    check(name, String);
+
+    let user = Users.findOne(this.userId);
+    let thread = Threads.findOne(threadId);
+    let re = Threads.update(threadId, {$set: {subject: name}});
+
+    logGroup(thread, user, {
+      action: "group.name.update",
+      params: {name}
+    });
+    return re;
   }
 });
 
