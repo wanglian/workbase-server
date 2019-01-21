@@ -95,6 +95,10 @@
 .messages .message-content h6 {
   font-size: 14px;
 }
+.messages .message-content ul,
+.messages .message-content ol {
+  padding-left: 15px;
+}
 
 .quoted-message .title a {
   color: #333;

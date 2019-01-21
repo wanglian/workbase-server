@@ -2,6 +2,8 @@ import '../';
 
 const updateGroupSubject = (threadId) => {
   let thread = Threads.findOne(threadId);
+  if (thread.name()) return;
+
   let members = thread.members();
   Threads.update(threadId, {$set: {
     subject: members.map(m => m.name()) // array
