@@ -12,7 +12,10 @@ Template.SelectUsersModal.helpers({
     if (tmpl.selectedList.get()) {
       return tmpl.selectedUsers.get();
     }
-    let conditions = {"profile.type": {$in: ['Users', 'Contacts']}};
+    let conditions = {
+      "profile.type": {$in: ['Users', 'Contacts']},
+      "profile.noreply": {$ne: true}
+    };
     if (!_.isEmpty(this.excludeIds)) {
       _.extend(conditions, {_id: {$nin: this.excludeIds}});
     }
