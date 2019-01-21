@@ -6,6 +6,7 @@
 //  - language
 //  - skin: blue/blue-light/purple/purple-light/black/black-light/red/red-light/yellow/yellow-light
 //  - signature
+//  - message: personal signature
 
 Users = Meteor.users;
 

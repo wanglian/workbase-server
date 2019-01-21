@@ -28,7 +28,12 @@
       {{> avatar user=user shape="circle" class="img-circle pull-left" size="small"}}
     {{/LinkToUser}}
     <div class="message-body">
-      <div class="name">{{user.name}}</div>
+      <div class="title">
+        <div class="name">{{user.name}}</div>
+        {{#with user.profile.message}}
+          <span class="text-muted personal-message">{{this}}</span>
+        {{/with}}
+      </div>
       {{> MessageContent}}
       <div class="text-muted small">
         <a href="#" class="pull-right btn-comment text-muted action"><i class="fa fa-comment-o"></i> {{_ 'Comment'}}</a>

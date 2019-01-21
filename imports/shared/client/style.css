@@ -6,10 +6,12 @@
 .shared-messages .message-body {
   padding-left: 42px;
 }
-.shared-messages .message-body .name {
+.shared-messages .message-body .title .name {
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 10px;
+}
+.shared-messages .message-body .title .personal-message {
+  font-size: 14px;
 }
 .shared-messages .message-body .action {
   margin-left: 10px;

@@ -59,14 +59,15 @@
         {{> avatar user=this shape="circle" class="img-circle pull-left" size="large"}}
           <!-- /.widget-user-image -->
         <h3 class="widget-user-username">{{name}}</h3>
-        <h5 class="widget-user-desc">{{title}}</h5>
+        <h5 class="widget-user-desc">{{profile.message}}</h5>
       </div>
       <div class="box-footer no-padding">
         <ul class="nav nav-stacked">
-          <li><a class="text-muted text-ellipsis">{{email}}</a></li>
+          {{#with title}}<li><a class="text-muted text-ellipsis">{{_ 'Work Title'}} <span class="pull-right">{{this}}</span></a></li>{{/with}}
+          <li><a class="text-muted text-ellipsis">{{_ 'Email'}} <span class="pull-right">{{email}}</span></a></li>
           <li>
             {{#LinkToUserShared user=this class="text-muted text-ellipsis"}}
-              <b>{{_ 'Shares'}}</b>
+              {{_ 'Shares'}}
               <span class="pull-right"><i class="fa fa-chevron-right"></i></span>
             {{/LinkToUserShared}}
           </li>

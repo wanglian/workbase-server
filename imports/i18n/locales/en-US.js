@@ -34,6 +34,8 @@ export const locale_en_us = {
   "Image Message": "[Image]",
   "Files with count": "Files ({{count}})",
   "Message Edited By and When": "Edited by {{user}} at {{time}}",
+  // profile
+  "Work Title'": "Role",
   // user
   "Users Management": "Users",
   "Send Messages": "Messages",

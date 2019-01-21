@@ -34,6 +34,15 @@ const FORM_SCHEMA = new SimpleSchema({
       ]
     }
   },
+  message: {
+    type: String,
+    max: 100,
+    optional: true,
+    autoform: {
+      type: 'text',
+      label: I18n.t("Personal Message")
+    }
+  },
   signature: {
     type: String,
     max: 200,

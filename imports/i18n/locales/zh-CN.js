@@ -71,6 +71,8 @@ export const locale_zh_cn = {
   "Profile Saved": "已保存",
   "Upload new picture": "上传新头像",
   "Upload": "上传",
+  "Personal Message": "个性签名",
+  "Work Title": "职位",
   // message
   "New Message": "发消息",
   "Send": "发送",
