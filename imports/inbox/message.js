@@ -83,8 +83,6 @@ Template.MessageContent.helpers({
       return 'EmailContent';
     case 'image':
       return 'ImageContent';
-    case 'log':
-      return 'LogContent';
     default:
       return 'TextContent';
     }

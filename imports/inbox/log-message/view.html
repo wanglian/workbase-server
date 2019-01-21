@@ -1,3 +1,11 @@
-<template name="LogContent">
-  {{{content}}}
+<template name="LogMessage">
+  <div class="message text-muted" style="background: #F8F8F8;">
+    <div>
+      <span class="message-header-name">{{user.name}}</span>
+      <small>{{formatDayWithTime createdAt}}</small>
+    </div>
+    <div>
+      {{{content}}}
+    </div>
+  </div>
 </template>

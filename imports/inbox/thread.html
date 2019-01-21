@@ -30,7 +30,7 @@
 
   <div class="messages">
     {{#each messages}}
-      {{> Message}}
+      {{> Template.dynamic template=messageTemplate}}
     {{/each}}
     {{#if ready}}
       {{#if hasMore}}

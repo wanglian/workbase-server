@@ -88,6 +88,14 @@ Template.Thread.helpers({
   },
   messages() {
     return Messages.find({threadId: this._id}, {sort: {createdAt: -1}});
+  },
+  messageTemplate() {
+    switch(this.contentType) {
+    case 'log':
+      return 'LogMessage';
+    default:
+      return 'Message';
+    }
   }
 });
 
