@@ -1,7 +1,7 @@
 <template name="FilesMenuItem">
   {{#if currentUser.isAdmin}}
     <li class="{{#if inRouter 'files'}}active{{/if}}">
-      <a href="/files"><i class="fa fa-paperclip"></i> <span>{{_ 'Files'}}</span></a>
+      <a href="/files"><i class="fa fa-files-o"></i> <span>{{_ 'Files'}}</span></a>
     </li>
   {{/if}}
 </template>
@@ -112,7 +112,7 @@
   <div class="panel flat-panel">
     <div class="flat-panel-heading">
       <a data-parent="#thread-details-accordion" href="#thread-files" data-toggle="collapse">
-        <div class="flat-panel-title"><i class="fa fa-paperclip text-primary"></i>{{_ 'Files with count' count=count}}</div>
+        <div class="flat-panel-title"><i class="fa fa-files-o text-red"></i>{{_ 'Files with count' count=count}}</div>
       </a>
     </div>
     <div id="thread-files" class="flat-panel-body panel-collapse collapse">
