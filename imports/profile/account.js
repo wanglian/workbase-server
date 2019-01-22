@@ -9,6 +9,7 @@ ThreadCategories.add("Account", {
     return [
       {
         title: I18n.t('Profile'),
+        icon: "fa fa-cog",
         action() {
           Modal.show('ProfileModal', null, {
             backdrop: 'static'
@@ -23,6 +24,7 @@ ThreadCategories.add("Account", {
       // },
       {
         title: I18n.t('Sign out'),
+        icon: "fa fa-sign-out",
         action(e) {
           e.preventDefault();
           Meteor.logout();

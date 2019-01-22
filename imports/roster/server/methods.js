@@ -1,6 +1,6 @@
 Meteor.methods({
   addMember(email, name, title) {
-    check(name, String);
+    check(name,  String);
     check(email, String);
     check(title, Match.Maybe(String));
 

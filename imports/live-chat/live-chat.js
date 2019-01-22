@@ -24,6 +24,7 @@ ThreadCategories.add("AdminLiveChat", {
     return [
       {
         title: I18n.t('Members'),
+        icon: "fa fa-list-ul",
         action() {
           let thread = Threads.findOne({category: 'AdminLiveChat'});
           Modal.show('ChannelMembersModal', {_id: thread.params.channelId}, {
@@ -33,6 +34,7 @@ ThreadCategories.add("AdminLiveChat", {
       },
       {
         title: I18n.t('Settings'),
+        icon: "fa fa-cog",
         action() {
 
         }

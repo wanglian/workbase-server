@@ -10,6 +10,8 @@
 
 Users = Meteor.users;
 
+const addrparser = require('address-rfc2822');
+
 Users.helpers({
   className() {
     return this.profile && this.profile.type || 'Users';
@@ -28,6 +30,10 @@ Users.helpers({
       return this.address();
     }
     return this.name();
+  },
+  username() {
+    let attrs = addrparser.parse(this.email());
+    return attrs.user();
   },
   email() {
     return this.emails[0].address;
