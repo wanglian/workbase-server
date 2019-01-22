@@ -20,6 +20,7 @@ Template.ThreadDetailMembers.helpers({
 
 Template.ThreadDetailMembers.events({
   "click #btn-add-member"(e, t) {
+    e.preventDefault();
     e.stopPropagation();
     let threadId = this._id;
     Modal.show('SelectUsersModal', {

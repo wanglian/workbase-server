@@ -1,6 +1,6 @@
 ThreadCategories.add("Roster", {
-  icon: "fa fa-cog fa-1-2x",
-  iconUnread: "fa fa-cog fa-1-2x",
+  icon: "fa fa-address-book",
+  iconUnread: "fa fa-address-book",
   details: ['Members'],
   title(thread, detail=false) { // client only
     return I18n.t(thread.subject);

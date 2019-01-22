@@ -14,8 +14,8 @@ ChannelUsers.helpers({
 });
 
 ThreadCategories.add("Channel", {
-  icon: "fa fa-cog fa-1-2x",
-  iconUnread: "fa fa-cog fa-1-2x",
+  icon: "fa fa-slack",
+  iconUnread: "fa fa-slack",
   title(thread, detail=false) { // client only
     return I18n.t(thread.subject);
   },

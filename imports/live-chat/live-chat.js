@@ -14,8 +14,8 @@ ThreadCategories.add("LiveChat", {
 });
 
 ThreadCategories.add("AdminLiveChat", {
-  icon: "fa fa-cog fa-1-2x",
-  iconUnread: "fa fa-cog fa-1-2x",
+  icon: "fa fa-commenting-o",
+  iconUnread: "fa fa-commenting",
   title(thread, detail=false) { // client only
     return I18n.t(thread.subject);
   },
