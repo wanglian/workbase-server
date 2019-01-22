@@ -1,5 +1,16 @@
 import './index.html';
 
+// 选择联系人
+// params
+// - excludeIds 排除在外的用户ID列表
+// - callback 业务处理回调
+// 说明
+// - 这里没有处理数据订阅
+// - 可搜索
+// - 可查看已选择列表
+// - 已选择的用户以背景色区分
+// - toggle方式选择与取消
+
 Template.SelectUsersModal.onCreated(function() {
   this.selectedUsers = new ReactiveVar([]);
   this.selectedList = new ReactiveVar(false);

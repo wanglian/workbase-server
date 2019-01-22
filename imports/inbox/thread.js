@@ -42,12 +42,12 @@ Template.Thread.onRendered(function() {
   // === 标记已读
   let threadId, data;
   // 进入话题，延时两秒触发
-  this.autorun(() => {
+  self.autorun(() => {
     data = Template.currentData();
     if (data && data._id != threadId) {
       threadId = data._id;
-      if (this.timeout) Meteor.clearTimeout(this.timeout);
-      this.timeout = Meteor.setTimeout(() => {
+      if (self.timeout) Meteor.clearTimeout(self.timeout);
+      self.timeout = Meteor.setTimeout(() => {
         if (!data.read) {
           Meteor.call("markRead", data._id, (err, res) => {
             if (err) {

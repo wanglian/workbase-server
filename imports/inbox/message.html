@@ -102,41 +102,12 @@
   </div>
 </template>
 
-<template name="MessageForwardModal">
-  <div class="modal fade full-screen no-footer">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-MessageForwardModal">&times;</button>
-          <h4 class="modal-title">{{_ "Forward message to"}}</h4>
-        </div>
-        <div class="modal-body no-padding scroll-box">
-          <ul class="list-group threads">
-            {{#each threads}}
-              <a href="#" class="list-group-item clearfix thread btn-select-thread" id="{{_id}}">
-                {{> Template.dynamic template=listTemplate}}
-              </a>
-            {{/each}}
-            {{#if ready}}
-              {{#unless threads.count}}
-                <li class="list-group-item thread text-muted">{{_ 'Empty'}}</li>
-              {{/unless}}
-            {{else}}
-              <span class="list-group-item text-center text-muted thread small"><i class="fa fa-spinner fa-spin"></i></span>
-            {{/if}}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <template name="MessageForwardPreviewModal">
-  <div class="modal fade modal-rounded">
+  <div class="modal fade modal-rounded" id="MessageForwardPreviewModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-MessageForwardPreviewModal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
           <h4 class="modal-title">{{_ "Send to"}}</h4>
         </div>
         <div class="modal-body" style="padding-top: 0; padding-bottom: 0;">
@@ -165,7 +136,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-MessageForwardModal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-SelectThreadModal">&times;</button>
           <h4 class="modal-title">{{_ "View message"}}</h4>
         </div>
         <div class="modal-body scroll-box">

@@ -112,7 +112,18 @@ Template.MessageActions.events({
   },
   "click .btn-forward"(e, t) {
     e.stopPropagation();
-    Modal.show('MessageForwardModal', this, {
+    let message = this;
+    Modal.show('SelectThreadModal', {
+      excludeIds: [message.threadId],
+      callback(thread) {
+        Modal.show('MessageForwardPreviewModal', {
+          thread,
+          message
+        }, {
+          backdrop: 'static'
+        });
+      }
+    }, {
       backdrop: 'static'
     });
   },
@@ -120,37 +131,6 @@ Template.MessageActions.events({
     e.stopPropagation();
     clipboard(t.data.content, e);
     $(e.target).closest('.btn-copy').attr('data-original-title', I18n.t('Copied')).tooltip('fixTitle').tooltip('show');
-  }
-});
-
-Template.MessageForwardModal.onCreated(function() {
-  this.sub = new ReactiveVar(false);
-});
-
-Template.MessageForwardModal.onRendered(function() {
-  const sub = this.subscribe("threads");
-  this.sub.set(sub);
-});
-
-Template.MessageForwardModal.helpers({
-  threads() {
-    return Threads.find({scope: 'private', _id: {$ne: this.threadId}}, {sort: {updatedAt: -1}});
-  },
-  ready() {
-    let sub = Template.instance().sub.get();
-    return sub && sub.ready();
-  }
-});
-
-Template.MessageForwardModal.events({
-  "click .btn-select-thread"(e, t) {
-    e.preventDefault();
-    Modal.show('MessageForwardPreviewModal', {
-      thread: this,
-      message: t.data
-    }, {
-      backdrop: 'static'
-    });
   }
 });
 
@@ -170,8 +150,8 @@ Template.MessageForwardPreviewModal.events({
       fileIds:       message.fileIds,
       inlineFileIds: message.inlineFileIds
     }, (err, res) => {
-      $('#btn-close-MessageForwardPreviewModal').click();
-      $('#btn-close-MessageForwardModal').click();
+      $('#MessageForwardPreviewModal button[class=close]').click();
+      $('#SelectThreadModal button[class=close]').click();
     });
   }
 });

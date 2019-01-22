@@ -130,7 +130,7 @@ export const locale_zh_cn = {
   "Copied": "已复制",
   "Reply": "回复",
   "Forward": "转发",
-  "Forward message to": "转发消息到",
+  "Select a session": "选择会话",
   "Send to": "发送给",
   "View message": "查看消息",
   "Select Users": "选择用户",
