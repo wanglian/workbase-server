@@ -77,27 +77,27 @@
 }
 
 /* markdown */
-.messages .message-content h1 {
+.message .message-content h1 {
   font-size: 28px;
 }
-.messages .message-content h2 {
+.message .message-content h2 {
   font-size: 24px;
 }
-.messages .message-content h3 {
+.message .message-content h3 {
   font-size: 20px;
 }
-.messages .message-content h4 {
+.message .message-content h4 {
   font-size: 18px;
 }
-.messages .message-content h5 {
+.message .message-content h5 {
   font-size: 16px;
 }
-.messages .message-content h6 {
+.message .message-content h6 {
   font-size: 14px;
 }
-.messages .message-content ul,
-.messages .message-content ol {
-  padding-left: 15px;
+.message .message-content ul,
+.message .message-content ol {
+  padding-left: 18px;
 }
 
 .quoted-message .title a {
