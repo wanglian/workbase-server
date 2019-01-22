@@ -20,6 +20,10 @@ App.setPreference('CordovaWebViewEngine', 'CDVWKWebViewEngine', 'ios');
 App.setPreference('AllowBackForwardNavigationGestures', true, 'ios');
 App.setPreference('Allow3DTouchLinkPreview', false, 'ios');
 
+App.configurePlugin('phonegap-plugin-push', {
+  SENDER_ID: 1076307378807 // android
+});
+
 App.icons({
   "app_store": "private/ios/icon-app_store.png",
   "iphone_2x": "private/ios/icon-iphone_2x.png",
@@ -42,11 +46,11 @@ App.icons({
   "ipad_spotlight_legacy_2x": "private/ios/icon-ipad_spotlight_legacy_2x.png",
   "ipad_app_legacy": "private/ios/icon-ipad_app_legacy.png",
   "ipad_app_legacy_2x": "private/ios/icon-ipad_app_legacy_2x.png",
-  "android_mdpi": "private/ios/icon-android_mdpi.png",
-  "android_hdpi": "private/ios/icon-android_hdpi.png",
-  "android_xhdpi": "private/ios/icon-android_xhdpi.png",
-  "android_xxhdpi": "private/ios/icon-android_xxhdpi.png",
-  "android_xxxhdpi": "private/ios/icon-android_xxxhdpi.png"
+  "android_mdpi": "private/android/icon-android_mdpi.png",
+  "android_hdpi": "private/android/icon-android_hdpi.png",
+  "android_xhdpi": "private/android/icon-android_xhdpi.png",
+  "android_xxhdpi": "private/android/icon-android_xxhdpi.png",
+  "android_xxxhdpi": "private/android/icon-android_xxxhdpi.png"
 });
 
 App.launchScreens({
@@ -62,4 +66,14 @@ App.launchScreens({
   "iphone_2x": "private/ios/launch-iphone_2x.png",
   "ipad_portrait": "private/ios/launch-ipad_portrait.png",
   "ipad_landscape": "private/ios/launch-ipad_landscape.png",
+  // "android_mdpi_portrait": "",
+  // "android_mdpi_landscape": "",
+  // "android_hdpi_portrait": "",
+  // "android_hdpi_landscape": "",
+  // "android_xhdpi_portrait": "",
+  // "android_xhdpi_landscape": "",
+  // "android_xxhdpi_portrait": "",
+  // "android_xxhdpi_landscape": "",
+  // "android_xxxhdpi_portrait": "",
+  // "android_xxxhdpi_landscape": ""
 });

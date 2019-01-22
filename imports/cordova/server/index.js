@@ -10,9 +10,10 @@ Meteor.startup(function() {
       //gateway: 'gateway.push.apple.com',
       // gateway: 'gateway.sandbox.push.apple.com'
     },
-    // gcm: {
-    //   apiKey: 'xxxxxxx',  // GCM/FCM server key
-    // }
+    gcm: {
+      apiKey: 'AAAA-pjrQnc:APA91bHSIL4scYbVgIEdcetalP6mK3DEsaJzGbk1P30OxVvXaZD5wCtq4eoyoGRP0LhPbRmBlfPzBpNUa1BxuRil11pXtRIN2LGSj4Tx_6_y5A_Pc9dBekK-nFJ0TdNdKzkh6Kl_TAt_',  // GCM/FCM server key
+      projectNumber: 1076307378807
+    },
     production: true,
     sound: true,
     badge: true,

@@ -1,23 +1,23 @@
 Meteor.startup(function() {
-  Push.Configure({
-    // android: {
-    //   senderID: 12341234,
-    //   alert: true,
-    //   badge: true,
-    //   sound: true,
-    //   vibrate: true,
-    //   clearNotifications: true
-    //   // icon: '',
-    //   // iconColor: ''
-    // },
-    ios: {
-      alert: true,
-      badge: true,
-      sound: true
-    }
-  });
-
   if (Meteor.isCordova) {
+    Push.Configure({
+      android: {
+        senderID: 1076307378807,
+        alert: true,
+        badge: true,
+        sound: true,
+        vibrate: true,
+        clearNotifications: true
+        // icon: '',
+        // iconColor: ''
+      },
+      ios: {
+        alert: true,
+        badge: true,
+        sound: true
+      }
+    });
+
     cordova.plugins.diagnostic.isCameraAuthorized(
       authorized => {
         if (!authorized) {
