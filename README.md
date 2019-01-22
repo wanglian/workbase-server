@@ -72,3 +72,4 @@ References
 - [gm](http://aheckmann.github.io/gm/docs.html)
 - [Meteor Easy Search](http://matteodem.github.io/meteor-easy-search/getting-started/)
 - [w3schools CSS](https://www.w3schools.com/css/default.asp)
+- [SubsManager](https://github.com/kadirahq/subs-manager)

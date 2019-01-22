@@ -2,11 +2,16 @@ import '../shared';
 import './shared';
 import './style.css';
 
+const ShareSubs = new SubsManager({
+  cacheLimit: 10,
+  expireIn: 60
+});
+
 SharedController = ApplicationController.extend({
   template: 'Shared',
   perPage: 25,
   subscriptions() {
-    this.threadsSub = this.subscribe("shared.messages", this.userId(), {limit: this.limit()});
+    this.threadsSub = ShareSubs.subscribe("shared.messages", this.userId(), {limit: this.limit()});
   },
   limit() {
     return parseInt(this.params.query.limit) || this.perPage;

@@ -2,15 +2,22 @@ import './thread.html';
 import './thread.css';
 
 const PER_PAGE = 20;
+
 Template.Thread.onCreated(function() {
   this.limit = new ReactiveVar(PER_PAGE);
   this.ready = new ReactiveVar(false);
 });
 
+const MessageSubs = new SubsManager({
+  cacheLimit: 20,
+  expireIn: 30
+});
+
 Template.Thread.onRendered(function() {
   // === 分页
   let subThreadId, limit;
-  this.autorun(() => {
+  let self = this;
+  self.autorun(() => {
     let data = Template.currentData();
 
     if (data._id) {
@@ -21,23 +28,14 @@ Template.Thread.onRendered(function() {
       // 重置消息分页数
       if (data._id != subThreadId) {
         console.log("reset limit");
-        this.limit.set(PER_PAGE);
+        self.limit.set(PER_PAGE);
         subThreadId = data._id;
       }
       // 更新订阅
       console.log("sub messages");
-      limit = this.limit.get();
-      this.ready.set(false);
-      let _this = this;
-      this.subscribe("thread.messages", data._id, {limit}, {
-        onReady() {
-          _this.ready.set(true);
-        },
-        onStop(e) {
-          if (e) console.log(e);
-          _this.ready.set(true);
-        }
-      });
+      limit = self.limit.get();
+      let handle = MessageSubs.subscribe("thread.messages", data._id, {limit});
+      self.ready.set(handle.ready());
     }
   });
 

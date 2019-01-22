@@ -32,10 +32,12 @@ matb33:collection-hooks
 dburles:collection-helpers
 reywood:publish-composite
 tmeasday:publish-counts
+meteorhacks:subs-manager
 easy:search
 percolate:migrations
 
 iron:router
+ostrio:templatehelpers
 
 twbs:bootstrap
 fortawesome:fontawesome
@@ -47,11 +49,10 @@ jamiecollinson:selectize-bootstrap
 perak:markdown
 utilities:avatar
 sacha:spin
+raix:push
+ostrio:files
+fileer:size
 
 meteortesting:mocha
 xolvio:cleaner
 msavin:mongol
-ostrio:files
-fileer:size
-ostrio:templatehelpers
-raix:push

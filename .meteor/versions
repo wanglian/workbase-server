@@ -74,6 +74,7 @@ meteor@1.9.2
 meteor-base@1.4.0
 meteorhacks:inject-initial@1.0.4
 meteorhacks:picker@1.0.3
+meteorhacks:subs-manager@1.6.4
 meteortesting:browser-tests@1.0.0
 meteortesting:mocha@1.1.0
 meteortesting:mocha-core@1.0.1

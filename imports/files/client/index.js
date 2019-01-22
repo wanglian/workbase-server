@@ -3,11 +3,16 @@ import './helper';
 import './view';
 import './style.css';
 
+const FileSubs = new SubsManager({
+  cacheLimit: 10,
+  expireIn: 5
+});
+
 FilesController = ApplicationController.extend({
   template: 'Files',
   perPage: 25,
   subscriptions() {
-    this.filesSub = this.subscribe("files", {limit: this.limit()});
+    this.filesSub = FileSubs.subscribe("files", {limit: this.limit()});
   },
   limit: function() {
     return parseInt(this.params.query.limit) || this.perPage;

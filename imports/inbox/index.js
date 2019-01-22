@@ -10,15 +10,20 @@ import './thread-list';
 import './message-form';
 import './style.css';
 
+const InboxSubs = new SubsManager({
+  cacheLimit: 10,
+  expireIn: 60
+});
+
 InboxController = ApplicationController.extend({
   template: 'Inbox',
   perPage: 25,
   subscriptions() {
-    this.threadsSub = this.subscribe("threads", {limit: this.limit()});
+    this.threadsSub = InboxSubs.subscribe("threads", {limit: this.limit()});
     let threadId = this.threadId();
     if (threadId) {
-      this.subscribe("thread", threadId);
-      this.subscribe("thread.files.pending", threadId);
+      InboxSubs.subscribe("thread", threadId);
+      InboxSubs.subscribe("thread.files.pending", threadId);
     }
   },
   limit() {
