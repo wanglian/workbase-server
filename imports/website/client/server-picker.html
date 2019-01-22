@@ -1,0 +1,11 @@
+<template name="ServerPicker">
+  {{#with servers}}
+    <select class="server-address form-control">
+    {{#each this}}
+      <option value="{{this}}" {{selected}}>{{this}}</option>
+    {{/each}}
+    </select>
+  {{else}}
+    <input class="server-address form-control" placeholder="Server address" value="{{currentServer}}"/> 
+  {{/with}}
+</template>
