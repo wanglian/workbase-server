@@ -17,9 +17,7 @@ Template.ThreadListItemTemplate.helpers({
     if (['inbox', 'channel', 'admin'].includes(currentRoute.route.getName())) {
       let params = _.defaults({_id: this._id}, currentRoute.params);
       let query = currentRoute.params.query;
-      if (!this.showDetails()) {
-        query = _.omit(query, 'detail');
-      }
+      query = _.omit(query, 'detail');
       return currentRoute.route.path(params, {query});
     } else {
       return Router.routes['inbox'].path({_id: this._id});

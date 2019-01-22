@@ -10,7 +10,7 @@
           <ul class="list-group threads">
             {{#each threads}}
               <a href="#" class="list-group-item clearfix thread btn-select-thread" id="{{_id}}">
-                {{> Template.dynamic template=listTemplate}}
+                {{> Template.dynamic template=(threadListTemplate this)}}
               </a>
             {{/each}}
             {{#if ready}}

@@ -110,9 +110,3 @@ Template.ThreadMenu.events({
     this.action.apply(this, [e]);
   }
 });
-
-Template.ThreadHeader.helpers({
-  detailTitle() {
-    return this._id && this.title('detail');
-  }
-});

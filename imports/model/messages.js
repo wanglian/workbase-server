@@ -27,28 +27,6 @@ Messages.helpers({
   parent() {
     return Messages.findOne(this.parentId);
   },
-  summaryLocalized(lang) {
-    try {
-      let t = MessageTypes.get(this.contentType);
-      if (t && t.summaryLocalized) {
-        return t.summaryLocalized(this, lang);
-      }
-    } catch (e) {
-      // console.log(e);
-    }
-
-    if (!_.isEmpty(this.summary)) {
-      return this.summary;
-    }
-
-    let key = "No content";
-
-    if (Meteor.isClient) {
-      return I18n.t(key);
-    } else {
-      return I18n.getFixedT(lang)(key);
-    }
-  },
   hasReact(userId, action) {
     return this.reacts && this.reacts[action] && this.reacts[action].includes(userId);
   },
@@ -62,6 +40,29 @@ Messages.helpers({
     return this.fileIds && Files.find({_id: {$in: this.fileIds}});
   }
 });
+
+Messages.localizedSummary = (message, lang) => {
+  try {
+    let t = MessageTypes.get(message.contentType);
+    if (t && t.summaryLocalized) {
+      return t.summaryLocalized(message, lang);
+    }
+  } catch (e) {
+    // console.log(e);
+  }
+
+  if (!_.isEmpty(message.summary)) {
+    return message.summary;
+  }
+
+  let key = "No content";
+
+  if (Meteor.isClient) {
+    return I18n.t(key);
+  } else {
+    return I18n.getFixedT(lang)(key);
+  }
+};
 
 let _messageTypes = {};
 MessageTypes = {

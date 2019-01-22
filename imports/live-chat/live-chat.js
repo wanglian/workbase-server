@@ -7,7 +7,7 @@
 ThreadCategories.add("LiveChat", {
   icon: "fa fa-commenting-o",
   iconUnread: "fa fa-commenting",
-  title(thread, detail=false) { // client only
+  title(thread) { // client only
     return thread.params && thread.params.email || I18n.t(thread.subject);
   },
   details: ['Members']
@@ -16,7 +16,7 @@ ThreadCategories.add("LiveChat", {
 ThreadCategories.add("AdminLiveChat", {
   icon: "fa fa-commenting-o",
   iconUnread: "fa fa-commenting",
-  title(thread, detail=false) { // client only
+  title(thread) { // client only
     return I18n.t(thread.subject);
   },
   details: ['Members'],

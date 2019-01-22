@@ -19,6 +19,8 @@ ThreadsIndex = new Index({
       // retrieve the default selector
       const selector = this.defaultConfiguration().selector(searchObject, options, aggregation);
 
+      selector.category = {$nin: ['Chat', 'Account', 'Shared']};
+      selector.scope = {$ne: 'admin'};
       // options.search.userId contains the userId of the logged in user
       let threadIds = ThreadUsers.find({userType: 'Users', userId: options.search.userId}).map(tu => tu.threadId);
       selector._id = {$in: threadIds};
@@ -35,7 +37,8 @@ ThreadsIndex = new Index({
     },
     transform(doc) {
       doc.read = true; // TEMP
-      return Threads._transform(doc);
+      // return Threads._transform(doc);
+      return doc;
     }
   })
 });

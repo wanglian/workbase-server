@@ -59,14 +59,22 @@ Router.route('/inbox/:_id?', {
   controller: 'InboxController'
 });
 
-Threads.helpers({
-  listTemplate(mode) {
-    if (mode === 'simple') {
-      let tmpl = `Simple${this.category}ListItem`;
-      return eval(`Template.${tmpl}`) ? tmpl : 'SimpleThreadListItem';
-    } else {
-      let tmpl = `${this.category}ListItem`;
-      return eval(`Template.${tmpl}`) ? tmpl : 'ThreadListItem';
-    }
+Template.registerHelper('threadTitle', (thread, detail) => {
+  let c = ThreadCategories.get(thread.category);
+  if (!c) {
+    return false; // happens when data not ready
+  }
+  return typeof(c.title) == "function" ? c.title(thread, detail) : thread.subject;
+});
+
+Template.registerHelper('threadListTemplate', (thread, mode) => {
+  if (mode === 'simple') {
+    let tmpl = `Simple${thread.category}ListItem`;
+    return eval(`Template.${tmpl}`) ? tmpl : 'SimpleThreadListItem';
+  } else {
+    let tmpl = `${thread.category}ListItem`;
+    return eval(`Template.${tmpl}`) ? tmpl : 'ThreadListItem';
   }
 });
+
+Template.registerHelper('localizedMessageSummary', Messages.localizedSummary);

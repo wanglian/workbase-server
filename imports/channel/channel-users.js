@@ -16,7 +16,7 @@ ChannelUsers.helpers({
 ThreadCategories.add("Channel", {
   icon: "fa fa-slack",
   iconUnread: "fa fa-slack",
-  title(thread, detail=false) { // client only
+  title(thread) { // client only
     return I18n.t(thread.subject);
   },
   details: ['Members'],

@@ -1,7 +1,7 @@
 ThreadCategories.add("Account", {
   icon: "fa fa-cog fa-1-2x",
   iconUnread: "fa fa-cog fa-1-2x",
-  title(thread, detail=false) { // client only
+  title(thread) { // client only
     return I18n.t(thread.subject);
   },
   details: false,

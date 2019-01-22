@@ -20,7 +20,7 @@
 
 <template name="ThreadListItemTemplate">
   <a href="{{threadPath}}" class="list-group-item clearfix thread" id="{{_id}}">
-    {{> Template.dynamic template=listTemplate}}
+    {{> Template.dynamic template=(threadListTemplate this)}}
   </a>
 </template>
 
@@ -31,13 +31,13 @@
   </div>
   <div class="thread-title">
     <small class="pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
-    <div class="thread-subject text-ellipsis">{{title}}</div>
+    <div class="thread-subject text-ellipsis">{{threadTitle this}}</div>
     <div class="message-summary text-ellipsis text-muted">
       {{#if lastMessage}}
         {{#if lastMessage.user}}
           {{#unless isMe lastMessage.user}}{{lastMessage.user.name}}: {{/unless}}
         {{/if}}
-        {{{lastMessage.summaryLocalized}}}
+        {{{localizedMessageSummary lastMessage}}}
       {{/if}}
     </div>
   </div>
@@ -48,6 +48,6 @@
     <button type="button"><i class="{{icon}}"></i></button>
   </div>
   <div class="thread-title">
-    <div class="thread-subject text-ellipsis">{{title}}</div>
+    <div class="thread-subject text-ellipsis">{{threadTitle this}}</div>
   </div>
 </template>

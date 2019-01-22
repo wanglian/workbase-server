@@ -1,7 +1,7 @@
 ThreadCategories.add("Charts", {
   icon: "fa fa-bar-chart",
   iconUnread: "fa fa-bar-chart",
-  title(thread, detail=false) { // client only
+  title(thread) { // client only
     return I18n.t(thread.subject);
   },
   details: ['Members'],

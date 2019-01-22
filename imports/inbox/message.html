@@ -20,7 +20,7 @@
             {{_ "Message Edited By and When" user=updateUser.name time=(formatDayWithTime updatedAt)}}
           {{/if}}
         </div>
-        <div class="summary text-ellipsis text-muted">{{{summaryLocalized}}}</div>
+        <div class="summary text-ellipsis text-muted">{{{localizedMessageSummary this}}}</div>
       </div>
     </div>
     {{> MessageContent}}
@@ -114,11 +114,11 @@
           <ul class="list-group threads simple">
             <li class="list-group-item clearfix thread">
               {{#with thread}}
-                {{> Template.dynamic template=(listTemplate 'simple')}}
+                {{> Template.dynamic template=(threadListTemplate this 'simple')}}
               {{/with}}
             </li>
             <a href="#" id="btn-view-message" class="list-group-item thread message">
-              {{message.summaryLocalized}}
+              {{localizedMessageSummary message}}
             </a>
           </ul>
         </div>
@@ -169,7 +169,7 @@
         </a>
       </div>
       <div class="collapse in" id="content-{{_id}}">
-        {{summaryLocalized}}
+        {{localizedMessageSummary this}}
       </div>
     </blockquote>
   </div>

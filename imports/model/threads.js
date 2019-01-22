@@ -42,17 +42,12 @@ Threads.helpers({
   hasOwner(user) {
     return ThreadUsers.find({threadId: this._id, userType: user.className(), userId: user._id, role: 'owner'}).count() > 0
   },
-  title(detail=false) {
-    let c = ThreadCategories.get(this.category);
-    return typeof(c.title) == "function" ? c.title(this, detail) : this.subject;
-  },
-  showDetails() {
-    let c = ThreadCategories.get(this.category);
-    return c && c.details;
-  },
   details() {
     let c = ThreadCategories.get(this.category);
     return c && c.details;
+  },
+  showDetails() {
+    return this.details();
   },
   actions() {
     let c = ThreadCategories.get(this.category);
