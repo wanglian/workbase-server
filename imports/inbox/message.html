@@ -41,13 +41,13 @@
 
 <template name="TextContent">
   {{#with message}}
-    {{#markdown}}{{{content}}}{{/markdown}}
+    <div class="markdown">{{#markdown}}{{{content}}}{{/markdown}}</div>
   {{/with}}
 </template>
 
 <template name="ImageContent">
   {{#with message}}
-    {{#markdown}}{{{content}}}{{/markdown}}
+    <div class="markdown">{{#markdown}}{{{content}}}{{/markdown}}</div>
     <a href="{{fileURL image}}" data-fancybox="thread" data-caption="{{summary}}">
       {{#with image}}
         {{#if isGif}}
@@ -149,7 +149,7 @@
             {{#if compare contentType '===' 'html'}}
               {{> EmailContent message=this modal=".modal.message"}}
             {{else}}
-              {{#markdown}}{{{content}}}{{/markdown}}
+              <div class="markdown">{{#markdown}}{{{content}}}{{/markdown}}</div>
               {{#if compare contentType '===' 'image'}}
                 <a href="{{fileURL image 'original'}}" data-fancybox="thread" data-caption="{{summary}}">
                   <img src="{{fileURL image 'thumbnail'}}" alt="{{image.name}}" class="img-responsive img-thumbnail"/>

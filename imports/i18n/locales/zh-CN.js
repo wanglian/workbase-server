@@ -18,6 +18,7 @@ export const locale_zh_cn = {
   "Compose": "发消息",
   "Inbox": "收件箱",
   "Users": "用户",
+  "Contacts": "通信录",
   "Add": "添加",
   "Remove": "删除",
   "Edit": "编辑",

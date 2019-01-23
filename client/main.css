@@ -110,7 +110,7 @@ blockquote {
     font-size: 18px !important;
   }
   body ul.list-group.threads .list-group-item.thread {
-    padding: 10px !important;
+    padding: 10px;
   }
   body #inbox-header {
     height: 62px !important;

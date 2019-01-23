@@ -19,6 +19,10 @@ ul.list-group.threads .list-group-item.thread:first-child,
 ul.list-group.threads .list-group-item.thread:last-child {
   border-radius: 0;
 }
+ul.list-group.threads .list-group-item.thread.group {
+  padding: 2px 10px;
+  border-top: none;
+}
 /* 覆盖list-group-item默认的active效果 */
 ul.list-group.threads .list-group-item.thread.active {
   color: #555;

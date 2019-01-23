@@ -95,8 +95,8 @@
 .message .message-content h6 {
   font-size: 14px;
 }
-.message .message-content ul,
-.message .message-content ol {
+.message .message-content .markdown ul,
+.message .message-content .markdown ol {
   padding-left: 18px;
 }
 
