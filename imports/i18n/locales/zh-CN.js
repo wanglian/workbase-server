@@ -131,6 +131,8 @@ export const locale_zh_cn = {
   "Reply": "回复",
   "Forward": "转发",
   "Select a session": "选择会话",
+  "New Session": "创建新的会话",
+  "Latest Sessions": "最近会话",
   "Send to": "发送给",
   "View message": "查看消息",
   "Select Users": "选择用户",
@@ -156,7 +158,7 @@ export const locale_zh_cn = {
   "log_remove_channel_member": "删除了频道成员: {{channel}} - {{member}}",
   "log_add_thread_members": "添加了{{count}}个成员: {{emails}}",
   "log_remove_thread_member": "删除了成员: {{email}}",
-  "log_create_group": "发起了群聊",
+  "log_create_group": "发起了群聊: {{users}}",
   "log_update_group_name": "修改了群名称: {{name}}",
   // group
   "Group": "群聊",

@@ -22,7 +22,7 @@ Template.LinkToCreateGroup.events({
             Router.go('inbox', {_id: res});
           }
           $('#SelectUsersModal button[class=close]').click();
-        })
+        });
       }
     }, {
       backdrop: 'static'

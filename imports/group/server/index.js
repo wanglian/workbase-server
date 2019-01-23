@@ -23,7 +23,7 @@ ThreadUsers.after.remove(function(userId, doc) {
 });
 
 Threads.startGroup = (user, users) => {
-  let threadId = Threads.create(user, 'Group', 'Group');
+  let threadId = Threads.create(user, 'Group');
 
   let thread = Threads.findOne(threadId);
   users.forEach((user) => {
@@ -43,7 +43,7 @@ Meteor.methods({
 
     logGroup(thread, user, {
       action: "group.create",
-      params: {user: user.name()}
+      params: {user: user.name(), users: users.map(m => m.internalName()).join(", ")}
     });
     return thread._id;
   },

@@ -29,9 +29,52 @@ Template.SelectThreadModal.helpers({
 });
 
 Template.SelectThreadModal.events({
+  "click .btn-start-thread"(e, t) {
+    e.preventDefault();
+    let cb = t.data.callback;
+    Modal.show('SelectUsersModal', {
+      excludeIds: [Meteor.userId()],
+      callback(selectedUsers) {
+        console.log(selectedUsers.length);
+        let count = selectedUsers.length;
+        if (count === 1) {
+          // chat
+          let userId = selectedUsers[0]._id;
+          Meteor.call('startChat', userId, (err, res) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(res);
+              cb && cb({
+                thread: Threads._transform({_id: res, category: 'Chat', params: {chat: userId}})
+              });
+            }
+          });
+        } else if (count > 1) {
+          // group
+          let userIds = selectedUsers.map(u => u._id);
+          userIds.push(Meteor.userId());
+          Meteor.call("startGroup", userIds, (err, res) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(res);
+              cb && cb({
+                newThread: true,
+                threadId: res
+              });
+            }
+          });
+        }
+        $('#SelectUsersModal button[class=close]').click();
+      }
+    }, {
+      backdrop: 'static'
+    });
+  },
   "click .btn-select-thread"(e, t) {
     e.preventDefault();
     let cb = t.data.callback;
-    cb && cb(this);
+    cb && cb({thread: this});
   }
 });

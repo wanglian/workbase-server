@@ -8,6 +8,11 @@
         </div>
         <div class="modal-body no-padding scroll-box">
           <ul class="list-group threads">
+            <a href="#" class="list-group-item thread btn-start-thread">
+              {{_ "New Session"}}
+              <span class="pull-right text-muted" style="padding-top: 2px;"><i class="fa fa-chevron-right"></i></span>
+            </a>
+            <li class="list-group-item thread active" style="padding: 2px 10px; border-top: none">{{_ "Latest Sessions"}}</li>
             {{#each threads}}
               <a href="#" class="list-group-item clearfix thread btn-select-thread" id="{{_id}}">
                 {{> Template.dynamic template=(threadListTemplate this)}}

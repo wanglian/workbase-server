@@ -115,13 +115,24 @@ Template.MessageActions.events({
     let message = this;
     Modal.show('SelectThreadModal', {
       excludeIds: [message.threadId],
-      callback(thread) {
-        Modal.show('MessageForwardPreviewModal', {
-          thread,
-          message
-        }, {
-          backdrop: 'static'
-        });
+      callback(data) {
+        if (data.newThread) {
+          Meteor.call("sendMessage", data.threadId, {
+            contentType:   message.contentType,
+            content:       message.content,
+            fileIds:       message.fileIds,
+            inlineFileIds: message.inlineFileIds
+          }, (err, res) => {
+            $('#SelectThreadModal button[class=close]').click();
+          });
+        } else {
+          Modal.show('MessageForwardPreviewModal', {
+            thread: data.thread,
+            message
+          }, {
+            backdrop: 'static'
+          });
+        }
       }
     }, {
       backdrop: 'static'
