@@ -3,6 +3,7 @@ import './message.css';
 
 import ClipboardJS from 'clipboard';
 import moment from 'moment';
+import Swal from 'sweetalert2';
 
 import '@fancyapps/fancybox';
 import '@fancyapps/fancybox/dist/jquery.fancybox.css';
@@ -104,7 +105,32 @@ Template.MessageActions.onRendered(function() {
   $('.message-actions [data-toggle="tooltip"]').tooltip({container: 'body', trigger: 'hover', delay: 1000});
 });
 
+Template.MessageActions.helpers({
+  canRevoke() {
+    return this.createdAt > moment().subtract(2, 'minutes').toDate();
+  }
+});
+
 Template.MessageActions.events({
+  "click .btn-revoke"(e, t) {
+    e.stopPropagation();
+    e.preventDefault();
+    Swal({
+      title: I18n.t("Confirm revoke message"),
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: I18n.t("Confirm"),
+      cancelButtonText: I18n.t("Discard")
+    }).then((result) => {
+      if (result.value) {
+        Meteor.call("revokeMessage", this._id, (err, res) => {
+          if (err || !res) {
+            Swal(I18n.t("Can not revoke message"), "~_~", "info");
+          }
+        });
+      }
+    });
+  },
   "click .btn-reply"(e, t) {
     e.stopPropagation();
     Session.set(`message-draft-parent-${t.data.threadId}`, t.data);

@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 Meteor.methods({
   markRead(threadId) {
     check(threadId, String);
@@ -36,6 +38,22 @@ Meteor.methods({
     }
     return false;
   },
+  revokeMessage(messageId) {
+    check(messageId, String);
+
+    let message = Messages.findOne(messageId);
+    if (message.createdAt < moment().subtract(2, 'minutes').toDate()) return false;
+
+    let user = Users.findOne(this.userId);
+    let thread = Threads.findOne(message.threadId);
+
+    let re = Threads.revokeMessage(thread, message);
+    logThread(thread, user, {
+      action: "thread.revoke",
+      params: {user: user.name()}
+    });
+    return re;
+  },
   queryContacts(keyword) {
     check(keyword, String);
 
@@ -70,7 +88,7 @@ Meteor.methods({
     let members = userIds.map(userId => Users.findOne(userId));
     members.forEach(c => Threads.ensureMember(thread, c));
 
-    logThreadMemberAdmin(thread, user, {action: "thread.members.add", params: {count: members.length, emails: members.map(m => m.address()).join(", ")}});
+    logThread(thread, user, {action: "thread.members.add", params: {count: members.length, emails: members.map(m => m.address()).join(", ")}});
     return members.length;
   },
   removeThreadMember(threadId, userType, userId) {
@@ -82,11 +100,11 @@ Meteor.methods({
     let thread = Threads.findOne(threadId);
     let member = Users.findOne(userId);
     ThreadUsers.remove({threadId, userType, userId});
-    logThreadMemberAdmin(thread, user, {action: "thread.members.remove", params: {email: member.address()}});
+    logThread(thread, user, {action: "thread.members.remove", params: {email: member.address()}});
   }
 });
 
-const logThreadMemberAdmin = (thread, user, content) => {
+const logThread = (thread, user, content) => {
   Threads.addMessage(thread, user, {
     contentType: 'log',
     content

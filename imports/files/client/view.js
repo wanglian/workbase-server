@@ -21,7 +21,7 @@ Template.FileEditNameLink.events({
       if (result.value) {
         Meteor.call("files.updateFilename", this._id, result.value);
       }
-    })
+    });
   }
 });
 
@@ -41,7 +41,7 @@ Template.FileRemoveLink.events({
       if (result.value) {
         Meteor.call("files.remove", this._id);
       }
-    })
+    });
   }
 });
 

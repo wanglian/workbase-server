@@ -98,6 +98,9 @@ export const locale_zh_cn = {
   "Sent you an image": "发来一张图片",
   "Edit Message": "修改消息",
   "Message Edited By and When": "{{user}} 修改于 {{time}}",
+  "Revoke": "撤回",
+  "Confirm revoke message": "是否撤回该条消息?",
+  "Can not revoke message": "消息发出两分钟后不能撤回!",
   // user
   "Users Management": "用户管理",
   "User List": "用户列表",
@@ -160,6 +163,7 @@ export const locale_zh_cn = {
   "log_remove_thread_member": "删除了成员: {{email}}",
   "log_create_group": "发起了群聊: {{users}}",
   "log_update_group_name": "修改了群名称: {{name}}",
+  "log_remoke_thread_message": "{{user}} 撤回了一条消息",
   // group
   "Group": "群聊",
   "Modify Group Name": "修改群名称",

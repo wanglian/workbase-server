@@ -83,8 +83,13 @@
 
 <template name="MessageActions">
   <div class="btn-group message-actions pull-right">
-    {{> EditMessageButton}}
     {{#unless compare contentType '===' 'log'}}
+      {{#if canRevoke}}
+        <button type="button" class="btn btn-sm btn-default btn-revoke" data-toggle="tooltip" title="{{_ 'Revoke'}}">
+          <i class="fa fa-undo"></i>
+        </button>
+      {{/if}}
+      {{> EditMessageButton}}
       {{#if thread.isReplyable}}
         <button type="button" class="btn btn-sm btn-default btn-reply" data-toggle="tooltip" title="{{_ 'Reply'}}">
           <i class="fa fa-reply"></i>

@@ -34,6 +34,8 @@ export const locale_en_us = {
   "Image Message": "[Image]",
   "Files with count": "Files ({{count}})",
   "Message Edited By and When": "Edited by {{user}} at {{time}}",
+  "Confirm revoke message": "Confirm revoking this message?",
+  "Can not revoke message": "Can not revoke after 2 minutes!",
   // profile
   "Work Title'": "Role",
   // user

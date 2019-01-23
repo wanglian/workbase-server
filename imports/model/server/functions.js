@@ -51,6 +51,12 @@ Threads.addMessage = (thread, user, message) => {
   return mid;
 };
 
+Threads.revokeMessage = (thread, message) => {
+  let count = Messages.remove({_id: message._id});
+  // 文件是否直接删除
+  return count;
+};
+
 const emailParser = require('address-rfc2822');
 const parseEmailAddress = (emails) => {
   return emailParser.parse(emails);
