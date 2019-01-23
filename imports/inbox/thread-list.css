@@ -86,7 +86,7 @@ ul.list-group .list-group-item:hover .action {
   display: inline;
 }
 
-ul.threads.simple .list-group-item .thread-subject {
+ul.threads.simple .list-group-item .thread-title div:only-child {
   padding-top: 8px;
 }
 ul.threads.simple .list-group-item.message {

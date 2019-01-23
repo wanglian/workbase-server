@@ -10,9 +10,6 @@
   font-size: 16px;
   font-weight: 600;
 }
-.shared-messages .message-body .title .personal-message {
-  font-size: 14px;
-}
 .shared-messages .message-body .action {
   margin-left: 10px;
 }
