@@ -1,20 +1,5 @@
 import './roster.html';
 
-Template.RosterMenu.events({
-  "click #btn-add-roster"(e, t) {
-    e.preventDefault();
-    Modal.show('AddRosterModal', null, {
-      backdrop: 'static'
-    });
-  },
-  "click #btn-edit-roster"(e, t) {
-    e.preventDefault();
-    Modal.show('EditRosterModal', t.data, {
-      backdrop: 'static'
-    });
-  }
-});
-
 Template.RosterList.onRendered(function() {
   this.autorun(() => {
     let data = Template.currentData();

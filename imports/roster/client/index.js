@@ -7,31 +7,20 @@ RosterController = ApplicationController.extend({
   template: 'Roster',
   subscriptions() {
     // this.subscribe("roster");
-    this.subscribe("threads", {category: "Chat"});
-    let chat = this.chat();
-    let threadId = chat && chat._id;
-    if (threadId) {
-      this.subscribe("thread", threadId);
-    }
   },
-  user() {
-    return this.params._id && Users.findOne(this.params._id);
-  },
-  chat() {
-    let userId = this.params._id;
-    let tu = ThreadUsers.findOne({category: 'Chat', userType: 'Users', "params.chat": userId});
-    return tu && Threads.findOne(tu.threadId);
+  userId() {
+    return this.params._id;
   },
   detail() {
     return this.params.query.detail;
   },
   data() {
+    let user = Users.findOne(this.userId());
     return {
       users: Users.find({"profile.type": 'Users'}, {sort: {"profile.name": 1}}),
-      user: this.user(),
-      chat: this.chat(),
-      hasRight: !!this.user(),
-      hasSidebar: !!this.detail()
+      user,
+      hasRight: !!user,
+      hasSidebar: false
     };
   }
 });

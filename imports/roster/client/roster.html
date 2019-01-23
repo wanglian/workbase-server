@@ -17,18 +17,6 @@
   </li>
 </template>
 
-<template name="RosterMenu">
-  {{#if currentUser.isAdmin}}
-    <ul class="dropdown-menu" role="menu">
-      {{#if _id}}
-        <li><a href="#" id="btn-edit-roster"><i class="fa fa-edit"></i> {{_ "Edit User"}}</a></li>
-        <li class="divider"></li>
-      {{/if}}
-      <li><a href="#" id="btn-add-roster"><i class="fa fa-plus"></i> {{_ "New User"}}</a></li>
-    </ul>
-  {{/if}}
-</template>
-
 <template name="RosterList">
   <ul class="list-group threads">
     {{#each users}}
@@ -68,7 +56,7 @@
           <li>
             {{#LinkToUserShared user=this class="text-muted text-ellipsis"}}
               {{_ 'Shares'}}
-              <span class="pull-right"><i class="fa fa-chevron-right"></i></span>
+              <span class="pull-right text-muted"><i class="fa fa-chevron-right"></i></span>
             {{/LinkToUserShared}}
           </li>
         </ul>
