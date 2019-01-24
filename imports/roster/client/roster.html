@@ -59,7 +59,7 @@
   <div class="roster-card">
     <div class="box box-widget widget-user-2">
       <!-- Add the bg color to the header using any of the bg-* classes -->
-      <div class="widget-user-header bg-yellow clearfix">
+      <div class="widget-user-header {{bgColor}} clearfix">
         {{> avatar user=this shape="circle" class="img-circle pull-left" size="large"}}
           <!-- /.widget-user-image -->
         <h3 class="widget-user-username">{{name}}</h3>
@@ -69,17 +69,21 @@
         <ul class="nav nav-stacked">
           {{#with title}}<li><a class="text-muted text-ellipsis">{{_ 'Work Title'}} <span class="pull-right">{{this}}</span></a></li>{{/with}}
           <li><a class="text-muted text-ellipsis">{{_ 'Email'}} <span class="pull-right">{{email}}</span></a></li>
+          {{#unless external}}
           <li>
             {{#LinkToUserShared user=this class="text-muted text-ellipsis"}}
               {{_ 'Shares'}}
               <span class="pull-right text-muted"><i class="fa fa-chevron-right"></i></span>
             {{/LinkToUserShared}}
           </li>
+          {{/unless}}
         </ul>
       </div>
     </div>
 
-    <a href="#" class="btn btn-primary btn-block" id="btn-chat">{{_ "Send Messages"}}</a>
+    {{#unless noreply}}
+      <a href="#" class="btn btn-primary btn-block" id="btn-chat">{{_ "Send Messages"}}</a>
+    {{/unless}}
   </div>
 </template>
 

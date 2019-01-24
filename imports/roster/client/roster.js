@@ -19,8 +19,8 @@ Template.RosterList.helpers({
 });
 
 Template.RosterCard.helpers({
-  hasChat() {
-    return ThreadUsers.findOne({category: 'Chat', "params.chat": this._id});
+  bgColor() {
+    return this.external() ? 'bg-green' : 'bg-yellow';
   }
 });
 
