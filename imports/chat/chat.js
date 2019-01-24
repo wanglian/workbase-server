@@ -1,5 +1,6 @@
 Threads.helpers({
   chat() {
+    clientOnly();
     return Users.findOne(this.params.chat);
   }
 });

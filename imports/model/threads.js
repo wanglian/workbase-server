@@ -30,7 +30,7 @@ Threads.helpers({
   },
   hasReplyableExternalMembers() {
     return this.externalMembers().some((contact) => {
-      return !contact.noreply;
+      return !contact.noreply();
     });
   },
   isReplyable() {

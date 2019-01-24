@@ -69,6 +69,9 @@ Template.MessageForm.helpers({
   },
   pendingFiles() {
     return Files.find({"meta.relations": {$elemMatch: {threadId: this.thread._id, type: 'file', messageId: null}}}, {sort: {"meta.relations.createdAt": -1}});
+  },
+  showInternal() {
+    return this.thread.category != 'Chat' && this.thread.hasReplyableExternalMembers();
   }
 });
 

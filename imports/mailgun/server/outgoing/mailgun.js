@@ -41,19 +41,30 @@ const buildMailgunAttachment = (file) => {
     knownLength: file.size
   });
 };
+const buildSubject = (thread, message) => {
+  let subject = thread.subject;
+  if (thread.category === 'Chat') {
+    let tu = ThreadUsers.findOne({threadId: thread._id, userType: 'Users', userId: message.userId});
+    let chat = Users.findOne(tu.params.chat);
+    let parentMessage = message.parent();
+    let user = message.user();
+    subject = parentMessage && parentMessage.email && parentMessage.email.subject || I18n.getFixedT(user.profile.language)("Message from", {user: user.name()});
+  }
+  return subject;
+};
 Mailgun.send = (message) => {
   let threadId = message.threadId;
-  let contacts = ThreadUsers.find({threadId, userType: 'Contacts'}).map(tu => Contacts.findOne(tu.userId));
-  contacts = _.reject(contacts, (c) => {return c.noreply;});
+  let thread = Threads.findOne(threadId);
+  let contacts = thread.externalMembers();
+  contacts = _.reject(contacts, c => c.noreply());
 
   if (!_.isEmpty(contacts)) {
-    let thread = Threads.findOne(threadId);
     let user = message.user();
 
     let params = {
       from:    (message.email && message.email.from) || user.address(),
       to:      contacts.map(c => c.address()),
-      subject: thread.subject
+      subject: buildSubject(thread, message)
     };
 
     switch (message.contentType) {
@@ -102,12 +113,11 @@ Mailgun.send = (message) => {
       } else {
         console.log(result);
         Messages.update(message._id, {$set: {
-          internal: false,
-          emailId: result["id"],
-          email: {
-            from: params.from,
-            to:   params.to.join(", ")
-          }
+          internal:        false,
+          emailId:         result["id"],
+          "email.subject": params.subject,
+          "email.from":    params.from,
+          "email.to":      params.to.join(", ")
         }});
       }
     }));

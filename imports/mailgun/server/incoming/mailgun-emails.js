@@ -26,21 +26,18 @@ MailgunEmails.create = (params) => {
   return MailgunEmails.parseEmail(email);
 };
 
-// MailgunEmails.after.insert(function(userId, doc) {
-//   let message = this.transform();
-//   let promise = new Promise(function(resolve, reject) {
-//     try {
-//       MailgunEmails.parseEmail(message);
-//       resolve();
-//     } catch (e) {
-//       reject(e);
-//     }
-//   });
-//   promise.catch((e) => {
-//     console.log("[mailgun] parse error:");
-//     console.log(e);
-//   });
-// });
+// check 是否一对一邮件
+const isOneToOne = (to, toUsers, ccUsers) => {
+  let users = _.compact(_.concat([to], toUsers, ccUsers));
+  let userIds = _.uniq(users.map(u => u._id));
+  return userIds.length === 1;
+};
+
+const findThreadIdBetweenUsers = (from, to) => {
+  let threadIds = ThreadUsers.find({userType: from.className(), userId: from._id}).map(tu => tu.threadId);
+  let tu = ThreadUsers.findOne({threadId: {$in: threadIds}, userType: to.className(), userId: to._id});
+  return tu && tu.threadId;
+};
 
 MailgunEmails.parseEmail = async (doc) => {
   console.log("[mailgun] parse");
@@ -72,17 +69,28 @@ MailgunEmails.parseEmail = async (doc) => {
     threadId    = message && message.threadId;
   }
   if (!threadId) {
+    // noreploy邮件聚合
+    if (fromUser.noreply()) {
+      threadId = findThreadIdBetweenUsers(fromUser, toUser);
+    }
+  }
+  let toUsers = Contacts.parse(to);
+  let ccUsers = cc && Contacts.parse(cc);
+  if (!threadId) {
+    // 单人邮件聚合到Chat: 这个规则是否合理
+    if (isOneToOne(toUser, toUsers, ccUsers)) {
+      let tu = ThreadUsers.findOne({userType: 'Users', userId: to._id, "params.chat": fromUser._id});
+      threadId = tu && tu.threadId;
+    }
+  }
+  if (!threadId) {
     threadId = Threads.create(fromUser, 'Email', subject);
   }
   let thread = Threads.findOne(threadId);
-  let toUsers = Contacts.parse(to);
   Threads.ensureMember(thread, fromUser);
   Threads.ensureMember(thread, toUser);
-  toUsers.forEach(user => Threads.ensureMember(thread, user));
-  if (cc) {
-    let ccUsers = Contacts.parse(cc);
-    ccUsers.forEach(user => Threads.ensureMember(thread, user));
-  }
+  toUsers && toUsers.forEach(user => Threads.ensureMember(thread, user));
+  ccUsers && ccUsers.forEach(user => Threads.ensureMember(thread, user));
 
   let content = bodyHtml;
   let contentType = 'html';
@@ -141,7 +149,7 @@ MailgunEmails.parseEmail = async (doc) => {
     });
   }
 
-  // 自定义
+  // 自定义消息
   if (variables) {
     variables = JSON.parse(variables);
     let messageType = variables['MessageType'];
@@ -166,7 +174,7 @@ MailgunEmails.parseEmail = async (doc) => {
     inlineFileIds,
     emailId,
     internal: false,
-    email: { from, to, cc, date }
+    email: { subject, from, to, cc, date }
   });
 
   MailgunEmails.update(doc._id, {$set: {parsedAt: new Date()}});

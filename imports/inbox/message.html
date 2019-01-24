@@ -14,8 +14,11 @@
           {{#if showInternal}}<i class="fa fa-lock" data-toggle="tooltip" title="{{_ 'Internal'}}"></i>{{/if}}
         </span>
         <div class="email text-muted small">
-          {{#if email.to}}<div>{{_ 'mail to'}} {{email.to}}</div>{{/if}}
-          {{#if email.cc}}<div>{{_ 'mail cc'}} {{email.cc}}</div>{{/if}}
+          {{#with email}}
+            {{#if subject}}<div>{{_ 'mail subject'}}: {{subject}}</div>{{/if}}
+            {{#if to}}<div>{{_ 'mail to'}}: {{to}}</div>{{/if}}
+            {{#if cc}}<div>{{_ 'mail cc'}}: {{cc}}</div>{{/if}}
+          {{/with}}
           {{#if updateUserId}}
             {{_ "Message Edited By and When" user=updateUser.name time=(formatDayWithTime updatedAt)}}
           {{/if}}

@@ -25,8 +25,11 @@ Users.helpers({
   name() {
     return this.profile.name;
   },
+  external() {
+    return this.className() === 'Contacts';
+  },
   internalName() {
-    if (this.className() === 'Contacts') {
+    if (this.external()) {
       return this.address();
     }
     return this.name();

@@ -39,6 +39,7 @@ export const locale_en_us = {
   // profile
   "Work Title'": "Role",
   // user
+  "External Users": "External",
   "Users Management": "Users",
   "Send Messages": "Messages",
   "Chat with": "Chat with {{name}}",
@@ -46,8 +47,10 @@ export const locale_en_us = {
   "Channels Management": "Channels",
   // thread
   "Created by and when": "Created by{{name}} at {{time}}",
+  "mail subject": "subject",
   "mail to": "to",
   "mail cc": "cc",
+  "Message from": "Message from {{user}}",
   "Selected Users": "{{count}} selected",
   "Enter to search": "Search ...",
   "confirm remove member": "Are you sure to remove {{name}}?",

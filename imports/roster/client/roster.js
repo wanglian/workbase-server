@@ -10,6 +10,14 @@ Template.RosterList.onRendered(function() {
   });
 });
 
+Template.RosterList.helpers({
+  rosterPath() {
+    let router = Router.current();
+    let params = _.extend(router.params, {_id: this._id});
+    return router.route.path(params);
+  }
+});
+
 Template.RosterCard.helpers({
   hasChat() {
     return ThreadUsers.findOne({category: 'Chat', "params.chat": this._id});

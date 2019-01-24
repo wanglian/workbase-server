@@ -11,13 +11,15 @@ RosterController = ApplicationController.extend({
   userId() {
     return this.params._id;
   },
-  detail() {
-    return this.params.query.detail;
+  type() {
+    return this.params._type;
   },
   data() {
     let user = Users.findOne(this.userId());
+    let type = this.type() === 'external' ? 'Contacts' : 'Users';
     return {
-      users: Users.find({"profile.type": 'Users'}, {sort: {"profile.name": 1}}),
+      type,
+      users: Users.find({"profile.type": type}, {sort: {"profile.name": 1}}),
       user,
       hasRight: !!user,
       hasSidebar: false
@@ -25,7 +27,7 @@ RosterController = ApplicationController.extend({
   }
 });
 
-Router.route('/roster/:_id?', {
+Router.route('/roster/:_type/:_id?', {
   name: 'roster',
   controller: 'RosterController'
 });

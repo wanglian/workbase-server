@@ -107,7 +107,7 @@ Template.MessageActions.onRendered(function() {
 
 Template.MessageActions.helpers({
   canRevoke() {
-    return this.createdAt > moment().subtract(2, 'minutes').toDate();
+    return this.userId === Meteor.userId() && this.createdAt > moment().subtract(2, 'minutes').toDate();
   }
 });
 

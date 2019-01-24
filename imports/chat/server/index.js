@@ -35,6 +35,9 @@ Messages.before.insert(function(userId, doc) {
     let tu = ThreadUsers.findOne({threadId: doc.threadId, userId: doc.userId});
     let chat = Users.findOne(tu.params.chat);
     Threads.ensureMember(thread, chat, {chat: doc.userId});
+    if (chat.external()) {
+      doc.internal = false; // 尽管在/imports/model/server/hooks里有处理，但是多个hooks的执行顺序没有保证，所以在此加上处理
+    }
   }
 });
 

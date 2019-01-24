@@ -9,7 +9,7 @@
 // - inlineFileIds: [fileId]
 // - summary
 // - emailId
-// - email: from, to, cc, time
+// - email: subject, from, to, cc, time
 // - reacts: like [userId]
 // - updateUserId
 Messages = new Mongo.Collection('messages');

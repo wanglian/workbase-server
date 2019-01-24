@@ -44,7 +44,7 @@
       <input type="file" style="display:none;" id="file"/>
       <div id="message-form-actions" class="text-muted">
         <a href="#" class="form-action text-muted" id="btn-file"><i class="fa fa-files-o"></i> {{_ 'Add File'}}</a>
-        {{#if thread.hasReplyableExternalMembers}}
+        {{#if showInternal}}
           {{> afFieldInput name="internal"}}
         {{/if}}
       </div>
