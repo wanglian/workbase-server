@@ -74,8 +74,8 @@ Template.Setup.events({
       default:
         nextStepWizard.removeAttr('disabled').trigger('click');
         Meteor.setTimeout(() => {
-          $('#step-5 span.doing').addClass('hide');
-          $('#step-5 span.done').removeClass('hide');
+          $('#step-5 div.doing').addClass('hide');
+          $('#step-5 div.done').removeClass('hide');
           $('#step-5 button[type=submit]').removeClass('hide');
         }, 2000);
       }
