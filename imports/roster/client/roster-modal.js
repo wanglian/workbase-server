@@ -35,7 +35,53 @@ const ROSTER_FORM_SCHEMA = new SimpleSchema({
     optional: true,
     autoform: {
       type: 'text',
-      label: I18n.t('Title'),
+      label: I18n.t('Work Title'),
+    }
+  }
+});
+
+const CONTACT_FORM_SCHEMA= new SimpleSchema({
+  name: {
+    type: String,
+    max: 50,
+    autoform: {
+      type: 'text',
+      label: I18n.t("User Name")
+    }
+  },
+  email: {
+    type: String,
+    max: 50,
+    regEx: SimpleSchema.RegEx.Email,
+    autoform: {
+      type: 'text',
+      label: "Email"
+    }
+  },
+  title: {
+    type: String,
+    max: 50,
+    optional: true,
+    autoform: {
+      type: 'text',
+      label: I18n.t('Work Title'),
+    }
+  },
+  company: {
+    type: String,
+    max: 50,
+    optional: true,
+    autoform: {
+      type: 'text',
+      label: I18n.t("Company")
+    }
+  },
+  noreply: {
+    type: Boolean,
+    label: I18n.t('Noreply'),
+    optional: true,
+    autoform: {
+      type: "boolean-checkbox"
     }
   }
 });
@@ -83,6 +129,15 @@ Template.EditRosterModal.helpers({
   }
 });
 
+Template.EditContactModal.helpers({
+  formCollection() {
+    return Contacts;
+  },
+  formSchema() {
+    return CONTACT_FORM_SCHEMA;
+  }
+});
+
 AutoForm.hooks({
   "add-roster-form": {
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
@@ -111,6 +166,21 @@ AutoForm.hooks({
           console.log(res);
         }
         Modal.hide('EditRosterModal');
+        this.done();
+      });
+    }
+  },
+  "edit-contact-form": {
+    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+      this.event.preventDefault();
+
+      Meteor.call('editContact', currentDoc._id, insertDoc, (err, res) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(res);
+        }
+        Modal.hide('EditContactModal');
         this.done();
       });
     }

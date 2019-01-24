@@ -16,7 +16,7 @@ export const locale_en_us = {
   "Next Step": "Next",
   "Company Info": "Company",
   "Set Company Info": "Company Info",
-  "Company": "Name",
+  "Company Name": "Name",
   "Domain": "Domain",
   "Email Config": "Email",
   "Set Email Config": "Setup Email",

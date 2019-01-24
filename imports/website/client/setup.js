@@ -119,7 +119,7 @@ Template.Setup.helpers({
         max: 50,
         autoform: {
           type: 'text',
-          label: I18n.t('Company')
+          label: I18n.t('Company Name')
         }
       },
       domain: {

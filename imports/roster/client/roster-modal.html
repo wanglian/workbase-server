@@ -79,3 +79,29 @@
     </div>
   </div>
 </template>
+
+<template name="EditContactModal">
+  <div class="modal fade full-screen">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'Edit Contact'}}</h4>
+        </div>
+        {{#autoForm collection=formCollection schema=formSchema doc=this id="edit-contact-form" type="normal"}}
+          <div class="modal-body scroll-box">
+            {{> afQuickField name="name" value=name}}
+            {{> afQuickField name="email" value=email}}
+            {{> afQuickField name="title" value=profile.title}}
+            {{> afQuickField name="company" value=profile.company}}
+            {{> afQuickField name="noreply" value=profile.noreply}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
+            <button type="submit" class="btn btn-primary">{{_ 'Save'}}</button>
+          </div>
+        {{/autoForm}}
+      </div>
+    </div>
+  </div>
+</template>

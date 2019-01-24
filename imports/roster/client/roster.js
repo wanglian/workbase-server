@@ -1,5 +1,11 @@
 import './roster.html';
 
+Template.Roster.helpers({
+  cardTemplate() {
+    return this.user.external() ? 'ContactCard' : 'RosterCard';
+  }
+});
+
 Template.RosterList.onRendered(function() {
   this.autorun(() => {
     let data = Template.currentData();
@@ -18,9 +24,12 @@ Template.RosterList.helpers({
   }
 });
 
-Template.RosterCard.helpers({
-  bgColor() {
-    return this.external() ? 'bg-green' : 'bg-yellow';
+Template.RosterHeader.events({
+  "click .btn-edit-contact"(e, t) {
+    e.preventDefault();
+    Modal.show("EditContactModal", this, {
+      backdrop: 'static'
+    });
   }
 });
 

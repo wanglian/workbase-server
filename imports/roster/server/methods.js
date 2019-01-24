@@ -64,6 +64,32 @@ Meteor.methods({
 
       return id;
     }
+  },
+  editContact(id, params) {
+    check(id, String);
+    check(params, {
+      name: Match.Maybe(String),
+      email: Match.Maybe(String),
+      title: Match.Maybe(String),
+      company: Match.Maybe(String),
+      noreply: Match.Maybe(Boolean)
+    });
+
+    let contact = Contacts.findOne(id);
+    let mofifier = {};
+    if (params.name != contact.name()) _.extend(mofifier, {"profile.name": params.name});
+    if (params.title != contact.profile.title) _.extend(mofifier, {"profile.title": params.title});
+    if (params.company != contact.profile.company) _.extend(mofifier, {"profile.company": params.company});
+    if (params.noreply != contact.profile.noreply) _.extend(mofifier, {"profile.noreply": params.noreply});
+
+    if (!_.isEmpty(mofifier)) {
+      Contacts.update(id, {$set: mofifier});
+    }
+
+    if (params.email != contact.email()) {
+      Accounts.removeEmail(id, contact.email());
+      Accounts.addEmail(id, params.email);
+    }
   }
 });
 
