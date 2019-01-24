@@ -71,19 +71,21 @@ Mailgun.send = (message) => {
     case 'image':
       let image = message.image();
       _.extend(params, {
-        html: signature(user, `<img src="cid:${image.name}.${image.extension}"/>`, 'image'),
+        text: message.content,
+        html: signature(user, `${Markdown(message.content)} <br/><img src="cid:${image.name}.${image.extension}"/>`, 'image'),
         inline: buildMailgunAttachment(image),
         'v:MessageType': 'image'
       });
       break;
     case 'html':
       _.extend(params, {
-        html: signature(user, message.content, 'html') // Markdown(message.content): 需要html邮件模板
+        html: signature(user, Markdown(message.content), 'html')
       });
       break;
     default:
       _.extend(params, {
-        text: signature(user, message.content, 'text'), // Markdown(message.content): 需要html邮件模板
+        text: message.content,
+        html: signature(user, Markdown(message.content), 'html'),
         'v:MessageType': 'text'
       });
     }
