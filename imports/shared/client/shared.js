@@ -3,6 +3,17 @@ import './shared.html';
 import Swal from 'sweetalert2';
 
 Template.Shared.onRendered(function() {
+  // 延时2秒
+  Meteor.setTimeout(() => {
+    let shared = ThreadUsers.findOne({category: 'Shared', userType: 'Users', userId: Meteor.userId()});
+    if (shared && !shared.read) {
+      Meteor.call("markRead", shared.threadId, (err, res) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  }, 2000);
   // 滚动页面触发
   $('#inbox-left').on('scroll', (e) => {
     let shared = ThreadUsers.findOne({category: 'Shared', userType: 'Users', userId: Meteor.userId()});

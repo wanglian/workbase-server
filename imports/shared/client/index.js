@@ -10,9 +10,6 @@ const ShareSubs = new SubsManager({
 SharedController = ApplicationController.extend({
   template: 'Shared',
   perPage: 25,
-  waitOn() {
-    return Meteor.subscribe("shared.thread");
-  },
   subscriptions() {
     this.threadsSub = ShareSubs.subscribe("shared.messages", this.userId(), {limit: this.limit()});
   },
@@ -47,4 +44,8 @@ SharedController = ApplicationController.extend({
 Router.route('/shared/:_id?', {
   name: 'shared',
   controller: 'SharedController'
+});
+
+Accounts.onLogin(function(attempt) {
+  Meteor.subscribe("shared.thread");
 });
