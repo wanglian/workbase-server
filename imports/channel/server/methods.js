@@ -72,7 +72,7 @@ Meteor.methods({
       action: 'channe.member.remove',
       params: {
         channel: channel.address(),
-        member: member.user().address()
+        member: member.address()
       }
     });
   }
