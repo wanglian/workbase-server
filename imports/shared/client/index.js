@@ -10,6 +10,9 @@ const ShareSubs = new SubsManager({
 SharedController = ApplicationController.extend({
   template: 'Shared',
   perPage: 25,
+  waitOn() {
+    return Meteor.subscribe("shared.thread");
+  },
   subscriptions() {
     this.threadsSub = ShareSubs.subscribe("shared.messages", this.userId(), {limit: this.limit()});
   },
@@ -29,18 +32,12 @@ SharedController = ApplicationController.extend({
     let hasMore = Counts.get(`shared.messages`) > this.limit();
 
     let thread = this.thread();
-    let condition = {threadId: thread._id, parentId: {$exists: false}};
     let userId = this.userId();
     let user = userId && Users.findOne(userId);
-    if (user) {
-      _.extend(condition, {userId});
-    }
-    let messages = Messages.find(condition, {sort: {createdAt: -1}});
 
     return {
       thread,
       user,
-      messages,
       ready:    this.threadsSub.ready(),
       nextPath: hasMore ? nextPath : null
     };
@@ -50,8 +47,4 @@ SharedController = ApplicationController.extend({
 Router.route('/shared/:_id?', {
   name: 'shared',
   controller: 'SharedController'
-});
-
-Accounts.onLogin(function(attempt) {
-  Meteor.subscribe("shared.thread");
 });

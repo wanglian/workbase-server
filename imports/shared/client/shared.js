@@ -16,6 +16,16 @@ Template.Shared.onRendered(function() {
   });
 });
 
+Template.Shared.helpers({
+  messages() {
+    let condition = {threadId: this.thread._id, parentId: {$exists: false}};
+    if (this.user) {
+      _.extend(condition, {userId: this.user._id});
+    }
+    return Messages.find(condition, {sort: {createdAt: -1}});
+  }
+});
+
 Template.SharedMessage.helpers({
   liked() {
     return this.hasReact(Meteor.userId(), 'like');
@@ -88,4 +98,13 @@ Template.ShareModal.onRendered(function() {
 
 Template.ShareModal.onDestroyed(function() {
   $(document).off("message.sent");
+});
+
+Template.LinkToUserShared.events({
+  "click .btn-shared"(e, t) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(".modal button[class=close]").click();
+    Router.go('shared', {_id: this.user._id});
+  }
 });

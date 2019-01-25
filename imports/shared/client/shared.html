@@ -10,7 +10,7 @@
       {{/each}}
       {{#if ready}}
         {{#unless messages.count}}
-          <div class="todo"></div>
+          <div class="todo" style="padding: 10px;">{{_ "Empty"}}</div>
         {{/unless}}
         {{#if nextPath}}
           <div class="text-center"><a href="{{nextPath}}" class="text-muted small">{{_ "Load More"}}</a></div>
@@ -101,7 +101,7 @@
 </template>
 
 <template name="LinkToUserShared">
-  <a href="/shared/{{user._id}}" class="{{class}}">{{> UI.contentBlock}}</a>
+  <a href="#" class="btn-shared {{class}}">{{> UI.contentBlock}}</a>
 </template>
 
 <template name="ShareModal">
