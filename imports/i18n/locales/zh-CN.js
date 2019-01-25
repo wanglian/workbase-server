@@ -122,6 +122,8 @@ export const locale_zh_cn = {
   "Chat": "私聊",
   "Chat with": "与 {{name}} 的会话",
   "Create Group Chat": "创建群聊",
+  "User Info": "用户信息",
+  "Contact Info": "联系人信息",
   // channel
   "Channels Management": "频道管理",
   "Channel List": "频道列表",

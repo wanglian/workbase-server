@@ -42,18 +42,18 @@ Template.LinkToChat.events({
         console.log(err);
       } else {
         console.log(res);
+        $(".modal button[class=close]").click();
         Router.go('inbox', {_id: res});
       }
     });
   }
 });
 
-Template.LinkToUser.events({
-  "click .btn-user"(e, t) {
-    if (this.user.className() === 'Users') {
-      e.preventDefault();
-      e.stopPropagation();
-      Router.go('roster', {_id: this.user._id});
-    }
+Template.LinkToCardModal.events({
+  "click .btn-show-card"(e, t) {
+    e.preventDefault();
+    e.stopPropagation();
+    let modal = this.user.className() === 'Contacts' ? 'ContactCardModal' : 'UserCardModal';
+    Modal.show(modal, this.user);
   }
 });

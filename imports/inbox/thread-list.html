@@ -25,9 +25,9 @@
 </template>
 
 <template name="ThreadListItem">
-  <div class="thread-icon">
-    <button type="button" class="{{#unless read}}unread-button{{/unless}}"><i class="{{icon}}"></i></button>
-    {{#unless read}}<span class="unread"></span>{{/unless}}
+  <div class="thread-icon {{#unless read}}unread{{/unless}}">
+    <button type="button" class="avatar"><i class="{{icon}}"></i></button>
+    <span class="red-point"></span>
   </div>
   <div class="thread-title">
     <small class="pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
@@ -45,7 +45,7 @@
 
 <template name="SimpleThreadListItem">
   <div class="thread-icon">
-    <button type="button"><i class="{{icon}}"></i></button>
+    <button type="button" class="avatar"><i class="{{icon}}"></i></button>
   </div>
   <div class="thread-title">
     <div class="thread-subject text-ellipsis">{{threadTitle this}}</div>

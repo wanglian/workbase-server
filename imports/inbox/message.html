@@ -2,9 +2,9 @@
   <div class="message">
     <div class="message-header clearfix">
       <div class="message-header-avatar">
-        {{#LinkToUser user=user}}
+        {{#LinkToCardModal user=user}}
           {{> avatar user=user shape="circle" class="img-circle" size="medium"}}
-        {{/LinkToUser}}
+        {{/LinkToCardModal}}
       </div>
       <div class="message-header-title">
         {{> MessageActions}}

@@ -58,20 +58,19 @@ ul.list-group.threads .list-group-item.thread .thread-icon {
   display: table-cell;
   vertical-align: middle;
 }
-ul.list-group.threads .list-group-item.thread .thread-icon button {
+ul.list-group.threads .list-group-item.thread .thread-icon .avatar {
   background-color: transparent;
-  border: 1px solid #777;
   width: 40px;
   height: 40px;
   border-radius: 20px;
   font-size: 16px;
   padding: 0px;
 }
-ul.list-group.threads .list-group-item.thread .thread-icon button.unread-button {
+ul.list-group.threads .list-group-item.thread .thread-icon.unread .avatar {
   color: #3e81de;
-  border: 1px solid #3e81de;
+  border-color: #3e81de;
 }
-ul.list-group.threads .list-group-item.thread .thread-icon .unread {
+ul.list-group.threads .list-group-item.thread .thread-icon.unread .red-point {
   position: absolute;
   background: #f62d51;
   border: 2px solid #fff;

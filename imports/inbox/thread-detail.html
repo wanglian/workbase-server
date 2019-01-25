@@ -43,7 +43,7 @@
 <template name="ThreadMembers">
   <ul class="list-group members-list" style="max-height: calc(100vh - 330px); overflow-y: auto;">
     {{#each threadUsers}}
-      <li class="list-group-item members-item clearfix">
+      {{#LinkToCardModal user=user class="list-group-item members-item clearfix"}}
         <span class="pull-left">
           {{> avatar user=user shape="circle" class="img-circle pull-left" size="small"}}
         </span>
@@ -58,7 +58,7 @@
           <strong class="name">{{user.name}}</strong> <span>{{user.title}}</span>
           <div class="text-muted text-ellipsis">{{user.email}}</div>
         </div>
-      </li>
+      {{/LinkToCardModal}}
     {{/each}}
   </ul>
 </template>

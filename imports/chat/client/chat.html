@@ -1,7 +1,7 @@
 <template name="ChatListItem">
-  <div class="thread-icon">
-    {{> avatar user=chat shape="circle" class="img-circle" size="medium"}}
-    {{#unless read}}<span class="unread"></span>{{/unless}}
+  <div class="thread-icon {{#unless read}}unread{{/unless}}">
+    {{> avatar user=chat shape="circle" class="" size="medium"}}
+    <span class="red-point"></span>
   </div>
   <div class="thread-title">
     <small class="pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
@@ -16,7 +16,7 @@
 
 <template name="SimpleChatListItem">
   <div class="thread-icon">
-    {{> avatar user=chat shape="circle" class="img-circle" size="medium"}}
+    {{> avatar user=chat shape="circle" class="" size="medium"}}
   </div>
   <div class="thread-title">
     <div class="thread-subject text-ellipsis">{{threadTitle this}}</div>
@@ -34,7 +34,7 @@
     <div class="flat-panel-body no-padding">
       <ul class="list-group members-list">
         {{#with chat}}
-          {{#LinkToUser user=this class="list-group-item members-item clearfix"}}
+          {{#LinkToCardModal user=this class="list-group-item members-item clearfix"}}
             <span class="pull-left">
               {{> avatar user=this shape="circle" class="img-circle pull-left" size="small"}}
             </span>
@@ -42,7 +42,7 @@
               <strong class="name">{{name}}</strong> <span>{{title}}</span>
               <div class="text-muted text-ellipsis">{{email}}</div>
             </div>
-          {{/LinkToUser}}
+          {{/LinkToCardModal}}
         {{/with}}
         {{> LinkToCreateGroup}}
       </ul>

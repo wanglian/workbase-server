@@ -1,7 +1,7 @@
 Meteor.startup(function() {
   Avatar.setOptions({
     // defaultImageUrl: ""
-    // generateCSS: false,
+    generateCSS: false,
     imageSizes: {
       'profile': 180,
       'xlarge': 90,
@@ -11,7 +11,11 @@ Meteor.startup(function() {
       'small': 35,
       'tiny': 30,
     },
-    customImageProperty: function() {
+    backgroundColor: "#FFF",
+    textColor(user) {
+      return "#777";
+    },
+    customImageProperty() {
       return this.profile && this.profile.avatar;
     }
   });

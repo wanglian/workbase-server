@@ -24,9 +24,9 @@
 
 <template name="SharedMessage">
   <div class="message">
-    {{#LinkToUser user=user}}
+    {{#LinkToCardModal user=user}}
       {{> avatar user=user shape="circle" class="img-circle pull-left" size="small"}}
-    {{/LinkToUser}}
+    {{/LinkToCardModal}}
     <div class="message-body">
       <div class="title">
         <div class="name">{{user.name}}</div>

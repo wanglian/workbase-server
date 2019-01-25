@@ -2,6 +2,7 @@
   height: 50px;
   width: 50px;
   position: relative;
+  border: 1px solid #777;
 }
 .avatar .avatar-image,
 .avatar .avatar-initials {
@@ -18,7 +19,7 @@
 .avatar .avatar-initials {
   display: block;
   background-size: 100% 100%;
-  background-color: #aaa;
+  background-color: #f39c12;
   color: #fff;
   font-size: 25px;
   line-height: 50px;
@@ -44,7 +45,7 @@
 .avatar-profile .avatar-initials {font-size: 90px; line-height: 180px;}
 .avatar-xlarge {width: 90px; min-width: 90px; height: 90px;}
 .avatar-xlarge .avatar-initials {font-size: 45px; line-height: 90px;}
-.avatar-large {width: 65px; min-width: 65px; height: 65px;}
+.avatar-large {width: 65px; min-width: 65px; height: 65px; border: none;}
 .avatar-large .avatar-initials {font-size: 32.5px; line-height: 65px;}
 .avatar-medium {width: 40px; min-width: 40px; height: 40px;}
 .avatar-medium .avatar-initials {font-size: 20px; line-height: 40px;}

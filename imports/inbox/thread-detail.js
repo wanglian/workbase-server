@@ -55,6 +55,7 @@ Template.ThreadMembers.helpers({
 Template.ThreadMembers.events({
   "click .btn-remove-member"(e, t) {
     e.preventDefault();
+    e.stopPropagation();
 
     let userType = $(e.target).data("type");
     let userId = $(e.target).data("id");

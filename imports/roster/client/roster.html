@@ -44,7 +44,7 @@
     {{#each users}}
       <a href="{{rosterPath}}" class="list-group-item clearfix thread" id="{{_id}}">
         <div class="thread-icon">
-          {{> avatar user=this shape="circle" class="img-circle" size="small"}}
+          {{> avatar user=this shape="circle" class="" size="small"}}
         </div>
         <div class="thread-title">
           <small class="pull-right text-muted">&nbsp;{{title}}</small>
@@ -122,6 +122,6 @@
   <a href="#" class="btn btn-primary btn-block" id="btn-chat">{{_ "Send Messages"}}</a>
 </template>
 
-<template name="LinkToUser">
-  <a href="#" class="btn-user {{class}}">{{> UI.contentBlock}}</a>
+<template name="LinkToCardModal">
+  <a href="#" class="btn-show-card {{class}}">{{> UI.contentBlock}}</a>
 </template>
