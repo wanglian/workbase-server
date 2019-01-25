@@ -57,16 +57,23 @@ Meteor.methods({
     check(email, String);
     check(password, String);
 
-    Users.remove({});
-    let adminId = Accounts.createUser({
-      email,
-      password,
-      profile: {
-        type: 'Users',
-        name,
-        title: 'Admin',
-        role: 'admin'}
-    });
+    let user = Accounts.findUserByEmail(email);
+    let adminId;
+    if (user) {
+      adminId = user._id;
+      Accounts.setPassword(adminId, password);
+      Users.update(adminId, {$set: {"profile.name": name}});
+    } else {
+      adminId = Accounts.createUser({
+        email,
+        password,
+        profile: {
+          type: 'Users',
+          name,
+          title: 'Admin',
+          role: 'admin'}
+      });
+    }
 
     Instance.update({}, {$set: {adminId}});
 
