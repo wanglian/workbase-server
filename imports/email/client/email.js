@@ -37,3 +37,11 @@ Template.EmailContent.onRendered(function() {
     }
   });
 });
+
+Template.EmailInfo.events({
+  "click .btn-resend-email"(e, t) {
+    e.preventDefault();
+    e.stopPropagation();
+    Meteor.call("resendEmail", t.data._id);
+  }
+});

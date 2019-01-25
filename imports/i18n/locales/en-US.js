@@ -36,6 +36,9 @@ export const locale_en_us = {
   "Message Edited By and When": "Edited by {{user}} at {{time}}",
   "Confirm revoke message": "Confirm revoking this message?",
   "Can not revoke message": "Can not revoke after 2 minutes!",
+  // email
+  "Email failed": "Failed",
+  "Email sending": "Sending",
   // profile
   "Work Title'": "Role",
   // user

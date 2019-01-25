@@ -5,6 +5,22 @@
   <iframe frameborder="0" src="about:blank"></iframe>
 </template>
 
+<template name="EmailInfo">
+  {{#with email}}
+    {{#if compare state '===' 'failed'}}
+      <i class="fa fa-warning text-red"></i> {{_ "Email failed"}}
+      <a href="#" class="btn-resend-email">{{_ "Resend"}}</a>
+    {{/if}}
+    {{#if compare state '===' 'sending'}}
+      <i class="fa fa-spinner fa-spin"></i> {{_ "Email sending"}}
+    {{else}}
+      {{#if subject}}<div>{{_ 'mail subject'}}: {{subject}}</div>{{/if}}
+      {{#if to}}<div>{{_ 'mail to'}}: {{to}}</div>{{/if}}
+      {{#if cc}}<div>{{_ 'mail cc'}}: {{cc}}</div>{{/if}}
+    {{/if}}
+  {{/with}}
+</template>
+
 <template name="ThreadDetailEmail">
   <div class="panel flat-panel thread-detail">
     <div class="flat-panel-heading">

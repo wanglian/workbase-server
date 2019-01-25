@@ -33,7 +33,7 @@
 .messages .fold.message:hover .message-header {
   border-color: rgba(249,249,249, 1);
 }
-.messages .fold.message .message-header .email,
+.messages .fold.message .message-header .meta-info,
 .messages .fold.message .message-content {
   display: none;
 }

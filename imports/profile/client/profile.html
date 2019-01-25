@@ -36,6 +36,8 @@
             {{> afQuickField name="skin" defaultValue="blue" firstOption=false}}
             {{> afQuickField name="message"}}
             {{> afQuickField name="signature" defaultValue=defaultSignature}}
+
+            {{#markdown}}> {{{signature}}}{{/markdown}}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>

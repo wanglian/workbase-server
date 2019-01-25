@@ -2,7 +2,7 @@ import './roster.html';
 
 Template.Roster.helpers({
   cardTemplate() {
-    return this.user.external() ? 'ContactCard' : 'RosterCard';
+    return this.type === 'Contacts' ? 'ContactCard' : 'RosterCard';
   }
 });
 
@@ -33,11 +33,11 @@ Template.RosterHeader.events({
   }
 });
 
-Template.RosterCard.events({
+Template.LinkToChat.events({
   "click #btn-chat"(e, t) {
     e.preventDefault();
 
-    Meteor.call('startChat', t.data._id, (err, res) => {
+    Meteor.call('startChat', this._id, (err, res) => {
       if (err) {
         console.log(err);
       } else {

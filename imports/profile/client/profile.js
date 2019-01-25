@@ -62,6 +62,10 @@ Template.ProfilePanel.events({
   }
 });
 
+Template.ProfileModal.onCreated(function() {
+  this.signature = new ReactiveVar(Meteor.user().signature());
+});
+
 Template.ProfileModal.onRendered(function() {
   autosize($('form textarea'));
 });
@@ -74,12 +78,18 @@ Template.ProfileModal.helpers({
     return FORM_SCHEMA;
   },
   defaultSignature() {
-    let user = Meteor.user();
-    return user.name() + '\r\n' + user.email();
+    return Meteor.user().signature();
+  },
+  signature() {
+    return Template.instance().signature.get();
   }
 });
 
 Template.ProfileModal.events({
+  "keyup form textarea[name=signature]"(e, t) {
+    console.log("ddd");
+    t.signature.set($(e.target).val());
+  },
   "change form select[name=language]"(e, t) {
     e.preventDefault();
     Meteor.call('updateProfile', {language: $(e.target).val()}, (err, res) => {

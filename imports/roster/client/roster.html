@@ -84,7 +84,7 @@
       </div>
     </div>
 
-    <a href="#" class="btn btn-primary btn-block" id="btn-chat">{{_ "Send Messages"}}</a>
+    {{> LinkToChat this}}
   </div>
 </template>
 
@@ -107,9 +107,13 @@
     </div>
 
     {{#unless noreply}}
-      <a href="#" class="btn btn-primary btn-block" id="btn-chat">{{_ "Send Messages"}}</a>
+      {{> LinkToChat this}}
     {{/unless}}
   </div>
+</template>
+
+<template name="LinkToChat">
+  <a href="#" class="btn btn-primary btn-block" id="btn-chat">{{_ "Send Messages"}}</a>
 </template>
 
 <template name="LinkToUser">

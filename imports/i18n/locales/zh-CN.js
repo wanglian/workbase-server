@@ -102,6 +102,10 @@ export const locale_zh_cn = {
   "Revoke": "撤回",
   "Confirm revoke message": "是否撤回该条消息?",
   "Can not revoke message": "消息发出两分钟后不能撤回!",
+  // email
+  "Email failed": "发送失败",
+  "Resend": "重发",
+  "Email sending": "正在发送",
   // user
   "External Users": "外部联系人",
   "Users Management": "用户管理",

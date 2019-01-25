@@ -1,13 +1,7 @@
 const request = require('request');
 const MailgunClient = require('mailgun-js');
-
-const signature = (user, content, contentType) => {
-  let signature = user.signature();
-  if (contentType != 'text') {
-    signature = Markdown(signature);
-  }
-  return content + '\r\n\r\n' + signature;
-};
+const moment = require('moment');
+const he = require('he');
 
 Mailgun = {
   setup() {
@@ -52,7 +46,27 @@ const buildSubject = (thread, message) => {
   }
   return subject;
 };
+const buildHTMLContent = (message) => {
+  let content = Markdown(message.content);
+  let type = 'html';
+
+  switch(message.contentType) {
+  case 'image':
+    let image = message.image;
+    content = content + `<br/><img src="cid:${image.name}.${image.extension}"/>`;
+  default:
+    let p = message.parent();
+    if (p) {
+      content = content + `<br/>${moment(message.createdAt).format('YYYY-MM-DD HH:mm')}, ${he.encode(p.user().address())}: <blockquote style="padding:0 10px;margin:0;border-left:2px solid #ddd;">${p.content}</blockquote>`;
+    }
+  }
+
+  let user = message.user();
+  return content + '<br/><br/>' + Markdown(user.signature());
+};
 Mailgun.send = (message) => {
+  Messages.update(message._id, {$set: {"email.state": 'sending'}});
+
   let threadId = message.threadId;
   let thread = Threads.findOne(threadId);
   let contacts = thread.externalMembers();
@@ -72,20 +86,20 @@ Mailgun.send = (message) => {
       let image = message.image();
       _.extend(params, {
         text: message.content,
-        html: signature(user, `${Markdown(message.content)} <br/><img src="cid:${image.name}.${image.extension}"/>`, 'image'),
+        html: buildHTMLContent(message),
         inline: buildMailgunAttachment(image),
         'v:MessageType': 'image'
       });
       break;
     case 'html':
       _.extend(params, {
-        html: signature(user, Markdown(message.content), 'html')
+        html: buildHTMLContent(message)
       });
       break;
     default:
       _.extend(params, {
         text: message.content,
-        html: signature(user, Markdown(message.content), 'html'),
+        html: buildHTMLContent(message),
         'v:MessageType': 'text'
       });
     }
@@ -111,12 +125,16 @@ Mailgun.send = (message) => {
     console.log(params);
     Mailgun.client.messages().send(params, Meteor.bindEnvironment((err, result) => {
       if (err) {
+        Messages.update(message._id, {$set: {
+          "email.state": 'failed'
+        }});
         throw new Error(err);
       } else {
         console.log(result);
         Messages.update(message._id, {$set: {
           internal:        false,
           emailId:         result["id"],
+          "email.state":   "ok",
           "email.subject": params.subject,
           "email.from":    params.from,
           "email.to":      params.to.join(", ")

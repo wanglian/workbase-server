@@ -20,18 +20,23 @@ Meteor.methods({
       });
       return threadId;
     }
+  },
+  resendEmail(messageId) {
+    check(messageId, String);
+    let message = Messages.findOne(messageId);
+    sendEmail(message);
   }
 });
 
-Messages.after.insert(function(userId, doc) {
+const sendEmail = (message) => {
   // 忽略：内部消息和来自外部的消息
-  if (doc.userType === 'Contacts' || doc.internal) return;
+  if (message.userType === 'Contacts' || message.internal) return;
   // 忽略：日志
-  if (doc.contentType === 'log') return;
+  if (message.contentType === 'log') return;
 
   new Promise((resolve, reject) => {
     try {
-      Mailgun.send(this.transform());
+      Mailgun.send(message);
       resolve();
     } catch (e) {
       reject(e);
@@ -40,4 +45,8 @@ Messages.after.insert(function(userId, doc) {
     console.log("[mailgun] send error:");
     console.log(e);
   });
+};
+
+Messages.after.insert(function(userId, doc) {
+  sendEmail(this.transform());
 });
