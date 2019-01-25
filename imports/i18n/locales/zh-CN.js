@@ -137,7 +137,7 @@ export const locale_zh_cn = {
   "Created by and when": "{{name}} 创建于 {{time}}",
   "Sent by and when": "{{name}} 发送于 {{time}}",
   "mail subject": "主题",
-  "mail to": "发送",
+  "mail to": "收件人",
   "mail cc": "抄送",
   "Message from": "来自 {{user}} 的消息",
   "Copy": "复制消息",

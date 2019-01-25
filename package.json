@@ -22,7 +22,6 @@
     "fs-extra": "^7.0.1",
     "gm": "^1.23.1",
     "gridfs-stream": "^1.1.1",
-    "he": "^1.2.0",
     "i18next": "^12.1.0",
     "i18next-browser-languagedetector": "^2.2.4",
     "lodash": "^4.17.11",

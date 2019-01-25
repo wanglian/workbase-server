@@ -1,7 +1,6 @@
 const request = require('request');
 const MailgunClient = require('mailgun-js');
 const moment = require('moment');
-const he = require('he');
 
 Mailgun = {
   setup() {
@@ -46,6 +45,14 @@ const buildSubject = (thread, message) => {
   }
   return subject;
 };
+const buildTextContent = (message) => {
+  let content = message.content;
+  let p = message.parent();
+  if (p) {
+    content = content + `\r\n\r\n> ${moment(message.createdAt).format('YYYY-MM-DD HH:mm')}, ${_.escape(p.user().address())}: \r\n` + p.summary.replace(/^\s*[\r\n]/gm, ' ');
+  }
+  return content;
+};
 const buildHTMLContent = (message) => {
   let content = Markdown(message.content);
   let type = 'html';
@@ -57,7 +64,7 @@ const buildHTMLContent = (message) => {
   default:
     let p = message.parent();
     if (p) {
-      content = content + `<br/>${moment(message.createdAt).format('YYYY-MM-DD HH:mm')}, ${he.encode(p.user().address())}: <blockquote style="padding:0 10px;margin:0;border-left:2px solid #ddd;">${p.content}</blockquote>`;
+      content = content + `<br/>${moment(message.createdAt).format('YYYY-MM-DD HH:mm')}, ${_.escape(p.user().address())}: <blockquote style="padding:0 10px;margin:0;border-left:2px solid #ddd;">${p.content}</blockquote>`;
     }
   }
 
@@ -98,7 +105,7 @@ Mailgun.send = (message) => {
       break;
     default:
       _.extend(params, {
-        text: message.content,
+        text: buildTextContent(message),
         html: buildHTMLContent(message),
         'v:MessageType': 'text'
       });

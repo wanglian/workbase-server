@@ -18,15 +18,21 @@
 </template>
 
 <template name="RosterMenu">
-  <p class="navbar-text pull-left menu-title">{{_ 'Contacts'}}</p>
+  <p class="navbar-text pull-left menu-title">
+    {{#if compare type '===' 'Contacts'}}
+      {{_ "External Users"}}
+    {{else}}
+      {{_ "Users"}}
+    {{/if}}
+  </p>
 
   <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
       <li>
         {{#if compare type '===' 'Contacts'}}
-          <a href="/roster/users" id="btn-toggle-contacts">{{_ "Users"}}</a>
+          <a href="/roster/users" id="btn-toggle-contacts">{{_ "Users"}} <i class="fa fa-chevron-right"></i></a>
         {{else}}
-          <a href="/roster/external" id="btn-toggle-contacts">{{_ "External Users"}}</a>
+          <a href="/roster/external" id="btn-toggle-contacts">{{_ "External Users"}} <i class="fa fa-chevron-right"></i></a>
         {{/if}}
       </li>
     </ul>
