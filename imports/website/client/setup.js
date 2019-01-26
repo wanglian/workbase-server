@@ -4,10 +4,6 @@ import './setup.css';
 import SimpleSchema from 'simpl-schema';
 import Swal from 'sweetalert2';
 
-Template.Setup.onRendered(function() {
-  this.subscribe("setup");
-});
-
 Template.Setup.events({
   "click .setup-panel a"(e, t) {
     e.preventDefault();

@@ -2,8 +2,8 @@ Template.registerHelper('company', function() {
   return Instance.company();
 });
 
-Template.registerHelper('countUnread', function() {
-  return Counts.get('count-unread-inbox');
+Template.registerHelper('count', function(name) {
+  return Counts.get(`count-${name}`);
 });
 
 Template.registerHelper('countUnreadChannel', function(channel) {

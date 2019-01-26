@@ -12,7 +12,7 @@
         <span class="logo-lg">
           <!-- <img src="/images/logo.png" class="img-responsive"/> -->
           <b>W</b>ork<b>B</b>ase
-          {{#if countUnread}}<span class="visible-xs-inline">({{countUnread}})</span>{{/if}}
+          {{#if (count 'unread-inbox')}}<span class="visible-xs-inline">({{count 'unread-inbox'}})</span>{{/if}}
         </span>
       </a>
       <nav class="navbar navbar-static-top">
@@ -48,13 +48,14 @@
           <li class="{{#if inRouter 'inbox'}}active{{/if}}">
             <a href="/inbox">
               <i class="fa fa-inbox"></i> <span>{{_ 'Inbox'}}</span>
-              {{#if countUnread}}
+              {{#if (count 'unread-inbox')}}
                 <span class="pull-right-container">
-                  <span class="label label-danger pull-right">{{countUnread}}</span>
+                  <span class="label label-danger pull-right">{{count 'unread-inbox'}}</span>
                 </span>
               {{/if}}
             </a>
           </li>
+          {{> StarMenuItem}}
           {{> RosterMenuItem}}
           {{> FilesMenuItem}}
           {{> ChannelMenuItems}}

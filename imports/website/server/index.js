@@ -81,7 +81,6 @@ Meteor.methods({
   }
 });
 
-Meteor.publish("setup", function() {
-  if (Users.find().count() > 0) return this.ready();
+Meteor.publish("site", function() {
   return Instance.find();
 });

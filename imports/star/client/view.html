@@ -1,0 +1,40 @@
+<template name="Star">
+  {{#contentFor "menu"}}
+    {{> StarMenu}}
+  {{/contentFor}}
+
+  {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}
+    {{> ThreadList}}
+
+    {{> contentFor region="header" template="ThreadHeader" data=thread}}
+    {{> contentFor region="right" template="Thread" data=thread}}
+    {{#if hasSidebar}}
+      {{> contentFor region="sidebar" template="ThreadDetail" data=thread}}
+    {{/if}}
+  {{/Layout}}
+</template>
+
+<template name="StarMenu">
+  <p class="navbar-text pull-left menu-title">{{_ 'Star'}}</p>
+
+  <div class="navbar-custom-menu">
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="#" id="btn-send-email">
+          <i class="fa fa-send" data-toggle="tooltip" data-placement="left" title="{{_ 'Compose'}}"></i>
+          <span class="hidden-xs">{{_ 'Compose'}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<template name="StarMenuItem">
+  {{#if (count 'star')}}
+    <li class="{{#if inRouter 'star'}}active{{/if}}">
+      <a href="/star">
+        <i class="fa fa-star text-yellow"></i> <span>{{_ 'Star'}}</span>
+      </a>
+    </li>
+  {{/if}}
+</template>

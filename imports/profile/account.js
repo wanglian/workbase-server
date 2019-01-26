@@ -25,8 +25,7 @@ ThreadCategories.add("Account", {
       {
         title: I18n.t('Sign out'),
         icon: "fa fa-sign-out",
-        action(e) {
-          e.preventDefault();
+        action() {
           Meteor.logout();
         }
       }

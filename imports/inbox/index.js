@@ -11,21 +11,10 @@ import './thread-list';
 import './message-form';
 import './style.css';
 
-const InboxSubs = new SubsManager({
-  cacheLimit: 10,
-  expireIn: 60
-});
-
-InboxController = ApplicationController.extend({
-  template: 'Inbox',
+BoxController = ApplicationController.extend({
   perPage: 25,
   subscriptions() {
-    this.threadsSub = InboxSubs.subscribe("threads", {limit: this.limit()});
-    let threadId = this.threadId();
-    if (threadId) {
-      InboxSubs.subscribe("thread", threadId);
-      InboxSubs.subscribe("thread.files.pending", threadId);
-    }
+    // to be implemented
   },
   limit() {
     return parseInt(this.params.query.limit) || this.perPage;
@@ -37,20 +26,49 @@ InboxController = ApplicationController.extend({
     let threadId = this.threadId();
     return threadId && Threads.findOne(threadId);
   },
+  threads() {
+    // to be implemented
+  },
+  nextPath() {
+    // to be implemented
+  },
   data() {
-    let query = _.clone(this.params.query);
-    _.extend(query, {limit: this.limit() + this.perPage});
-    let nextPath = this.route.path(this.params, {query});
-    let hasMore = Counts.get('threads') > this.limit();
-    let thread = this.thread();
     return {
-      threads:    Threads.find({scope: 'private', archive: {$ne: true}}, {sort: {updatedAt: -1}}),
-      thread,
-      ready:      this.threadsSub.ready(),
-      nextPath:   hasMore ? nextPath : null,
-      hasRight:   !!thread,
-      hasSidebar: !!thread && thread.showDetails && !!this.params.query.detail
+      threads:    this.threads(),
+      thread:     this.thread(),
+      ready:      this.sub.ready(),
+      nextPath:   this.nextPath(),
+      hasRight:   !!this.threadId(),
+      hasSidebar: !!this.params.query.detail
     };
+  }
+});
+
+const InboxSubs = new SubsManager({
+  cacheLimit: 10,
+  expireIn: 60
+});
+
+InboxController = BoxController.extend({
+  template: 'Inbox',
+  subscriptions() {
+    this.sub = InboxSubs.subscribe("threads", {limit: this.limit()});
+    let threadId = this.threadId();
+    if (threadId) {
+      InboxSubs.subscribe("thread", threadId);
+      InboxSubs.subscribe("thread.files.pending", threadId);
+    }
+  },
+  threads() {
+    return Threads.find({scope: 'private', archive: {$ne: true}}, {sort: {updatedAt: -1}});
+  },
+  nextPath() {
+    let count = Counts.get('threads');
+    if (count > this.limit()) {
+      let query = _.clone(this.params.query);
+      _.extend(query, {limit: this.limit() + this.perPage});
+      return this.route.path(this.params, {query});
+    }
   }
 });
 

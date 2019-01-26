@@ -8,6 +8,7 @@ import '/imports/email/server';
 import '/imports/website/server';
 import '/imports/mailgun/server';
 import '/imports/profile/server';
+import '/imports/star/server';
 // modules
 import '/imports/channel/server';
 import '/imports/roster/server';

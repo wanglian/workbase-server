@@ -6,7 +6,7 @@ import './layout';
 Router.configure({
   layoutTemplate: 'DefaultLayout',
   waitOn: function() {
-    return Meteor.subscribe('instance');
+    return Meteor.subscribe('site');
   }
 });
 
