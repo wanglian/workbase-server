@@ -6,7 +6,7 @@ Meteor.publishComposite("threads.star", function(options) {
     limit: Match.Maybe(Number)
   }));
 
-  let conditions = {star: true, userType: 'Users', userId: this.userId, archive: false};
+  let conditions = {star: true, userType: 'Users', userId: this.userId};
   let limit = options && options.limit || MIN_THREADS;
   return {
     find() {

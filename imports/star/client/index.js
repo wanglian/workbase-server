@@ -16,7 +16,7 @@ StarController = BoxController.extend({
     }
   },
   threads() {
-    return Threads.find({star: true, archive: false}, {sort: {updatedAt: -1}});
+    return Threads.find({star: true}, {sort: {updatedAt: -1}});
   },
   nextPath() {
     let count = Counts.get('count-star');
