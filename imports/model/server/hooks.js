@@ -5,8 +5,10 @@ Threads.before.insert(function(userId, doc) {
 });
 
 Threads.before.update(function(userId, doc, fieldNames, modifier, options) {
-  modifier.$set = modifier.$set || {};
-  modifier.$set.updatedAt = new Date();
+  if (_.includes(fieldNames, 'lastMessageId')) {
+    modifier.$set = modifier.$set || {};
+    modifier.$set.updatedAt = new Date();
+  }
 });
 
 ThreadUsers.before.insert(function(userId, doc) {

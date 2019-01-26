@@ -9,7 +9,7 @@
 // - userId: created by
 // - lastMessageId
 // - createdAt
-// - updatedAt
+// - updatedAt: lastMessageAt
 Threads = new Mongo.Collection('threads');
 
 Threads.helpers({
