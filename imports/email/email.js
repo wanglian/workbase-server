@@ -6,9 +6,11 @@ ThreadCategories.add("Email", {
     return [
       {
         title: I18n.t('Star'),
-        icon: "fa fa-star",
-        action() {
-          
+        icon(thread) {
+          return thread.star ? "fa fa-star text-yellow" : "fa fa-star-o";
+        },
+        action(thread) {
+          toggleStarThread.call({threadId: thread._id});
         }
       },
       {
@@ -20,8 +22,10 @@ ThreadCategories.add("Email", {
         },
         action(thread) {
           toggleArchiveThread.call({threadId: thread._id});
-          let router = Router.current();
-          Router.go(router.route.getName(), {}, {query: router.params.query});
+          if (!thread.archive) { // 修改前状态
+            let router = Router.current();
+            Router.go(router.route.getName(), {}, {query: router.params.query});
+          }
         }
       }
     ]

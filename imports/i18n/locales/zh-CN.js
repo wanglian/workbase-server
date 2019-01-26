@@ -159,6 +159,9 @@ export const locale_zh_cn = {
   "add_thread_member": "添加成员: {{emails}}",
   "add_thread_member_plural": "添加成员: {{emails}}",
   "remove_thread_member": "删除成员: {{email}}",
+  "Archive": "归档",
+  "Cancel Archive": "取消归档",
+  "Star": "重要",
   // paginate
   "Load More": "查看更多",
   // log

@@ -55,6 +55,7 @@ Meteor.publishComposite("threads", function(options) {
             transform: (doc) => {
               doc.read = tu.read;
               doc.archive = tu.archive;
+              doc.star = tu.star;
               doc.params = tu.params;
               return doc;
             }
@@ -89,6 +90,7 @@ Meteor.publishComposite("thread", function(threadId) {
         transform: (doc) => {
           doc.read = tu.read;
           doc.archive = tu.archive;
+          doc.star = tu.star;
           doc.params = tu.params;
           return doc;
         }

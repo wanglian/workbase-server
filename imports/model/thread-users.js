@@ -6,6 +6,7 @@
 // - role: owner, member(default)
 // - read
 // - archive
+// - star
 // - createdAt
 // - updatedAt
 // - params: extension
