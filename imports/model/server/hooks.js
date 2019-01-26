@@ -43,5 +43,7 @@ Messages.before.insert(function(userId, doc) {
 });
 
 Messages.before.update(function(userId, doc, fieldNames, modifier, options) {
-  modifier.$set.updatedAt = new Date();
+  if (_.includes(fieldNames, 'content')) {
+    modifier.$set.updatedAt = new Date();
+  }
 });

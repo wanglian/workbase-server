@@ -53,7 +53,7 @@ Template.SharedMessage.helpers({
 Template.SharedMessage.events({
   "click .btn-like"(e, t) {
     e.preventDefault();
-    Meteor.call("toggleLikeMessage", this._id);
+    toggleLikeMessage.call({messageId: this._id});
   },
   "click .btn-comment"(e, t) {
     e.preventDefault();
