@@ -84,7 +84,7 @@ Contacts.findOrCreateByAddress = (attrs) => {
     return contact;
   } else {
     if (!contact) {
-      let noreply = !!email.match(/noreply|no_reply|no-reply|do-not-reply|do_not_reply/i);
+      let noreply = !!email.match(/noreply|no_reply|no-reply|do-not-reply|do_not_reply|donotreply/i);
       let contactId = Accounts.createUser({
         email,
         profile: {
