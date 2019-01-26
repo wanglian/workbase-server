@@ -30,6 +30,10 @@ MailgunEmails.create = (params) => {
 const isOneToOne = (to, toUsers, ccUsers) => {
   let users = _.compact(_.concat([to], toUsers, ccUsers));
   let userIds = _.uniq(users.map(u => u._id));
+  if (userIds.length === 2) {
+    // bcc/forward
+    if (toUsers && toUsers.length === 1) return true;
+  }
   return userIds.length === 1;
 };
 
@@ -76,10 +80,11 @@ MailgunEmails.parseEmail = async (doc) => {
   }
   let toUsers = Contacts.parse(to);
   let ccUsers = cc && Contacts.parse(cc);
+  let is121 = isOneToOne(toUser, toUsers, ccUsers);
   if (!threadId) {
     // 单人邮件聚合到Chat: 这个规则是否合理
-    if (isOneToOne(toUser, toUsers, ccUsers)) {
-      let tu = ThreadUsers.findOne({userType: 'Users', userId: to._id, "params.chat": fromUser._id});
+    if (is121) {
+      let tu = ThreadUsers.findOne({userType: 'Users', userId: toUser._id, "params.chat": fromUser._id});
       threadId = tu && tu.threadId;
     }
   }
@@ -89,8 +94,10 @@ MailgunEmails.parseEmail = async (doc) => {
   let thread = Threads.findOne(threadId);
   Threads.ensureMember(thread, fromUser);
   Threads.ensureMember(thread, toUser);
-  toUsers && toUsers.forEach(user => Threads.ensureMember(thread, user));
-  ccUsers && ccUsers.forEach(user => Threads.ensureMember(thread, user));
+  if (!is121) {
+    toUsers && toUsers.forEach(user => Threads.ensureMember(thread, user));
+    ccUsers && ccUsers.forEach(user => Threads.ensureMember(thread, user));
+  }
 
   let content = bodyHtml;
   let contentType = 'html';
