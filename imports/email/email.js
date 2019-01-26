@@ -21,8 +21,8 @@ ThreadCategories.add("Email", {
           return thread.archive ? "" : "fa fa-archive";
         },
         action(thread) {
-          toggleArchiveThread.call({threadId: thread._id});
-          if (!thread.archive) { // 修改前状态
+          let count = toggleArchiveThread.call({threadId: thread._id});
+          if (count === 1 && !thread.archive) { // 修改前状态
             let router = Router.current();
             Router.go(router.route.getName(), {}, {query: router.params.query});
           }

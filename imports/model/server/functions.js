@@ -36,6 +36,10 @@ Threads.ensureMember = (thread, user, params) => {
       role,
       params
     });
+  } else {
+    if (threadUser.archive) {
+      ThreadUsers.update(threadUser._id, {$set: {archive: false}});
+    }
   }
 };
 

@@ -6,7 +6,6 @@ Threads.before.insert(function(userId, doc) {
 
 Threads.before.update(function(userId, doc, fieldNames, modifier, options) {
   if (_.includes(fieldNames, 'lastMessageId')) {
-    modifier.$set = modifier.$set || {};
     modifier.$set.updatedAt = new Date();
   }
 });
@@ -14,11 +13,15 @@ Threads.before.update(function(userId, doc, fieldNames, modifier, options) {
 ThreadUsers.before.insert(function(userId, doc) {
   doc.createdAt = new Date();
   doc.updatedAt = new Date();
+  doc.star      = false;
+  doc.archive   = false;
 });
 
 ThreadUsers.before.update(function(userId, doc, fieldNames, modifier, options) {
-  modifier.$set = modifier.$set || {};
-  modifier.$set.updatedAt = new Date();
+  if (_.includes(fieldNames, 'lastMessageId')) {
+    modifier.$set = modifier.$set || {};
+    modifier.$set.updatedAt = new Date();
+  }
 });
 
 const sanitizeHtml = require('sanitize-html');

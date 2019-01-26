@@ -83,31 +83,28 @@ Meteor.publishComposite("threads", function(options) {
 Meteor.publishComposite("thread", function(threadId) {
   check(threadId, String);
 
-  let tu = ThreadUsers.findOne({threadId, userType: 'Users', userId: this.userId});
   return {
     find() {
-      return Threads.find({_id: threadId}, {
-        transform: (doc) => {
-          doc.read = tu.read;
-          doc.archive = tu.archive;
-          doc.star = tu.star;
-          doc.params = tu.params;
-          return doc;
-        }
-      });
+      return ThreadUsers.find({threadId, userType: 'Users', userId: this.userId});
     },
     children: [
       {
-        find(thread) {
-          return ThreadUsers.find({threadId}, {fields: {read: 0}});
-        },
-        children: [
-          {
-            find(threadUser) {
-              return Users.find({_id: threadUser.userId}, {fields: {emails: 1, profile: 1}});
+        find(tu) {
+          return Threads.find({_id: threadId}, {
+            transform: (doc) => {
+              doc.read = tu.read;
+              doc.archive = tu.archive;
+              doc.star = tu.star;
+              doc.params = tu.params;
+              return doc;
             }
-          }
-        ]
+          });
+        }
+      },
+      {
+        find(tu) {
+          return ThreadUsers.find({threadId}, {fields: {read: 0}});
+        }
       }
     ]
   };

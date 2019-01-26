@@ -80,6 +80,8 @@ Meteor.publishComposite("channel.threads", function(channel, options) {
           return Threads.find({_id: tu.threadId}, {
             transform: (doc) => {
               doc.read = tu.read;
+              doc.archive = tu.archive;
+              doc.star = tu.star;
               doc.channelId = channel;
               doc.params = tu.params;
               return doc;
