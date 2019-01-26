@@ -70,6 +70,7 @@ lmieulet:meteor-coverage@1.1.4
 localstorage@1.2.0
 logging@1.1.20
 matb33:collection-hooks@0.8.4
+mdg:validated-method@1.2.0
 meteor@1.9.2
 meteor-base@1.4.0
 meteorhacks:inject-initial@1.0.4

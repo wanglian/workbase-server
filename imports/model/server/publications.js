@@ -30,7 +30,7 @@ Meteor.publishComposite("threads", function(options) {
     limit: Match.Maybe(Number)
   }));
 
-  let conditions = {scope: 'private', userType: 'Users', userId: this.userId};
+  let conditions = {scope: 'private', userType: 'Users', userId: this.userId, archive: {$ne: true}};
   let category = options && options.category;
   if (category) {
     _.extend(conditions, {category});
@@ -54,6 +54,7 @@ Meteor.publishComposite("threads", function(options) {
           return Threads.find({_id: tu.threadId}, {
             transform: (doc) => {
               doc.read = tu.read;
+              doc.archive = tu.archive;
               doc.params = tu.params;
               return doc;
             }
@@ -81,9 +82,17 @@ Meteor.publishComposite("threads", function(options) {
 Meteor.publishComposite("thread", function(threadId) {
   check(threadId, String);
 
+  let tu = ThreadUsers.findOne({threadId, userType: 'Users', userId: this.userId});
   return {
     find() {
-      return Threads.find({_id: threadId});
+      return Threads.find({_id: threadId}, {
+        transform: (doc) => {
+          doc.read = tu.read;
+          doc.archive = tu.archive;
+          doc.params = tu.params;
+          return doc;
+        }
+      });
     },
     children: [
       {

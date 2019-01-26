@@ -44,7 +44,7 @@ InboxController = ApplicationController.extend({
     let hasMore = Counts.get('threads') > this.limit();
     let thread = this.thread();
     return {
-      threads:    Threads.find({scope: 'private'}, {sort: {updatedAt: -1}}),
+      threads:    Threads.find({scope: 'private', archive: {$ne: true}}, {sort: {updatedAt: -1}}),
       thread,
       ready:      this.threadsSub.ready(),
       nextPath:   hasMore ? nextPath : null,

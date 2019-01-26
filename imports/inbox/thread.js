@@ -104,9 +104,26 @@ Template.Thread.events({
   }
 });
 
+Template.ThreadMenu.helpers({
+  menuIcon() {
+    if (typeof(this.icon) === 'function') {
+      let thread = Template.instance().data;
+      return this.icon.apply(this, [thread]);
+    }
+    return this.icon;
+  },
+  menuTitle() {
+    if (typeof(this.title) === 'function') {
+      let thread = Template.instance().data;
+      return this.title.apply(this, [thread]);
+    }
+    return this.title;
+  }
+});
+
 Template.ThreadMenu.events({
   "click .btn-action"(e, t) {
     e.preventDefault();
-    this.action.apply(this, [e]);
+    this.action.apply(this, [t.data]);
   }
 });

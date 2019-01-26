@@ -56,3 +56,4 @@ fileer:size
 meteortesting:mocha
 xolvio:cleaner
 msavin:mongol
+mdg:validated-method

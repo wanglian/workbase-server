@@ -5,6 +5,7 @@
 // - userId
 // - role: owner, member(default)
 // - read
+// - archive
 // - createdAt
 // - updatedAt
 // - params: extension
