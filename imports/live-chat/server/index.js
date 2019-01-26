@@ -30,8 +30,7 @@ Accounts.onLogin(function(attempt) {
 
 // - channel
 // - contact
-// - email Email联系人的原始邮箱信息
-const startLiveChat = (channel, contact, email) => {
+const startLiveChat = (channel, contact) => {
   let tu = ThreadUsers.findOne({userType: 'Contacts', userId: contact._id, "params.chat": channel._id});
 
   let threadId = tu && tu.threadId;
@@ -40,8 +39,8 @@ const startLiveChat = (channel, contact, email) => {
   }
 
   let thread = Threads.findOne(threadId);
-  Threads.ensureMember(thread, contact, {chat: channel._id, email});
-  Threads.ensureMember(thread, channel, {chat: contact._id, email});
+  Threads.ensureMember(thread, contact, {chat: channel._id});
+  Threads.ensureMember(thread, channel, {chat: contact._id});
 
   return thread;
 };

@@ -34,6 +34,6 @@ Messages.before.insert(function(userId, doc) {
 Messages.after.insert(function(userId, doc) {
   let tu = channelReplied(doc);
   if (tu) {
-    ThreadUsers.update(tu._id, {$set: {read: true}});
+    let re = ThreadUsers.update(tu._id, {$set: {read: true}});
   }
 });

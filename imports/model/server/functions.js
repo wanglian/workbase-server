@@ -49,9 +49,20 @@ Threads.addMessage = (thread, user, message) => {
     userType: user.className(),
     userId:   user._id
   }, message));
-  Threads.update(thread._id, {$set: {lastMessageId: mid}});
-  ThreadUsers.update({threadId: thread._id, userId: {$ne: user._id}}, {$set: {read: false}}, {multi: true}); // mark unread
-  ThreadUsers.update({threadId: thread._id, userType: 'Users', userId: user._id}, {$set: {read: true}}); // mark read
+  let t = new Date();
+  Threads.update(thread._id, {$set: {lastMessageId: mid, updatedAt: t}});
+  // mark unread
+  ThreadUsers.update({
+    threadId: thread._id, userType: 'Users', userId: {$ne: user._id}
+  }, {$set: {
+    read: false, updatedAt: t
+  }}, {multi: true});
+  // mark read
+  ThreadUsers.update({
+    threadId: thread._id, userType: 'Users', userId: user._id
+  }, {$set: {
+    read: true, updatedAt: t
+  }});
   return mid;
 };
 

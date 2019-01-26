@@ -34,7 +34,7 @@ ChannelController = BoxController.extend({
       channel:    Users.findOne(channelId),
       threads:    Threads.find({channelId}, {sort: {updatedAt: -1}}),
       thread:     this.thread(),
-      ready:      this.threadsSub.ready(),
+      ready:      this.sub.ready(),
       nextPath:   this.nextPath(),
       hasRight:   !!this.threadId(),
       hasSidebar: !!this.params.query.detail

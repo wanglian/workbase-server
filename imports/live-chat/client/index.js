@@ -1,8 +1,10 @@
 import '../live-chat';
 import './view';
 
-Router.route('/contact', function() {
-  this.render('Contact');
-}, {
-  name: 'contact'
+Router.route('/contact', {
+  name: 'contact',
+  template: 'Contact',
+  waitOn() {
+    return Meteor.subscribe("site");
+  }
 });
