@@ -7,7 +7,9 @@ Template.Shared.onRendered(function() {
   Meteor.setTimeout(() => {
     let shared = ThreadUsers.findOne({category: 'Shared', userType: 'Users', userId: Meteor.userId()});
     if (shared && !shared.read) {
-      Meteor.call("markRead", shared.threadId, (err, res) => {
+      markRead.call({
+        threadId: shared.threadId
+      }, (err, res) => {
         if (err) {
           console.log(err);
         }
@@ -18,7 +20,9 @@ Template.Shared.onRendered(function() {
   $('#inbox-left').on('scroll', (e) => {
     let shared = ThreadUsers.findOne({category: 'Shared', userType: 'Users', userId: Meteor.userId()});
     if (shared && !shared.read) {
-      Meteor.call("markRead", shared.threadId, (err, res) => {
+      markRead.call({
+        threadId: shared.threadId
+      }, (err, res) => {
         if (err) {
           console.log(err);
         }

@@ -49,7 +49,9 @@ Template.Thread.onRendered(function() {
       if (self.timeout) Meteor.clearTimeout(self.timeout);
       self.timeout = Meteor.setTimeout(() => {
         if (!data.read) {
-          Meteor.call("markRead", data._id, (err, res) => {
+          markRead.call({
+            threadId: data._id
+          }, (err, res) => {
             if (err) {
               console.log(err);
             }
@@ -62,7 +64,9 @@ Template.Thread.onRendered(function() {
   // 停留在话题时，滚动页面触发
   $('#inbox-right').on('scroll', (e) => {
     if (!data.read) {
-      Meteor.call("markRead", data._id, (err, res) => {
+      markRead.call({
+        threadId: data._id
+      }, (err, res) => {
         if (err) {
           console.log(err);
         }
