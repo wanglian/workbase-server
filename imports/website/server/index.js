@@ -3,6 +3,7 @@ Meteor.methods({
     check(company, String);
     check(domain, String);
 
+    if (Instance.enabled()) return false;
     let instance = Instance.findOne();
     if (instance) {
       Instance.update({}, {$set: {company, domain}});
@@ -16,6 +17,7 @@ Meteor.methods({
       key: Match.Maybe(String)
     }));
 
+    if (Instance.enabled()) return false;
     switch(type) {
     case 'mailgun':
       Instance.update({}, {$set: {"modules.email": {
@@ -37,6 +39,7 @@ Meteor.methods({
       region: Match.Maybe(String),
     }));
 
+    if (Instance.enabled()) return false;
     switch(type) {
     case 'S3':
       Instance.update({}, {$set: {"modules.storage": {
@@ -57,6 +60,7 @@ Meteor.methods({
     check(email, String);
     check(password, String);
 
+    if (Instance.enabled()) return false;
     let user = Accounts.findUserByEmail(email);
     let adminId;
     if (user) {
