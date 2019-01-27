@@ -1,6 +1,6 @@
 // basic
-import '/imports/startup/client';
 import '/imports/i18n/client';
+import '/imports/startup/client';
 import '/imports/autoform';
 import '/imports/layout';
 import '/imports/files/client';

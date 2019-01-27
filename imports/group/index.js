@@ -19,6 +19,12 @@ ThreadCategories.add("Group", {
       return members.join(', ');
     }
     return thread.subject;
+  },
+  actions() {
+    return [
+      ThreadActions.star,
+      ThreadActions.search
+    ]
   }
 });
 

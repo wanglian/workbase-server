@@ -58,6 +58,7 @@ Threads.helpers({
   }
 });
 
+// === Thread Categories ===
 let categories = {};
 // - icon
 // - iconUnread
@@ -81,3 +82,39 @@ ThreadCategories = {
 LogTypes.add("thread.members.add", { i18nKey: "log_add_thread_members" });
 LogTypes.add("thread.members.remove", { i18nKey: "log_remove_thread_member" });
 LogTypes.add("thread.revoke", { i18nKey: "log_remoke_thread_message" });
+
+// === Thread Actions ===
+ThreadActions = {};
+ThreadActions.star = {
+  title: I18n.t('Star'),
+  icon(thread) {
+    return thread.star ? "fa fa-star text-yellow" : "fa fa-star-o";
+  },
+  action(thread) {
+    toggleStarThread.call({threadId: thread._id});
+  }
+};
+ThreadActions.archive = {
+  title(thread) {
+    return thread.archive ? I18n.t('Cancel Archive') : I18n.t('Archive');
+  },
+  icon(thread) {
+    return thread.archive ? "" : "fa fa-archive";
+  },
+  action(thread) {
+    let count = toggleArchiveThread.call({threadId: thread._id});
+    if (count === 1 && !thread.archive) { // 修改前状态
+      let router = Router.current();
+      Router.go(router.route.getName(), {}, {query: router.params.query});
+    }
+  }
+};
+ThreadActions.search = {
+  title: I18n.t("Search"),
+  icon: "fa fa-search",
+  action(thread) {
+    Modal.show('ThreadSearchModal', thread, {
+      backdrop: 'static'
+    });
+  }
+};

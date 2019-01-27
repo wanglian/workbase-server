@@ -19,5 +19,11 @@ ThreadCategories.add("Chat", {
     //   return chat && chat.name();
     // }
     return chat && chat.name();
+  },
+  actions() {
+    return [
+      ThreadActions.star,
+      ThreadActions.search
+    ]
   }
 });

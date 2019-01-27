@@ -64,6 +64,7 @@ Messages.localizedSummary = (message, lang) => {
   }
 };
 
+// === Message Types ===
 let _messageTypes = {};
 MessageTypes = {
   add(type, defs) {
