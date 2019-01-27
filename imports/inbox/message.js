@@ -135,6 +135,7 @@ Template.MessageActions.events({
     e.stopPropagation();
     Session.set(`message-draft-parent-${t.data.threadId}`, t.data);
     $("form#message-form textarea").focus();
+    $(".modal").modal('hide');
   },
   "click .btn-forward"(e, t) {
     e.stopPropagation();
