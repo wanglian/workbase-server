@@ -4,6 +4,9 @@ const StarSubs = new SubsManager({
   cacheLimit: 10,
   expireIn: 60
 });
+Accounts.onLogout(function() {
+  StarSubs.clear();
+});
 
 StarController = BoxController.extend({
   template: 'Star',

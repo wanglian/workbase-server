@@ -7,6 +7,9 @@ const FileSubs = new SubsManager({
   cacheLimit: 10,
   expireIn: 5
 });
+Accounts.onLogout(function() {
+  FileSubs.clear();
+});
 
 FilesController = ApplicationController.extend({
   template: 'Files',

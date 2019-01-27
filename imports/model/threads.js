@@ -25,9 +25,6 @@ Threads.helpers({
   externalMembers() {
     return ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).map(tu => tu.user());
   },
-  hasExternalMembers() {
-    return ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).count() > 0;
-  },
   hasReplyableExternalMembers() {
     return this.externalMembers().some((contact) => {
       return !contact.noreply();

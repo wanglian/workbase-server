@@ -38,7 +38,7 @@ Template.Message.onRendered(function() {
 
 Template.Message.helpers({
   showInternal() {
-    return this.internal && this.thread().hasExternalMembers();
+    return this.internal && ThreadUsers.find({threadId: this.threadId, userType: 'Contacts'}).count() > 0; // 有外部参与者
   },
   userName() {
     let user = this.user();

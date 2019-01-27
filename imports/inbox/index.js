@@ -48,6 +48,9 @@ const InboxSubs = new SubsManager({
   cacheLimit: 10,
   expireIn: 60
 });
+Accounts.onLogout(function() {
+  InboxSubs.clear();
+});
 
 InboxController = BoxController.extend({
   template: 'Inbox',

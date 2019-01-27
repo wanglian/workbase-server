@@ -6,6 +6,9 @@ const ShareSubs = new SubsManager({
   cacheLimit: 10,
   expireIn: 60
 });
+Accounts.onLogout(function() {
+  ShareSubs.clear();
+});
 
 SharedController = ApplicationController.extend({
   template: 'Shared',

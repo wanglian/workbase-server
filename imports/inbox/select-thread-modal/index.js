@@ -10,6 +10,9 @@ Template.SelectThreadModal.onCreated(function() {
 });
 
 const ThreadSub = new SubsManager();
+Accounts.onLogout(function() {
+  ThreadSub.clear();
+});
 
 Template.SelectThreadModal.onRendered(function() {
   let self = this;

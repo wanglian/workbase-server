@@ -6,6 +6,9 @@ const ChannelSubs = new SubsManager({
   cacheLimit: 10,
   expireIn: 60
 });
+Accounts.onLogout(function() {
+  ChannelSubs.clear();
+});
 
 ChannelController = BoxController.extend({
   template: 'Channels',

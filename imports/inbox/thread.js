@@ -12,6 +12,9 @@ const MessageSubs = new SubsManager({
   cacheLimit: 20,
   expireIn: 30
 });
+Accounts.onLogout(function() {
+  MessageSubs.clear();
+});
 
 Template.Thread.onRendered(function() {
   // === 分页
