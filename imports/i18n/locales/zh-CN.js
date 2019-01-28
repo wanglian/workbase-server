@@ -13,7 +13,7 @@ export const locale_zh_cn = {
   "Connecting": "连接中",
   "Disconnected": "未连接",
   "Click to Reconnect": "点按重连",
-  "Sign out": "退出",
+  "Sign out": "退出登录",
   "Profile": "个人设置",
   "Compose": "发消息",
   "Inbox": "收件箱",

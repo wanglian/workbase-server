@@ -57,8 +57,9 @@ const FORM_SCHEMA = new SimpleSchema({
 Template.ProfilePanel.events({
   "click .user-panel"(e, t) {
     e.preventDefault();
-    let account = Threads.findOne({category: 'Account', userId: Meteor.userId()});
-    Router.go('inbox', {_id: account._id});
+    Modal.show('ProfileModal', null, {
+      backdrop: 'static'
+    });
   }
 });
 
@@ -76,9 +77,6 @@ Template.ProfileModal.helpers({
   },
   formSchema() {
     return FORM_SCHEMA;
-  },
-  defaultSignature() {
-    return Meteor.user().signature();
   },
   signature() {
     return Template.instance().signature.get();
@@ -125,6 +123,12 @@ Template.ProfileModal.events({
       backdrop: 'static'
     });
     $(e.target).val(""); // reset file input
+  },
+  "click #btn-sign-out"(e, t) {
+    e.preventDefault();
+    Modal.hide("ProfileModal");
+    Router.go('/');
+    Meteor.logout();
   }
 });
 
