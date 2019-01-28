@@ -1,34 +1,17 @@
 <template name="Login">
-  {{#AdminLTE page="login" loadingTemplate="spinner"}}
-    <div class="login-box">
-      <div class="login-logo">
-        <a href="/" title="{{company}}"><img src="/assets/workbase.png" width=150></a>
+  <p class="login-box-msg">{{_ "Sign in to start your session"}}</p>
+
+  {{#autoForm collection=formCollection schema=formSchema id="login-form" type="normal"}}
+    {{> afQuickField name="email" domain=domain}}
+    {{> afQuickField name="password"}}
+    <div class="form-actions clearfix">
+      <div class="checkbox pull-right small">
+        <label>
+          <input type="checkbox" value="true" name="remember">
+          {{_ "Remember Me"}}
+        </label>
       </div>
-      <!-- /.login-logo -->
-      <div class="login-box-body">
-        <p class="login-box-msg">{{_ "Sign in to start your session"}}</p>
-
-        {{#autoForm collection=formCollection schema=formSchema id="login-form" type="normal"}}
-          {{> afQuickField name="email" domain=domain}}
-          {{> afQuickField name="password"}}
-          <div class="form-actions clearfix">
-            <div class="checkbox pull-right small">
-              <label>
-                <input type="checkbox" value="true" name="remember">
-                {{_ "Remember Me"}}
-              </label>
-            </div>
-            <button type="submit" class="btn btn-primary">{{_ "Sign In"}}</button>
-          </div>
-        {{/autoForm}}
-
-        <!-- /.social-auth-links -->
-
-        <!-- <a href="#">I forgot my password</a><br> -->
-        <!-- <a href="#" class="text-center">Register a new membership</a> -->
-
-      </div>
-      <!-- /.login-box-body -->
+      <button type="submit" class="btn btn-primary">{{_ "Sign In"}}</button>
     </div>
-  {{/AdminLTE}}
+  {{/autoForm}}
 </template>

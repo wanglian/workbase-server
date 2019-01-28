@@ -1,3 +1,13 @@
 <template name="DefaultLayout">
-  {{> yield}}
+  {{#AdminLTE page="login" loadingTemplate="spinner"}}
+    <div class="login-box">
+      <div class="login-logo">
+        <a href="/" title="{{company}}"><img src="/assets/workbase.png" width=150></a>
+      </div>
+      <!-- /.login-logo -->
+      <div class="login-box-body">
+        {{> yield}}
+      </div>
+    </div>
+  {{/AdminLTE}}
 </template>

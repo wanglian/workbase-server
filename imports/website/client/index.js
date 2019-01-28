@@ -3,10 +3,6 @@ import './login';
 import './landing';
 import './layout';
 
-Router.configure({
-  layoutTemplate: 'DefaultLayout',
-});
-
 Router.route('/', {
   name: 'landing',
   template: 'Landing',
@@ -17,6 +13,7 @@ Router.route('/', {
 
 Router.route('/login', {
   name: 'login',
+  layoutTemplate: 'DefaultLayout',
   waitOn() {
     return Meteor.subscribe("site");
   },
@@ -33,6 +30,7 @@ Router.route('/login', {
 
 Router.route('/setup', {
   name: 'setup',
+  layoutTemplate: 'DefaultLayout',
   waitOn() {
     return Meteor.subscribe("site");
   },
