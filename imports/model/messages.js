@@ -12,6 +12,8 @@
 // - email: subject, from, to, cc, time
 // - reacts: like [userId]
 // - updateUserId
+// - createdAt
+// - updatedAt
 Messages = new Mongo.Collection('messages');
 
 Messages.helpers({

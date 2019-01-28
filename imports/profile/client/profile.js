@@ -151,7 +151,7 @@ AutoForm.hooks({
             });
           }
         }
-        Modal.hide('ProfileModal');
+        $(".modal").modal('hide');
         this.done();
       });
     }

@@ -1,6 +1,7 @@
 // - company
 // - domain
 // - adminId
+// - sharedId
 // - modules
 //  - storage: type[GridFS/S3], s3(key/secret/bucket/region)
 //  - email: type[mailgun], mailgun(key)
