@@ -7,9 +7,11 @@ SimpleSchema.extendOptions(['autoform']);
 
 // https://emailregex.com/
 // /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ // W3C input[type=email]
-const REGEX_EMAIL = '[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+[\.]+[a-zA-Z0-9-]+'; // 改进：必须有.
+// const REGEX_EMAIL = '[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+[\.]+[a-zA-Z0-9-]+'; // 改进：必须有. 问题是：只能有一个点
 // const REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
 //                     '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+// SimpleSchema.RegEx.Email
+const REGEX_EMAIL = "[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*";
 
 // - method: Meteor method name to load data
 // - params:
