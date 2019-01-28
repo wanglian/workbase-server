@@ -8,9 +8,9 @@ Template.LinkToCreateGroup.events({
   "click #btn-create-group"(e, t) {
     e.preventDefault();
 
-    let users = t.data.members();
+    let users = t.data.users;
     Modal.show('SelectUsersModal', {
-      excludeIds: users.map(tu => tu.userId),
+      excludeIds: users.map(u => u._id),
       callback(selectedUsers) {
         console.log(selectedUsers.length);
         let userIds = _.union(users.map(u => u._id), selectedUsers.map(u => u._id));
