@@ -1,17 +1,16 @@
 #!/bin/bash
 
-curl -SLf "https://github.com/wanglian/workbase-server-snap/releases/download/v0.0.1/0.0.1.zip" -o workbase.zip
+curl -SLf "https://github.com/wanglian/workbase-server-snap/releases/download/v0.0.1/workbase.tar.gz" -o workbase.tar.gz
 
-# tar xf workbase.tgz --strip 1
-unzip workbase.zip --strip 1
+tar xf workbase.tar.gz --strip 1
 
 cd programs/server
-rm -rf npm/node_modules/meteor/emojione_emojione/node_modules/grunt-contrib-qunit
+# rm -rf npm/node_modules/meteor/emojione_emojione/node_modules/grunt-contrib-qunit
 
-if [[ $(uname -m) == *armv6l* ]] || [[ $(uname -m) == *armv7l* ]]
-then
-  rm -rf npm/node_modules/sharp/vendor
-fi
+# if [[ $(uname -m) == *armv6l* ]] || [[ $(uname -m) == *armv7l* ]]
+# then
+#   rm -rf npm/node_modules/sharp/vendor
+# fi
 
 export NODE_ENV=production
 npm i
@@ -24,8 +23,8 @@ then
 fi
 
 # sharp needs execution stack removed - https://forum.snapcraft.io/t/snap-and-executable-stacks/1812
-ls -l npm/node_modules/sharp/vendor
-execstack --clear-execstack npm/node_modules/sharp/vendor/lib/librsvg-2.so*
+# ls -l npm/node_modules/sharp/vendor
+# execstack --clear-execstack npm/node_modules/sharp/vendor/lib/librsvg-2.so*
 
 # Having to manually remove because of latest warning
-rm -rf npm/node_modules/meteor/konecty_user-presence/node_modules/colors/lib/.colors.js.swp
+# rm -rf npm/node_modules/meteor/konecty_user-presence/node_modules/colors/lib/.colors.js.swp

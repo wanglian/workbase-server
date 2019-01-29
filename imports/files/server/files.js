@@ -12,7 +12,7 @@ import createThumbnails from './image-processing';
 Files = new FilesCollection({
   debug: false, // Change to `true` for debugging
   collectionName: 'files',
-  storagePath: 'uploads/files',
+  // storagePath: 'uploads/files',
   allowClientCode: false, // Disallow remove files from Client
   // Start moving files to Storage
   // after fully received by the Meteor server

@@ -18,7 +18,7 @@ function start_workbase {
   export PORT="$(snapctl get port)"
   export MONGO_URL="$(snapctl get mongo-url)"
   export MONGO_OPLOG_URL="$(snapctl get mongo-oplog-url)"
-	export Accounts_AvatarStorePath=$SNAP_COMMON/uploads
+  # export Accounts_AvatarStorePath=$SNAP_COMMON/uploads
 	siteurl="$(snapctl get siteurl)"
   if [ -n "$siteurl" ]; then
 	  export OVERWRITE_SETTING_Site_Url=$siteurl

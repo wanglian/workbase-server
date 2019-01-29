@@ -10,6 +10,7 @@ name: workbase-server
 version: 0.0.1
 summary: WorkBase server
 description: Have your own network, built with Meteor.
+grade: devel
 confinement: devmode
 assumes: [snapd2.21]
 apps:
