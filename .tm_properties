@@ -1,4 +1,4 @@
 exclude               = "{$exclude,.meteor/local}"
 excludeInFolderSearch = "{$excludeInFolderSearch,node_modules,packages,docs,public}"
-include               = "{$include,.gitignore,.tm_properties,.meteor,.gitmodules,.deploy}"
+include               = "{$include,.gitignore,.tm_properties,.meteor,.gitmodules,.deploy,.snapcraft}"
 excludeInFileChooser  = "{$exclude,$excludeInFolderSearch}"
