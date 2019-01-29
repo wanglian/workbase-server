@@ -1,0 +1,23 @@
+<template name="MailgunEmails">
+  {{#contentFor "menu"}}
+    <p class="navbar-text pull-left menu-title">异常邮件</p>
+  {{/contentFor}}
+
+  <ul class="list-group threads">
+    {{#each emails}}
+      <li class="list-group-item thread">
+        <button type="button" class="btn btn-default pull-right btn-parse">Parse</button>
+        {{#with params}}
+          <div>From: {{from}}</div>
+          <div>Subject: {{subject}}</div>
+          <div>To: {{To}}</div>
+        {{/with}}
+        <div>Time: {{createdAt}}</div>
+        {{#with error}}<pre style="margin: 5px 0 0;">{{this}}</pre>{{/with}}
+      </li>
+    {{/each}}
+    {{#unless emails.count}}
+      <li class="list-group-item thread">{{_ "Empty"}}</li>
+    {{/unless}}
+  </ul>
+</template>

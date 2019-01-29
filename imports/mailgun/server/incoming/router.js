@@ -1,5 +1,3 @@
-import './mailgun-emails';
-
 Router.onBeforeAction(Iron.Router.bodyParser.urlencoded({
   extended: true,
   limit: '10mb'
@@ -15,11 +13,6 @@ Router.route('/api/v1/mailgun', {
   let body = req.body;
   if (!_.isEmpty(body)) {
     // console.log(body);
-    MailgunEmails.create(body).then((id) => {
-      console.log("[mailgun] " + id);
-    }).catch((e) => {
-      console.log("[mailgun] error:");
-      console.log(e);
-    });
+    MailgunEmails.create(body);
   }
 });

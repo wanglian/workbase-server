@@ -1,31 +1,3 @@
-// - emailId
-// - params
-// - parsedAt
-// - createdAt
-MailgunEmails = new Mongo.Collection('mailgun-emails');
-
-MailgunEmails.before.insert(function(user, doc) {
-  doc.createdAt = new Date();
-});
-
-MailgunEmails.create = (params) => {
-  let email = MailgunEmails.findOne({emailId: params['Message-Id']});
-  if (email) {
-    // same email
-    if (email.parsedAt) {
-      console.log("[mailgun] drop");
-      return false;
-    }
-  } else {
-    let _id = MailgunEmails.insert({
-      emailId: params['Message-Id'],
-      params: params
-    });
-    email = MailgunEmails.findOne(_id);
-  }
-  return MailgunEmails.parseEmail(email);
-};
-
 // check 是否一对一邮件
 const isOneToOne = (to, toUsers, ccUsers) => {
   let users = _.compact(_.concat([to], toUsers, ccUsers));
@@ -43,7 +15,7 @@ const findThreadIdBetweenUsers = (from, to) => {
   return tu && tu.threadId;
 };
 
-MailgunEmails.parseEmail = async (doc) => {
+parseMailgunEmail = async (doc) => {
   console.log("[mailgun] parse");
   let params      = doc.params;
   let subject     = params['subject'];
@@ -186,7 +158,6 @@ MailgunEmails.parseEmail = async (doc) => {
     email: { subject, from, to, cc, date }
   });
 
-  MailgunEmails.update(doc._id, {$set: {parsedAt: new Date()}});
   return doc._id;
 };
 

@@ -1,2 +1,3 @@
+import '../';
 import './outgoing/mailgun';
-import './incoming/router';
+import './incoming';
