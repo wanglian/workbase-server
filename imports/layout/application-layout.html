@@ -61,13 +61,7 @@
           {{> ChannelMenuItems}}
           {{> SharedMenuItem}}
           {{> AdminMenuItem}}
-          {{#if currentUser.isAdmin}}
-          <li class="{{#if inRouter 'mailgun'}}active{{/if}}">
-            <a href="/mailgun">
-              <i class="fa fa-envelope"></i> <span>异常邮件</span>
-            </a>
-          </li>
-          {{/if}}
+          {{> MailgunMenuItem}}
         </ul>
       </section>
     </aside>

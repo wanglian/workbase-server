@@ -1,0 +1,6 @@
+.email-actions {
+  display: none;
+}
+.list-group-item:hover .email-actions {
+  display: block;
+}

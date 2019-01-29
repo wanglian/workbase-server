@@ -1,12 +1,30 @@
+<template name="MailgunMenuItem">
+  {{#if compare currentUser.isAdmin '&&' (count 'mailgun')}}
+    <li class="{{#if inRouter 'mailgun'}}active{{/if}}">
+      <a href="/mailgun">
+        <i class="fa fa-envelope"></i> <span>{{_ "Emails TODO"}}</span>
+        {{#if (count 'mailgun')}}
+          <span class="pull-right-container">
+            <span class="label label-danger pull-right">{{count 'mailgun'}}</span>
+          </span>
+        {{/if}}
+      </a>
+    </li>
+  {{/if}}
+</template>
+
 <template name="MailgunEmails">
   {{#contentFor "menu"}}
-    <p class="navbar-text pull-left menu-title">异常邮件</p>
+    <p class="navbar-text pull-left menu-title">{{_ "Emails TODO"}}</p>
   {{/contentFor}}
 
   <ul class="list-group threads">
     {{#each emails}}
       <li class="list-group-item thread">
-        <button type="button" class="btn btn-default pull-right btn-parse">Parse</button>
+        <div class="btn-group email-actions pull-right">
+          <button type="button" class="btn btn-default btn-sm btn-parse">{{_ "Parse"}}</button>
+          <button type="button" class="btn btn-default btn-sm btn-remove">{{_ "Drop"}}</button>
+        </div>
         {{#with params}}
           <div>From: {{from}}</div>
           <div>Subject: {{subject}}</div>

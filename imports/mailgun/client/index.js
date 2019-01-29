@@ -1,5 +1,6 @@
 import '../';
 import './view';
+import './style.css';
 
 MailgunController = ApplicationController.extend({
   template: "MailgunEmails",

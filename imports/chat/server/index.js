@@ -32,7 +32,7 @@ Accounts.onLogin(function(attempt) {
 Messages.before.insert(function(userId, doc) {
   let thread = Threads.findOne(doc.threadId);
   if (thread.category === 'Chat') {
-    let tu = ThreadUsers.findOne({threadId: doc.threadId, userId: doc.userId});
+    let tu = ThreadUsers.findOne({threadId: doc.threadId, userId: doc.userId, category: 'Chat'});
     let chat = Users.findOne(tu.params.chat);
     Threads.ensureMember(thread, chat, {chat: doc.userId});
     if (chat.external()) {

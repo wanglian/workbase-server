@@ -39,6 +39,10 @@ Meteor.methods({
     check(id, String);
     let email = MailgunEmails.findOne(id);
     email && parseEmail(email);
+  },
+  removeMailgunEmail(id) {
+    check(id, String);
+    return MailgunEmails.remove({_id: id});
   }
 });
 
