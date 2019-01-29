@@ -1,0 +1,126 @@
+#
+# Easiest way to work with this file, from an updated Ubuntu 16.04 LTS image
+# 1.   create a non-root user with sudo priv and perform following steps as non-root
+# 2.  `sudo apt-get update`
+# 3.  `sudo apt-get install snapcraft python build-essential`
+# 4.  `snapcraft stage`
+# 5.  `snapcraft snap`
+
+name: workbase-server
+version: 0.0.1
+summary: WorkBase server
+description: Have your own network, built with Meteor.
+
+grade: devel
+confinement: strict
+
+apps:
+    backupdb:
+        command: env LC_ALL=C backupdb.sh
+        plugs: [network]
+    initcaddy:
+        command: env LC_ALL=C initcaddy.sh
+    restoredb:
+        command: env LC_ALL=C restoredb.sh
+        plugs: [network]
+    workbase-caddy:
+        command: env LC_ALL=C caddy -conf=$SNAP_DATA/Caddyfile -host=localhost:8080
+        daemon: simple
+        plugs: [network, network-bind]
+    workbase-mongo:
+        command: env LC_ALL=C startmongo.sh
+        daemon: simple
+        plugs: [network, network-bind]
+    workbase-server:
+        command: env LC_ALL=C startrc.sh
+        daemon: simple
+        plugs: [network, network-bind]
+
+parts:
+    node:
+        plugin: nodejs
+        node-engine: 11.8.0
+        node-packages:
+            - bcrypt
+            - fibers
+            - meteor-promise
+            - minimax
+            - promise
+            - semver
+            - source-map-support
+            - underscore
+        build-packages:
+            - build-essential
+            - python
+        organize:
+            lib/node_modules: node_modules
+        stage:
+            - bin
+            - node_modules
+        snap:
+            - bin
+            - node_modules
+
+    workbase-server:
+        after: [mongodb]
+        plugin: dump
+        source: https://github.com/wanglian/workbase-server-snap/archive/0.0.1.zip
+        source-type: tar
+        stage-packages:
+            - graphicsmagick
+            - libtcmalloc-minimal4
+        stage:
+            - .node_version.txt
+            - lib
+            - main.js
+            - programs
+            - usr
+        snap:
+            - .node_version.txt
+            - lib
+            - main.js
+            - programs
+            - usr
+
+    mongodb:
+        build-packages:
+            - wget
+        prepare: ./bin/preparemongo.sh
+        plugin: dump
+        source: ./
+        stage-packages:
+            - libssl1.0.0
+        stage:
+            - bin
+            - lib
+            - usr
+        snap:
+            - bin
+            - lib
+            - usr
+
+    scripts:
+        plugin: dump
+        source: bin/
+        organize:
+            Caddyfile: bin/Caddyfile
+            backupdb.sh: bin/backupdb.sh
+            initcaddy.sh: bin/initcaddy.sh
+            initmongo.sh: bin/initmongo.sh
+            initmongoreplset.js: bin/initmongoreplset.js
+            preparemongo.sh: bin/preparemongo.sh
+            restoredb.sh: bin/restoredb.sh
+            startmongo.sh: bin/startmongo.sh
+            startrc.sh: bin/startrc.sh
+        snap:
+            - bin
+
+    caddy:
+        plugin: go
+        go-importpath: github.com/mholt/caddy
+        source: https://github.com/mholt/caddy
+        source-type: git
+        source-commit: 53e117802fedd5915eeb32907873d8786a4b2936
+        snap:
+            - bin/caddy
+
