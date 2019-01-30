@@ -6,6 +6,7 @@ Meteor.startup(function() {
   sharedThread = Threads.findOne({category: 'Shared'});
   if (!sharedThread) {
     let sharedId = Threads.create(null, 'Shared', 'Shared', 'public');
+    sharedThread = Threads.findOne(sharedId);
     Instance.update({}, {$set: {sharedId}});
   }
 });
