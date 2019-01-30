@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl -SLf "https://github.com/wanglian/workbase-server-snap/releases/download/v0.0.1/workbase.tar.gz" -o workbase.tar.gz
+curl -SLf "https://github.com/wanglian/workbase-server/releases/download/v0.0.1/workbase.tar.gz" -o workbase.tar.gz
 
 tar xf workbase.tar.gz --strip 1
 
