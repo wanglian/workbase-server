@@ -12,7 +12,10 @@ import createThumbnails from './image-processing';
 Files = new FilesCollection({
   debug: false, // Change to `true` for debugging
   collectionName: 'files',
-  // storagePath: 'uploads/files',
+  storagePath() {
+    let dir = process.env.UPLOADS_DIR;
+    return (dir && `${dir}/files`) || "assets/app/uploads/files";
+  },
   allowClientCode: false, // Disallow remove files from Client
   // Start moving files to Storage
   // after fully received by the Meteor server
@@ -45,6 +48,7 @@ Files = new FilesCollection({
 
 // Intercept FilesCollection's remove method to remove file from Storage
 let _origRemove = Files.remove;
+
 Files.remove = function(search) {
   Storage.remove(this, search);
 
