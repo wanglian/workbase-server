@@ -26,8 +26,8 @@
           <button type="button" class="btn btn-default btn-sm btn-remove">{{_ "Drop"}}</button>
         </div>
         {{#with params}}
+          <div>Subject: <a href="#" class="btn-preview">{{subject}}</a></div>
           <div>From: {{from}}</div>
-          <div>Subject: {{subject}}</div>
           <div>To: {{To}}</div>
         {{/with}}
         <div>Time: {{createdAt}}</div>
@@ -38,4 +38,20 @@
       <li class="list-group-item thread">{{_ "Empty"}}</li>
     {{/unless}}
   </ul>
+</template>
+
+<template name="MailgunEmailModal">
+  <div class="modal fade full-screen email">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ "Original Email"}}</h4>
+        </div>
+        <div class="modal-body scroll-box">
+          {{> EmailContent message=message modal=".modal.email"}}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

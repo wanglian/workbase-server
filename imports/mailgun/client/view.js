@@ -9,6 +9,10 @@ Template.MailgunMenuItem.helpers({
 });
 
 Template.MailgunEmails.events({
+  "click .btn-preview"(e, t) {
+    e.preventDefault();
+    Modal.show("MailgunEmailModal", this);
+  },
   "click .btn-parse"(e, t) {
     e.preventDefault();
     Meteor.call("parseMailgunEmail", this._id);
@@ -30,5 +34,13 @@ Template.MailgunEmails.events({
         });
       }
     });
+  }
+});
+
+Template.MailgunEmailModal.helpers({
+  message() {
+    return {
+      content: this['body-html'] || this['body-plain']
+    }
   }
 });
