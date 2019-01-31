@@ -82,7 +82,7 @@ parseMailgunEmail = async (doc) => {
     if (is121) {
       let tu = ThreadUsers.findOne({category: "Chat", userType: 'Users', userId: toUser._id, "params.chat": fromUser._id});
       threadId = tu && tu.threadId;
-      threadId = startChat(fromUser, toUser);
+      threadId = Threads.startChat(fromUser, toUser);
     }
   }
   if (!threadId) {
