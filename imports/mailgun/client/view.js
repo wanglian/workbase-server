@@ -11,7 +11,9 @@ Template.MailgunMenuItem.helpers({
 Template.MailgunEmails.events({
   "click .btn-preview"(e, t) {
     e.preventDefault();
-    Modal.show("MailgunEmailModal", this);
+    Modal.show('MessageModal', {
+      content: this['body-html'] || this['body-plain']
+    });
   },
   "click .btn-parse"(e, t) {
     e.preventDefault();
@@ -34,13 +36,5 @@ Template.MailgunEmails.events({
         });
       }
     });
-  }
-});
-
-Template.MailgunEmailModal.helpers({
-  message() {
-    return {
-      content: this['body-html'] || this['body-plain']
-    }
   }
 });

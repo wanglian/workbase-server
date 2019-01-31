@@ -106,7 +106,6 @@ export const locale_zh_cn = {
   "Email failed": "发送失败",
   "Resend": "重发",
   "Email sending": "正在发送",
-  "Original Email": "原始邮件",
   // user
   "External Users": "外部联系人",
   "Users Management": "用户管理",
