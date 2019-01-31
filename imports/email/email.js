@@ -3,6 +3,7 @@ ThreadCategories.add("Email", {
   iconUnread: "fa fa-envelope-o",
   details: ['Email', 'Search', 'Members', 'Files'],
   actions() {
+    clientOnly();
     return [
       ThreadActions.star,
       ThreadActions.search,

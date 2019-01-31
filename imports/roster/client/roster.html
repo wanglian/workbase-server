@@ -59,9 +59,9 @@
 <template name="RosterHeader">
   {{> InboxBackButton}}
   {{#if currentUser.isAdmin}}
-    {{#if external}}
+    {{#unless internal}}
       <a href="#" class="btn-edit-contact inbox-header-icon pull-right text-muted"><i class="fa fa-edit"></i></a>
-    {{/if}}
+    {{/unless}}
   {{/if}}
   <div class="thread-subject">{{name}}</div>
 </template>

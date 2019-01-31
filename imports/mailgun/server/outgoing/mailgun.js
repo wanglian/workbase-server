@@ -37,8 +37,6 @@ const buildMailgunAttachment = (file) => {
 const buildSubject = (thread, message) => {
   let subject = thread.subject;
   if (thread.category === 'Chat') {
-    let tu = ThreadUsers.findOne({threadId: thread._id, userType: 'Users', userId: message.userId});
-    let chat = Users.findOne(tu.params.chat);
     let parentMessage = message.parent();
     let user = message.user();
     subject = parentMessage && parentMessage.email && parentMessage.email.subject || I18n.getFixedT(user.profile.language)("Message from", {user: user.name()});

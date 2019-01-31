@@ -50,6 +50,7 @@ export const locale_en_us = {
   "Channels Management": "Channels",
   // thread
   "Created by and when": "Created by{{name}} at {{time}}",
+  "Sent by and when": "Sent by {{name}} at {{time}}",
   "mail subject": "subject",
   "mail to": "to",
   "mail cc": "cc",

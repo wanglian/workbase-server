@@ -25,14 +25,11 @@ Users.helpers({
   name() {
     return this.profile.name;
   },
-  external() {
-    return this.className() === 'Contacts';
+  internal() {
+    return this.className() != 'Contacts';
   },
   internalName() {
-    if (this.external()) {
-      return this.address();
-    }
-    return this.name();
+    return this.internal() ? this.name() : this.address();
   },
   username() {
     let attrs = addrparser.parse(this.email());

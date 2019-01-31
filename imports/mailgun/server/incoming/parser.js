@@ -8,11 +8,35 @@ const isOneToOne = (to, toUsers, ccUsers) => {
   }
   return userIds.length === 1;
 };
-
+// 查询两人之间的话题
 const findThreadIdBetweenUsers = (from, to) => {
   let threadIds = ThreadUsers.find({userType: from.className(), userId: from._id}).map(tu => tu.threadId);
   let tu = ThreadUsers.findOne({threadId: {$in: threadIds}, userType: to.className(), userId: to._id});
   return tu && tu.threadId;
+};
+// mailgun认证URL
+const URL = Npm.require('url');
+const authURL = (url) => {
+  let re = URL.parse(url);
+  re.auth = "api:" + Instance.get().modules.email.mailgun.key;
+  return re.format();
+};
+// promise 上传文件
+const uploadFile = (url, name, params) => {
+  return new Promise((resolve, reject) => {
+    Files.load(url, {
+      fileName: name,
+      meta: params
+    }, (err, fileRef) => {
+      if (err) {
+        reject(err.toString());
+      } else {
+        let fileId = fileRef._id;
+        let url    = Files.link(fileRef);
+        resolve({fileId, url});
+      }
+    }, true);
+  });
 };
 
 parseMailgunEmail = async (doc) => {
@@ -54,19 +78,24 @@ parseMailgunEmail = async (doc) => {
   let ccUsers = cc && Contacts.parse(cc);
   let is121 = isOneToOne(toUser, toUsers, ccUsers);
   if (!threadId) {
-    // 单人邮件聚合到Chat: 这个规则是否合理
+    // 一对一邮件聚合
     if (is121) {
-      let tu = ThreadUsers.findOne({userType: 'Users', userId: toUser._id, "params.chat": fromUser._id});
+      let tu = ThreadUsers.findOne({category: "Chat", userType: 'Users', userId: toUser._id, "params.chat": fromUser._id});
       threadId = tu && tu.threadId;
+      threadId = startChat(fromUser, toUser);
     }
   }
   if (!threadId) {
     threadId = Threads.create(fromUser, 'Email', subject);
   }
   let thread = Threads.findOne(threadId);
-  Threads.ensureMember(thread, fromUser);
-  Threads.ensureMember(thread, toUser);
-  if (!is121) {
+  // 关系
+  if (is121) {
+    Threads.ensureMember(thread, fromUser, {chat: toUser._id, internal: toUser.internal()});
+    Threads.ensureMember(thread, toUser, {chat: fromUser._id, internal: fromUser.internal()});
+  } else {
+    Threads.ensureMember(thread, fromUser);
+    Threads.ensureMember(thread, toUser);
     toUsers && toUsers.forEach(user => Threads.ensureMember(thread, user));
     ccUsers && ccUsers.forEach(user => Threads.ensureMember(thread, user));
   }
@@ -147,6 +176,11 @@ parseMailgunEmail = async (doc) => {
     }
   }
 
+  // 单人邮件更新话题主题
+  if (is121 && thread.category === 'Email') {
+    Threads.update(threadId, {$set: {subject}});
+  }
+
   // console.log("save message");
   Threads.addMessage(thread, fromUser, {
     content,
@@ -159,29 +193,4 @@ parseMailgunEmail = async (doc) => {
   });
 
   return doc._id;
-};
-
-const URL = Npm.require('url');
-const authURL = (url) => {
-  let re = URL.parse(url);
-  re.auth = "api:" + Instance.get().modules.email.mailgun.key;
-  return re.format();
-};
-
-// promise
-const uploadFile = (url, name, params) => {
-  return new Promise((resolve, reject) => {
-    Files.load(url, {
-      fileName: name,
-      meta: params
-    }, (err, fileRef) => {
-      if (err) {
-        reject(err.toString());
-      } else {
-        let fileId = fileRef._id;
-        let url    = Files.link(fileRef);
-        resolve({fileId, url});
-      }
-    }, true);
-  });
 };

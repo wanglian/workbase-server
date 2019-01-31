@@ -80,6 +80,18 @@ Router.route('/inbox/:_id?', {
   controller: 'InboxController'
 });
 
+Template.registerHelper('threadIcon', (thread) => {
+  let c = ThreadCategories.get(thread.category);
+  if (!c) {
+    return false; // happens when data not ready
+  }
+  if (thread.read) {
+    return typeof(c.icon) == "function" ? c.icon(thread) : c.icon;
+  } else {
+    return typeof(c.iconUnread) == "function" ? c.iconUnread(thread) : c.iconUnread;
+  }
+});
+
 Template.registerHelper('threadTitle', (thread, detail) => {
   let c = ThreadCategories.get(thread.category);
   if (!c) {
