@@ -23,7 +23,8 @@ ThreadCategories.add("Group", {
   actions() {
     return [
       ThreadActions.star,
-      ThreadActions.search
+      ThreadActions.search,
+      ThreadActions.archive
     ]
   }
 });

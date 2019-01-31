@@ -29,11 +29,12 @@ ThreadCategories.add("Chat", {
       return thread.subject || chatName(thread.chat());
     }
   },
-  actions() {
+  actions(thread) {
     clientOnly();
     return [
       ThreadActions.star,
-      ThreadActions.search
+      ThreadActions.search,
+      ThreadActions.archive
     ]
   }
 });
