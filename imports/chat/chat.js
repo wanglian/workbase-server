@@ -5,7 +5,7 @@ Threads.helpers({
   },
   chat() {
     clientOnly();
-    return Users.findOne(this.params.chat);
+    return this.params && Users.findOne(this.params.chat);
   }
 });
 
