@@ -1,32 +1,32 @@
 #!/bin/bash
 
 if [[ ${EUID} != 0 ]]; then
-    echo "[-] This task must be run with 'sudo'."
-    exit 1
+  echo "[-] This task must be run with 'sudo'."
+  exit 1
 fi
 
 if $(ps x | grep "node ${SNAP}/main.js" | grep -qv "grep"); then
-    echo "[-] Please shutdown Rocket.Chat first to get a clean backup"
-    echo "[-] Use 'sudo systemctl stop snap.workbase-server.workbase-server'"
+  echo "[-] Please shutdown WorkBase first to get a clean backup"
+  echo "[-] Use 'sudo systemctl stop snap.workbase-server.workbase-server'"
 fi
 
 TIMESTAMP=$(date +"%Y%m%d.%H%M")
 BACKUP_DIR="${SNAP_COMMON}/backup"
 
 if [[ ! -d ${BACKUP_DIR} ]]; then
-    mkdir ${BACKUP_DIR}
+  mkdir ${BACKUP_DIR}
 fi
 
 if [[ -d ${BACKUP_DIR}/dump ]]; then
-    rm -rf ${BACKUP_DIR}/dump
+  rm -rf ${BACKUP_DIR}/dump
 fi
 
 if [[ -f ${BACKUP_DIR}/workbase_backup_${TIMESTAMP}.tar.gz ]]; then
-    rm -f ${BACKUP_DIR}/workbase_backup_${TIMESTAMP}.tar.gz
+  rm -f ${BACKUP_DIR}/workbase_backup_${TIMESTAMP}.tar.gz
 fi
 
 if [[ -f ${BACKUP_DIR}/backup_${TIMESTAMP}.log ]]; then
-    rm -f ${BACKUP_DIR}/backup_${TIMESTAMP}.log
+  rm -f ${BACKUP_DIR}/backup_${TIMESTAMP}.log
 fi
 
 echo "[*] Creating backup file..."

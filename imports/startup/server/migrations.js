@@ -37,7 +37,8 @@ Migrations.add({
 });
 
 const mergeThread = (winnerId, loserId) => {
-  Messages.update({threadId: loserId}, {$set: {threadId: winnerId}});
+  if (winnerId === loserId) return false;
+  Messages.update({threadId: loserId}, {$set: {threadId: winnerId}}, {multi: true});
   ThreadUsers.remove({threadId: loserId});
   Threads.remove(loserId);
 };
@@ -49,7 +50,7 @@ Migrations.add({
       tu = ThreadUsers.findOne(tu._id); // reload
       if (tu && tu.thread()) {
         ThreadUsers.find({userId: tu.userId, "params.chat": tu.params.chat}).forEach((ls) => {
-          if (ls._id != tu._id) {
+          if (ls.threadId != tu.threadId) {
             mergeThread(tu.threadId, ls.threadId);
           }
         });
