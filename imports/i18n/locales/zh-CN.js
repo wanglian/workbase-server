@@ -74,6 +74,13 @@ export const locale_zh_cn = {
   "Upload": "上传",
   "Personal Message": "个性签名",
   "Work Title": "职位",
+  "Change password": "修改密码",
+  "Current password": "当前密码",
+  "New password": "新密码",
+  "Confirm new password": "再次输入新密码",
+  "Passwords do not match": "再次输入的新密码不一致",
+  "Password Saved": "新密码已保存",
+  "Incorrect password": "密码不正确",
   // message
   "New Message": "发消息",
   "Send": "发送",

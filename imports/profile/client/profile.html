@@ -31,7 +31,9 @@
               <input type="file" style="display:none;" id="avatar-file" accept="image/*"/>
               <button class="btn btn-default" style="width:180px;" id="btn-upload-avatar">{{_ 'Upload new picture'}}</button>
             </div>
-
+            <div class="form-group">
+              <button class="btn btn-default" style="width:180px;" id="btn-change-password">{{_ 'Change password'}}</button>
+            </div>
             {{> afQuickField name="language" defaultValue=currentLanguage firstOption=false}}
             {{> afQuickField name="skin" defaultValue="blue" firstOption=false}}
             {{> afQuickField name="message"}}
@@ -41,6 +43,30 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger pull-left" id="btn-sign-out">{{_ 'Sign out'}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
+            <button type="submit" class="btn btn-primary">{{_ "Confirm"}}</button>
+          </div>
+        {{/autoForm}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="ChangePasswordModal">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ "Change password"}}</h4>
+        </div>
+        {{#autoForm collection=formCollection schema=formSchema id="change-password-form" type="normal"}}
+          <div class="modal-body">
+            {{> afQuickField name="passwordCurrent"}}
+            {{> afQuickField name="password"}}
+            {{> afQuickField name="passwordConfirm"}}
+          </div>
+          <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
             <button type="submit" class="btn btn-primary">{{_ "Confirm"}}</button>
           </div>

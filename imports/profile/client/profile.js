@@ -54,6 +54,33 @@ const FORM_SCHEMA = new SimpleSchema({
   }
 });
 
+const PASSWORD_SCHEMA = new SimpleSchema({
+  passwordCurrent: {
+    type: String,
+    max: 30,
+    autoform: {
+      type: 'password',
+      label: I18n.t("Current password")
+    }
+  },
+  password: {
+    type: String,
+    max: 30,
+    autoform: {
+      type: 'password',
+      label: I18n.t("New password")
+    }
+  },
+  passwordConfirm: {
+    type: String,
+    max: 30,
+    autoform: {
+      type: 'password',
+      label: I18n.t("Confirm new password")
+    }
+  }
+});
+
 Template.ProfilePanel.events({
   "click .user-panel"(e, t) {
     e.preventDefault();
@@ -124,6 +151,12 @@ Template.ProfileModal.events({
     });
     $(e.target).val(""); // reset file input
   },
+  "click #btn-change-password"(e, t) {
+    e.preventDefault();
+    Modal.show("ChangePasswordModal", null, {
+      backdrop: 'static'
+    });
+  },
   "click #btn-sign-out"(e, t) {
     e.preventDefault();
     Modal.hide("ProfileModal");
@@ -152,6 +185,35 @@ AutoForm.hooks({
           }
         }
         $(".modal").modal('hide');
+        this.done();
+      });
+    }
+  },
+  "change-password-form": {
+    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+      this.event.preventDefault();
+
+      if (insertDoc.password != insertDoc.passwordConfirm) {
+        Swal({
+          title: I18n.t("Passwords do not match"),
+          type: "warning"
+        });
+        return this.done();
+      }
+      Accounts.changePassword(insertDoc.passwordCurrent, insertDoc.password, (err) => {
+        if (err) {
+          console.log(err);
+          Swal({
+            title: I18n.t(err.reason),
+            type: "error"
+          });
+        } else {
+          Swal({
+            title: I18n.t("Password Saved"),
+            type: "info"
+          });
+          Modal.hide("ChangePasswordModal");
+        }
         this.done();
       });
     }
@@ -210,5 +272,14 @@ Template.AvatarUploadModal.events({
     });
 
     upload.start();
+  }
+});
+
+Template.ChangePasswordModal.helpers({
+  formCollection() {
+    return Users;
+  },
+  formSchema() {
+    return PASSWORD_SCHEMA;
   }
 });
