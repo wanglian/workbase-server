@@ -46,8 +46,9 @@ AutoForm.hooks({
       this.event.preventDefault();
 
       console.log(updateDoc);
-      Meteor.call('updateMessage', currentDoc._id, {
-        content: insertDoc.content
+      updateMessage.call({
+        messageId: currentDoc._id,
+        content:   insertDoc.content
       }, (err, res) => {
         if (err) {
           console.log(err);

@@ -64,3 +64,24 @@ toggleStarThread = new ValidatedMethod({
     }
   }
 });
+
+updateMessage = new ValidatedMethod({
+  name: 'Messages.methods.update',
+  validate: new SimpleSchema({
+    messageId: { type: String },
+    content:   { type: String }
+  }).validator(),
+  run({ messageId, content }) {
+    if (!this.userId) {
+      throw new Meteor.Error('Messages.methods.update.notLoggedIn', 'Must be logged in.');
+    }
+
+    let message = Messages.findOne(messageId);
+    // 限于本人修改，文本消息
+    if (message && this.userId === message.userId && message.contentType === 'text') {
+      return Messages.update(messageId, {$set: {content, updateUserId: this.userId}});
+    } else {
+      throw new Meteor.Error('Messages.methods.update.notExist', 'User does not have the message.');
+    }
+  }
+});
