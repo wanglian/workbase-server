@@ -61,7 +61,9 @@ parseMailgunEmail = async (doc) => {
   let toUser   = Contacts.parseOne(recipient);
   if (!toUser) throw new Error(`recipient not exist: ${recipient}`);
 
+  // === 话题聚合
   let threadId;
+  // 1 消息关系
   references = references && references.split(' ') || [];
   if (replyTo) references = _.union(references, [replyTo]);
   if (!_.isEmpty(references)) {
@@ -69,7 +71,7 @@ parseMailgunEmail = async (doc) => {
     threadId    = message && message.threadId;
   }
   if (!threadId) {
-    // noreploy邮件聚合
+    // 2 noreploy邮件聚合
     if (fromUser.noreply()) {
       threadId = findThreadIdBetweenUsers(fromUser, toUser);
     }
@@ -78,7 +80,7 @@ parseMailgunEmail = async (doc) => {
   let ccUsers = cc && Contacts.parse(cc);
   let is121 = isOneToOne(toUser, toUsers, ccUsers);
   if (!threadId) {
-    // 一对一邮件聚合
+    // 3 一对一邮件聚合
     if (is121) {
       let tu = ThreadUsers.findOne({category: "Chat", userType: 'Users', userId: toUser._id, "params.chat": fromUser._id});
       threadId = tu && tu.threadId;
@@ -89,7 +91,8 @@ parseMailgunEmail = async (doc) => {
     threadId = Threads.create(fromUser, 'Email', subject);
   }
   let thread = Threads.findOne(threadId);
-  // 关系
+
+  // === 关系
   if (is121) {
     Threads.ensureMember(thread, fromUser, {chat: toUser._id, internal: toUser.internal()});
     Threads.ensureMember(thread, toUser, {chat: fromUser._id, internal: fromUser.internal()});
@@ -100,6 +103,7 @@ parseMailgunEmail = async (doc) => {
     ccUsers && ccUsers.forEach(user => Threads.ensureMember(thread, user));
   }
 
+  // === 消息内容
   let content = bodyHtml;
   let contentType = 'html';
   if (!content) {
@@ -107,6 +111,7 @@ parseMailgunEmail = async (doc) => {
     contentType = 'text';
   }
 
+  // === 附件处理
   let fileIds = [];
   let inlineFileIds = [];
   if (attachments) {
@@ -158,7 +163,7 @@ parseMailgunEmail = async (doc) => {
     });
   }
 
-  // 自定义消息
+  // === 自定义消息
   if (variables) {
     variables = JSON.parse(variables);
     let messageType = variables['MessageType'];
@@ -176,8 +181,10 @@ parseMailgunEmail = async (doc) => {
     }
   }
 
-  // 单人邮件更新话题主题
-  if (is121 && thread.category === 'Email') {
+  // === 更新话题主题
+  // 1 邮件
+  // 2 由外部发起的话题
+  if (thread.category === 'Email' || (thread.userType === 'Contacts')) {
     Threads.update(threadId, {$set: {subject}});
   }
 
