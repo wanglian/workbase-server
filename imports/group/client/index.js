@@ -1,5 +1,5 @@
 import '../';
-import './index.html';
+import './view.html';
 import './style.css';
 
 import Swal from 'sweetalert2';

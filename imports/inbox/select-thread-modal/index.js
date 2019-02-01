@@ -1,4 +1,4 @@
-import './index.html';
+import './view.html';
 
 // 选择会话
 // params
