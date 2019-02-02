@@ -19,7 +19,7 @@ ThreadCategories.add("Chat", {
     clientOnly();
     return thread.internal() ? "fa fa-comment" : "fa fa-envelope-o";
   },
-  details: ['Chat', 'Search', 'Files'],
+  details: ['Chat', 'Search', 'PinMessages', 'Files'],
   title(thread) {
     clientOnly();
     // (chat => chat && chat.name())(thread.chat())

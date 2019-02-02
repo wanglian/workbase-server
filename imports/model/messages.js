@@ -12,6 +12,8 @@
 // - email: subject, from, to, cc, time
 // - reacts: like [userId]
 // - updateUserId
+// - pinAt
+// - pinUserId
 // - createdAt
 // - updatedAt
 Messages = new Mongo.Collection('messages');
@@ -22,6 +24,9 @@ Messages.helpers({
   },
   updateUser() {
     return Users.findOne(this.updateUserId);
+  },
+  pinUser() {
+    return Users.findOne(this.pinUserId);
   },
   thread() {
     return Threads.findOne(this.threadId);

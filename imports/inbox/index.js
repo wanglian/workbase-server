@@ -1,6 +1,7 @@
 import './inbox-layout';
 import './log-message';
 import './edit-message';
+import './pin-messages';
 import './select-users-modal';
 import './select-thread-modal';
 import './inbox';

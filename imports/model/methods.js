@@ -65,6 +65,30 @@ toggleStarThread = new ValidatedMethod({
   }
 });
 
+togglePinMessage= new ValidatedMethod({
+  name: 'Messages.methods.pin',
+  validate: new SimpleSchema({
+    messageId: { type: String }
+  }).validator(),
+  run({ messageId }) {
+    if (!this.userId) {
+      throw new Meteor.Error('Messages.methods.pin.notLoggedIn', 'Must be logged in.');
+    }
+
+    let message = Messages.findOne(messageId);
+    const tu = message && ThreadUsers.findOne({threadId: message.threadId, userType: 'Users', userId: this.userId});
+    if (tu) {
+      if (message.pinAt) {
+        Messages.update(messageId, {$unset: {pinAt: "", pinBy: ""}});
+      } else {
+        Messages.update(messageId, {$set: {pinAt: new Date(), pinUserId: this.userId}});
+      }
+    } else {
+      throw new Meteor.Error('Messages.methods.pin.notExist', 'User does not have the message.');
+    }
+  }
+});
+
 updateMessage = new ValidatedMethod({
   name: 'Messages.methods.update',
   validate: new SimpleSchema({

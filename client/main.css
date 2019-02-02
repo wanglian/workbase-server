@@ -23,6 +23,14 @@ blockquote {
   padding-top: 2px;
   color: #666;
 }
+.fa-rotate-45 {
+  -moz-transform: rotate(315deg);
+  -o-transform: rotate(315deg);
+  -webkit-transform: rotate(315deg);
+  transform: rotate(315deg);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865474, M12=-0.7071067811865477, M21=0.7071067811865477, M22=0.7071067811865474, SizingMethod='auto expand')";
+  filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865474,M12=-0.7071067811865477,M21=0.7071067811865477,M22=0.7071067811865474,SizingMethod='auto expand');
+}
 
 /* customize fancybox */
 .fancybox-slide--iframe .fancybox-content {

@@ -39,18 +39,6 @@ Template.Message.onRendered(function() {
 Template.Message.helpers({
   showInternal() {
     return this.internal && ThreadUsers.find({threadId: this.threadId, userType: 'Contacts'}).count() > 0; // 有外部参与者
-  },
-  userName() {
-    let user = this.user();
-    if (!user) return;
-
-    switch(this.userType) {
-    case 'Users':
-      return user.name();
-    default:
-      if (this.email) return this.email.from;
-      return user.address();
-    }
   }
 });
 
@@ -70,6 +58,21 @@ Template.Message.events({
       }
     } else {
       $(e.target).closest(".message").toggleClass("fold");
+    }
+  }
+});
+
+Template.MessageHeaderInfo.helpers({
+  userName() {
+    let user = this.user();
+    if (!user) return;
+
+    switch(this.userType) {
+    case 'Users':
+      return user.name();
+    default:
+      if (this.email) return this.email.from;
+      return user.address();
     }
   }
 });

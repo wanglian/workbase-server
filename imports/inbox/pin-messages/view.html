@@ -1,0 +1,38 @@
+<template name="PinMessageButton">
+  <button type="button" class="btn btn-sm btn-default btn-pin" data-toggle="tooltip" title="{{_ 'Pin'}}">
+    <i class="fa fa-thumb-tack fa-rotate-45 {{#if pinAt}}text-yellow{{/if}}"></i>
+  </button>
+</template>
+
+<template name="PinMessageInfo">
+  {{#if pinAt}}
+    <div class="pin-info text-muted small">
+      <span class="icon"><i class="fa fa-thumb-tack fa-rotate-45 text-yellow"></i></span>
+      <span class="info">{{_ "Pinned by and when" user=pinUser.name time=(formatDayWithTime pinAt)}}</span>
+    </div>
+  {{/if}}
+</template>
+
+<template name="ThreadDetailPinMessages">
+  <div class="panel flat-panel">
+    <div class="flat-panel-heading">
+      <a data-parent="#thread-details-accordion" href="#pinMessages" data-toggle="collapse">
+        <div class="flat-panel-title">
+          <i class="fa fa-thumb-tack fa-rotate-45 text-yellow"></i>
+          {{_ "Pin Messages"}} {{#if count}}({{count}}){{/if}}
+        </div>
+      </a>
+    </div>
+    <div id="pinMessages" class="flat-panel-body no-padding panel-collapse collapse">
+      <ul class="list-group messages">
+        {{#each messages}}
+          <a href="#" class="list-group-item pin-message btn-view-pin">
+            {{> MessageHeaderInfo}}
+            {{> MessageContent}}
+            <span class="pin-truncate-fade"></span>
+          </a>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</template>

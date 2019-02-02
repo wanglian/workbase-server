@@ -129,11 +129,45 @@ Meteor.publishComposite("thread.messages", function(threadId, options) {
   let limit = options && options.limit || MIN_MESSAGES;
 
   let countName = `messages.${threadId}`;
-  Counts.publish(this, countName, Messages.find({threadId}, {sort: {createdAt: -1}}));
+  Counts.publish(this, countName, Messages.find({threadId}));
 
   return {
     find() {
       return Messages.find({threadId}, {
+        sort: {createdAt: -1},
+        limit: Math.min(limit, MAX_MESSAGES)
+      });
+    },
+    children: [
+      {
+        find(message) {
+          return message.fileIds && Files.find({_id: {$in: message.fileIds}}).cursor;
+        }
+      },
+      {
+        find(message) {
+          return message.inlineFileIds && Files.find({_id: {$in: message.inlineFileIds}}).cursor;
+        }
+      }
+    ]
+  }
+});
+
+Meteor.publishComposite("thread.messages.pin", function(threadId, options) {
+  check(threadId, String);
+  check(options, Match.Maybe({
+    limit: Match.Maybe(Number)
+  }));
+
+  let conditions = {threadId, pinAt: {$exists: true}};
+  let limit = options && options.limit || MIN_MESSAGES;
+
+  let countName = `messages.pin.${threadId}`;
+  Counts.publish(this, countName, Messages.find(conditions));
+
+  return {
+    find() {
+      return Messages.find(conditions, {
         sort: {createdAt: -1},
         limit: Math.min(limit, MAX_MESSAGES)
       });

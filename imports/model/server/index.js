@@ -17,4 +17,5 @@ Meteor.startup(function() {
   ThreadUsers._ensureIndex({read: 1});
   ThreadUsers._ensureIndex({archive: 1}, {sparse: 1}); // sparse - 如果文档中不存在则不启用索引
   Messages._ensureIndex({threadId: 1});
+  Messages._ensureIndex({pinAt: 1});
 });
