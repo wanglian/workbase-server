@@ -5,6 +5,7 @@ Meteor.publish('instance', function() {
     scope:    'private',
     userType: 'Users',
     userId:   this.userId,
+    archive:  {$ne: true},
     read:     false
   }));
 
@@ -18,6 +19,7 @@ Meteor.publish('instance', function() {
     Counts.publish(this, `count-unread-channel-${cu.channelId}`, ThreadUsers.find({
       userType: 'Channels',
       userId:   cu.channelId,
+      archive:  {$ne: true},
       read:     false
     }));
   });
