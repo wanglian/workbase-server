@@ -136,8 +136,10 @@
               </ul>
             </div>
           </div>
-
-          {{> LinkToChat this}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ "Close"}}</button>
+          {{> LinkToChat roster=this}}
         </div>
       </div>
     </div>
@@ -168,9 +170,14 @@
               </ul>
             </div>
           </div>
-
+        </div>
+        <div class="modal-footer">
+          {{#LinkToEditContact contact=this class="pull-left btn btn-default"}}
+            {{_ "Edit"}}
+          {{/LinkToEditContact}}
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ "Close"}}</button>
           {{#unless noreply}}
-            {{> LinkToChat this}}
+            {{> LinkToChat roster=this}}
           {{/unless}}
         </div>
       </div>

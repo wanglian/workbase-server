@@ -23,6 +23,7 @@ export const locale_zh_cn = {
   "Remove": "删除",
   "Edit": "编辑",
   "Save": "保存",
+  "Close": "关闭",
   "Download": "下载",
   "View": "查看",
   "Cancel": "取消",

@@ -24,10 +24,10 @@ Template.RosterList.helpers({
   }
 });
 
-Template.RosterHeader.events({
+Template.LinkToEditContact.events({
   "click .btn-edit-contact"(e, t) {
     e.preventDefault();
-    Modal.show("EditContactModal", this, {
+    Modal.show("EditContactModal", this.contact, {
       backdrop: 'static'
     });
   }
@@ -37,7 +37,7 @@ Template.LinkToChat.events({
   "click #btn-chat"(e, t) {
     e.preventDefault();
 
-    Meteor.call('startChat', this._id, (err, res) => {
+    Meteor.call('startChat', this.roster._id, (err, res) => {
       if (err) {
         console.log(err);
       } else {

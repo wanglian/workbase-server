@@ -76,14 +76,14 @@ Meteor.methods({
     });
 
     let contact = Contacts.findOne(id);
-    let mofifier = {};
-    if (params.name != contact.name()) _.extend(mofifier, {"profile.name": params.name});
-    if (params.title != contact.profile.title) _.extend(mofifier, {"profile.title": params.title});
-    if (params.company != contact.profile.company) _.extend(mofifier, {"profile.company": params.company});
-    if (params.noreply != contact.profile.noreply) _.extend(mofifier, {"profile.noreply": params.noreply});
+    let modifier = {};
+    if (params.name != contact.name()) _.extend(modifier, {"profile.name": params.name});
+    if (params.title != contact.profile.title) _.extend(modifier, {"profile.title": params.title || ""});
+    if (params.company != contact.profile.company) _.extend(modifier, {"profile.company": params.company || ""});
+    if (params.noreply != contact.profile.noreply) _.extend(modifier, {"profile.noreply": params.noreply});
 
-    if (!_.isEmpty(mofifier)) {
-      Contacts.update(id, {$set: mofifier});
+    if (!_.isEmpty(modifier)) {
+      Contacts.update(id, {$set: modifier});
     }
 
     if (params.email != contact.email()) {

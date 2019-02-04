@@ -58,11 +58,9 @@
 
 <template name="RosterHeader">
   {{> InboxBackButton}}
-  {{#if currentUser.isAdmin}}
-    {{#unless internal}}
-      <a href="#" class="btn-edit-contact inbox-header-icon pull-right text-muted"><i class="fa fa-edit"></i></a>
-    {{/unless}}
-  {{/if}}
+  {{#LinkToEditContact contact=this class="pull-right"}}
+    <i class="fa fa-edit"></i>
+  {{/LinkToEditContact}}
   <div class="thread-subject">{{name}}</div>
 </template>
 
@@ -90,7 +88,7 @@
       </div>
     </div>
 
-    {{> LinkToChat this}}
+    {{> LinkToChat roster=this class="btn-block"}}
   </div>
 </template>
 
@@ -113,13 +111,21 @@
     </div>
 
     {{#unless noreply}}
-      {{> LinkToChat this}}
+      {{> LinkToChat roster=this class="btn-block"}}
     {{/unless}}
   </div>
 </template>
 
+<template name="LinkToEditContact">
+  {{#if currentUser.isAdmin}}
+    {{#unless contact.internal}}
+      <a href="#" class="btn-edit-contact inbox-header-icon text-muted {{class}}">{{> UI.contentBlock}}</a>
+    {{/unless}}
+  {{/if}}
+</template>
+
 <template name="LinkToChat">
-  <a href="#" class="btn btn-primary btn-block" id="btn-chat">{{_ "Send Messages"}}</a>
+  <a href="#" class="btn btn-primary {{class}}" id="btn-chat">{{_ "Send Messages"}}</a>
 </template>
 
 <template name="LinkToCardModal">

@@ -164,8 +164,8 @@ AutoForm.hooks({
           console.log(err);
         } else {
           console.log(res);
+          $(".modal button[class=close]").click();
         }
-        Modal.hide('EditRosterModal');
         this.done();
       });
     }
@@ -179,8 +179,8 @@ AutoForm.hooks({
           console.log(err);
         } else {
           console.log(res);
+          $(".modal button[class=close]").click();
         }
-        Modal.hide('EditContactModal');
         this.done();
       });
     }
