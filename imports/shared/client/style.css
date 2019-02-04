@@ -21,6 +21,19 @@
   max-width: 100%;
   cursor: zoom-in;
 }
+.shared-messages .like-users {
+  background: #ecf0f5;
+  padding: 5px;
+  margin-top: 5px;
+}
+.shared-messages .like-users .icon,
+.shared-messages .comments .icon {
+  position: absolute;
+  left: 20px;
+}
+.shared-messages .like-users .like-user {
+  margin-right: 5px;
+}
 ul.comments {
   background: #ecf0f5;
   margin-top: 5px;

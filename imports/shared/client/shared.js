@@ -45,6 +45,9 @@ Template.SharedMessage.helpers({
   liked() {
     return this.hasReact(Meteor.userId(), 'like');
   },
+  likeUsers() {
+    return this.reacts && this.reacts.like && this.reacts.like.map(id => Users.findOne(id));
+  },
   comments() {
     return Messages.find({parentId: this._id}, {sort: {createdAt: 1}});
   }
