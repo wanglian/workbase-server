@@ -2,7 +2,8 @@
   background: rgba(242,199,68,.1);
 }
 .message.pin .message-header {
-  border-color: rgba(242,199,68,.1);
+  background: rgba(249,249,249, 1);
+  border-color: rgba(245,245,245, 1);
 }
 .pin-info {
   padding-bottom: 5px;
