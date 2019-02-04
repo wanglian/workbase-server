@@ -17,6 +17,8 @@
 
 ## Deployment
 
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/workbase-server)
+
 Instant Server Installation with Snap
 ```
 sudo snap install workbase-server --edge --devmode // early test version
