@@ -57,6 +57,7 @@ parts:
         after: [node]
         source: .
         stage-packages:
+            - graphicsmagick
             - execstack
             - fontconfig-config
         stage:
