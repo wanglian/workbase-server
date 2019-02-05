@@ -37,7 +37,7 @@ $ sudo reboot
 
 - Register an account in Mailgun: https://www.mailgun.com.
 - Add a domain, and validate following the instructions. Write down the API Key which will be used in setup.
-- Add a router: Match Recipient: (.*)@<your domain>, Store and Notify: <your server url>/api/v1/mailgun.
+- Add a router: Match Recipient: `(.*)@<your domain>`, Store and Notify: `<your server root url>/api/v1/mailgun`.
 
 ### (Optional) Use S3
 
