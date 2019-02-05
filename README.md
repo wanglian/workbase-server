@@ -23,7 +23,7 @@ Instant Server Installation with Snap
 ```
 sudo snap install workbase-server --edge --devmode // early test version
 ```
-Now you can access from http://<server ip>:3000
+Now you can access from `http://<server ip>:3000`
   
 ### Config ROOT_URL
 
