@@ -51,21 +51,25 @@
         {{formatDayWithTime createdAt}}
       </div>
       {{#if (isMe user)}}
-        <div class="like-users clearfix">
-          <div class="icon"><i class="fa fa-heart-o"></i></div>
-          {{#each likeUsers}}
-            {{#LinkToCardModal user=this class="small like-user pull-left"}}
-              {{> avatar user=this shape="circle" class="img-circle" size="tiny"}}
-            {{/LinkToCardModal}}
-          {{/each}}
-        </div>
+        {{#if likeUsers.length}}
+          <div class="like-users clearfix">
+            <div class="icon"><i class="fa fa-heart-o"></i></div>
+            {{#each likeUsers}}
+              {{#LinkToCardModal user=this class="small like-user pull-left"}}
+                {{> avatar user=this shape="circle" class="img-circle" size="tiny"}}
+              {{/LinkToCardModal}}
+            {{/each}}
+          </div>
+        {{/if}}
       {{/if}}
-      <ul class="nav nav-pills nav-stacked comments">
-        <div class="icon"><i class="fa fa-comment-o"></i></div>
-        {{#each comments}}
-          <li><span class="user">{{user.name}}</span>: {{content}}</li>
-        {{/each}}
-      </ul>
+      {{#if comments.count}}
+        <ul class="nav nav-pills nav-stacked comments">
+          <div class="icon"><i class="fa fa-comment-o"></i></div>
+          {{#each comments}}
+            <li><span class="user">{{user.name}}</span>: {{content}}</li>
+          {{/each}}
+        </ul>
+      {{/if}}
     </div>
   </div>
 </template>
