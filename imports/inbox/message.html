@@ -95,7 +95,7 @@
       {{/if}}
       {{> EditMessageButton}}
       {{> PinMessageButton}}
-      {{#if thread.isReplyable}}
+      {{#if threadCanReply thread}}
         <button type="button" class="btn btn-sm btn-default btn-reply" data-toggle="tooltip" title="{{_ 'Reply'}}">
           <i class="fa fa-reply"></i>
         </button>

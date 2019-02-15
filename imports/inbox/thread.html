@@ -20,7 +20,7 @@
   {{#if actions.length}}
     {{> ThreadMenu}}
   {{/if}}
-  {{#if isReplyable}}
+  {{#if threadCanReply this}}
     {{> MessageForm thread=this options=true}}
   {{else}}
     <div class="text-muted text-center" style="padding:10px;">

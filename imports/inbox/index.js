@@ -111,4 +111,15 @@ Template.registerHelper('threadListTemplate', (thread, mode) => {
   }
 });
 
+Template.registerHelper('threadCanReply', (thread) => {
+  if (thread.category === 'Chat') {
+    let chat = thread.chat();
+    return chat && chat.noreply() ? false : true;
+  }
+  let count = ThreadUsers.find({threadId: thread._id}).count();
+  let countContacts = ThreadUsers.find({threadId: thread._id, userType: 'Contacts'}).count();
+  // 无内部用户参与的外部邮件，且外部邮件无须回复
+  return count === 1 || (count - countContacts) > 1 || thread.hasReplyableExternalMembers();
+});
+
 Template.registerHelper('localizedMessageSummary', Messages.localizedSummary);
