@@ -151,6 +151,7 @@ export const locale_zh_cn = {
   "mail subject": "主题",
   "mail to": "收件人",
   "mail cc": "抄送",
+  "mail bcc": "暗送",
   "Message from": "来自 {{user}} 的消息",
   "Copy": "复制消息",
   "Copied": "已复制",

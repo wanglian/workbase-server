@@ -55,6 +55,7 @@ export const locale_en_us = {
   "mail subject": "subject",
   "mail to": "to",
   "mail cc": "cc",
+  "mail bcc": "bcc",
   "Message from": "Message from {{user}}",
   "Selected Users": "{{count}} selected",
   "Enter to search": "Search ...",

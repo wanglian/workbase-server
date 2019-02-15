@@ -1,4 +1,7 @@
-// check 是否一对一邮件
+import SimpleSchema from 'simpl-schema';
+const REGEX_EMAIL = SimpleSchema.RegEx.Email;
+
+// check: one-one email
 const isOneToOne = (to, toUsers, ccUsers) => {
   let users = _.compact(_.concat([to], toUsers, ccUsers));
   let userIds = _.uniq(users.map(u => u._id));
@@ -8,20 +11,20 @@ const isOneToOne = (to, toUsers, ccUsers) => {
   }
   return userIds.length === 1;
 };
-// 查询两人之间的话题
+// query thread between users
 const findThreadIdBetweenUsers = (from, to) => {
   let threadIds = ThreadUsers.find({userType: from.className(), userId: from._id}).map(tu => tu.threadId);
   let tu = ThreadUsers.findOne({threadId: {$in: threadIds}, userType: to.className(), userId: to._id});
   return tu && tu.threadId;
 };
-// mailgun认证URL
+// mailgun auth URL
 const URL = Npm.require('url');
 const authURL = (url) => {
   let re = URL.parse(url);
   re.auth = "api:" + Instance.get().modules.email.mailgun.key;
   return re.format();
 };
-// promise 上传文件
+// promise
 const uploadFile = (url, name, params) => {
   return new Promise((resolve, reject) => {
     Files.load(url, {
@@ -46,6 +49,7 @@ parseMailgunEmail = async (doc) => {
   let from        = params['from'];
   let to          = params['To'];
   let cc          = params['Cc'];
+  let bcc         = params['Bcc'];
   let recipient   = params['recipient'];
   let bodyHtml    = params['body-html'];
   let bodyPlain   = params['body-plain'];
@@ -61,9 +65,9 @@ parseMailgunEmail = async (doc) => {
   let toUser   = Contacts.parseOne(recipient);
   if (!toUser) throw new Error(`recipient not exist: ${recipient}`);
 
-  // === 话题聚合
+  // === grouping thread
   let threadId;
-  // 1 消息关系
+  // 1 references & replyTo
   references = references && references.split(' ') || [];
   if (replyTo) references = _.union(references, [replyTo]);
   if (!_.isEmpty(references)) {
@@ -71,16 +75,16 @@ parseMailgunEmail = async (doc) => {
     threadId    = message && message.threadId;
   }
   if (!threadId) {
-    // 2 noreploy邮件聚合
+    // 2 noreply
     if (fromUser.noreply()) {
       threadId = findThreadIdBetweenUsers(fromUser, toUser);
     }
   }
-  let toUsers = Contacts.parse(to);
+  let toUsers = to.match(REGEX_EMAIL) && Contacts.parse(to);
   let ccUsers = cc && Contacts.parse(cc);
   let is121 = isOneToOne(toUser, toUsers, ccUsers);
   if (!threadId) {
-    // 3 一对一邮件聚合
+    // 3 one-one emails
     if (is121) {
       let tu = ThreadUsers.findOne({category: "Chat", userType: 'Users', userId: toUser._id, "params.chat": fromUser._id});
       threadId = tu && tu.threadId;
@@ -92,7 +96,7 @@ parseMailgunEmail = async (doc) => {
   }
   let thread = Threads.findOne(threadId);
 
-  // === 关系
+  // === thread users
   if (is121) {
     Threads.ensureMember(thread, fromUser, {chat: toUser._id, internal: toUser.internal()});
     Threads.ensureMember(thread, toUser, {chat: fromUser._id, internal: fromUser.internal()});
@@ -103,7 +107,7 @@ parseMailgunEmail = async (doc) => {
     ccUsers && ccUsers.forEach(user => Threads.ensureMember(thread, user));
   }
 
-  // === 消息内容
+  // === content
   let content = bodyHtml;
   let contentType = 'html';
   if (!content) {
@@ -111,7 +115,7 @@ parseMailgunEmail = async (doc) => {
     contentType = 'text';
   }
 
-  // === 附件处理
+  // === attachments
   let fileIds = [];
   let inlineFileIds = [];
   if (attachments) {
@@ -163,7 +167,7 @@ parseMailgunEmail = async (doc) => {
     });
   }
 
-  // === 自定义消息
+  // === customized
   if (variables) {
     variables = JSON.parse(variables);
     let messageType = variables['MessageType'];
@@ -181,9 +185,9 @@ parseMailgunEmail = async (doc) => {
     }
   }
 
-  // === 更新话题主题
-  // 1 邮件
-  // 2 由外部发起的话题
+  // === update subject
+  // 1 Email
+  // 2 Start from external
   if (thread.category === 'Email' || (thread.userType === 'Contacts')) {
     Threads.update(threadId, {$set: {subject}});
   }
@@ -196,7 +200,7 @@ parseMailgunEmail = async (doc) => {
     inlineFileIds,
     emailId,
     internal: false,
-    email: { subject, from, to, cc, date }
+    email: { subject, from, to, cc, bcc, date }
   });
 
   return doc._id;

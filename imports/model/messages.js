@@ -9,7 +9,7 @@
 // - inlineFileIds: [fileId]
 // - summary
 // - emailId
-// - email: subject, from, to, cc, time
+// - email: subject, from, to, cc, bcc, time
 // - reacts: like [userId]
 // - updateUserId
 // - pinAt
