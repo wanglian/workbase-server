@@ -5,28 +5,29 @@ ThreadsIndex = new Index({
   fields: ['subject'],
   defaultSearchOptions: {limit: 15},
   engine: new MongoDBEngine({
-    sort() {
-      return {
-        updatedAt: -1
-      };
-    },
-    clientSort() {
-      return {
-        updatedAt: -1
-      };
-    },
+    sort: () => { updatedAt: -1 },
+    clientSort: () => { updatedAt: -1 },
+    permission: (options) => options.userId,
     selector(searchObject, options, aggregation) {
       // retrieve the default selector
       const selector = this.defaultConfiguration().selector(searchObject, options, aggregation);
 
-      selector.category = {$nin: ['Chat', 'Account', 'Shared']};
+      selector.category = {$nin: ['Account', 'Shared']};
       selector.scope = {$ne: 'admin'};
       // options.search.userId contains the userId of the logged in user
       let threadIds = ThreadUsers.find({userType: 'Users', userId: options.search.userId}).map(tu => tu.threadId);
       selector._id = {$in: threadIds};
-      // console.log(selector);
+      // console.log(selector['$or'][0].subject);
       return selector;
     },
+    // selectorPerField(field, searchString) {
+    //   if (field === 'subject') {
+    //     return {
+    //       subject: {$regex: '.*' + searchString + '.*', '$options': 'i'}
+    //     }
+    //   }
+    //   return this.defaultConfiguration().selectorPerField(field, searchString);
+    // },
     beforePublish(action, doc) {
       // always return the document
       if (doc.lastMessageId) {
@@ -37,8 +38,8 @@ ThreadsIndex = new Index({
     },
     transform(doc) {
       doc.read = true; // TEMP
-      // return Threads._transform(doc);
-      return doc;
+      return Threads._transform(doc);
+      // return doc;
     }
   })
 });
