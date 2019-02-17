@@ -21,31 +21,44 @@
   max-width: 100%;
   cursor: zoom-in;
 }
-.shared-messages .like-users {
+.shared-messages .react-container,
+.shared-messages .react-container {
+  margin-left: -42px;
   background: #ecf0f5;
-  padding: 5px;
-  margin-top: 5px;
+  font-size: 12px;
 }
-.shared-messages .like-users .icon,
-.shared-messages .comments .icon {
+.shared-messages .react-container.like {
+  margin-top: 5px;
+  border-bottom: solid 1px #E8E8E8;
+}
+.shared-messages .like-users {
+  margin-left: 42px;
+  padding: 5px 0;
+}
+.shared-messages .react-container .icon {
   position: absolute;
-  left: 20px;
+  left: 22px;
+  padding-top: 10px;
 }
 .shared-messages .like-users .like-user {
   margin-right: 5px;
 }
-ul.comments {
-  background: #ecf0f5;
-  margin-top: 5px;
+.shared-messages .comments {
+  margin: 0;
+  padding-left: 42px;
 }
-ul.comments li {
-  padding: 2px 5px;
-  border-bottom: solid 1px #FAFAFA;
+.shared-messages .comments li {
+  padding: 5px 5px 5px 0;
+  list-style: none;
+  border-bottom: solid 1px #E8E8E8;
 }
-ul.comments li:last-child {
+.shared-messages .comments li:last-child {
   border-bottom: none;
 }
-ul.comments li .user {
+.shared-messages .comments li .comment-avatar {
+  margin-right: 5px;
+}
+.shared-messages .comments li .user {
   font-weight: 600;
 }
 

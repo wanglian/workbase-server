@@ -52,23 +52,38 @@
       </div>
       {{#if (isMe user)}}
         {{#if likeUsers.length}}
-          <div class="like-users clearfix">
+          <div class="react-container like">
             <div class="icon"><i class="fa fa-heart-o"></i></div>
-            {{#each likeUsers}}
-              {{#LinkToCardModal user=this class="small like-user pull-left"}}
-                {{> avatar user=this shape="circle" class="img-circle" size="tiny"}}
-              {{/LinkToCardModal}}
-            {{/each}}
+            <div class="like-users clearfix">
+              {{#each likeUsers}}
+                {{#LinkToCardModal user=this class="like-user pull-left"}}
+                  {{> avatar user=this shape="circle" class="img-circle" size="tiny"}}
+                {{/LinkToCardModal}}
+              {{/each}}
+            </div>
           </div>
         {{/if}}
       {{/if}}
       {{#if comments.count}}
-        <ul class="nav nav-pills nav-stacked comments">
+        <div class="react-container">
           <div class="icon"><i class="fa fa-comment-o"></i></div>
-          {{#each comments}}
-            <li><span class="user">{{user.name}}</span>: {{content}}</li>
-          {{/each}}
-        </ul>
+          <ul class="comments">
+            {{#each comments}}
+              <li>
+                {{#LinkToCardModal user=user class="comment-avatar pull-left"}}
+                  {{> avatar user=user shape="circle" class="img-circle" size="tiny"}}
+                {{/LinkToCardModal}}
+                <div>
+                  {{#LinkToCardModal user=user}}
+                    {{user.name}}
+                  {{/LinkToCardModal}}
+                  <span class="text-muted pull-right small">{{formatDayWithTime createdAt}}</span>
+                </div>
+                <div>{{content}}</div>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
       {{/if}}
     </div>
   </div>
