@@ -77,7 +77,9 @@ LogTypes.add("thread.revoke", { i18nKey: "log_remoke_thread_message" });
 // === Thread Actions ===
 ThreadActions = {};
 ThreadActions.star = {
-  title: I18n.t('Star'),
+  title() {
+    return I18n.t('Star');
+  },
   icon(thread) {
     return thread.star ? "fa fa-star text-yellow" : "fa fa-star-o";
   },
@@ -101,7 +103,9 @@ ThreadActions.archive = {
   }
 };
 ThreadActions.search = {
-  title: I18n.t("Search"),
+  title() {
+    return I18n.t("Search");
+  },
   icon: "fa fa-search",
   action(thread) {
     Modal.show('ThreadSearchModal', thread, {
