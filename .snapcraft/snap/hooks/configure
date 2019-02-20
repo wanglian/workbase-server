@@ -38,8 +38,8 @@ caddy="$(snapctl get caddy)"
 # Validate it
 caddy_regex='((enable)|(disable))'
 if ! [[ $caddy =~ $caddy_regex ]]; then
-    echo "\"$caddy_regex\" is not a valid, set to enable or disable" >&2  
-    exit 1
+  echo "\"$caddy\" is not a valid, set to enable or disable" >&2
+  exit 1
 else
   if [[ $caddy == enable ]]; then
     caddyurl="$(snapctl get caddy-url)"
