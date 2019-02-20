@@ -21,7 +21,7 @@
 
 Instant Server Installation with Snap
 ```
-sudo snap install workbase-server --edge --devmode // early test version
+sudo snap install workbase-server
 ```
 Now you can access from `http://<server ip>:3000`
   
