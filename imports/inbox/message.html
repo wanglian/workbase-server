@@ -52,15 +52,17 @@
 <template name="ImageContent">
   {{#with message}}
     <div class="markdown">{{#markdown}}{{{content}}}{{/markdown}}</div>
-    <a href="{{fileURL image}}" data-fancybox="thread" data-caption="{{summary}}">
-      {{#with image}}
-        {{#if isGif}}
+    {{#with image}}
+      {{#if isGif}}
+        <a href="{{fileURL this}}" data-fancybox="thread" data-caption="{{summary}}">
           <img src="{{fileURL this}}" alt="{{name}}" class="img-responsive img-thumbnail"/>
-        {{else}}
+        </a>
+      {{else}}
+        <a href="{{fileURL this 'preview'}}" data-fancybox="thread" data-caption="{{summary}}">
           <img src="{{fileURL this 'thumbnail'}}" alt="{{name}}" class="img-responsive img-thumbnail"/>
-        {{/if}}
-      {{/with}}
-    </a>
+        </a>
+      {{/if}}
+    {{/with}}
   {{/with}}
 </template>
 

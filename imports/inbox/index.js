@@ -112,6 +112,7 @@ Template.registerHelper('threadListTemplate', (thread, mode) => {
 });
 
 Template.registerHelper('threadCanReply', (thread) => {
+  if (!thread.category) return false;
   if (thread.category === 'Chat') {
     let chat = thread.chat();
     return chat && chat.noreply() ? false : true;

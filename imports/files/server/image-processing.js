@@ -6,10 +6,11 @@ const bound = Meteor.bindEnvironment((callback) => {
   return callback();
 });
 
-// size: {width, crop}
+// size: {name, width, crop}
 const createThumbnails = (collection, fileRef, definition, cb) => {
   check(fileRef, Object);
   check(definition, {
+    name:  String,
     width: Number,
     crop:  Match.Maybe(Boolean)
   });
@@ -40,7 +41,7 @@ const createThumbnails = (collection, fileRef, definition, cb) => {
             }
           });
 
-          const path = (collection.storagePath(fileRef)) + '/thumbnail-' + fileRef._id + '.' + fileRef.extension;
+          const path = (collection.storagePath(fileRef)) + '/' + definition.name + '-' + fileRef._id + '.' + fileRef.extension;
           let img = gm(fileRef.path)
             .quality(70)
             .define('filter:support=2')
@@ -88,7 +89,7 @@ const createThumbnails = (collection, fileRef, definition, cb) => {
                         return;
                       }
 
-                      fileRef.versions.thumbnail = {
+                      fileRef.versions[definition.name] = {
                         path: path,
                         size: stat.size,
                         type: fileRef.type,
@@ -100,7 +101,7 @@ const createThumbnails = (collection, fileRef, definition, cb) => {
                       };
 
                       const upd = { $set: {} };
-                      upd['$set']['versions.thumbnail'] = fileRef.versions.thumbnail;
+                      upd['$set']['versions.' + definition.name] = fileRef.versions[definition.name];
 
                       collection.collection.update(fileRef._id, upd, (colUpdError) => {
                         if (cb) {

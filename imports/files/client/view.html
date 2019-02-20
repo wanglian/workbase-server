@@ -36,9 +36,15 @@
 
 <template name="FileViewLink">
   {{#if compare (filetype type) '===' 'image'}}
-    <a href="{{fileURL this}}" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
-      <i class="fa fa-eye"></i>{{_ 'View'}}
-    </a>
+    {{#if isGif}}
+      <a href="{{fileURL this}}" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
+        <i class="fa fa-eye"></i>{{_ 'View'}}
+      </a>
+    {{else}}
+      <a href="{{fileURL this 'preview'}}" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
+        <i class="fa fa-eye"></i>{{_ 'View'}}
+      </a>
+    {{/if}}
   {{/if}}
   {{#if compare (filetype type) '===' 'video'}}
     <a href="{{fileURL this}}?play=true" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
