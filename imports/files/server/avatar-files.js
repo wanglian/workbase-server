@@ -15,13 +15,8 @@ AvatarFiles = new FilesCollection({
     try {
       // Run `createThumbnails` only over PNG, JPG and JPEG files
       if (/png|jpe?g/i.test(fileRef.extension || '')) {
-        createThumbnails(this, fileRef, {width: 180, crop: true}, (error, fileRef) => {
-          if (error) {
-            console.log("[Files] resize image error:");
-            console.error(error);
-          } else {
-            Storage.upload(this, fileRef);
-          }
+        createThumbnails(this, fileRef, [{width: 180, crop: true, name: 'thumbnail'}]).then(() => {
+          Storage.upload(this, fileRef);
         });
       } else {
         Storage.upload(this, fileRef);

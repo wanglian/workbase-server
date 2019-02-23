@@ -38,17 +38,17 @@
   {{#if compare (filetype type) '===' 'image'}}
     {{#if isGif}}
       <a href="{{fileURL this}}" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
-        <i class="fa fa-eye"></i>{{_ 'View'}}
+        <i class="fa fa-eye"></i> {{_ 'View'}}
       </a>
     {{else}}
       <a href="{{fileURL this 'preview'}}" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
-        <i class="fa fa-eye"></i>{{_ 'View'}}
+        <i class="fa fa-eye"></i> {{_ 'View'}}
       </a>
     {{/if}}
   {{/if}}
   {{#if compare (filetype type) '===' 'video'}}
     <a href="{{fileURL this}}?play=true" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
-      <i class="fa fa-eye"></i>{{_ 'View'}}
+      <i class="fa fa-eye"></i> {{_ 'View'}}
     </a>
   {{/if}}
   {{#if compare (filetype type) '===' 'audio'}}
@@ -58,7 +58,7 @@
       </audio>
     </div>
     <a href="#" data-fancybox='thread' data-src="#content-{{_id}}" data-caption="{{name}}" class="action text-muted">
-      <i class="fa fa-eye"></i>{{_ 'View'}}
+      <i class="fa fa-eye"></i> {{_ 'View'}}
     </a>
   {{/if}}
   {{#if compare (filetype type) '===' 'text'}}
@@ -68,12 +68,12 @@
   {{/if}}
   {{#if compare (filetype type) '===' 'pdf|odf'}}
     <a href="#" data-fancybox='thread' data-type="iframe" data-src="/ViewerJS/index.html#..{{fileURL this 'original' '/'}}" data-caption="{{name}}" class="action text-muted">
-      <i class="fa fa-eye"></i>{{_ 'View'}}
+      <i class="fa fa-eye"></i> {{_ 'View'}}
     </a>
   {{/if}}
   {{#if compare (filetype type) '===' 'word|excel|ppt'}}
     <a href="#" data-fancybox='thread' data-type="iframe" data-src="https://view.officeapps.live.com/op/embed.aspx?src={{fileURL this}}" data-caption="{{name}}" class="action text-muted">
-      <i class="fa fa-eye"></i>{{_ 'View'}}
+      <i class="fa fa-eye"></i> {{_ 'View'}}
     </a>
   {{/if}}
 </template>
