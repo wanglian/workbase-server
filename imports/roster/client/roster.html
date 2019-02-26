@@ -4,7 +4,7 @@
   {{/contentFor}}
 
   {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}
-    {{> RosterList users=users user=user}}
+    {{> RosterList}}
 
     {{> contentFor region="header" template="RosterHeader" data=user}}
     {{> contentFor region="right" template=cardTemplate data=user}}
@@ -53,6 +53,11 @@
         </div>
       </a>
     {{/each}}
+    {{#if nextPath}}
+      <a href="{{nextPath}}" class="list-group-item text-center text-muted thread small">
+        {{_ "Load More"}}
+      </a>
+    {{/if}}
   </ul>
 </template>
 
