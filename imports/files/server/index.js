@@ -64,7 +64,7 @@ Meteor.publish("files", function(options) {
     limit: Match.Maybe(Number)
   }));
 
-  Counts.publish(this, 'files', Files.find({}).cursor);
+  Counts.publish(this, 'count-files', Files.find({}).cursor);
   let limit = options && options.limit || MIN_FILES;
   return Files.find({}, {sort: {createdAt: -1}, limit: Math.min(limit, MAX_FILES)}).cursor;
 });

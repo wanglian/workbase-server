@@ -24,10 +24,9 @@ FilesController = ApplicationController.extend({
     let query = _.clone(this.params.query);
     _.extend(query, {limit: this.limit() + this.perPage});
     let nextPath = this.route.path(this.params, {query});
-    let count = Counts.get('files');
-    let hasMore = count > this.limit();
+    let total = Counts.get('count-files');
+    let hasMore = total > this.limit();
     return {
-      count,
       files:    Files.find({}, {sort: {createdAt: -1}}),
       ready:    this.filesSub.ready(),
       nextPath: hasMore ? nextPath : null
