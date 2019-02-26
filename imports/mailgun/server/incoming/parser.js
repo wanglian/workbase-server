@@ -1,9 +1,9 @@
-import SimpleSchema from 'simpl-schema';
-const REGEX_EMAIL = SimpleSchema.RegEx.Email;
+// import SimpleSchema from 'simpl-schema';
+// const REGEX_EMAIL = SimpleSchema.RegEx.Email;
 
 // check: one-one email
-const isOneToOne = (to, toUsers, ccUsers) => {
-  let users = _.compact(_.concat([to], toUsers, ccUsers));
+export const isOneToOne = (toUser, toUsers, ccUsers) => {
+  let users = _.compact(_.concat([toUser], toUsers, ccUsers));
   let userIds = _.uniq(users.map(u => u._id));
   if (userIds.length === 2) {
     // bcc/forward
@@ -43,7 +43,7 @@ const uploadFile = (url, name, params) => {
 };
 
 parseMailgunEmail = async (doc) => {
-  console.log("[mailgun] parse");
+  console.log("[mailgun] parse - " + doc.emailId);
   let params      = doc.params;
   let subject     = params['subject'];
   let from        = params['from'];
@@ -80,7 +80,7 @@ parseMailgunEmail = async (doc) => {
       threadId = findThreadIdBetweenUsers(fromUser, toUser);
     }
   }
-  let toUsers = to.match(REGEX_EMAIL) && Contacts.parse(to);
+  let toUsers = to.match(/@/) && Contacts.parse(to);
   let ccUsers = cc && Contacts.parse(cc);
   let is121 = isOneToOne(toUser, toUsers, ccUsers);
   if (!threadId) {
@@ -130,7 +130,7 @@ parseMailgunEmail = async (doc) => {
       });
     }
     // upload
-    attachments.map((attachment, index) => {
+    attachments.map(async(attachment, index) => {
       // attachment: url,name,content-type,size
       try {
         // cid
