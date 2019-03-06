@@ -130,7 +130,7 @@ parseMailgunEmail = async (doc) => {
       });
     }
     // upload
-    attachments.map(async(attachment, index) => {
+    attachments.map((attachment, index) => {
       // attachment: url,name,content-type,size
       try {
         // cid
