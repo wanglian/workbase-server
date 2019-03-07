@@ -18,6 +18,9 @@ RosterController = ApplicationController.extend({
   type() {
     return this.params._type;
   },
+  search() {
+    return this.params.query.search;
+  },
   data() {
     let user = Users.findOne(this.userId());
     let type = this.type() === 'external' ? 'Contacts' : 'Users';
@@ -27,9 +30,17 @@ RosterController = ApplicationController.extend({
     let nextPath = this.route.path(this.params, {query});
     let hasMore = Users.find({"profile.type": type}).count() > this.limit();
 
+    let conditions = {"profile.type": type};
+    let keyword = this.search();
+    if (keyword) {
+      _.extend(conditions, {$or: [
+        {"profile.name": {$regex: keyword, $options: 'i'}},
+        {"emails.address": {$regex: keyword, $options: 'i'}}
+      ]});
+    }
     return {
       type,
-      users: Users.find({"profile.type": type}, {sort: {"profile.name": 1}, limit: this.limit()}),
+      users: Users.find(conditions, {sort: {"profile.name": 1}, limit: this.limit()}),
       user,
       hasRight: !!user,
       hasSidebar: false,

@@ -41,6 +41,9 @@
 
 <template name="RosterList">
   <ul class="list-group threads">
+    <li class="list-group-item thread search">
+      <input type="text" class="form-control" placeholder="{{_ 'Search'}}">
+    </li>
     {{#each users}}
       <a href="{{rosterPath}}" class="list-group-item clearfix thread" id="{{_id}}">
         <div class="thread-icon">

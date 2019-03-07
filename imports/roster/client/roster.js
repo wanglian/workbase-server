@@ -24,6 +24,18 @@ Template.RosterList.helpers({
   }
 });
 
+Template.RosterList.events({
+  "keyup li.search input"(e, t) {
+    e.preventDefault();
+    let keyword = $(e.target).val();
+    if (keyword) {
+      let router = Router.current();
+      let params = _.extend(router.params, {_id: this._id});
+      Router.go('roster', {_type: router.params._type}, {query: {search: keyword}})
+    }
+  }
+});
+
 Template.LinkToEditContact.events({
   "click .btn-edit-contact"(e, t) {
     e.preventDefault();
