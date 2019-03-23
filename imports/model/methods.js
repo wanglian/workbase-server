@@ -37,7 +37,9 @@ toggleArchiveThread = new ValidatedMethod({
 
     const tu = ThreadUsers.findOne({threadId, userType: 'Users', userId: this.userId});
     if (tu) {
-      Threads.update(threadId, {$set: {archive: !tu.archive}}); // just for client
+      if (Meteor.isClient) {
+        Threads.update(threadId, {$set: {archive: !tu.archive}});
+      }
       return ThreadUsers.update(tu._id, {$set: {archive: !tu.archive}});
     } else {
       throw new Meteor.Error('Threads.methods.archive.notExist', 'User does not have the thread.');
@@ -57,7 +59,9 @@ toggleStarThread = new ValidatedMethod({
 
     const tu = ThreadUsers.findOne({threadId, userType: 'Users', userId: this.userId});
     if (tu) {
-      Threads.update(threadId, {$set: {star: !tu.star}}); // just for client
+      if (Meteor.isClient) {
+        Threads.update(threadId, {$set: {star: !tu.star}});
+      }
       return ThreadUsers.update(tu._id, {$set: {star: !tu.star}});
     } else {
       throw new Meteor.Error('Threads.methods.star.notExist', 'User does not have the thread.');
