@@ -1,5 +1,7 @@
 ![WorkBase logo](https://www.weaworking.com/assets/workbase.png)
 
+[中文](./zh-cn/README.md)
+
 # Communication & Collaboration Platform for Team
 
 ## Features
