@@ -31,6 +31,10 @@ Meteor.methods({
 });
 
 Meteor.publishComposite("admin.threads", function() {
+  if (!this.userId) return this.ready();
+  let user = Users.findOne(this.userId);
+  if (!user || !user.isAdmin()) return this.ready();
+
   return {
     find() {
       return ThreadUsers.find({userType: 'Users', userId: this.userId, scope: 'admin'}, {
