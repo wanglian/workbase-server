@@ -4,83 +4,6 @@ import SimpleSchema from 'simpl-schema';
 import Swal from 'sweetalert2';
 import autosize from 'autosize';
 
-const FORM_SCHEMA = new SimpleSchema({
-  language: {
-    type: String,
-    max: 50,
-    optional: true,
-    autoform: {
-      type: 'select',
-      label: I18n.t("Language"),
-      options: [
-        {label: "English", value: "en-US"},
-        {label: "简体中文", value: "zh-CN"}
-      ]
-    }
-  },
-  skin: {
-    type: String,
-    max: 20,
-    optional: true,
-    autoform: {
-      type: 'select',
-      label: I18n.t("Skin"),
-      options: [
-        {label: I18n.t("Blue Skin"), value: "blue"},
-        {label: I18n.t("Purple Skin"), value: "purple"},
-        {label: I18n.t("Red Skin"), value: "red"},
-        {label: I18n.t("Green Skin"), value: "green"},
-        {label: I18n.t("Yellow Skin"), value: "yellow"}
-      ]
-    }
-  },
-  message: {
-    type: String,
-    max: 100,
-    optional: true,
-    autoform: {
-      type: 'text',
-      label: I18n.t("Personal Message")
-    }
-  },
-  signature: {
-    type: String,
-    max: 200,
-    optional: true,
-    autoform: {
-      type: 'textarea',
-      label: I18n.t("Signature")
-    }
-  }
-});
-
-const PASSWORD_SCHEMA = new SimpleSchema({
-  passwordCurrent: {
-    type: String,
-    max: 30,
-    autoform: {
-      type: 'password',
-      label: I18n.t("Current password")
-    }
-  },
-  password: {
-    type: String,
-    max: 30,
-    autoform: {
-      type: 'password',
-      label: I18n.t("New password")
-    }
-  },
-  passwordConfirm: {
-    type: String,
-    max: 30,
-    autoform: {
-      type: 'password',
-      label: I18n.t("Confirm new password")
-    }
-  }
-});
-
 Template.ProfilePanel.events({
   "click .user-panel"(e, t) {
     e.preventDefault();
@@ -103,7 +26,55 @@ Template.ProfileModal.helpers({
     return Users;
   },
   formSchema() {
-    return FORM_SCHEMA;
+    return new SimpleSchema({
+      language: {
+        type: String,
+        max: 50,
+        optional: true,
+        autoform: {
+          type: 'select',
+          label: I18n.t("Language"),
+          options: [
+            {label: "English", value: "en-US"},
+            {label: "简体中文", value: "zh-CN"}
+          ]
+        }
+      },
+      skin: {
+        type: String,
+        max: 20,
+        optional: true,
+        autoform: {
+          type: 'select',
+          label: I18n.t("Skin"),
+          options: [
+            {label: I18n.t("Blue Skin"), value: "blue"},
+            {label: I18n.t("Purple Skin"), value: "purple"},
+            {label: I18n.t("Red Skin"), value: "red"},
+            {label: I18n.t("Green Skin"), value: "green"},
+            {label: I18n.t("Yellow Skin"), value: "yellow"}
+          ]
+        }
+      },
+      message: {
+        type: String,
+        max: 100,
+        optional: true,
+        autoform: {
+          type: 'text',
+          label: I18n.t("Personal Message")
+        }
+      },
+      signature: {
+        type: String,
+        max: 200,
+        optional: true,
+        autoform: {
+          type: 'textarea',
+          label: I18n.t("Signature")
+        }
+      }
+    });
   },
   signature() {
     return Template.instance().signature.get();
@@ -280,6 +251,31 @@ Template.ChangePasswordModal.helpers({
     return Users;
   },
   formSchema() {
-    return PASSWORD_SCHEMA;
+    return new SimpleSchema({
+      passwordCurrent: {
+        type: String,
+        max: 30,
+        autoform: {
+          type: 'password',
+          label: I18n.t("Current password")
+        }
+      },
+      password: {
+        type: String,
+        max: 30,
+        autoform: {
+          type: 'password',
+          label: I18n.t("New password")
+        }
+      },
+      passwordConfirm: {
+        type: String,
+        max: 30,
+        autoform: {
+          type: 'password',
+          label: I18n.t("Confirm new password")
+        }
+      }
+    });
   }
 });

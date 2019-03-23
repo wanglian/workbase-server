@@ -4,18 +4,6 @@ import './style.css';
 import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 
-const MESSAGE_SCHEMA = new SimpleSchema({
-  content: {
-    type: String,
-    max: 10000,
-    autoform: {
-      type: 'textarea',
-      rows: 3,
-      label: false,
-    }
-  }
-});
-
 Template.EditMessageButton.helpers({
   canEdit() {
     return this.internal && this.contentType === 'text' && this.userId === Meteor.userId();
@@ -36,7 +24,17 @@ Template.EditMessageModal.helpers({
     return Messages;
   },
   formSchema() {
-    return MESSAGE_SCHEMA;
+    return new SimpleSchema({
+      content: {
+        type: String,
+        max: 10000,
+        autoform: {
+          type: 'textarea',
+          rows: 3,
+          label: false,
+        }
+      }
+    });
   }
 });
 

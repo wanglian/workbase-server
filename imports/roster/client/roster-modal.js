@@ -2,89 +2,45 @@ import './roster-modal.html';
 
 import SimpleSchema from 'simpl-schema';
 
-const ROSTER_FORM_SCHEMA = new SimpleSchema({
-  name: {
-    type: String,
-    max: 50,
-    autoform: {
-      type: 'text',
-      label: I18n.t("User Name")
+const build_roster_schema = () => {
+  return new SimpleSchema({
+    name: {
+      type: String,
+      max: 50,
+      autoform: {
+        type: 'text',
+        label: I18n.t("User Name")
+      }
+    },
+    email: {
+      type: String,
+      max: 50,
+      regEx: SimpleSchema.RegEx.Email,
+      autoform: {
+        type: 'emailInput',
+        label: "Email"
+      }
+    },
+    password: {
+      type: String,
+      max: 50,
+      optional: true,
+      autoform: {
+        type: 'password',
+        label: I18n.t("Password")
+      }
+    },
+    title: {
+      type: String,
+      max: 50,
+      optional: true,
+      autoform: {
+        type: 'text',
+        label: I18n.t('Work Title'),
+      }
     }
-  },
-  email: {
-    type: String,
-    max: 50,
-    regEx: SimpleSchema.RegEx.Email,
-    autoform: {
-      type: 'emailInput',
-      label: "Email"
-    }
-  },
-  password: {
-    type: String,
-    max: 50,
-    optional: true,
-    autoform: {
-      type: 'password',
-      label: I18n.t("Password")
-    }
-  },
-  title: {
-    type: String,
-    max: 50,
-    optional: true,
-    autoform: {
-      type: 'text',
-      label: I18n.t('Work Title'),
-    }
-  }
-});
-
-const CONTACT_FORM_SCHEMA= new SimpleSchema({
-  name: {
-    type: String,
-    max: 50,
-    autoform: {
-      type: 'text',
-      label: I18n.t("User Name")
-    }
-  },
-  email: {
-    type: String,
-    max: 50,
-    regEx: SimpleSchema.RegEx.Email,
-    autoform: {
-      type: 'text',
-      label: "Email"
-    }
-  },
-  title: {
-    type: String,
-    max: 50,
-    optional: true,
-    autoform: {
-      type: 'text',
-      label: I18n.t('Work Title'),
-    }
-  },
-  company: {
-    type: String,
-    max: 50,
-    optional: true,
-    autoform: {
-      type: 'text',
-      label: I18n.t("Company")
-    }
-  },
-  noreply: {
-    type: Boolean,
-    label: I18n.t('Noreply'),
-    optional: true,
-    autoform: {
-      type: "boolean-checkbox"
-    }
-  }
-});
+  });
+};
 
 Template.RosterListModal.onRendered(function() {
   // this.subscribe("roster");
@@ -116,7 +72,7 @@ Template.AddRosterModal.helpers({
     return Users;
   },
   formSchema() {
-    return ROSTER_FORM_SCHEMA;
+    return build_roster_schema();
   }
 });
 
@@ -125,7 +81,7 @@ Template.EditRosterModal.helpers({
     return Users;
   },
   formSchema() {
-    return ROSTER_FORM_SCHEMA;
+    return build_roster_schema();
   }
 });
 
@@ -134,7 +90,51 @@ Template.EditContactModal.helpers({
     return Contacts;
   },
   formSchema() {
-    return CONTACT_FORM_SCHEMA;
+    return new SimpleSchema({
+      name: {
+        type: String,
+        max: 50,
+        autoform: {
+          type: 'text',
+          label: I18n.t("User Name")
+        }
+      },
+      email: {
+        type: String,
+        max: 50,
+        regEx: SimpleSchema.RegEx.Email,
+        autoform: {
+          type: 'text',
+          label: "Email"
+        }
+      },
+      title: {
+        type: String,
+        max: 50,
+        optional: true,
+        autoform: {
+          type: 'text',
+          label: I18n.t('Work Title'),
+        }
+      },
+      company: {
+        type: String,
+        max: 50,
+        optional: true,
+        autoform: {
+          type: 'text',
+          label: I18n.t("Company")
+        }
+      },
+      noreply: {
+        type: Boolean,
+        label: I18n.t('Noreply'),
+        optional: true,
+        autoform: {
+          type: "boolean-checkbox"
+        }
+      }
+    });
   }
 });
 

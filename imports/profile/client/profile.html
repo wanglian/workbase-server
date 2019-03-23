@@ -34,7 +34,7 @@
             <div class="form-group">
               <button class="btn btn-default" style="width:180px;" id="btn-change-password">{{_ 'Change password'}}</button>
             </div>
-            {{> afQuickField name="language" defaultValue=currentLanguage firstOption=false}}
+            {{> afQuickField name="language" defaultValue=currentUser.language firstOption=false}}
             {{> afQuickField name="skin" defaultValue="blue" firstOption=false}}
             {{> afQuickField name="message"}}
             {{> afQuickField name="signature" defaultValue=currentUser.signature}}

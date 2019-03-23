@@ -6,25 +6,20 @@ Template.registerHelper('_', (key, options) => {
   return I18n.t(key, options.hash);
 });
 
-currentLanguage = () => {
-  return window.navigator.language;
-};
-Template.registerHelper('currentLanguage', currentLanguage);
-
 const setLocale = (lng) => {
+  console.log("set - " + lng);
   I18n.changeLanguage(lng);
   // moment
   moment.locale(lng.toLowerCase());
 }
 
-// default: browser
-setLocale(currentLanguage());
+Meteor.startup(() => {
+  // default: browser
+  setLocale(window.navigator.language);
+});
 
 Accounts.onLogin(function(attempt) {
   // console.log("on login ..");
   let user = Meteor.user();
-  let lng = user.profile.language;
-  if (lng) {
-    setLocale(lng);
-  }
+  setLocale(user.language());
 });

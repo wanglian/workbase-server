@@ -5,25 +5,27 @@ import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 import Swal from 'sweetalert2';
 
-const MESSAGE_SCHEMA = new SimpleSchema({
-  internal: {
-    type: Boolean,
-    label: I18n.t('Internal'),
-    optional: true,
-    autoform: {
-      type: "boolean-checkbox"
+const build_message_schema = () => {
+  return new SimpleSchema({
+    internal: {
+      type: Boolean,
+      label: I18n.t('Internal'),
+      optional: true,
+      autoform: {
+        type: "boolean-checkbox"
+      }
+    },
+    content: {
+      type: String,
+      max: 10000,
+      autoform: {
+        type: 'textarea',
+        rows: 3,
+        label: false,
+      }
     }
-  },
-  content: {
-    type: String,
-    max: 10000,
-    autoform: {
-      type: 'textarea',
-      rows: 3,
-      label: false,
-    }
-  }
-});
+  });
+};
 
 Template.MessageForm.onRendered(function() {
   let threadId;
@@ -61,7 +63,7 @@ Template.MessageForm.helpers({
     return Messages;
   },
   formSchema() {
-    return MESSAGE_SCHEMA;
+    return build_message_schema();
   },
   parentMessage() {
     let m = Session.get(`message-draft-parent-${this.thread._id}`);
@@ -174,7 +176,7 @@ Template.ImageMessageModal.helpers({
     return Messages;
   },
   formSchema() {
-    return MESSAGE_SCHEMA;
+    return build_message_schema();
   },
   contentPlaceholder() {
     return `${I18n.t('Write something')} ...`;

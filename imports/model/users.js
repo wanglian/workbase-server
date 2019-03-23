@@ -23,7 +23,10 @@ Users.helpers({
     return user && user.className() === 'Users' && user._id === this._id;
   },
   name() {
-    return this.profile.name;
+    return this.profile && this.profile.name;
+  },
+  language() {
+    return this.profile && this.profile.language || 'en-US';
   },
   internal() {
     return this.className() != 'Contacts';

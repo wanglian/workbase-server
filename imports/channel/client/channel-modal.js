@@ -2,25 +2,27 @@ import './channel-modal.html';
 
 import SimpleSchema from 'simpl-schema';
 
-const CHANNEL_FORM_SCHEMA = new SimpleSchema({
-  name: {
-    type: String,
-    max: 50,
-    autoform: {
-      type: 'text',
-      label: I18n.t("Channel Name")
+const build_channel_form_schema = () => {
+  return new SimpleSchema({
+    name: {
+      type: String,
+      max: 50,
+      autoform: {
+        type: 'text',
+        label: I18n.t("Channel Name")
+      }
+    },
+    email: {
+      type: String,
+      max: 50,
+      regEx: SimpleSchema.RegEx.Email,
+      autoform: {
+        type: 'emailInput',
+        label: "Email"
+      }
     }
-  },
-  email: {
-    type: String,
-    max: 50,
-    regEx: SimpleSchema.RegEx.Email,
-    autoform: {
-      type: 'emailInput',
-      label: "Email"
-    }
-  }
-});
+  });
+};
 
 Template.ChannelListModal.onRendered(function() {
   this.subscribe("channel.list");
@@ -58,7 +60,7 @@ Template.AddChannelModal.helpers({
     return Users;
   },
   formSchema() {
-    return CHANNEL_FORM_SCHEMA;
+    return build_channel_form_schema();
   }
 });
 
@@ -67,7 +69,7 @@ Template.EditChannelModal.helpers({
     return Users;
   },
   formSchema() {
-    return CHANNEL_FORM_SCHEMA;
+    return build_channel_form_schema();
   }
 });
 
