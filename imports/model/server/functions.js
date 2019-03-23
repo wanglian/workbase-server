@@ -51,17 +51,17 @@ Threads.addMessage = (thread, user, message) => {
   }, message));
   let t = new Date();
   Threads.update(thread._id, {$set: {lastMessageId: mid, updatedAt: t}});
-  // mark unread
+  // mark unread, check archive
   ThreadUsers.update({
     threadId: thread._id, userType: 'Users', userId: {$ne: user._id}
   }, {$set: {
-    read: false, updatedAt: t
+    read: false, updatedAt: t, archive: false
   }}, {multi: true});
-  // mark read
+  // mark read, check archive
   ThreadUsers.update({
     threadId: thread._id, userType: 'Users', userId: user._id
   }, {$set: {
-    read: true, updatedAt: t
+    read: true, updatedAt: t, archive: false
   }});
   return mid;
 };
