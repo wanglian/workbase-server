@@ -143,7 +143,7 @@ AutoForm.hooks({
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
-      Meteor.call('addMember', insertDoc.email, insertDoc.name, insertDoc.title, (err, res) => {
+      Meteor.call('addMember', insertDoc.email, insertDoc.name, insertDoc.password, insertDoc.title, (err, res) => {
         if (err) {
           console.log(err);
         } else {

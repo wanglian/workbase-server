@@ -1,7 +1,8 @@
 Meteor.methods({
-  addMember(email, name, title) {
+  addMember(email, name, password, title) {
     check(name,  String);
     check(email, String);
+    check(password, Match.Maybe(String));
     check(title, Match.Maybe(String));
 
     let userId = Accounts.createUser({
@@ -12,6 +13,7 @@ Meteor.methods({
         title
       }
     });
+    Accounts.setPassword(userId, password);
 
     let admin = Users.findOne(this.userId);
     let user = Users.findOne(userId);
