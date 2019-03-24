@@ -3,11 +3,18 @@ import './send-email-modal.html';
 import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 
+Template.SendEmailModal.onCreated(function() {
+  this.subscribe("files.pending");
+});
+
 Template.SendEmailModal.onRendered(function() {
   $('input[name=to]').selectize(selectizeEmail('queryContacts'));
 });
 
 Template.SendEmailModal.helpers({
+  pendingFiles() {
+    return Files.find({"meta.relations": {$elemMatch: {threadId: null, type: 'file', messageId: null}}}, {sort: {"meta.relations.createdAt": -1}});
+  },
   formCollection() {
     return Threads;
   },
@@ -52,7 +59,8 @@ AutoForm.hooks({
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
-      Meteor.call('sendEmail', insertDoc.to, insertDoc.subject, insertDoc.content, (err, res) => {
+      let fileIds = Files.find({"meta.relations": {$elemMatch: {threadId: null, messageId: null, type: 'file'}}}).map(f => f._id);
+      Meteor.call('sendEmail', insertDoc.to, insertDoc.subject, insertDoc.content, fileIds, (err, res) => {
         if (err) {
           console.log(err);
         } else {

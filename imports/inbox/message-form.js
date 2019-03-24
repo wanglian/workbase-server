@@ -88,19 +88,6 @@ Template.MessageForm.events({
     e.preventDefault();
     Session.set(`message-draft-parent-${this.threadId}`);
   },
-  "click #btn-file"(e, t) {
-    e.preventDefault();
-    $('#file').click();
-  },
-  "change #file"(e, t) {
-    Modal.show('FileUploadModal', {
-      thread: this.thread,
-      file:   e.target.files[0]
-    }, {
-      backdrop: 'static'
-    });
-    $(e.target).val(""); // reset file input
-  },
   "click #btn-markdown"(e, t) {
     e.preventDefault();
     Swal({

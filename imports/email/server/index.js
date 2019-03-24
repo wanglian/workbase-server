@@ -1,10 +1,11 @@
 import '../email';
 
 Meteor.methods({
-  sendEmail(emails, subject, content) {
+  sendEmail(emails, subject, content, fileIds) {
     check(emails, String);
     check(subject, String);
     check(content, String);
+    check(fileIds, Match.Maybe([String]));
 
     let userId = this.userId;
     let user = Meteor.users.findOne(userId);
@@ -15,8 +16,9 @@ Meteor.methods({
 
       Threads.ensureMember(thread, user);
       contacts.forEach(c => Threads.ensureMember(thread, c));
-      Threads.addMessage(thread, user, {
-        content
+      let messageId = Threads.addMessage(thread, user, {
+        content,
+        fileIds
       });
       return threadId;
     }

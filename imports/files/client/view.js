@@ -31,7 +31,6 @@ Template.FileRemoveLink.events({
     Swal({
       title: I18n.t("Confirm remove file"),
       type: 'warning',
-      position: 'center-end',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -59,7 +58,7 @@ Template.FileUploadModal.onRendered(function() {
     meta: {
       relations: [
         {
-          threadId:  data.thread._id,
+          threadId:  data.thread && data.thread._id,
           userType:  'Users',
           userId:    Meteor.userId(),
           type:      'file',

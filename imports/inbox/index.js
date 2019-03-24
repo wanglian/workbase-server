@@ -4,6 +4,7 @@ import './edit-message';
 import './pin-messages';
 import './select-users-modal';
 import './select-thread-modal';
+import './upload-file';
 import './inbox';
 import './thread';
 import './message';

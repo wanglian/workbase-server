@@ -11,6 +11,23 @@
             {{> afQuickField name="to"}}
             {{> afQuickField name="subject"}}
             {{> afQuickField name="content"}}
+            {{#if pendingFiles.count}}
+              <ul class="files nav nav-pills nav-stacked" style="margin-bottom: 10px;">
+                {{#each pendingFiles}}
+                  <li>
+                    {{{fileicon type}}} {{name}} <span class="text-muted">({{filesize size}})</span>
+                    <div class="actions pull-right">
+                      {{> FileEditNameLink}}
+                      {{> FileViewLink}}
+                      {{> FileRemoveLink}}
+                    </div>
+                  </li>
+                {{/each}}
+              </ul>
+            {{/if}}
+            <div id="message-form-actions" class="text-muted">
+              {{> UploadFile}}
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>

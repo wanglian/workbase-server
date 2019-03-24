@@ -13,7 +13,10 @@ const updateRelations = (message, type, fileIds) => {
     _id: {$in: fileIds},
     "meta.relations.messageId": null
   }, {
-    $set: {"meta.relations.$.messageId": message._id}
+    $set: {
+      "meta.relations.$.threadId":  message.threadId,
+      "meta.relations.$.messageId": message._id
+    }
   }, {"multi": true});
 
   if (count === 0) {
@@ -41,6 +44,10 @@ Messages.after.insert(function(userId, doc) {
   if (doc.inlineFileIds) {
     updateRelations(message, 'inline', doc.inlineFileIds);
   }
+});
+
+Meteor.publish("files.pending", function() {
+  return Files.find({"meta.relations": {$elemMatch: {threadId: null, userId: this.userId, messageId: null}}}).cursor;
 });
 
 Meteor.publish("thread.files.pending", function(threadId) {
