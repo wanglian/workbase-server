@@ -4,7 +4,7 @@ ThreadCategories.add("Charts", {
   title(thread) { // client only
     return I18n.t(thread.subject);
   },
-  details: ['Members'],
+  details: ['Members', 'Search', 'PinMessages', 'Files'],
   actions() {
     return [
       {

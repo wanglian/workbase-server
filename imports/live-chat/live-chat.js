@@ -10,7 +10,7 @@ ThreadCategories.add("LiveChat", {
   title(thread) { // client only
     return thread.params && thread.params.email || I18n.t(thread.subject);
   },
-  details: ['Members']
+  details: ['Members', 'Search', 'PinMessages', 'Files'],
 });
 
 ThreadCategories.add("AdminLiveChat", {
@@ -19,7 +19,7 @@ ThreadCategories.add("AdminLiveChat", {
   title(thread) { // client only
     return I18n.t(thread.subject);
   },
-  details: ['Members'],
+  details: ['Members', 'Search', 'PinMessages', 'Files'],
   actions() {
     return [
       {
