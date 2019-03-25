@@ -121,16 +121,15 @@
         <div class="flat-panel-title"><i class="fa fa-files-o text-red"></i>{{_ 'Files with count' count=count}}</div>
       </a>
     </div>
-    <div id="thread-files" class="flat-panel-body panel-collapse collapse">
-      <ul class="files nav nav-pills nav-stacked" id="files-list-{{_id}}" aria-expanded="true">
-        {{#unless files.count}}
-          <li>{{_ 'None'}}</li>
-        {{/unless}}
-        {{#each files}}
-          <li>{{> FileItem}}</li>
-        {{/each}}
-      </ul>
-    </div>
+    {{#if files.count}}
+      <div id="thread-files" class="flat-panel-body panel-collapse collapse">
+        <ul class="files nav nav-pills nav-stacked" id="files-list-{{_id}}" aria-expanded="true">
+          {{#each files}}
+            <li>{{> FileItem}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
   </div>
 </template>
 
