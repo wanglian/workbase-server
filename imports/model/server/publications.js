@@ -104,6 +104,7 @@ Meteor.publishComposite("thread", function(threadId) {
             transform: (doc) => {
               doc.read = tu.read;
               doc.archive = tu.archive;
+              doc.archiveAt = tu.archiveAt;
               doc.star = tu.star;
               doc.params = tu.params;
               return doc;

@@ -40,7 +40,11 @@ toggleArchiveThread = new ValidatedMethod({
       if (Meteor.isClient) {
         Threads.update(threadId, {$set: {archive: !tu.archive}});
       }
-      return ThreadUsers.update(tu._id, {$set: {archive: !tu.archive}});
+      if (tu.archive) {
+        return ThreadUsers.update(tu._id, {$set: {archive: false, archiveAt: null}});
+      } else {
+        return ThreadUsers.update(tu._id, {$set: {archive: true, archiveAt: new Date()}});
+      }
     } else {
       throw new Meteor.Error('Threads.methods.archive.notExist', 'User does not have the thread.');
     }

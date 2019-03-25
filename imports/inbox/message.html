@@ -1,5 +1,5 @@
 <template name="Message">
-  <div class="message {{#if pinAt}}pin{{/if}}">
+  <div class="message {{#if pinAt}}pin{{/if}} {{#if archived}}fold{{/if}}">
     <div class="message-header clearfix">
       {{> PinMessageInfo}}
       <div class="message-header-avatar">

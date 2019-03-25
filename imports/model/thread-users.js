@@ -7,6 +7,7 @@
 // - read
 // - archive
 // - star
+// - archiveAt
 // - createdAt
 // - updatedAt
 // - params: extension

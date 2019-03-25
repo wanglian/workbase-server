@@ -37,6 +37,10 @@ Template.Message.onRendered(function() {
 });
 
 Template.Message.helpers({
+  archived() {
+    let thread = this.thread();
+    return thread.archiveAt && this.createdAt < thread.archiveAt;
+  },
   showInternal() {
     return this.internal && ThreadUsers.find({threadId: this.threadId, userType: 'Contacts'}).count() > 0; // 有外部参与者
   }
