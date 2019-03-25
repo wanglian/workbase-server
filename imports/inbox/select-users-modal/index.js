@@ -34,6 +34,7 @@ Template.SelectUsersModal.helpers({
     if (!_.isEmpty(keyword)) {
       _.extend(conditions, {$or: [
         {"profile.name": {$regex: keyword, $options: 'i'}},
+        {"profile.title": {$regex: keyword, $options: 'i'}},
         {"emails.address": {$regex: keyword, $options: 'i'}}
       ]});
     }
