@@ -37,7 +37,7 @@ Template.SelectUsersModal.helpers({
         {"emails.address": {$regex: keyword, $options: 'i'}}
       ]});
     }
-    return Users.find(conditions);
+    return Users.find(conditions, {limit: 25});
   },
   selectedList() {
     return Template.instance().selectedList.get();
@@ -77,10 +77,9 @@ Template.SelectUsersModal.events({
     }
   },
   "keyup #user-search"(e, t) {
-    if (e.which === 13) {
-      e.preventDefault();
-      t.search.set($(e.target).val());
-    }
+    // if (e.which === 13)
+    e.preventDefault();
+    t.search.set($(e.target).val());
   },
   "click #btn-cancel-search-users"(e, t) {
     e.preventDefault();
