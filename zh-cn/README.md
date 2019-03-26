@@ -1,5 +1,11 @@
 # WorkBase
 
+## 为什么会有WorkBase?
+
+基于两点考虑
+- 隐私与安全
+- 效率
+
 ## Workbase是什么？
 
 - 可以把它当成Slack。
