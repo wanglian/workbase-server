@@ -49,3 +49,10 @@ sudo snap install workbase-server
 - bucket名称
 - Access Key Id
 - Secret Key
+
+## iOS App
+
+[![从App Store安装](https://user-images.githubusercontent.com/551004/29770691-a2082ff4-8bc6-11e7-89a6-964cd405ea8e.png)](https://itunes.apple.com/app/workbase/id1447713624)
+
+安装完成后，在”设置“里找到WorkBase，设置服务器地址，如: https://example.com。  
+确认登录页面显示的是你设置使用的邮箱域名。
