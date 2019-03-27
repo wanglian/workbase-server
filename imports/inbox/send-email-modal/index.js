@@ -1,4 +1,4 @@
-import './send-email-modal.html';
+import './view.html';
 
 import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';

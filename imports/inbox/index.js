@@ -1,16 +1,17 @@
 import './inbox-layout';
+import './thread';
+import './message';
+import './thread-list';
+import './message-form';
+import './thread-detail';
 import './log-message';
 import './edit-message';
 import './pin-messages';
 import './select-users-modal';
 import './select-thread-modal';
+import './send-email-modal';
 import './upload-file';
 import './inbox';
-import './thread';
-import './message';
-import './thread-detail';
-import './thread-list';
-import './message-form';
 import './style.css';
 
 BoxController = ApplicationController.extend({

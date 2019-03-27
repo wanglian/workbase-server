@@ -1,5 +1,4 @@
 import './application-layout.html';
-import './send-email-modal';
 import './style.css';
 
 Template.ApplicationLayout.onRendered(function() {

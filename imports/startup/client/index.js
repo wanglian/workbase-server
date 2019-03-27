@@ -1,7 +1,7 @@
 import '../both';
+import './load-models';
 import './helper';
 import './moment';
-import './load-models';
 import './avatar.css';
 import 'animate.css';
 

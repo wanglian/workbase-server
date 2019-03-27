@@ -1,5 +1,5 @@
-import './thread.html';
-import './thread.css';
+import './view.html';
+import './style.css';
 
 const PER_PAGE = 20;
 

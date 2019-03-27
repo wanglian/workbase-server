@@ -1,5 +1,5 @@
-import './message-form.html';
-import './message-form.css';
+import './view.html';
+import './style.css';
 
 import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';

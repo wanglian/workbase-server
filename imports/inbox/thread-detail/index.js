@@ -1,5 +1,5 @@
-import './thread-detail.html';
-import './thread-detail.css';
+import './view.html';
+import './style.css';
 
 import Swal from 'sweetalert2';
 

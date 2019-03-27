@@ -1,5 +1,5 @@
-import './message.html';
-import './message.css';
+import './view.html';
+import './style.css';
 
 import ClipboardJS from 'clipboard';
 import moment from 'moment';

@@ -1,5 +1,5 @@
-import './thread-list.html';
-import './thread-list.css';
+import './view.html';
+import './style.css';
 
 Template.ThreadList.onRendered(function() {
   this.autorun(() => {

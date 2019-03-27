@@ -1,5 +1,5 @@
-import './inbox-layout.html';
-import './inbox-layout.css';
+import './view.html';
+import './style.css';
 
 Template.InboxLayout.helpers({
   rowClass(right, sidebar) {

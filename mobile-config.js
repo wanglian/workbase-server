@@ -2,10 +2,10 @@ App.info({
   id: 'com.weaworking.workbase',
   name: 'WorkBase',
   version: "0.0.1",
-  description: 'Power Team Communication & Collaboration',
-  author: 'Will Wang',
-  email: 'will@weaworking.com',
-  website: 'http://www.weaworking.com'
+  description: '',
+  author: 'Lian Wang',
+  email: 'wanglian1024@gmail.com',
+  website: 'https://wanglian.github.io/workbase-server'
 });
 
 App.accessRule('*');
