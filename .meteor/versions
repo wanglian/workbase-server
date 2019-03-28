@@ -109,7 +109,6 @@ peerlibrary:computed-field@0.3.1
 peerlibrary:data-lookup@0.1.0
 peerlibrary:reactive-field@0.1.0
 peppelg:bootstrap-3-modal@1.0.4
-perak:markdown@1.0.5
 percolate:migrations@1.0.2
 promise@0.11.1
 raix:eventemitter@0.1.3

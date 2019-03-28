@@ -1,3 +1,13 @@
+import mark from 'marked';
+
+mark.setOptions({
+  gfm: true,
+  tables: true,
+  breaks: true
+});
+
+Markdown = mark;
+
 let renderer = new Markdown.Renderer();
 renderer.link = function(href, title, text) {
   href = `javascript: window.open('${href}', '_blank', 'location=no')`;

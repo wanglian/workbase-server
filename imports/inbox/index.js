@@ -10,6 +10,7 @@ import './pin-messages';
 import './select-users-modal';
 import './select-thread-modal';
 import './send-email-modal';
+import './thread-notes-modal';
 import './upload-file';
 import './inbox';
 import './style.css';

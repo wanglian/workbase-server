@@ -7,7 +7,6 @@ Template.registerHelper('_', (key, options) => {
 });
 
 const setLocale = (lng) => {
-  console.log("set - " + lng);
   I18n.changeLanguage(lng);
   // moment
   moment.locale(lng.toLowerCase());

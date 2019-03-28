@@ -113,3 +113,14 @@ ThreadActions.search = {
     });
   }
 };
+ThreadActions.notes = {
+  title() {
+    return I18n.t("Notes");
+  },
+  icon: "fa fa-sticky-note-o",
+  action(thread) {
+    Modal.show('ThreadNotesModal', thread, {
+      backdrop: 'static'
+    });
+  }
+};
