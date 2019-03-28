@@ -22,8 +22,8 @@ ThreadCategories.add("Group", {
   },
   actions() {
     return [
+      ThreadActions.notes,
       ThreadActions.star,
-      ThreadActions.search,
       ThreadActions.archive
     ]
   }

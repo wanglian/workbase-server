@@ -174,6 +174,7 @@ export const locale_zh_cn = {
   "Archive": "归档",
   "Cancel Archive": "取消归档",
   "Star": "重要",
+  "Notes": "内容",
   // paginate
   "Load More": "查看更多",
   // log

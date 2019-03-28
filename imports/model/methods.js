@@ -22,6 +22,27 @@ markRead = new ValidatedMethod({
   }
 });
 
+saveThreadContent = new ValidatedMethod({
+  name: 'Threads.methods.saveContent',
+  validate: new SimpleSchema({
+    threadId: { type: String },
+    content:  { type: String }
+  }).validator(),
+  run({ threadId, content }) {
+    if (!this.userId) {
+      throw new Meteor.Error('Messages.methods.update.notLoggedIn', 'Must be logged in.');
+    }
+
+    let thread = Threads.findOne(threadId);
+    const tu = ThreadUsers.findOne({threadId, userType: 'Users', userId: this.userId});
+    if (tu) {
+      return Threads.update(threadId, {$set: {content}});
+    } else {
+      throw new Meteor.Error('Threads.methods.saveContent.notExist', 'User does not have the thread.');
+    }
+  }
+});
+
 toggleArchiveThread = new ValidatedMethod({
   name: 'Threads.methods.archive',
   validate: new SimpleSchema({

@@ -32,8 +32,8 @@ ThreadCategories.add("Chat", {
   actions(thread) {
     clientOnly();
     return [
+      ThreadActions.notes,
       ThreadActions.star,
-      ThreadActions.search,
       ThreadActions.archive
     ]
   }
