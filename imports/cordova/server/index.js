@@ -1,5 +1,6 @@
 Meteor.startup(function() {
   Push.Configure({
+    // ios
     apn: {
       // certData: Assets.getText('workbase-push-cert-dev.pem'),
       // keyData:  Assets.getText('workbase-push-key-dev.pem'),
@@ -10,15 +11,16 @@ Meteor.startup(function() {
       //gateway: 'gateway.push.apple.com',
       // gateway: 'gateway.sandbox.push.apple.com'
     },
-    gcm: {
-      apiKey: 'AAAA-pjrQnc:APA91bHSIL4scYbVgIEdcetalP6mK3DEsaJzGbk1P30OxVvXaZD5wCtq4eoyoGRP0LhPbRmBlfPzBpNUa1BxuRil11pXtRIN2LGSj4Tx_6_y5A_Pc9dBekK-nFJ0TdNdKzkh6Kl_TAt_',  // GCM/FCM server key
-      projectNumber: 1076307378807
-    },
-    production: true,
-    sound: true,
-    badge: true,
-    alert: true,
-    vibrate: true
+    // android
+    // gcm: {
+    //   apiKey: 'AAAA-pjrQnc:APA91bHSIL4scYbVgIEdcetalP6mK3DEsaJzGbk1P30OxVvXaZD5wCtq4eoyoGRP0LhPbRmBlfPzBpNUa1BxuRil11pXtRIN2LGSj4Tx_6_y5A_Pc9dBekK-nFJ0TdNdKzkh6Kl_TAt_',  // GCM/FCM server key
+    //   projectNumber: 1076307378807
+    // },
+    // production: true,
+    // sound: true,
+    // badge: true,
+    // alert: true,
+    // vibrate: true
     // 'sendInterval': 15000, Configurable interval between sending
     // 'sendBatchSize': 1, Configurable number of notifications to send per batch
     // 'keepNotifications': false,

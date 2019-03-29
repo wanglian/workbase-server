@@ -21,7 +21,7 @@ App.setPreference('AllowBackForwardNavigationGestures', true, 'ios');
 App.setPreference('Allow3DTouchLinkPreview', false, 'ios');
 
 App.configurePlugin('phonegap-plugin-push', {
-  SENDER_ID: 1076307378807 // android
+  // SENDER_ID: 1076307378807 // android
 });
 
 App.icons({
@@ -46,11 +46,11 @@ App.icons({
   "ipad_spotlight_legacy_2x": "private/ios/icon-ipad_spotlight_legacy_2x.png",
   "ipad_app_legacy": "private/ios/icon-ipad_app_legacy.png",
   "ipad_app_legacy_2x": "private/ios/icon-ipad_app_legacy_2x.png",
-  "android_mdpi": "private/android/icon-android_mdpi.png",
-  "android_hdpi": "private/android/icon-android_hdpi.png",
-  "android_xhdpi": "private/android/icon-android_xhdpi.png",
-  "android_xxhdpi": "private/android/icon-android_xxhdpi.png",
-  "android_xxxhdpi": "private/android/icon-android_xxxhdpi.png"
+  // "android_mdpi": "private/android/icon-android_mdpi.png",
+  // "android_hdpi": "private/android/icon-android_hdpi.png",
+  // "android_xhdpi": "private/android/icon-android_xhdpi.png",
+  // "android_xxhdpi": "private/android/icon-android_xxhdpi.png",
+  // "android_xxxhdpi": "private/android/icon-android_xxxhdpi.png"
 });
 
 App.launchScreens({
