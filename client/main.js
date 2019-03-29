@@ -6,7 +6,7 @@ import '/imports/layout';
 import '/imports/files/client';
 import '/imports/website/client';
 import '/imports/profile/client';
-import '/imports/inbox';
+import '/imports/inbox/client';
 import '/imports/email/client';
 import '/imports/chat/client';
 import '/imports/group/client';

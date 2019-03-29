@@ -11,8 +11,8 @@ access from http://localhost:3000
 ## Run Tests
 
 ```
-TEST_WATCH=1 meteor test --driver-package meteortesting:mocha --settings settings.json // unit tests
-TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha --settings settings.json // integration tests
+meteor npm run test // unit tests
+meteor npm run test-app // integration tests
 ```
 
 ## Docker
