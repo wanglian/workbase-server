@@ -2,11 +2,6 @@ import './view.html';
 import './style.css';
 
 import SimpleSchema from 'simpl-schema';
-import autosize from 'autosize';
-
-Template.ThreadNotesModal.onRendered(function() {
-  //
-});
 
 Template.ThreadNotesModal.helpers({
   notes() {
@@ -34,10 +29,6 @@ Template.ThreadNotesModal.events({
   "click #btn-edit-content"(e, t) {
     e.preventDefault();
     t.$('.modal-content').addClass("edit");
-  },
-  "click #btn-save-content"(e, t) {
-    e.preventDefault();
-    t.$('#thread-content-form').submit();
   }
 });
 

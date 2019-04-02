@@ -77,26 +77,26 @@
 }
 
 /* markdown */
-.message .message-content h1 {
+.markdown h1 {
   font-size: 28px;
 }
-.message .message-content h2 {
+.markdown h2 {
   font-size: 24px;
 }
-.message .message-content h3 {
+.markdown h3 {
   font-size: 20px;
 }
-.message .message-content h4 {
+.markdown h4 {
   font-size: 18px;
 }
-.message .message-content h5 {
+.markdown h5 {
   font-size: 16px;
 }
-.message .message-content h6 {
+.markdown h6 {
   font-size: 14px;
 }
-.message .message-content .markdown ul,
-.message .message-content .markdown ol {
+.markdown ul,
+.markdown ol {
   padding-left: 18px;
 }
 

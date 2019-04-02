@@ -1,24 +1,27 @@
 <template name="ThreadNotesModal">
-  <div class="modal fade full-screen no-footer thread-content">
+  <div class="modal fade full-screen thread-content">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
           <h4 class="modal-title view">
             {{_ 'Notes'}}
-            <a id="btn-edit-content" href="#"><small>{{_ "Edit"}}</small></a>
           </h4>
           <h4 class="modal-title edit">
             {{_ 'Edit'}}
-            <a id="btn-save-content" href="#"><small>{{_ "Save"}}</small></a>
           </h4>
         </div>
-        <div class="modal-body scroll-box">
-          <div class="markdown">{{#markdown}}{{{notes}}}{{/markdown}}</div>
-          {{#autoForm collection=formCollection schema=formSchema id="thread-content-form" threadId=_id type="normal"}}
+        {{#autoForm collection=formCollection schema=formSchema id="thread-content-form" threadId=_id type="normal"}}
+          <div class="modal-body scroll-box">
+            <div class="markdown">{{#markdown}}{{{notes}}}{{/markdown}}</div>
             {{> afQuickField name="content" value=notes}}
-          {{/autoForm}}
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Close'}}</button>
+            <button type="button" class="btn btn-success" id="btn-edit-content">{{_ "Edit"}}</button>
+            <button type="submit" class="btn btn-primary" id="btn-save-content">{{_ "Save"}}</button>
+          </div>
+        {{/autoForm}}
       </div>
     </div>
   </div>

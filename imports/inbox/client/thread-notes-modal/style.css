@@ -1,16 +1,21 @@
-form#thread-content-form,
 form#thread-content-form .form-group,
 form#thread-content-form .form-group textarea {
   height: 100%;
   max-height: 100%;
+  margin-bottom: 0;
 }
-.modal-title.edit,
-.modal-content.edit .modal-title.view,
-.modal-content.edit .markdown,
-form#thread-content-form {
+.modal.thread-content .modal-content.edit .modal-title.view,
+.modal.thread-content .modal-content .modal-title.edit,
+.modal.thread-content .modal-content.edit .markdown,
+.modal.thread-content .modal-content .modal-body .form-group,
+.modal.thread-content .modal-content.edit .modal-footer #btn-edit-content,
+.modal.thread-content .modal-content .modal-footer #btn-save-content {
   display: none;
 }
-.modal-content.edit .modal-title.edit,
-.modal-content.edit form#thread-content-form {
+.modal.thread-content .modal-content.edit .modal-title.edit,
+.modal.thread-content .modal-content.edit .modal-body .form-group {
   display: block;
+}
+.modal.thread-content .modal-content.edit .modal-footer #btn-save-content {
+  display: inline-block;
 }
