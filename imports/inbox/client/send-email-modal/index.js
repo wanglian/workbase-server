@@ -3,6 +3,15 @@ import './view.html';
 import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 
+Template.LinkToSendEmail.events({
+  "click #btn-send-email"(e, t) {
+    e.preventDefault();
+    Modal.show("SendEmailModal", null, {
+      backdrop: 'static'
+    });
+  }
+});
+
 Template.SendEmailModal.onCreated(function() {
   this.subscribe("files.pending");
 });
