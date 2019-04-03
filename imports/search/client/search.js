@@ -1,5 +1,15 @@
 import './search.html';
 
+Template.Search.events({
+  "focus #search-form input[name=search]"(e, t) {
+    e.preventDefault();
+    $(e.target).blur();
+    Modal.show("SearchModal", null, {
+      backdrop: 'static'
+    });
+  }
+});
+
 Template.SearchModal.onRendered(function() {
   this.$('.modal').on('shown.bs.modal', function(e) {
     $('.modal input[type=text]').focus();

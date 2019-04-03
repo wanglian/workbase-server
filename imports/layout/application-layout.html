@@ -31,15 +31,7 @@
       <section class="sidebar">
         {{> ProfilePanel}}
         <!-- search form -->
-        <form action="#" method="get" class="sidebar-form" id="search-form">
-          <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="{{_ 'Search'}}">
-            <span class="input-group-btn">
-              <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-          </div>
-        </form>
+        {{> Search}}
         <ul class="sidebar-menu">
           {{> InboxMenuItem}}
           {{> StarMenuItem}}
