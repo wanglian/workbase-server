@@ -5,6 +5,7 @@ import SimpleSchema from 'simpl-schema';
 
 Template.ThreadNotesModal.helpers({
   notes() {
+    // TODO tricky!
     let thread = Threads.findOne(this._id);
     return thread.content;
   },
@@ -37,9 +38,8 @@ AutoForm.hooks({
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
-      let threadId = this.formAttributes.threadId;
       saveThreadContent.call({
-        threadId,
+        threadId: currentDoc._id,
         content: insertDoc.content
       }, (err, res) => {
         if (err) {

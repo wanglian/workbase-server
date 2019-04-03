@@ -4,17 +4,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title view">
+          <h4 class="modal-title">
             {{_ 'Notes'}}
           </h4>
-          <h4 class="modal-title edit">
-            {{_ 'Edit'}}
-          </h4>
         </div>
-        {{#autoForm collection=formCollection schema=formSchema id="thread-content-form" threadId=_id type="normal"}}
+        {{#autoForm collection=formCollection schema=formSchema id="thread-content-form" doc=this resetOnSuccess=false}}
           <div class="modal-body scroll-box">
             <div class="markdown">{{#markdown}}{{{notes}}}{{/markdown}}</div>
-            {{> afQuickField name="content" value=notes}}
+            {{> afQuickField name="content"}}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Close'}}</button>

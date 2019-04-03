@@ -43,7 +43,6 @@ AutoForm.hooks({
     onSubmit: function(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
-      console.log(updateDoc);
       updateMessage.call({
         messageId: currentDoc._id,
         content:   insertDoc.content
@@ -52,7 +51,8 @@ AutoForm.hooks({
           console.log(err);
         } else {
           console.log(res);
-          Modal.hide("EditMessageModal");
+          // Modal.hide("EditMessageModal");
+          $('#EditMessageModal button[class=close]').click();
         }
       });
       this.done();
