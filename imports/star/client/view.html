@@ -36,3 +36,37 @@
     </li>
   {{/if}}
 </template>
+
+<template name="Archive">
+  {{#contentFor "menu"}}
+    {{> ArchiveMenu}}
+  {{/contentFor}}
+
+  {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}
+    {{> ThreadList}}
+
+    {{> contentFor region="header" template="ThreadHeader" data=thread}}
+    {{> contentFor region="right" template="Thread" data=thread}}
+    {{#if hasSidebar}}
+      {{> contentFor region="sidebar" template="ThreadDetail" data=thread}}
+    {{/if}}
+  {{/Layout}}
+</template>
+
+<template name="ArchiveMenu">
+  <p class="navbar-text pull-left menu-title">{{_ 'Archived'}}</p>
+
+  <div class="navbar-custom-menu">
+    <ul class="nav navbar-nav">
+      <li>{{> LinkToSendEmail}}</li>
+    </ul>
+  </div>
+</template>
+
+<template name="ArchiveMenuItem">
+  <li class="{{#if inRouter 'archive'}}active{{/if}}">
+    <a href="/archive">
+      <i class="fa fa-archive"></i> <span>{{_ 'Archived'}}</span>
+    </a>
+  </li>
+</template>

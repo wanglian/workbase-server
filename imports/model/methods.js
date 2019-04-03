@@ -10,14 +10,14 @@ markRead = new ValidatedMethod({
     // Meteor.methods
     if (!this.userId) {
       // Throw errors with a specific error code
-      throw new Meteor.Error('Threads.methods.archive.notLoggedIn', 'Must be logged in.');
+      throw new Meteor.Error('Threads.methods.read.notLoggedIn', 'Must be logged in.');
     }
 
     const tu = ThreadUsers.findOne({threadId, userType: 'Users', userId: this.userId});
     if (tu) {
       return ThreadUsers.update({threadId, userType: 'Users', userId: this.userId}, {$set: {read: true}});
     } else {
-      throw new Meteor.Error('Threads.methods.archive.notExist', 'User does not have the thread.');
+      throw new Meteor.Error('Threads.methods.read.notExist', 'User does not have the thread.');
     }
   }
 });
@@ -30,7 +30,7 @@ saveThreadContent = new ValidatedMethod({
   }).validator(),
   run({ threadId, content }) {
     if (!this.userId) {
-      throw new Meteor.Error('Messages.methods.update.notLoggedIn', 'Must be logged in.');
+      throw new Meteor.Error('Threads.methods.saveContent.notLoggedIn', 'Must be logged in.');
     }
 
     let thread = Threads.findOne(threadId);

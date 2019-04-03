@@ -35,3 +35,31 @@ Router.route('/star/:_id?', {
   name: 'star',
   controller: 'StarController'
 });
+
+ArchiveController = BoxController.extend({
+  template: 'Archive',
+  subscriptions() {
+    this.sub = StarSubs.subscribe("threads.archive", {limit: this.limit()});
+    let threadId = this.threadId();
+    if (threadId) {
+      StarSubs.subscribe("thread", threadId);
+      StarSubs.subscribe("thread.files.pending", threadId);
+    }
+  },
+  threads() {
+    return Threads.find({archive: true}, {sort: {updatedAt: -1}});
+  },
+  nextPath() {
+    let count = this.threads().count();
+    if (count == this.limit()) {
+      let query = _.clone(this.params.query);
+      _.extend(query, {limit: this.limit() + this.perPage});
+      return this.route.path(this.params, {query});
+    }
+  }
+});
+
+Router.route('/archive/:_id?', {
+  name: 'archive',
+  controller: 'ArchiveController'
+});
