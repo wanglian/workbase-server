@@ -16,6 +16,7 @@ import './helpers';
 import './inbox.html';
 import './star.html';
 import './archive.html';
+import './spam.html';
 import './style.css';
 
 BoxController = ApplicationController.extend({
@@ -36,8 +37,15 @@ BoxController = ApplicationController.extend({
   threads() {
     // to be implemented
   },
-  nextPath() {
+  totalCount() {
     // to be implemented
+  },
+  nextPath() {
+    if (this.totalCount() > this.limit()) {
+      let query = _.clone(this.params.query);
+      _.extend(query, {limit: this.limit() + this.perPage});
+      return this.route.path(this.params, {query});
+    }
   },
   data() {
     return {
@@ -52,8 +60,8 @@ BoxController = ApplicationController.extend({
 });
 
 const BoxSubs = new SubsManager({
-  cacheLimit: 10,
-  expireIn: 60
+  cacheLimit: 20,
+  expireIn: 10
 });
 Accounts.onLogout(function() {
   BoxSubs.clear();
@@ -70,15 +78,10 @@ InboxController = BoxController.extend({
     }
   },
   threads() {
-    return Threads.find({scope: 'private', archive: {$ne: true}}, {sort: {updatedAt: -1}});
+    return Threads.find({scope: 'private', archive: {$ne: true}, spam: {$ne: true}}, {sort: {updatedAt: -1}});
   },
-  nextPath() {
-    let count = Counts.get('threads');
-    if (count > this.limit()) {
-      let query = _.clone(this.params.query);
-      _.extend(query, {limit: this.limit() + this.perPage});
-      return this.route.path(this.params, {query});
-    }
+  totalCount() {
+    return Counts.get('threads');
   }
 });
 
@@ -100,13 +103,8 @@ StarController = BoxController.extend({
   threads() {
     return Threads.find({star: true}, {sort: {updatedAt: -1}});
   },
-  nextPath() {
-    let count = Counts.get('count-star');
-    if (count > this.limit()) {
-      let query = _.clone(this.params.query);
-      _.extend(query, {limit: this.limit() + this.perPage});
-      return this.route.path(this.params, {query});
-    }
+  totalCount() {
+    return Counts.get('count-star');
   }
 });
 
@@ -128,13 +126,8 @@ ArchiveController = BoxController.extend({
   threads() {
     return Threads.find({archive: true}, {sort: {updatedAt: -1}});
   },
-  nextPath() {
-    let count = this.threads().count();
-    if (count == this.limit()) {
-      let query = _.clone(this.params.query);
-      _.extend(query, {limit: this.limit() + this.perPage});
-      return this.route.path(this.params, {query});
-    }
+  totalCount() {
+    return Counts.get('count-archive');
   }
 });
 
@@ -143,3 +136,25 @@ Router.route('/archive/:_id?', {
   controller: 'ArchiveController'
 });
 
+SpamController = BoxController.extend({
+  template: 'Spam',
+  subscriptions() {
+    this.sub = BoxSubs.subscribe("threads.spam", {limit: this.limit()});
+    let threadId = this.threadId();
+    if (threadId) {
+      BoxSubs.subscribe("thread", threadId);
+      BoxSubs.subscribe("thread.files.pending", threadId);
+    }
+  },
+  threads() {
+    return Threads.find({spam: true}, {sort: {updatedAt: -1}});
+  },
+  totalCount() {
+    return Counts.get('count-spam');
+  }
+});
+
+Router.route('/spam/:_id?', {
+  name: 'spam',
+  controller: 'SpamController'
+});

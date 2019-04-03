@@ -14,7 +14,7 @@ Template.ThreadList.onRendered(function() {
 Template.ThreadListItemTemplate.helpers({
   threadPath() {
     let currentRoute = Router.current();
-    if (['inbox', 'channel', 'admin', 'star', 'archive'].includes(currentRoute.route.getName())) {
+    if (Threads.boxes.includes(currentRoute.route.getName())) {
       let params = _.defaults({_id: this._id}, currentRoute.params);
       let query = currentRoute.params.query;
       query = _.omit(query, 'detail');

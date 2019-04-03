@@ -72,6 +72,31 @@ toggleArchiveThread = new ValidatedMethod({
   }
 });
 
+toggleSpamThread = new ValidatedMethod({
+  name: 'Threads.methods.spam',
+  validate: new SimpleSchema({
+    threadId: { type: String }
+  }).validator(),
+  run({ threadId }) {
+    // `this` is the same method invocation object you normally get inside
+    // Meteor.methods
+    if (!this.userId) {
+      // Throw errors with a specific error code
+      throw new Meteor.Error('Threads.methods.spam.notLoggedIn', 'Must be logged in.');
+    }
+
+    const tu = ThreadUsers.findOne({threadId, userType: 'Users', userId: this.userId});
+    if (tu) {
+      if (Meteor.isClient) {
+        Threads.update(threadId, {$set: {spam: !tu.spam}});
+      }
+      return ThreadUsers.update(tu._id, {$set: {spam: !tu.spam}});
+    } else {
+      throw new Meteor.Error('Threads.methods.spam.notExist', 'User does not have the thread.');
+    }
+  }
+});
+
 toggleStarThread = new ValidatedMethod({
   name: 'Threads.methods.star',
   validate: new SimpleSchema({

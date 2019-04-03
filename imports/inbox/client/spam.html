@@ -1,0 +1,32 @@
+<template name="Spam">
+  {{#contentFor "menu"}}
+    {{> SpamMenu}}
+  {{/contentFor}}
+
+  {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}
+    {{> ThreadList}}
+
+    {{> contentFor region="header" template="ThreadHeader" data=thread}}
+    {{> contentFor region="right" template="Thread" data=thread}}
+    {{#if hasSidebar}}
+      {{> contentFor region="sidebar" template="ThreadDetail" data=thread}}
+    {{/if}}
+  {{/Layout}}
+</template>
+
+<template name="SpamMenu">
+  <p class="navbar-text pull-left menu-title">{{_ 'Spam Box'}}</p>
+</template>
+
+<template name="SpamMenuItem">
+  {{#if (count 'spam')}}
+    <li class="{{#if inRouter 'spam'}}active{{/if}}">
+      <a href="/spam">
+        <i class="fa fa-exclamation-triangle"></i> <span>{{_ 'Spam Box'}}</span>
+        <span class="pull-right-container">
+          <span class="label pull-right">{{count 'spam'}}</span>
+        </span>
+      </a>
+    </li>
+  {{/if}}
+</template>

@@ -10,6 +10,9 @@ const publishThread = function(publisher, type, options) {
   case 'archive':
     _.extend(conditions, {archive: true});
     break;
+  case 'spam':
+    _.extend(conditions, {spam: true});
+    break;
   default:
     return publisher.ready();
   }
@@ -29,6 +32,7 @@ const publishThread = function(publisher, type, options) {
               doc.read = tu.read;
               doc.archive = tu.archive;
               doc.star = tu.star;
+              doc.spam = tu.spam;
               doc.params = tu.params;
               return doc;
             }
@@ -67,4 +71,12 @@ Meteor.publishComposite("threads.archive", function(options) {
   }));
 
   return publishThread(this, 'archive', options);
+});
+
+Meteor.publishComposite("threads.spam", function(options) {
+  check(options, Match.Maybe({
+    limit: Match.Maybe(Number)
+  }));
+
+  return publishThread(this, 'spam', options);
 });

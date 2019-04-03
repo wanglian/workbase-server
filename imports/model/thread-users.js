@@ -7,6 +7,7 @@
 // - read
 // - archive
 // - star
+// - spam
 // - archiveAt
 // - createdAt
 // - updatedAt

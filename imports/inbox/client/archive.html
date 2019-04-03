@@ -25,9 +25,14 @@
 </template>
 
 <template name="ArchiveMenuItem">
-  <li class="{{#if inRouter 'archive'}}active{{/if}}">
-    <a href="/archive">
-      <i class="fa fa-archive"></i> <span>{{_ 'Archived'}}</span>
-    </a>
-  </li>
+  {{#if (count 'archive')}}
+    <li class="{{#if inRouter 'archive'}}active{{/if}}">
+      <a href="/archive">
+        <i class="fa fa-archive"></i> <span>{{_ 'Archived'}}</span>
+        <span class="pull-right-container">
+          <span class="label pull-right">{{count 'archive'}}</span>
+        </span>
+      </a>
+    </li>
+  {{/if}}
 </template>

@@ -6,6 +6,7 @@ Meteor.publish('instance', function() {
     userType: 'Users',
     userId:   this.userId,
     archive:  {$ne: true},
+    spam:     {$ne: true},
     read:     false
   }));
 
@@ -13,6 +14,18 @@ Meteor.publish('instance', function() {
     userType: 'Users',
     userId:   this.userId,
     star:     true
+  }));
+
+  Counts.publish(this, 'count-archive', ThreadUsers.find({
+    userType: 'Users',
+    userId:   this.userId,
+    archive:  true
+  }));
+
+  Counts.publish(this, 'count-spam', ThreadUsers.find({
+    userType: 'Users',
+    userId:   this.userId,
+    spam:     true
   }));
 
   ChannelUsers.find({userId: this.userId}).forEach((cu) => {
@@ -40,7 +53,7 @@ Meteor.publishComposite("threads", function(options) {
     limit: Match.Maybe(Number)
   }));
 
-  let conditions = {scope: 'private', userType: 'Users', userId: this.userId, archive: {$ne: true}};
+  let conditions = {scope: 'private', userType: 'Users', userId: this.userId, archive: {$ne: true}, spam: {$ne: true}};
   let category = options && options.category;
   if (category) {
     _.extend(conditions, {category});
@@ -66,6 +79,7 @@ Meteor.publishComposite("threads", function(options) {
               doc.read = tu.read;
               doc.archive = tu.archive;
               doc.star = tu.star;
+              doc.spam = tu.spam;
               doc.params = tu.params;
               return doc;
             }
@@ -106,6 +120,7 @@ Meteor.publishComposite("thread", function(threadId) {
               doc.archive = tu.archive;
               doc.archiveAt = tu.archiveAt;
               doc.star = tu.star;
+              doc.spam = tu.spam;
               doc.params = tu.params;
               return doc;
             }

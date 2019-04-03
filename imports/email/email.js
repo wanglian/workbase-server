@@ -5,7 +5,7 @@ ThreadCategories.add("Email", {
   actions() {
     clientOnly();
     return [
-      ThreadActions.notes,
+      ThreadActions.spam,
       ThreadActions.star,
       ThreadActions.archive
     ]

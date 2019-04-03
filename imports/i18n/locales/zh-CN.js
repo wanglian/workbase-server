@@ -176,6 +176,9 @@ export const locale_zh_cn = {
   "Cancel Archive": "取消归档",
   "Star": "重要",
   "Notes": "内容",
+  "Spam": "垃圾",
+  "Spam Box": "垃圾箱",
+  "Not Spam": "不是垃圾",
   // paginate
   "Load More": "查看更多",
   // log
