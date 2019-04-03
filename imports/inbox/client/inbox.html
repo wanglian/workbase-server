@@ -23,3 +23,16 @@
     </ul>
   </div>
 </template>
+
+<template name="InboxMenuItem">
+  <li class="{{#if inRouter 'inbox'}}active{{/if}}">
+    <a href="/inbox">
+      <i class="fa fa-inbox"></i> <span>{{_ 'Inbox'}}</span>
+      {{#if (count 'unread-inbox')}}
+        <span class="pull-right-container">
+          <span class="label label-danger pull-right">{{count 'unread-inbox'}}</span>
+        </span>
+      {{/if}}
+    </a>
+  </li>
+</template>

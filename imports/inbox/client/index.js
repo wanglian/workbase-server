@@ -51,22 +51,22 @@ BoxController = ApplicationController.extend({
   }
 });
 
-const InboxSubs = new SubsManager({
+const BoxSubs = new SubsManager({
   cacheLimit: 10,
   expireIn: 60
 });
 Accounts.onLogout(function() {
-  InboxSubs.clear();
+  BoxSubs.clear();
 });
 
 InboxController = BoxController.extend({
   template: 'Inbox',
   subscriptions() {
-    this.sub = InboxSubs.subscribe("threads", {limit: this.limit()});
+    this.sub = BoxSubs.subscribe("threads", {limit: this.limit()});
     let threadId = this.threadId();
     if (threadId) {
-      InboxSubs.subscribe("thread", threadId);
-      InboxSubs.subscribe("thread.files.pending", threadId);
+      BoxSubs.subscribe("thread", threadId);
+      BoxSubs.subscribe("thread.files.pending", threadId);
     }
   },
   threads() {
@@ -90,11 +90,11 @@ Router.route('/inbox/:_id?', {
 StarController = BoxController.extend({
   template: 'Star',
   subscriptions() {
-    this.sub = InboxSubs.subscribe("threads.star", {limit: this.limit()});
+    this.sub = BoxSubs.subscribe("threads.star", {limit: this.limit()});
     let threadId = this.threadId();
     if (threadId) {
-      InboxSubs.subscribe("thread", threadId);
-      InboxSubs.subscribe("thread.files.pending", threadId);
+      BoxSubs.subscribe("thread", threadId);
+      BoxSubs.subscribe("thread.files.pending", threadId);
     }
   },
   threads() {
@@ -118,11 +118,11 @@ Router.route('/star/:_id?', {
 ArchiveController = BoxController.extend({
   template: 'Archive',
   subscriptions() {
-    this.sub = InboxSubs.subscribe("threads.archive", {limit: this.limit()});
+    this.sub = BoxSubs.subscribe("threads.archive", {limit: this.limit()});
     let threadId = this.threadId();
     if (threadId) {
-      InboxSubs.subscribe("thread", threadId);
-      InboxSubs.subscribe("thread.files.pending", threadId);
+      BoxSubs.subscribe("thread", threadId);
+      BoxSubs.subscribe("thread.files.pending", threadId);
     }
   },
   threads() {

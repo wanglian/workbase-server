@@ -41,20 +41,7 @@
           </div>
         </form>
         <ul class="sidebar-menu">
-          <li class="header text-ellipsis hide">
-            <span class="pull-right"><i class="fa fa-circle text-success"></i></span>
-            {{currentUser.email}}
-          </li>
-          <li class="{{#if inRouter 'inbox'}}active{{/if}}">
-            <a href="/inbox">
-              <i class="fa fa-inbox"></i> <span>{{_ 'Inbox'}}</span>
-              {{#if (count 'unread-inbox')}}
-                <span class="pull-right-container">
-                  <span class="label label-danger pull-right">{{count 'unread-inbox'}}</span>
-                </span>
-              {{/if}}
-            </a>
-          </li>
+          {{> InboxMenuItem}}
           {{> StarMenuItem}}
           {{> RosterMenuItem}}
           {{> ChannelMenuItems}}
