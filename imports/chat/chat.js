@@ -31,10 +31,15 @@ ThreadCategories.add("Chat", {
   },
   actions(thread) {
     clientOnly();
-    return [
+    return thread.internal() ? [
       ThreadActions.notes,
       ThreadActions.star,
       ThreadActions.archive
-    ]
+    ] : [
+      ThreadActions.notes,
+      ThreadActions.star,
+      ThreadActions.spam,
+      ThreadActions.archive
+    ];
   }
 });

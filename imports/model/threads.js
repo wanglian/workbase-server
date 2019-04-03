@@ -42,7 +42,7 @@ Threads.helpers({
   },
   actions() {
     let c = ThreadCategories.get(this.category);
-    return typeof(c.actions) == "function" ? c.actions() : [];
+    return typeof(c.actions) == "function" ? c.actions(this) : [];
   },
   lastMessage() {
     return Messages.findOne(this.lastMessageId);
