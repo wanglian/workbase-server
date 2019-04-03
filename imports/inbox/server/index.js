@@ -2,7 +2,7 @@ const MIN_THREADS = 20;
 const MAX_THREADS = 200;
 
 const publishThread = function(publisher, type, options) {
-  let conditions = {serType: 'Users', userId: this.userId};
+  let conditions = {userType: 'Users', userId: publisher.userId};
   switch (type) {
   case 'star':
     _.extend(conditions, {star: true});
