@@ -4,15 +4,20 @@ import './message-records';
 import moment from 'moment';
 
 Meteor.startup(function() {
-  Threads.findOne({category: 'Charts'}) || Threads.create(null, 'Charts', 'System Reports', 'admin');
+  let thread = Threads.findOne({category: 'Charts'});
+  if (thread) {
+    //
+  } else {
+    Threads.create(null, 'Charts', 'System Reports', 'admin');
+  }
 });
 
 Accounts.onLogin(function(attempt) {
   // admin
-  let admin = Instance.admin();
-  if (admin._id === attempt.user._id) {
+  let user = Users.findOne(attempt.user._id);
+  if (user && user.isAdmin()) {
     let thread = Threads.findOne({category: 'Charts'});
-    Threads.ensureMember(thread, admin);
+    thread && Threads.ensureMember(thread, user);
   }
 });
 

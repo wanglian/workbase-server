@@ -15,18 +15,23 @@ const createLiveChat = () => {
 };
 
 Meteor.startup(function() {
-  Threads.findOne({category: 'AdminLiveChat'}) || Threads.create(null, 'AdminLiveChat', 'Live Chat Management', 'admin');
-});
-
-Accounts.onLogin(function(attempt) {
-  // admin
-  let admin = Instance.admin();
-  if (admin._id === attempt.user._id) {
-    let thread = Threads.findOne({category: 'AdminLiveChat'});
-    let channelId = createLiveChat();
-    Threads.ensureMember(thread, admin, {channelId});
+  let thread = Threads.findOne({category: 'AdminLiveChat'});
+  if (thread) {
+    Threads.update(thread._id, {$set: {scope: 'test'}});
+  } else {
+    // Threads.create(null, 'AdminLiveChat', 'Live Chat Management', 'admin');
   }
 });
+
+// Accounts.onLogin(function(attempt) {
+//   // admin
+//   let user = Users.findOne(attempt.user._id);
+//   if (user && user.isAdmin()) {
+//     let thread = Threads.findOne({category: 'AdminLiveChat'});
+//     let channelId = createLiveChat();
+//     thread && Threads.ensureMember(thread, user, {channelId});
+//   }
+// });
 
 // - channel
 // - contact

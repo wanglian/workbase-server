@@ -5,17 +5,22 @@ import './methods';
 import './publications';
 
 Meteor.startup(function() {
-  Threads.findOne({category: 'Channel'}) || Threads.create(null, 'Channel', 'Channels Management', 'admin');
-});
-
-Accounts.onLogin(function(attempt) {
-  // admin
-  let admin = Instance.admin();
-  if (admin._id === attempt.user._id) {
-    let thread = Threads.findOne({category: 'Channel'});
-    Threads.ensureMember(thread, admin);
+  let thread = Threads.findOne({category: 'Channel'});
+  if (thread) {
+    Threads.update(thread._id, {$set: {scope: 'test'}});
+  } else {
+    // Threads.create(null, 'Channel', 'Channels Management', 'admin');
   }
 });
+
+// Accounts.onLogin(function(attempt) {
+//   // admin
+//   let user = Users.findOne(attempt.user._id);
+//   if (user && user.isAdmin()) {
+//     let thread = Threads.findOne({category: 'Channel'});
+//     thread && Threads.ensureMember(thread, user);
+//   }
+// });
 
 // const WELCOME_CHANNEL_MAIL = {
 //   subject: 'Congratulations!',
