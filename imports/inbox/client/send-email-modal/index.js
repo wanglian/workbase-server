@@ -2,6 +2,7 @@ import './view.html';
 
 import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
+import Swal from 'sweetalert2';
 
 Template.LinkToSendEmail.events({
   "click #btn-send-email"(e, t) {
@@ -72,12 +73,19 @@ AutoForm.hooks({
       Meteor.call('sendEmail', insertDoc.to, insertDoc.subject, insertDoc.content, fileIds, (err, res) => {
         if (err) {
           console.log(err);
+          this.done(new Error('Sending Email failed.'));
         } else {
           console.log(res);
           Router.go('inbox', {_id: res});
+          $('#SendEmailModal button[class=close]').click();
+          this.done();
         }
-        Modal.hide('SendEmailModal');
-        this.done();
+      });
+    },
+    onError: function(formType, error) {
+      Swal({
+        title: error.message,
+        type: "error"
       });
     }
   }
