@@ -23,9 +23,11 @@
     <li class="{{#if inRouter 'spam'}}active{{/if}}">
       <a href="/spam">
         <i class="fa fa-exclamation-triangle"></i> <span>{{_ 'Spam Box'}}</span>
-        <span class="pull-right-container">
-          <span class="label pull-right">{{count 'spam'}}</span>
-        </span>
+        {{#if (count 'spam-unread')}}
+          <span class="pull-right-container">
+            <span class="label pull-right">{{count 'spam-unread'}}</span>
+          </span>
+        {{/if}}
       </a>
     </li>
   {{/if}}

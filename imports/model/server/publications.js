@@ -28,6 +28,13 @@ Meteor.publish('instance', function() {
     spam:     true
   }));
 
+  Counts.publish(this, 'count-spam-unread', ThreadUsers.find({
+    userType: 'Users',
+    userId:   this.userId,
+    spam:     true,
+    read:     false
+  }));
+
   ChannelUsers.find({userId: this.userId}).forEach((cu) => {
     Counts.publish(this, `count-unread-channel-${cu.channelId}`, ThreadUsers.find({
       userType: 'Channels',
