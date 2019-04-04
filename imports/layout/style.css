@@ -30,3 +30,9 @@ body .page-header {
   color: white;
   font-weight: 600;
 }
+
+/* fix AdminLTE */
+.main-sidebar .sidebar {
+  height: calc(100vh - 120px);
+  overflow-y: scroll;
+}
