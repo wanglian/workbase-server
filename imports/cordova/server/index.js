@@ -33,10 +33,12 @@ Messages.after.insert(function(userId, doc) {
   let message = this.transform();
 
   ThreadUsers.find({threadId: message.threadId, userType: 'Users', userId: {$ne: message.userId}}).forEach((tu) => {
+    if (tu.spam) return;
+
     pushToUser(tu.user(), message).then((result) => {
       // console.log("[push] " + tu.userId + ' - ' + message._id);
     }).catch((e) => {
-      console.log("Push error:")
+      console.log("Push error:");
       console.log(e);
     });
   });
