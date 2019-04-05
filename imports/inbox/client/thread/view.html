@@ -6,7 +6,7 @@
 </template>
 
 <template name="ThreadMenu">
-  <div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group btn-group-justified" id="thread-menu">
     {{#each actions}}
       <a href="#" class="btn btn-default btn-action">
         <i class="{{menuIcon}} text-muted"></i>
@@ -23,7 +23,7 @@
   {{#if threadCanReply this}}
     {{> MessageForm thread=this options=true}}
   {{else}}
-    <div class="text-muted text-center" style="padding:10px;">
+    <div class="text-muted text-center" id="thread-noreply-info">
       <span>{{_ "This Email does not need reply"}}</span>
     </div>
   {{/if}}

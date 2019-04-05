@@ -44,11 +44,17 @@
   padding-right: 10px;
   color: #555;
 }
-body .btn-group-justified .btn {
+#thread-menu {
+  height: 38px;
+}
+#thread-menu .btn {
   border-top: none;
   border-left: none;
   border-radius: 0;
 }
-body .btn-group-justified .btn:last-child {
+#thread-menu .btn:last-child {
   border-right: none;
+}
+#thread-noreply-info {
+  padding: 10px;
 }
