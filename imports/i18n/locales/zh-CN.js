@@ -173,7 +173,7 @@ export const locale_zh_cn = {
   "remove_thread_member": "删除成员: {{email}}",
   "Archive": "归档",
   "Archived": "已归档",
-  "Cancel Archive": "取消归档",
+  "Unarchive": "取消归档",
   "Star": "重要",
   "Notes": "内容",
   "Spam": "垃圾",

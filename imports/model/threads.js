@@ -91,7 +91,7 @@ ThreadActions.star = {
 };
 ThreadActions.archive = {
   title(thread) {
-    return thread.archive ? I18n.t('Cancel Archive') : I18n.t('Archive');
+    return thread.archive ? I18n.t('Unarchive') : I18n.t('Archive');
   },
   icon(thread) {
     return thread.archive ? "" : "fa fa-archive";
