@@ -128,9 +128,9 @@ AutoForm.hooks({
         fileIds
       }, (err, res) => {
         if (err) {
-          console.log(err);
+          console.log("send message - " + err);
         } else {
-          console.log(res);
+          console.log("send message - " + res);
           Session.set(`message-draft-parent-${threadId}`);
           autosize($("form textarea"));
           // $("form textarea").focus();

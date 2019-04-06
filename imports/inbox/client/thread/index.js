@@ -17,62 +17,44 @@ Accounts.onLogout(function() {
 });
 
 Template.Thread.onRendered(function() {
-  // === 分页
-  let subThreadId, limit;
   let self = this;
-  self.autorun(() => {
-    let data = Template.currentData();
-
-    if (data._id) {
-      // if (data._id === subThreadId && limit === this.limit.get()) {
-      //   console.log("should not happen");
-      //   return;
-      // }
-      // 重置消息分页数
-      if (data._id != subThreadId) {
-        console.log("reset limit");
-        self.limit.set(PER_PAGE);
-        subThreadId = data._id;
-      }
-      // 更新订阅
-      console.log("sub messages");
-      limit = self.limit.get();
-      let handle = MessageSubs.subscribe("thread.messages", data._id, {limit});
-      self.ready.set(handle.ready());
-    }
-  });
-
-  // === 标记已读
-  let threadId, data;
-  // 进入话题，延时两秒触发
+  let data, threadId;
+  // === 分页
+  let limit, handle;
   self.autorun(() => {
     data = Template.currentData();
     if (data && data._id != threadId) {
+      // === 重置消息分页数
       threadId = data._id;
+      console.log("reset limit - " + threadId);
+      self.limit.set(PER_PAGE);
+      // === 更新订阅
+      console.log("sub messages - " + threadId);
+      limit = self.limit.get();
+      handle = MessageSubs.subscribe("thread.messages", threadId, {limit});
+      // === 标记已读
+      // 进入话题，延时两秒触发
       if (self.timeout) Meteor.clearTimeout(self.timeout);
       self.timeout = Meteor.setTimeout(() => {
         if (!data.read) {
           markRead.call({
-            threadId: data._id
+            threadId
           }, (err, res) => {
-            if (err) {
-              console.log(err);
-            }
+            if (err) console.log(err);
           });
         }
       }, 2000);
     }
+    handle && self.ready.set(handle.ready());
   });
 
   // 停留在话题时，滚动页面触发
   $('#inbox-right').on('scroll', (e) => {
     if (!data.read) {
       markRead.call({
-        threadId: data._id
+        threadId
       }, (err, res) => {
-        if (err) {
-          console.log(err);
-        }
+        if (err) console.log(err);
       });
     }
   });
