@@ -32,7 +32,7 @@ Router.route('/setup', {
   name: 'setup',
   layoutTemplate: 'DefaultLayout',
   waitOn() {
-    return Meteor.subscribe("site");
+    return Meteor.subscribe("site-setup");
   },
   action() {
     if (Meteor.userId()) {
