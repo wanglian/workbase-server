@@ -47,7 +47,7 @@ Meteor.publish('instance', function() {
   Counts.publish(this, 'count-mailgun-error', MailgunEmails.find({parsedAt: {$exists: false}}));
 
   return [
-    Instance.find({}, {fields: {domain: 1, company: 1, adminId: 1, sharedId: 1}}),
+    Instance.find({}, {fields: {domain: 1, company: 1, adminId: 1, sharedId: 1, "modules.email.type": 1, "modules.storage.type": 1}}),
     Threads.find({category: 'Account', userId: this.userId})
   ];
 });

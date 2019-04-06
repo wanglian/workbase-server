@@ -1,8 +1,10 @@
 <template name="LinkToSendEmail">
-  <a href="#" id="btn-send-email">
-    <i class="fa fa-send" title="{{_ 'Compose'}}"></i>
-    <span class="hidden-xs">{{_ 'Compose'}}</span>
-  </a>
+  {{#if emailEnabled}}
+    <a href="#" id="btn-send-email">
+      <i class="fa fa-send" title="{{_ 'Compose'}}"></i>
+      <span class="hidden-xs">{{_ 'Compose'}}</span>
+    </a>
+  {{/if}}
 </template>
 
 <template name="SendEmailModal">

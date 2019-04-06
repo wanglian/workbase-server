@@ -36,7 +36,9 @@
     <div class="setup-content clearfix hide" id="step-2">
       <h3>{{_ 'Set Email Config'}}</h3>
       {{> afQuickField name="emailType" value=instance.modules.email.type}}
-      <div id="mailgun-key">{{> afQuickField name="mailgun" value=instance.modules.email.mailgun.key}}</div>
+      <div id="mailgun-key" class="{{#unless mailgunSelected}}hide{{/unless}}">
+        {{> afQuickField name="mailgun" value=instance.modules.email.mailgun.key}}
+      </div>
       <button class="btn btn-default btn-prev pull-left" type="button">{{_ 'Previous Step'}}</button>
       <button class="btn btn-primary btn-next pull-right" type="button" data-panel="email">{{_ 'Next Step'}}</button>
     </div>

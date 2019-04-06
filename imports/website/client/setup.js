@@ -38,7 +38,7 @@ Template.Setup.events({
     let isValid = true;
 
     $(".form-group").removeClass("has-error");
-    for(var i=0; i<curInputs.length; i++){
+    for (let i = 0; i < curInputs.length; i++) {
       if (!curInputs[i].validity.valid){
         isValid = false;
         $(curInputs[i]).closest(".form-group").addClass("has-error");
@@ -46,7 +46,7 @@ Template.Setup.events({
     }
 
     if (isValid) {
-      switch($(e.target).data("panel")) {
+      switch ($(e.target).data("panel")) {
       case "company":
         Meteor.call("setupCompany", $('input[name=company]').val(), $('input[name=domain]').val(), (err, res) => {
           nextStepWizard.removeAttr('disabled').trigger('click');
@@ -80,7 +80,7 @@ Template.Setup.events({
   "change select[name=emailType]"(e, t) {
     e.preventDefault();
 
-    if($(e.target).val() === 'mailgun') {
+    if ($(e.target).val() === 'mailgun') {
       $('#mailgun-key').removeClass('hide');
     } else {
       $('#mailgun-key').addClass('hide');
@@ -89,7 +89,7 @@ Template.Setup.events({
   "change select[name=storageType]"(e, t) {
     e.preventDefault();
 
-    if($(e.target).val() === 'S3') {
+    if ($(e.target).val() === 'S3') {
       $('#s3-config').removeClass('hide');
     } else {
       $('#s3-config').addClass('hide');
@@ -100,6 +100,10 @@ Template.Setup.events({
 Template.Setup.helpers({
   instance() {
     return Instance.findOne();
+  },
+  mailgunSelected() {
+    let instance = Instance.findOne();
+    return instance && instance.modules && instance.modules.email && instance.modules.email.type === 'mailgun';
   },
   s3Selected() {
     let instance = Instance.findOne();
@@ -128,10 +132,11 @@ Template.Setup.helpers({
       },
       emailType: {
         type: String,
+        optional: true,
         autoform: {
           type: 'select',
           label: false,
-          firstOption: false, // I18n.t("Email Disabled")
+          firstOption: I18n.t("Email Disabled"),
           options: [{
             label: "Mailgun",
             value: 'mailgun'
@@ -140,6 +145,7 @@ Template.Setup.helpers({
       },
       mailgun: {
         type: String,
+        optional: true,
         max: 40,
         autoform: {
           type: 'text',

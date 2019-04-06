@@ -31,6 +31,11 @@ Instance.admin = () => {
   return instance && instance.adminId && Users.findOne(instance.adminId);
 };
 
+Instance.emailEnabled = () => {
+  let instance = Instance.get();
+  return instance.modules && instance.modules.email;
+};
+
 let _logTypes = {}; // i18nKey
 LogTypes = {
   add(type, defs) {

@@ -4,6 +4,12 @@ import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 import Swal from 'sweetalert2';
 
+Template.LinkToSendEmail.helpers({
+  emailEnabled() {
+    return Instance.emailEnabled();
+  }
+});
+
 Template.LinkToSendEmail.events({
   "click #btn-send-email"(e, t) {
     e.preventDefault();
