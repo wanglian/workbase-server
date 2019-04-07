@@ -6,6 +6,16 @@ Template.Roster.helpers({
   }
 });
 
+Template.RosterMenu.events({
+  "click #btn-search"(e, t) {
+    e.preventDefault();
+    $('.threads .search').toggleClass('hide');
+    if (!$('.threads .search').hasClass('hide')) {
+      $('.threads .search input').focus();
+    }
+  }
+});
+
 Template.RosterList.onRendered(function() {
   this.autorun(() => {
     let data = Template.currentData();
