@@ -1,4 +1,5 @@
 import './instance';
+import './log-types';
 import './users';
 import './threads';
 import './thread-users';

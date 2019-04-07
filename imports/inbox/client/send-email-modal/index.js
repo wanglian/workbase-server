@@ -1,8 +1,15 @@
+import {Instance} from '/imports/model/instance';
+import {Threads} from '/imports/model/threads';
+import {Files} from '/imports/files/client/files';
+import {selectizeEmail} from '/imports/autoform';
+import {I18n} from '/imports/i18n/i18next';
 import './view.html';
 
 import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 import Swal from 'sweetalert2';
+
+SimpleSchema.extendOptions(['autoform']);
 
 Template.LinkToSendEmail.helpers({
   emailEnabled() {

@@ -19,3 +19,5 @@ Files = new FilesCollection({
 //     return Users.findOne(this.userId);
 //   }
 // });
+
+export {Files};

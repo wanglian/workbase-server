@@ -15,7 +15,7 @@ const REGEX_EMAIL = "[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-
 
 // - method: Meteor method name to load data
 // - params:
-selectizeEmail = (method, params) => {
+const selectizeEmail = (method, params) => {
   return {
     persist: false,
     maxItems: null,
@@ -101,3 +101,5 @@ selectizeEmail = (method, params) => {
     }
   };
 };
+
+export {selectizeEmail};

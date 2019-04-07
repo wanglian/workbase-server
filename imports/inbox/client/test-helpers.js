@@ -2,8 +2,14 @@ import { Template } from 'meteor/templating';
 import { Blaze } from 'meteor/blaze';
 import { Tracker } from 'meteor/tracker';
 
+import chai from 'chai';
 import lodash from 'lodash';
+
+expect = chai.expect;
+
 const _ = lodash;
+
+Template.registerHelper('_', key => key);
 
 const withDiv = function withDiv(callback) {
   const el = document.createElement('div');

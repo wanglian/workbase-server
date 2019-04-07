@@ -20,3 +20,4 @@ i18next.init({
 });
 
 I18n = i18next;
+export {I18n};
