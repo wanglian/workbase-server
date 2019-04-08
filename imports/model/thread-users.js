@@ -25,3 +25,5 @@ ThreadUsers.helpers({
     return this.role === 'owner';
   }
 });
+
+export { ThreadUsers };

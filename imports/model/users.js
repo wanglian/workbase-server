@@ -56,3 +56,5 @@ Users.helpers({
     // return skins[Math.round(Math.random() * skins.length)];
   }
 });
+
+export { Users };

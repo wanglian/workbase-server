@@ -36,4 +36,4 @@ Instance.emailEnabled = () => {
   return instance.modules && instance.modules.email;
 };
 
-export {Instance};
+export { Instance };

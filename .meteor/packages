@@ -46,13 +46,18 @@ peppelg:bootstrap-3-modal
 aldeed:autoform
 jamiecollinson:selectize-bootstrap
 
+mdg:validated-method
 utilities:avatar
 sacha:spin
 raix:push
 ostrio:files
 fileer:size
 
+# dev
+msavin:mongol
+# test
 meteortesting:mocha
 xolvio:cleaner
-msavin:mongol
-mdg:validated-method
+johanbrook:publication-collector
+dburles:factory
+practicalmeteor:faker

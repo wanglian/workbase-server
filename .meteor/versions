@@ -20,6 +20,7 @@ callback-hook@1.1.0
 check@1.3.1
 coffeescript@1.0.17
 dburles:collection-helpers@1.1.0
+dburles:factory@1.1.0
 ddp@1.4.0
 ddp-client@2.3.3
 ddp-common@1.4.0
@@ -58,6 +59,7 @@ iron:middleware-stack@1.1.0
 iron:router@1.1.2
 iron:url@1.1.0
 jamiecollinson:selectize-bootstrap@0.12.1
+johanbrook:publication-collector@1.1.0
 jparker:crypto-core@0.1.0
 jparker:crypto-md5@0.1.1
 jparker:gravatar@0.3.1
@@ -109,6 +111,7 @@ peerlibrary:data-lookup@0.1.0
 peerlibrary:reactive-field@0.1.0
 peppelg:bootstrap-3-modal@1.0.4
 percolate:migrations@1.0.2
+practicalmeteor:faker@3.0.1_1
 promise@0.11.1
 raix:eventemitter@0.1.3
 raix:eventstate@0.0.4

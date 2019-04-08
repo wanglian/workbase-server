@@ -14,4 +14,4 @@ LogTypes.add("thread.members.add", { i18nKey: "log_add_thread_members" });
 LogTypes.add("thread.members.remove", { i18nKey: "log_remove_thread_member" });
 LogTypes.add("thread.revoke", { i18nKey: "log_remoke_thread_message" });
 
-export {LogTypes};
+export { LogTypes };

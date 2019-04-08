@@ -115,3 +115,5 @@ MessageTypes.add('log', {
     }
   }
 });
+
+export { Messages };

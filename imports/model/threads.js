@@ -138,4 +138,4 @@ ThreadActions.notes = {
   }
 };
 
-export {Threads};
+export { Threads };

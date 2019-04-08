@@ -1,4 +1,19 @@
+import { Instance } from '../instance';
+import { Users } from '../users';
+import { Threads } from '../threads';
+import { ThreadUsers } from '../thread-users';
+import { Files } from '/imports/files/server/files';
+
 Meteor.publish('instance', function() {
+  if (!this.userId) return this.ready();
+
+  return [
+    Instance.find({}, {fields: {domain: 1, company: 1, adminId: 1, sharedId: 1, "modules.email.type": 1, "modules.storage.type": 1}}),
+    Threads.find({category: 'Account', userId: this.userId})
+  ];
+});
+
+Meteor.publish('counters', function() {
   if (!this.userId) return this.ready();
 
   Counts.publish(this, 'count-unread-inbox', ThreadUsers.find({
@@ -46,10 +61,7 @@ Meteor.publish('instance', function() {
 
   Counts.publish(this, 'count-mailgun-error', MailgunEmails.find({parsedAt: {$exists: false}}));
 
-  return [
-    Instance.find({}, {fields: {domain: 1, company: 1, adminId: 1, sharedId: 1, "modules.email.type": 1, "modules.storage.type": 1}}),
-    Threads.find({category: 'Account', userId: this.userId})
-  ];
+  return this.ready();
 });
 
 const MIN_THREADS = 20;

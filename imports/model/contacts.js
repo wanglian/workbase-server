@@ -8,3 +8,5 @@ Contacts.helpers({
     return this.profile && this.profile.noreply;
   }
 });
+
+export { Contacts };
