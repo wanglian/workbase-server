@@ -53,3 +53,6 @@ Files.remove = function(search) {
   //remove original file from database
   _origRemove.call(this, search);
 };
+
+export { Files };
+
