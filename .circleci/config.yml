@@ -1,0 +1,87 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  test:
+    working_directory: ~/app
+    docker: &ref_0
+      - image: 'circleci/openjdk:10-jdk-node-browsers'
+        environment:
+          LANG: C.UTF-8
+          LANGUAGE: C.UTF-8
+          LC_ALL: C.UTF-8
+          LC_NUMERIC: en_US.UTF-8
+          METEOR_VERSION: '1.7'
+          NODE_ENV: development
+          TOOL_NODE_FLAGS: >-
+            --max_old_space_size=8192 --optimize_for_size --gc_interval=100
+            --min_semi_space_size=8 --max_semi_space_size=256
+          METEOR_PROFILE: 1000
+          CIRCLE_CI: 1
+          DEBUG: true
+          METEOR_ALLOW_SUPERUSER: true
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore meteor system
+          keys:
+            - 'meteor-system-www-3-{{ checksum "./.circleci/config.yml" }}'
+      - restore_cache:
+          name: Restore meteor app
+          keys:
+            - >-
+              meteor-app-3-{{ checksum
+              "./.meteor/release" }}-{{ checksum
+              "./.meteor/packages" }}-{{ checksum
+              "./.meteor/versions" }}
+      - restore_cache:
+          name: Restore node_modules
+          keys:
+            - >-
+              node_modules-3-{{ checksum "./package.json"
+              }}
+      - run:
+          name: Create results directory
+          command: mkdir ./results
+      - run:
+          name: Install meteor
+          command: command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com | /bin/sh
+      - run:
+          name: Install node_modules
+          command: meteor npm i
+      # - run:
+      #     name: Install nightmare
+      #     command: meteor npm i nightmare --no-save
+      - save_cache:
+          name: Cache node_modules
+          key: 'node_modules-3-{{ checksum "./package.json" }}'
+          paths:
+            - ./node_modules
+      # - run:
+      #     name: Run tests
+      #     command: meteor npm run test-app
+      - save_cache:
+          name: Cache meteor system
+          key: 'meteor-system-3-{{ checksum "./.circleci/config.yml" }}'
+          paths:
+            - ~/.meteor
+      - save_cache:
+          name: Cache meteor app
+          key: >-
+            meteor-microservice-3-{{ checksum
+            "./.meteor/release" }}-{{ checksum
+            "./.meteor/packages" }}-{{ checksum
+            "./.meteor/versions" }}
+          paths:
+            - ./.meteor/local
+      - store_test_results:
+          path: ./results
+      - store_artifacts:
+          path: ./results
+workflows:
+  version: 2
+  Build and test:
+    jobs:
+      - test
