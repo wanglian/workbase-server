@@ -82,6 +82,7 @@ export const locale_zh_cn = {
   "Passwords do not match": "再次输入的新密码不一致",
   "Password Saved": "新密码已保存",
   "Incorrect password": "密码不正确",
+  "welcome user message": "你好，{{user}}！\r\n我们为你开通了工作帐号，你可以在这里\r\n- 收发邮件\r\n- 与工作伙伴即时沟通\r\n\r\n如有任何问题，可以在这里给我发消息。",
   // message
   "New Message": "发消息",
   "Send": "发送",

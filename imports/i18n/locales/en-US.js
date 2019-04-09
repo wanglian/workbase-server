@@ -43,6 +43,7 @@ export const locale_en_us = {
   "Email sending": "Sending",
   // profile
   "Work Title'": "Role",
+  "welcome user message": "Hi, {{user}}! \r\nYour account is ready. Start using WorkBase\r\n- Send or Receive Emails\r\n- Chat with team members\r\n\r\nIf you have any questions, just ask me here.",
   // user
   "External Users": "External",
   "Users Management": "Users",

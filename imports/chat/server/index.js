@@ -1,20 +1,5 @@
 import '../chat';
 
-// from owner to member
-const WELCOME_MAIL = {
-  subject: () => {
-    return `${Instance.company()} 欢迎你！`;
-  },
-  content: (user) => {
-    return `你好，${user.name()}！
-我们为你开通了工作帐号，你可以在这里
-- 收发邮件
-- 与工作伙伴即时沟通
-
-如有任何问题，可以在这里给我发消息。`;
-  }
-};
-
 Accounts.onLogin(function(attempt) {
   let user = Users.findOne(attempt.user._id);
   // welcome
@@ -24,7 +9,7 @@ Accounts.onLogin(function(attempt) {
       let threadId = Threads.startChat(admin, user);
       let thread = Threads.findOne(threadId);
       Threads.addMessage(thread, admin, {
-        content: WELCOME_MAIL.content(user)
+        content: I18n.t("welcome user message", {user: user.name()})
       });
     }
   }
