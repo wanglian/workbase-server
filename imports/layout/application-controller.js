@@ -3,7 +3,7 @@ ApplicationController = RouteController.extend({
   loadingTemplate: 'spinner',
   notFoundTemplate: 'notFound',
   onBeforeAction() {
-    if (!Meteor.user()) {
+    if (!Meteor.userId()) {
       this.redirect('/login');
     } else {
       this.next();

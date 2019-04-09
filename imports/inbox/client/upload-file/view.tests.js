@@ -3,7 +3,7 @@
 
 import { Template } from 'meteor/templating';
 import { $ } from 'meteor/jquery';
-import { withRenderedTemplate } from '/imports/inbox/client/test-helpers';
+import '/imports/test/client/test-helpers';
 import './index';
 
 describe('UploadFile', () => {

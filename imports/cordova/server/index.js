@@ -30,6 +30,7 @@ Meteor.startup(function() {
 });
 
 Messages.after.insert(function(userId, doc) {
+  if (Meteor.isAppTest) return;
   let message = this.transform();
 
   ThreadUsers.find({threadId: message.threadId, userType: 'Users', userId: {$ne: message.userId}}).forEach((tu) => {
@@ -88,7 +89,7 @@ const pushToUser = (to, message) => {
       default:
         _.extend(params, {
           title: from.internalName() + ': ' + thread.subject,
-          text:  Messages.localizedSummary(message, to.profile.language),
+          text:  Messages.localizedSummary(message, to.language()),
         });
       }
 

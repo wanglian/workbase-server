@@ -1,3 +1,6 @@
+import lodash from 'lodash';
+const _ = lodash;
+
 let _logTypes = {}; // i18nKey
 LogTypes = {
   add(type, defs) {

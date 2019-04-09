@@ -33,7 +33,7 @@ Instance.admin = () => {
 
 Instance.emailEnabled = () => {
   let instance = Instance.get();
-  return instance.modules && instance.modules.email;
+  return instance && instance.modules && instance.modules.email;
 };
 
 export { Instance };

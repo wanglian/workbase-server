@@ -2,17 +2,17 @@
 // const REGEX_EMAIL = SimpleSchema.RegEx.Email;
 
 // check: one-one email
-export const isOneToOne = (toUser, toUsers, ccUsers) => {
+isOneToOne = (toUser, toUsers, ccUsers) => {
   let users = _.compact(_.concat([toUser], toUsers, ccUsers));
   let userIds = _.uniq(users.map(u => u._id));
-  if (userIds.length === 2) {
+  if (userIds.length === 2 && (!ccUsers || ccUsers.length == 0)) {
     // bcc/forward
     if (toUsers && toUsers.length === 1) return true;
   }
   return userIds.length === 1;
 };
 // query thread between users
-const findThreadIdBetweenUsers = (from, to) => {
+findThreadIdBetweenUsers = (from, to) => {
   let threadIds = ThreadUsers.find({userType: from.className(), userId: from._id}).map(tu => tu.threadId);
   let tu = ThreadUsers.findOne({threadId: {$in: threadIds}, userType: to.className(), userId: to._id});
   return tu && tu.threadId;

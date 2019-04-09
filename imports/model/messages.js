@@ -16,6 +16,10 @@
 // - pinUserId
 // - createdAt
 // - updatedAt
+
+import lodash from 'lodash';
+const _ = lodash;
+
 Messages = new Mongo.Collection('messages');
 
 Messages.helpers({

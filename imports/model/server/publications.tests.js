@@ -1,6 +1,6 @@
 import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { PublicationCollector } from 'meteor/johanbrook:publication-collector';
-import { expect } from './test-helpers';
+import '/imports/test/test-helpers';
 import './publications';
 
 Factory.define('instance', Instance, {
@@ -16,7 +16,7 @@ Factory.define('thread', Threads, {
 
 describe('instance', function() {
   beforeEach(() => {
-    resetDatabase(null);
+    resetDatabase();
   });
 
   it('should publish 1 instance', function(done) {

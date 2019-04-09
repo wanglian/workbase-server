@@ -125,3 +125,18 @@ blockquote {
     padding: 8px 10px !important;
   }
 }
+/* mocha app-test ui */
+div#mocha {
+  background: white;
+  border-right: 2px solid black;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  overflow: auto;
+  padding: 1rem;
+  position: fixed;
+  resize: horizontal;
+  top: 0;
+  width: 20px;
+  z-index: 10000;
+}

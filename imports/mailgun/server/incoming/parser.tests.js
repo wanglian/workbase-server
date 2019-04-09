@@ -1,12 +1,7 @@
-import { isOneToOne } from './parser.js';
-
-_ = require('lodash');
-
-let chai = require('chai');
-let expect = chai.expect;
+import '/imports/test/test-helpers';
+import './parser';
 
 describe('isOneToOne', function() {
-  
   it("check", function() {
     user1 = {_id: "1"}
     user2 = {_id: "2"}
@@ -16,6 +11,7 @@ describe('isOneToOne', function() {
     expect(isOneToOne(user1, [user1], [])).to.eq(true);
     expect(isOneToOne(user1, [user2], [])).to.eq(true);
     expect(isOneToOne(user1, [], [user2])).to.eq(false);
+    expect(isOneToOne(user1, [user1], [user2])).to.eq(false);
     expect(isOneToOne(user1, [user1, user2], [])).to.eq(false);
   });
 });

@@ -36,6 +36,7 @@ Messages.before.insert(function(userId, doc) {
     let tu = ThreadUsers.findOne({threadId: doc.threadId, userId: doc.userId});
     let chat = Users.findOne(tu.params.chat);
     let user = Users.findOne(doc.userId);
+
     Threads.ensureMember(thread, chat, {chat: doc.userId, internal: user.internal()});
     if (user.internal()) {
       doc.internal = chat.internal();
