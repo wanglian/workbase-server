@@ -1,6 +1,7 @@
 import chai from 'chai';
 import lodash from 'lodash';
 
+faker = require('faker');
 expect = chai.expect;
 _ = lodash;
 

@@ -60,4 +60,3 @@ meteortesting:mocha
 xolvio:cleaner
 johanbrook:publication-collector
 dburles:factory
-practicalmeteor:faker
