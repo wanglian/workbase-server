@@ -20,7 +20,7 @@
 
   <ul class="list-group threads">
     {{#each emails}}
-      <li class="list-group-item thread">
+      <li class="list-group-item thread" data-id="{{_id}}">
         <div class="btn-group email-actions pull-right">
           <button type="button" class="btn btn-default btn-sm btn-parse">{{_ "Parse"}}</button>
           <button type="button" class="btn btn-default btn-sm btn-remove">{{_ "Drop"}}</button>
