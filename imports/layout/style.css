@@ -36,3 +36,9 @@ body .page-header {
   height: calc(100vh - 120px);
   overflow-y: scroll;
 }
+
+@media (max-width: 991px) {
+  .main-sidebar .sidebar {
+    height: calc(100vh - 170px);
+  }
+}
