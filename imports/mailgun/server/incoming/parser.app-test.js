@@ -28,6 +28,22 @@ describe('parse Mailgun email', function() {
     expect(message.userType).to.eq("Contacts");
   });
 
+  it('one to one: no param To', async function() {
+    let email = Factory.create('email');
+    email.emailId = email.params["Message-Id"];
+    email.params["To"] = null;
+    email.params["recipient"] = user.email();
+
+    await parseMailgunEmail(email);
+    let thread = Threads.findOne({category: 'Chat'}, {order: {createdAt: -1}});
+    expect(thread.subject).to.eq(email.params["subject"]);
+    expect(ThreadUsers.find({threadId: thread._id}).count()).to.eq(2);
+    expect(ThreadUsers.find({threadId: thread._id, role: "owner"}).count()).to.eq(2);
+    let message = Messages.findOne({threadId: thread._id});
+    expect(message.content).to.exist;
+    expect(message.userType).to.eq("Contacts");
+  });
+
   it('one to one: recipient != to', async function() {
     let email = Factory.create('email');
     email.emailId = email.params["Message-Id"];

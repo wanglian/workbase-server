@@ -80,7 +80,7 @@ parseMailgunEmail = async (doc) => {
       threadId = findThreadIdBetweenUsers(fromUser, toUser);
     }
   }
-  let toUsers = to.match(/@/) && Contacts.parse(to);
+  let toUsers = to && to.match(/@/) && Contacts.parse(to);
   let ccUsers = cc && Contacts.parse(cc);
   let is121 = isOneToOne(toUser, toUsers, ccUsers);
   if (!threadId) {
