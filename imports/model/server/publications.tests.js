@@ -3,17 +3,6 @@ import { PublicationCollector } from 'meteor/johanbrook:publication-collector';
 import '/imports/test/test-helpers';
 import './publications';
 
-Factory.define('instance', Instance, {
-  company: () => faker.company.companyName(),
-  domain:  () => faker.internet.domainName(),
-  adminId: () => faker.random.uuid()
-});
-
-Factory.define('thread', Threads, {
-  subject: () => faker.lorem.sentence(),
-  userId:  () => faker.random.uuid()
-});
-
 describe('instance', function() {
   beforeEach(() => {
     resetDatabase();

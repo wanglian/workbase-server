@@ -1,7 +1,10 @@
+import './factories';
+
 import chai from 'chai';
 import lodash from 'lodash';
 
 faker = require('faker');
+sinon = require('sinon');
 expect = chai.expect;
 _ = lodash;
 

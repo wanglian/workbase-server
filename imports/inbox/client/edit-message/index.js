@@ -6,7 +6,7 @@ import autosize from 'autosize';
 
 Template.EditMessageButton.helpers({
   canEdit() {
-    return this.internal && this.contentType === 'text' && this.userId === Meteor.userId();
+    return this.internal && this.contentType == 'text' && this.userId == Meteor.userId();
   }
 });
 

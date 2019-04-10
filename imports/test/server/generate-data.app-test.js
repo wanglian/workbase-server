@@ -3,18 +3,6 @@ import { resetDatabase } from 'meteor/xolvio:cleaner';
 import '../test-helpers';
 import '/imports/model';
 
-Factory.define('instance', Instance, {
-  company: () => faker.company.companyName(),
-  domain:  () => faker.internet.domainName(),
-  adminId: () => faker.random.uuid()
-});
-
-Factory.define('thread', Threads, {
-  subject: () => faker.lorem.sentence(),
-  userId:  () => faker.random.uuid(),
-  scope:   'private'
-});
-
 createInstance = () => {
   let domain = faker.internet.domainName();
   let firstName = faker.name.firstName();

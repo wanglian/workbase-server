@@ -1,10 +1,20 @@
 // === Test Helpers for Client Blaze Tests ===
 import { Template } from 'meteor/templating';
-import { Blaze } from 'meteor/blaze';
-import { Tracker } from 'meteor/tracker';
+import { Blaze }    from 'meteor/blaze';
+import { Tracker }  from 'meteor/tracker';
+import { $ }        from 'meteor/jquery';
 
-import chai from 'chai';
+import chai   from 'chai';
 import lodash from 'lodash';
+
+import '../factories';
+
+faker = require('faker');
+sinon = require('sinon');
+
+Template;
+$;
+faker;
 
 expect = chai.expect;
 _ = lodash;

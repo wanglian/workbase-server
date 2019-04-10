@@ -1,8 +1,6 @@
 /* eslint-env mocha */
 /* eslint-disable func-names, prefer-arrow-callback */
 
-import { Template } from 'meteor/templating';
-import { $ } from 'meteor/jquery';
 import '/imports/test/client/test-helpers';
 import './index';
 

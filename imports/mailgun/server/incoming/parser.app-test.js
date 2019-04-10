@@ -3,21 +3,6 @@ import '/imports/test/test-helpers';
 import '/imports/test/server/generate-data.app-test';
 import '../index';
 
-Factory.define('email', MailgunEmails, {
-  params: () => {
-    return {
-      "subject":    faker.lorem.sentence(),
-      "from":       faker.internet.email(),
-      "To":         faker.internet.email(),
-      "recipient":  faker.internet.email(),
-      "Message-Id": faker.random.uuid(),
-      "body-plain": faker.lorem.paragraph(),
-      "body-html":  faker.lorem.paragraph(),
-      "Date":       new Date()
-    };
-  }
-});
-
 describe('parse Mailgun email', function() {
   let user;
 
