@@ -1,3 +1,4 @@
+import './email-address-parser';
 import './parser';
 import './router';
 

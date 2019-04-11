@@ -3,9 +3,9 @@ import './parser';
 
 describe('isOneToOne', function() {
   it("check", function() {
-    user1 = {_id: "1"}
-    user2 = {_id: "2"}
-    user3 = {_id: "3"}
+    let user1 = {_id: "1"};
+    let user2 = {_id: "2"};
+    let user3 = {_id: "3"};
     // toUser, toUsers, ccUsers
     expect(isOneToOne(user1, [], [])).to.eq(true);
     expect(isOneToOne(user1, [user1], [])).to.eq(true);
