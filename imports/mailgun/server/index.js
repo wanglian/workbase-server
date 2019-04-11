@@ -1,4 +1,4 @@
-import '../';
+import '../mailgun-emails';
 import './outgoing/mailgun';
 import './incoming';
 

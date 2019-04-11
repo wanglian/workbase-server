@@ -1,7 +1,7 @@
 import { Instance } from '/imports/model/instance';
 import { Threads }  from '/imports/model/threads';
 import { Messages } from '/imports/model/messages';
-import { MailgunEmails } from '/imports/mailgun/';
+import { MailgunEmails } from '/imports/mailgun/mailgun-emails';
 
 faker = require('faker');
 

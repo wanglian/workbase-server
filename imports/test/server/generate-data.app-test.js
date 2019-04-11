@@ -1,7 +1,6 @@
 // This file will be auto-imported in the app-test context, ensuring the method is always available
 import { resetDatabase } from 'meteor/xolvio:cleaner';
 import '../test-helpers';
-import '/imports/model';
 
 createInstance = () => {
   let domain = faker.internet.domainName();

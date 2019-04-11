@@ -1,5 +1,5 @@
 import './email-address-parser';
-import './parser';
+import './email-parser';
 import './router';
 
 MailgunEmails.before.insert(function(user, doc) {
