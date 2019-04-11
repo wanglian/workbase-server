@@ -33,6 +33,7 @@ Template.Shared.onRendered(function() {
 
 Template.Shared.helpers({
   messages() {
+    if (!this.thread) return;
     let condition = {threadId: this.thread._id, parentId: {$exists: false}};
     if (this.user) {
       _.extend(condition, {userId: this.user._id});
