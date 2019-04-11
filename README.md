@@ -1,8 +1,8 @@
 ![WorkBase logo](https://www.weaworking.com/assets/workbase.png)
 
-[中文](./zh-cn/README.md)
+[中文安装文档](./zh-cn/README.md)
 
-# Email-Based Messaging Hub
+# Enterprise Emails & IM
 
 ## Bring your own server
 
