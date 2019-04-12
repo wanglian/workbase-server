@@ -1,5 +1,5 @@
 import '/imports/test/test-helpers';
-import './email-parser';
+import './parser';
 
 describe('isOneToOne', function() {
   it("check", function() {

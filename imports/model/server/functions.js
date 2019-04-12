@@ -1,3 +1,5 @@
+import { parseEmailAddress } from './email-address-parser';
+
 Threads.create = (user, category, subject, scope="private") => {
   return Threads.insert({
     userType: user && user.className(),
@@ -72,10 +74,6 @@ Threads.revokeMessage = (thread, message) => {
   return count;
 };
 
-const emailParser = require('address-rfc2822');
-const parseEmailAddress = (emails) => {
-  return emailParser.parse(emails);
-};
 Contacts.findOrCreateByAddress = (attrs) => {
   let email = attrs.address;
   let contact = Accounts.findUserByEmail(email);

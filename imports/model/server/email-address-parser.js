@@ -1,6 +1,6 @@
 const emailParser = require('address-rfc2822');
 
-parseEmailAddress = (emails) => {
+export const parseEmailAddress = (emails) => {
   // purge
   emails = purgeEmails(emails);
   return emailParser.parse(emails);

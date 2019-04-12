@@ -1,5 +1,5 @@
 import '/imports/test/test-helpers';
-import './email-address-parser';
+import { parseEmailAddress } from './email-address-parser';
 
 describe('parse email address', function() {
   it("multiple emails", function() {
