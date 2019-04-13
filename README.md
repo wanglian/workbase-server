@@ -1,7 +1,8 @@
-# WeWork
+# WorkBase
 
 ## Run
 
+Install Meteor: https://www.meteor.com/install
 ```
 meteor npm install
 meteor
@@ -46,9 +47,8 @@ meteor build ../workbase-app --server=https://www.weaworking.com
 // 然后打开 WorkBase.xcworkspace，从XCode发布
 ```
 
-## Develop
+## Develop References
 
-References
 - [Meteor](https://docs.meteor.com/)
 - [bootstrap](https://getbootstrap.com/docs/3.3/javascript/)
 - [FontAwesome](https://fontawesome.com/v4.7.0/icons/)
