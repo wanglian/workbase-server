@@ -52,16 +52,23 @@ Template.Message.events({
   },
   "click .message-header"(e, t) {
     e.preventDefault();
+    let m = $(e.target).closest(".message");
     // shift + click 折叠/展开全部
     if (e.shiftKey) {
-      let m = $(e.target).closest(".message");
       if ($(m).hasClass("fold")) {
         $(".message").removeClass("fold");
       } else {
         $(".message").addClass("fold");
       }
     } else {
-      $(e.target).closest(".message").toggleClass("fold");
+      if ($(m).hasClass("fold")) {
+        $(m).toggleClass("fold");
+        if ($(m).find(".message-content").length == 0) {
+          Blaze.renderWithData(Template.MessageContent, t.data, $(m)[0]);
+        }
+      } else {
+        $(m).toggleClass("fold");
+      }
     }
   }
 });

@@ -19,7 +19,9 @@
         <div class="summary text-ellipsis text-muted">{{{localizedMessageSummary this}}}</div>
       </div>
     </div>
-    {{> MessageContent}}
+    {{#unless archived}}
+      {{> MessageContent}}
+    {{/unless}}
   </div>
 </template>
 
