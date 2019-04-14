@@ -25,4 +25,10 @@ describe('parse email address', function() {
     let result = parseEmailAddress("some @ body" + '<' + email + '>');
     expect(result.length).to.eq(1);
   });
+
+  it("irregular email: 前程job 周润发 <resume@quickmail.jobs.com>", function() {
+    let email = "前程job 周润发 <resume@quickmail.jobs.com>";
+    let result = parseEmailAddress(email);
+    expect(result.length).to.eq(1);
+  });
 });
