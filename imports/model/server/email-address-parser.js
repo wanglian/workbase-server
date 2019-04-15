@@ -1,5 +1,10 @@
 const emailParser = require('address-rfc2822');
 
+/**
+ * Parse emails from string
+ * @param  {String} emails
+ * @return [{Address}] Address object by address-rfc2822
+ */
 export const parseEmailAddress = (emails) => {
   // purge
   emails = purgeEmails(emails);
@@ -7,22 +12,8 @@ export const parseEmailAddress = (emails) => {
   try {
     result = emailParser.parse(emails);
   } catch (e) {
-    // 将邮箱之间的逗号分割符替换成特殊的分隔符，以便split分割
-    let splitSparator = '#%&';
-    // emailSuffix: @ + domain
-    let emailSuffix = '@(?:[\\w](?:[\\w-]*[\\w])?\.)+[\\w](?:[\\w-]*[\\w])?';
-    // eg. aaa@bb.com, ccc@dd.com  替换成 aaa@bb.com#%& ccc@dd.com 
-    let splitSparatorRegex = new RegExp(emailSuffix + '>?(\\s*,)', 'g');
-    let formattedEmails = emails.replace(splitSparatorRegex, (match, p1) => {
-      return match.replace(p1, splitSparator);
-    });
-
-    let _emails = formattedEmails.split(splitSparator);
-    result = [];
-
-    _.each(_emails, (email) => {
-      result.push(formattedAddr(email));
-    });
+    emails = formatAddress(emails);
+    result = emailParser.parse(emails);
   }
   return result;
 };
@@ -34,20 +25,27 @@ const purgeEmails = (emails) => {
   if (emails[length-1] == ',') {
     emails = emails.substring(0, length - 1);
   }
-  // names with '@': abc@example.com <abc@example.com>
-  // TODO
   return emails;
 };
 
 /**
- * Parse one irregular email address
- * @param   {String} email
- * @return  {Object}
+ * Format irregular email addresses
+ * @param  {String} email
+ * @return {String}
  * https://github.com/jackbowman/email-addresses/issues/13
  */
-const emailRegex = "[\\w]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?";
-const formattedAddr = (email) => {
+const EMAIL_REGEX = "[\\w]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?";
+const FORMAT_SEPERATOR = '#%&'; // 将邮箱之间的逗号分割符替换成特殊的分隔符，以便split分割
+const EMAIL_SUFFIX = '@(?:[\\w](?:[\\w-]*[\\w])?\.)+[\\w](?:[\\w-]*[\\w])?'; // EMAIL_SUFFIX: @ + domain
+const formatAddress = (emails) => {
+  // eg. aaa@bb.com, ccc@dd.com  替换成 aaa@bb.com#%& ccc@dd.com
+  let seperator_regex = new RegExp(EMAIL_SUFFIX + '>?(\\s*,)', 'g');
+  emails = emails.replace(seperator_regex, (match, p1) => {
+    return match.replace(p1, FORMAT_SEPERATOR);
+  });
   // 规范化Email地址 给别名加上双引号
-  let regex = new RegExp("^[^\"|\'].*(?=<" + emailRegex + ">)");
-  return emailParser.parse(email.replace(regex, '"' + '$&'.trim() + '" '));
+  let regex = new RegExp("^[^\"|\'].*(?=<" + EMAIL_REGEX + ">)");
+  return emails.split(FORMAT_SEPERATOR).map((email) => {
+    return email.replace(regex, '"' + '$&'.trim() + '" ')
+  }).join(", ");
 };

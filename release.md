@@ -3,6 +3,7 @@
 ## 0.0.5
 
 - Fix mark read
+- Fix parsing irregular email addresses
 
 ## 0.0.4, 2019-04-14
 
