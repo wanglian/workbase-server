@@ -23,18 +23,6 @@ Template.Thread.onRendered(function() {
   let limit, handle;
   self.autorun(() => {
     data = Template.currentData();
-    if (data && data._id) {
-      if (data._id != threadId) {
-        // === 重置消息分页数
-        threadId = data._id;
-        console.log("reset limit - " + threadId);
-        self.limit.set(PER_PAGE);
-      }
-      limit = self.limit.get();
-      console.log("sub messages - " + threadId + " - " + limit);
-      handle = MessageSubs.subscribe("thread.messages", threadId, {limit});
-      self.ready.set(handle.ready());
-    }
     if (data && data._id != threadId) {
       // === 标记已读
       // 进入话题，延时两秒触发
@@ -48,6 +36,18 @@ Template.Thread.onRendered(function() {
           });
         }
       }, 2000);
+    }
+    if (data && data._id) {
+      if (data._id != threadId) {
+        // === 重置消息分页数
+        threadId = data._id;
+        console.log("reset limit - " + threadId);
+        self.limit.set(PER_PAGE);
+      }
+      limit = self.limit.get();
+      console.log("sub messages - " + threadId + " - " + limit);
+      handle = MessageSubs.subscribe("thread.messages", threadId, {limit});
+      self.ready.set(handle.ready());
     }
   });
 

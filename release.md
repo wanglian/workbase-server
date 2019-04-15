@@ -1,5 +1,9 @@
 # Release Log
 
+## 0.0.5
+
+- Fix mark read
+
 ## 0.0.4, 2019-04-14
 
 - Fix loading paginated messages
