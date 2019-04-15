@@ -1,6 +1,6 @@
 # Release Log
 
-## 0.0.5
+## 0.0.5, 2019-04-15
 
 - Fix mark read
 - Fix parsing irregular email addresses

@@ -1,13 +1,13 @@
-VERSION=0.0.4
+VERSION=0.0.5
 RELEASE=stable
 
 echo "-- version: $VERSION - $RELEASE"
 
-echo "-- meteor npm install --production"
-meteor npm install --production
-
-echo "-- meteor build ./.snapcraft --server-only"
-meteor build ./.snapcraft --server-only # workbase.tar.gz
+# echo "-- meteor npm install --production"
+# meteor npm install --production
+#
+# echo "-- meteor build ./.snapcraft --server-only"
+# meteor build ./.snapcraft --server-only # workbase.tar.gz
 
 cd .snapcraft
 echo "-- snapcraft clean"
