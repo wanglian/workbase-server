@@ -1,6 +1,6 @@
 # Release Log
 
-## 0.0.4
+## 0.0.4, 2019-04-14
 
 - Fix loading paginated messages
 - Fix parsing irregular email addresses: names with @
