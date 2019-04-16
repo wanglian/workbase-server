@@ -14,6 +14,7 @@ access from http://localhost:3000
 ```
 meteor npm run test // unit tests
 meteor npm run test-app // integration tests
+meteor npm run cypress:open // acceptance tests
 ```
 
 ## Docker
