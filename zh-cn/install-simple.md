@@ -44,6 +44,7 @@ Forwarding                    https://xxxxxxxx.ngrok.io -> localhost:3000
 ```
  $ sudo snap run --shell workbase-server
  # echo ROOT_URL=https://xxxxxxxx.ngrok.io > $SNAP_COMMON/root-url.env
+ # exit
  $ sudo reboot
 ```
 

@@ -28,6 +28,7 @@ sudo snap install workbase-server
 ```
  $ sudo snap run --shell workbase-server
  # echo ROOT_URL=<服务器 root url> > $SNAP_COMMON/root-url.env
+ # exit
  $ sudo reboot
 ```
 

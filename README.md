@@ -27,9 +27,10 @@ Now you can access from `http://<your server ip>:3000`
 
 Suppose you have a domain(ex: example.com) mapping to your server.
 ```
-$ sudo snap run --shell workbase-server
-# echo ROOT_URL=https://example.com > $SNAP_COMMON/root-url.env
-$ sudo reboot
+ $ sudo snap run --shell workbase-server
+ # echo ROOT_URL=https://example.com > $SNAP_COMMON/root-url.env
+ # exit
+ $ sudo reboot
 ```
 
 ### (Optional) Enable Email (Send & Receive)
