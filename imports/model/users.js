@@ -52,8 +52,6 @@ Users.helpers({
   },
   skin() {
     return this.profile.skin || 'blue';
-    // let skins = ['blue', 'blue-light', 'purple', 'purple-light', 'black', 'black-light', 'red', 'red-light', 'yellow', 'yellow-light'];
-    // return skins[Math.round(Math.random() * skins.length)];
   }
 });
 

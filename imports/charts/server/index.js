@@ -1,4 +1,3 @@
-import '../charts';
 import './message-records';
 
 import moment from 'moment';

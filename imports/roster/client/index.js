@@ -3,6 +3,37 @@ import './roster';
 import './roster-modal';
 import './style.css';
 
+ThreadCategories.add("Roster", {
+  icon: "fa fa-address-book",
+  iconUnread: "fa fa-address-book",
+  details: ['Members', 'Search', 'PinMessages', 'Files'],
+  title(thread) { // client only
+    return I18n.t(thread.subject);
+  },
+  actions() {
+    return [
+      {
+        title: I18n.t('User List'),
+        icon: "fa fa-list-ul",
+        action() {
+          Modal.show('RosterListModal', null, {
+            backdrop: 'static'
+          });
+        }
+      },
+      {
+        title: I18n.t('New User'),
+        icon: "fa fa-user-plus",
+        action() {
+          Modal.show('AddRosterModal', null, {
+            backdrop: 'static'
+          });
+        }
+      }
+    ]
+  }
+});
+
 RosterController = ApplicationController.extend({
   template: 'Roster',
   perPage: 25,

@@ -2,6 +2,37 @@ import '../channel-users';
 import './channels';
 import './channel-modal';
 
+ThreadCategories.add("Channel", {
+  icon: "fa fa-slack",
+  iconUnread: "fa fa-slack",
+  title(thread) {
+    return I18n.t(thread.subject);
+  },
+  details: ['Members', 'Search', 'PinMessages', 'Files'],
+  actions() {
+    return [
+      {
+        title: I18n.t('Channel List'),
+        icon: "fa fa-list-ul",
+        action() {
+          Modal.show('ChannelListModal', null, {
+            backdrop: 'static'
+          });
+        }
+      },
+      {
+        title: I18n.t('New Channel'),
+        icon: "fa fa-plus",
+        action() {
+          Modal.show('AddChannelModal', null, {
+            backdrop: 'static'
+          });
+        }
+      }
+    ]
+  }
+});
+
 const ChannelSubs = new SubsManager({
   cacheLimit: 10,
   expireIn: 60

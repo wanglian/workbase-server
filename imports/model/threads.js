@@ -34,6 +34,7 @@ Threads.helpers({
     return ThreadUsers.find({threadId: this._id, userType: user.className(), userId: user._id, role: 'owner'}).count() > 0;
   },
   details() {
+    clientOnly();
     let c = ThreadCategories.get(this.category);
     return c && c.details;
   },
@@ -41,6 +42,7 @@ Threads.helpers({
     return this.details();
   },
   actions() {
+    clientOnly();
     let c = ThreadCategories.get(this.category);
     return typeof(c.actions) == "function" ? c.actions(this) : [];
   },

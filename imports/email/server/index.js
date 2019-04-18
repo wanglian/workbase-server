@@ -1,5 +1,3 @@
-import '../email';
-
 Meteor.methods({
   sendEmail(emails, subject, content, fileIds) {
     check(emails, String);

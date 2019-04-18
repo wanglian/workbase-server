@@ -1,5 +1,3 @@
-import '../chat';
-
 Accounts.onLogin(function(attempt) {
   let user = Users.findOne(attempt.user._id);
   // welcome
