@@ -6,6 +6,7 @@ import './thread-users';
 import './messages';
 import './contacts';
 import './methods';
+import './thread-actions';
 
 clientOnly = () => {
   if (!Meteor.isClient) {
