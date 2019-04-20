@@ -1,11 +1,17 @@
 # WorkBase
 
+## Prerequisites
+
+- [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Meteor](https://www.meteor.com/install)
+
 ## Run
 
-Install Meteor: https://www.meteor.com/install
 ```
+git clone https://github.com/wanglian/workbase.git
+cd workbase
 meteor npm install
-meteor
+meteor npm start
 ```
 access from http://localhost:3000
 
@@ -14,14 +20,14 @@ access from http://localhost:3000
 ```
 meteor npm run test // unit tests
 meteor npm run test-app // integration tests
-meteor npm run cypress:open // acceptance tests
+meteor npm run test-e2e // acceptance tests
 ```
 
-## Docker
+## Deploy with Docker
 
-Local
+Build
 ```
-./build
+./build-docker
 ```
 
 Server
