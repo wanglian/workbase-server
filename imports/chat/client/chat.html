@@ -7,9 +7,7 @@
     <small class="pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
     <div class="thread-subject text-ellipsis">{{threadTitle this}}</div>
     <div class="message-summary text-ellipsis text-muted">
-      {{#if lastMessage}}
-        {{localizedMessageSummary lastMessage}}
-      {{/if}}
+      {{lastMessage.localizedSummary}}
     </div>
   </div>
 </template>

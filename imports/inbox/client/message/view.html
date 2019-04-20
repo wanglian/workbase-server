@@ -16,7 +16,7 @@
             {{_ "Message Edited By and When" user=updateUser.name time=(formatDayWithTime updatedAt)}}
           {{/if}}
         </div>
-        <div class="summary text-ellipsis text-muted">{{{localizedMessageSummary this}}}</div>
+        <div class="summary text-ellipsis text-muted">{{{localizedSummary}}}</div>
       </div>
     </div>
     {{#unless archived}}
@@ -132,7 +132,7 @@
               {{/with}}
             </li>
             <a href="#" id="btn-view-message" class="list-group-item thread message">
-              {{localizedMessageSummary message}}
+              {{message.localizedSummary}}
             </a>
           </ul>
         </div>
@@ -183,7 +183,7 @@
         </a>
       </div>
       <div class="collapse in" id="content-{{_id}}">
-        {{localizedMessageSummary this}}
+        {{localizedSummary}}
       </div>
     </blockquote>
   </div>

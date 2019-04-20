@@ -64,7 +64,7 @@ const pushToUser = (to, message) => {
 
       switch(thread.category) {
       case 'Chat':
-        let text = Messages.localizedSummary(message, to.profile.language);
+        let text = message.localizedSummary(to.language());
         if (message.contentType === 'image') {
           text = I18n.getFixedT(to.profile.language)("Sent you an image");
         }
@@ -77,19 +77,19 @@ const pushToUser = (to, message) => {
         if (message.parentId) {
           _.extend(params, {
             title: `${from.internalName()} ${I18n.getFixedT(to.profile.language)("sent a comment")}`,
-            text: Messages.localizedSummary(message, to.profile.language)
+            text: message.localizedSummary(to.language())
           });
         } else {
           _.extend(params, {
             title: `${from.internalName()} ${I18n.getFixedT(to.profile.language)("shared")}`,
-            text: Messages.localizedSummary(message, to.profile.language)
+            text: message.localizedSummary(to.language())
           });
         }
         break;
       default:
         _.extend(params, {
           title: from.internalName() + ': ' + thread.subject,
-          text:  Messages.localizedSummary(message, to.language()),
+          text:  message.localizedSummary(to.language())
         });
       }
 

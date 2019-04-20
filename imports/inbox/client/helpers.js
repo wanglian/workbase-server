@@ -39,5 +39,3 @@ Template.registerHelper('threadCanReply', (thread) => {
   // 无内部用户参与的外部邮件，且外部邮件无须回复
   return count === 1 || (count - countContacts) > 1 || thread.hasReplyableExternalMembers();
 });
-
-Template.registerHelper('localizedMessageSummary', Messages.localizedSummary);
