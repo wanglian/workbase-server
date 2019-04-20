@@ -1,3 +1,6 @@
+import lodash from 'lodash';
+const _ = lodash;
+
 let _messageTypes = {};
 MessageTypes = {
   add(type, defs) {

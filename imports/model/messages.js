@@ -17,6 +17,7 @@
 // - createdAt
 // - updatedAt
 
+import { MessageTypes } from './message-types';
 import lodash from 'lodash';
 const _ = lodash;
 
@@ -52,16 +53,16 @@ Messages.helpers({
   },
   localizedSummary(lang) {
     try {
-      let t = MessageTypes.get(message.contentType);
+      let t = MessageTypes.get(this.contentType);
       if (t && t.summaryLocalized) {
-        return t.summaryLocalized(message, lang);
+        return t.summaryLocalized(this, lang);
       }
     } catch (e) {
       // console.log(e);
     }
 
-    if (!_.isEmpty(message.summary)) {
-      return message.summary;
+    if (!_.isEmpty(this.summary)) {
+      return this.summary;
     }
 
     let key = "No content";
