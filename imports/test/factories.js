@@ -1,5 +1,6 @@
 import { Instance } from '/imports/model/instance';
-import { Threads }  from '/imports/model/threads';
+import { Threads } from '/imports/model/threads';
+import { ThreadUsers } from '/imports/model/thread-users';
 import { Messages } from '/imports/model/messages';
 import { MailgunEmails } from '/imports/mailgun/mailgun-emails';
 
@@ -15,6 +16,14 @@ Factory.define('thread', Threads, {
   subject: () => faker.lorem.sentence(),
   userId:  () => faker.random.uuid(),
   scope:   'private'
+});
+
+Factory.define('thread-user', ThreadUsers, {
+  category: 'Thread',
+  scope: 'private',
+  userType: 'Users',
+  read: false,
+  archive: false
 });
 
 Factory.define('message', Messages, {

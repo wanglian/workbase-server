@@ -15,7 +15,7 @@ markRead = new ValidatedMethod({
 
     const tu = ThreadUsers.findOne({threadId, userType: 'Users', userId: this.userId});
     if (tu) {
-      return ThreadUsers.update({threadId, userType: 'Users', userId: this.userId}, {$set: {read: true}});
+      return ThreadUsers.update(tu._id, {$set: {read: true}});
     } else {
       throw new Meteor.Error('Threads.methods.read.notExist', 'User does not have the thread.');
     }
@@ -133,7 +133,7 @@ togglePinMessage= new ValidatedMethod({
     const tu = message && ThreadUsers.findOne({threadId: message.threadId, userType: 'Users', userId: this.userId});
     if (tu) {
       if (message.pinAt) {
-        Messages.update(messageId, {$unset: {pinAt: "", pinBy: ""}});
+        Messages.update(messageId, {$unset: {pinAt: "", pinUserId: ""}});
       } else {
         Messages.update(messageId, {$set: {pinAt: new Date(), pinUserId: this.userId}});
       }
