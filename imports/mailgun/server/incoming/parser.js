@@ -43,7 +43,7 @@ const uploadFile = (url, name, params) => {
 };
 
 parseMailgunEmail = async (doc) => {
-  console.log("[mailgun] parse - " + doc.emailId);
+  // console.log("[mailgun] parse - " + doc.emailId);
   let params      = doc.params;
   let subject     = params['subject'];
   let from        = params['from'];
@@ -203,5 +203,7 @@ parseMailgunEmail = async (doc) => {
     email: { subject, from, to, cc, bcc, date }
   });
 
-  return doc._id;
+  // remove the origin email
+  MailgunEmails.remove(doc._id);
+  return true;
 };

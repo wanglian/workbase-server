@@ -73,4 +73,15 @@ describe('parse Mailgun email', function() {
     expect(message.content).to.exist;
     expect(message.userType).to.eq("Contacts");
   });
+
+  it('should remove the origin email when parsed successfully', async function() {
+    let email = Factory.create('email');
+    email.emailId = email.params["Message-Id"];
+    email.params["To"] = user.email();
+    email.params["recipient"] = user.email();
+
+    await parseMailgunEmail(email);
+    email = MailgunEmails.findOne(email._id);
+    should.not.exist(email);
+  });
 });

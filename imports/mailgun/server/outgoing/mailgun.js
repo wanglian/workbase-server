@@ -126,8 +126,6 @@ Mailgun.send = (message) => {
 
     // "h:References"
 
-    console.log("[mailgun] send email: ")
-    console.log(params);
     Mailgun.client.messages().send(params, Meteor.bindEnvironment((err, result) => {
       if (err) {
         Messages.update(message._id, {$set: {
@@ -135,7 +133,6 @@ Mailgun.send = (message) => {
         }});
         throw new Error(err);
       } else {
-        console.log(result);
         Messages.update(message._id, {$set: {
           internal:        false,
           emailId:         result["id"],

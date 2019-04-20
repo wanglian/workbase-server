@@ -1,5 +1,9 @@
 # Release Log
 
+## 0.0.6
+
+- Remove origin email after parsed successfully
+
 ## 0.0.5, 2019-04-15
 
 - Fix mark read
