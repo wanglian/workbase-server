@@ -1,3 +1,4 @@
+import { LogTypes } from './log-types';
 import lodash from 'lodash';
 const _ = lodash;
 

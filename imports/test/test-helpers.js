@@ -6,6 +6,7 @@ import lodash from 'lodash';
 faker = require('faker');
 sinon = require('sinon');
 expect = chai.expect;
+should = chai.should();
 _ = lodash;
 
 // Convert an NPM-style function returning a callback to one that returns a Promise.

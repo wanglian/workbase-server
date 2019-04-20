@@ -1,5 +1,6 @@
-node_modules/
-settings.json
 .DS_Store
 build.sh
+examples/
+node_modules/
+settings.json
 tests/cypress/videos/

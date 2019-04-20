@@ -17,6 +17,7 @@ $;
 faker;
 
 expect = chai.expect;
+should = chai.should();
 _ = lodash;
 
 Template.registerHelper('_', key => key);

@@ -1,1 +1,1 @@
-import '/imports/model';
+import '/imports/model/client';
