@@ -34,6 +34,7 @@ const buildMailgunAttachment = (file) => {
     knownLength: file.size
   });
 };
+
 const buildSubject = (thread, message) => {
   let subject = thread.subject;
   if (thread.category === 'Chat') {
@@ -43,6 +44,7 @@ const buildSubject = (thread, message) => {
   }
   return subject;
 };
+
 const buildTextContent = (message) => {
   let content = message.content;
   let p = message.parent();
@@ -51,6 +53,7 @@ const buildTextContent = (message) => {
   }
   return content;
 };
+
 const buildHTMLContent = (message) => {
   let content = Markdown(message.content);
   let type = 'html';
@@ -69,6 +72,7 @@ const buildHTMLContent = (message) => {
   let user = message.user();
   return content + '<br/><br/>' + Markdown(user.signature());
 };
+
 Mailgun.send = (message) => {
   Messages.update(message._id, {$set: {"email.state": 'sending'}});
 

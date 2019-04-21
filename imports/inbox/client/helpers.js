@@ -39,3 +39,24 @@ Template.registerHelper('threadCanReply', (thread) => {
   // 无内部用户参与的外部邮件，且外部邮件无须回复
   return count === 1 || (count - countContacts) > 1 || thread.hasReplyableExternalMembers();
 });
+
+Template.registerHelper('company', function() {
+  return Instance.company();
+});
+
+Template.registerHelper('count', function(name) {
+  return Counts.get(`count-${name}`);
+});
+
+Template.registerHelper('countUnreadChannel', function(channel) {
+  return Counts.get(`count-unread-channel-${channel}`);
+});
+
+Template.registerHelper('domain', function() {
+  return Instance.domain();
+});
+
+Template.registerHelper('isMe', (user) => {
+  let currentUser = Meteor.user();
+  return currentUser && currentUser.isMe(user);
+});

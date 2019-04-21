@@ -1,1 +1,0 @@
-import '/imports/model/client';

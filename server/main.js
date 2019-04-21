@@ -1,6 +1,9 @@
+import '../lib/avatar';
+import '../lib/lodash';
+import '../lib/markdown';
 // basic
 import '/imports/i18n/server';
-import '/imports/startup/server';
+import '/imports/model/server';
 import '/imports/files/server';
 import '/imports/chat/server';
 import '/imports/group/server';
@@ -17,3 +20,5 @@ import '/imports/search/server';
 import '/imports/shared/server';
 import '/imports/live-chat/server';
 import '/imports/cordova/server';
+import './migrations';
+import './test-helpers';
