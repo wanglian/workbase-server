@@ -4,6 +4,7 @@
 
 - [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [Meteor](https://www.meteor.com/install)
+- [GraphicsMagick or ImageMagick](https://github.com/aheckmann/gm)
 
 ## Run
 
