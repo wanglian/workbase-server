@@ -1,6 +1,3 @@
-// - profile
-//  - name
-//  - noreply
 Contacts = Meteor.users;
 
 Contacts.helpers({

@@ -1,5 +1,5 @@
 Threads.helpers({
-  // 群聊名称
+  // group name
   name() {
     return _.isArray(this.subject) ? null : this.subject;
   }

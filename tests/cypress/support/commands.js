@@ -23,7 +23,3 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-
-Cypress.Commands.add('resetDatabase', () =>
-    cy.exec('meteor mongo mongodb://localhost:3001/meteor --eval "db.dropDatabase()"'),
-);

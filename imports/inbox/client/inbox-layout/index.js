@@ -40,7 +40,7 @@ Template.InboxLayout.helpers({
   }
 });
 
-// rule: use _id as router param
+// router param: _id
 Template.InboxBackButton.helpers({
   listPath() {
     let currentRoute = Router.current();
@@ -59,7 +59,7 @@ Template.InboxBackButton.helpers({
   }
 });
 
-// rule: use detail as router query
+// router query: detail
 Template.InboxSidebarButton.helpers({
   detailShown() {
     let currentRoute = Router.current();

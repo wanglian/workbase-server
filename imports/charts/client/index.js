@@ -3,7 +3,7 @@ import './message-day-chart';
 ThreadCategories.add("Charts", {
   icon: "fa fa-bar-chart",
   iconUnread: "fa fa-bar-chart",
-  title(thread) { // client only
+  title(thread) {
     return I18n.t(thread.subject);
   },
   details: ['Members', 'Search', 'PinMessages', 'Files'],

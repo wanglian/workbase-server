@@ -1,13 +1,3 @@
-// - profile
-//  - type: Users/Channels
-//  - livechat: Boolean // for Channels
-//  - name
-//  - title
-//  - language
-//  - skin: blue/blue-light/purple/purple-light/black/black-light/red/red-light/yellow/yellow-light
-//  - signature
-//  - message: personal signature
-
 Users = Meteor.users;
 
 const addrparser = require('address-rfc2822');

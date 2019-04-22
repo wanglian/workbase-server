@@ -33,7 +33,5 @@ Messages.before.insert(function(userId, doc) {
 // 回复后标记已读
 Messages.after.insert(function(userId, doc) {
   let tu = channelReplied(doc);
-  if (tu) {
-    let re = ThreadUsers.update(tu._id, {$set: {read: true}});
-  }
+  tu && ThreadUsers.update(tu._id, {$set: {read: true}});
 });

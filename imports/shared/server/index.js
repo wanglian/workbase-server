@@ -12,7 +12,6 @@ Meteor.startup(function() {
 });
 
 Accounts.onLogin(function(attempt) {
-  // console.log("on login ..");
   let user = Users.findOne(attempt.user._id);
   let thread = Threads.findOne({category: 'Shared'});
   if (thread) {

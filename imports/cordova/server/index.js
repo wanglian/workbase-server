@@ -8,7 +8,7 @@ Meteor.startup(function() {
       keyData:  Assets.getText('workbase-push-key.pem'),
       passphrase: 'workbase',
       production: true,
-      //gateway: 'gateway.push.apple.com',
+      // gateway: 'gateway.push.apple.com',
       // gateway: 'gateway.sandbox.push.apple.com'
     },
     // android
@@ -93,7 +93,7 @@ const pushToUser = (to, message) => {
         });
       }
 
-      console.log(params);
+      // console.log(params);
       Push.send(params);
 
       resolve(true);

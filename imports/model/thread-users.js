@@ -1,17 +1,3 @@
-// - threadId
-// - category: Email, ..
-// - scope
-// - userType: Users, Contacts, ..
-// - userId
-// - role: owner, member(default)
-// - read
-// - archive
-// - star
-// - spam
-// - archiveAt
-// - createdAt
-// - updatedAt
-// - params: extension
 ThreadUsers = new Mongo.Collection('thread-users');
 
 ThreadUsers.helpers({

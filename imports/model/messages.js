@@ -1,22 +1,3 @@
-// - threadId
-// - userType: Users, Contacts
-// - userId
-// - internal: boolean
-// - content
-// - contentType: text/html/image/log
-// - parentId:
-// - fileIds: [fileId]
-// - inlineFileIds: [fileId]
-// - summary
-// - emailId
-// - email: subject, from, to, cc, bcc, time
-// - reacts: like [userId]
-// - updateUserId
-// - pinAt
-// - pinUserId
-// - createdAt
-// - updatedAt
-
 import { MessageTypes } from './message-types';
 import lodash from 'lodash';
 const _ = lodash;

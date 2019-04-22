@@ -49,10 +49,7 @@ toggleArchiveThread = new ValidatedMethod({
     threadId: { type: String }
   }).validator(),
   run({ threadId }) {
-    // `this` is the same method invocation object you normally get inside
-    // Meteor.methods
     if (!this.userId) {
-      // Throw errors with a specific error code
       throw new Meteor.Error('Threads.methods.archive.notLoggedIn', 'Must be logged in.');
     }
 
@@ -78,10 +75,7 @@ toggleSpamThread = new ValidatedMethod({
     threadId: { type: String }
   }).validator(),
   run({ threadId }) {
-    // `this` is the same method invocation object you normally get inside
-    // Meteor.methods
     if (!this.userId) {
-      // Throw errors with a specific error code
       throw new Meteor.Error('Threads.methods.spam.notLoggedIn', 'Must be logged in.');
     }
 
@@ -155,7 +149,7 @@ updateMessage = new ValidatedMethod({
     }
 
     let message = Messages.findOne(messageId);
-    // 限于本人修改，文本消息
+    // owner && text
     if (message && this.userId === message.userId && message.contentType === 'text') {
       return Messages.update(messageId, {$set: {content, updateUserId: this.userId}});
     } else {

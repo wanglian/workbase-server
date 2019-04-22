@@ -4,15 +4,10 @@ import moment from 'moment';
 
 Meteor.startup(function() {
   let thread = Threads.findOne({category: 'Charts'});
-  if (thread) {
-    //
-  } else {
-    Threads.create(null, 'Charts', 'thread_reports', 'admin');
-  }
+  thread || Threads.create(null, 'Charts', 'thread_reports', 'admin');
 });
 
 Accounts.onLogin(function(attempt) {
-  // admin
   let user = Users.findOne(attempt.user._id);
   if (user && user.isAdmin()) {
     let thread = Threads.findOne({category: 'Charts'});

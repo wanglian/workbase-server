@@ -19,13 +19,11 @@ Accounts.onLogout(function() {
 Template.Thread.onRendered(function() {
   let self = this;
   let data, threadId;
-  // === 分页
-  let limit, handle;
+  let limit, handle; // pagination
   self.autorun(() => {
     data = Template.currentData();
     if (data && data._id != threadId) {
-      // === 标记已读
-      // 进入话题，延时两秒触发
+      // mark read: delay 2s
       if (self.timeout) Meteor.clearTimeout(self.timeout);
       self.timeout = Meteor.setTimeout(() => {
         if (!data.read) {
@@ -39,7 +37,7 @@ Template.Thread.onRendered(function() {
     }
     if (data && data._id) {
       if (data._id != threadId) {
-        // === 重置消息分页数
+        // reset pagination
         threadId = data._id;
         console.log("reset limit - " + threadId);
         self.limit.set(PER_PAGE);
@@ -51,7 +49,7 @@ Template.Thread.onRendered(function() {
     }
   });
 
-  // 停留在话题时，滚动页面触发
+  // mark read: tiggered by scrolling
   $('#inbox-right').on('scroll', (e) => {
     if (!data.read) {
       markRead.call({

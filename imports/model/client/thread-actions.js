@@ -21,7 +21,7 @@ ThreadActions.archive = {
   },
   action(thread) {
     let count = toggleArchiveThread.call({threadId: thread._id});
-    if (count === 1 && !thread.archive) { // 修改前状态
+    if (count === 1 && !thread.archive) {
       let router = Router.current();
       Router.go(router.route.getName(), {}, {query: router.params.query});
     }
@@ -37,7 +37,7 @@ ThreadActions.spam = {
   },
   action(thread) {
     let count = toggleSpamThread.call({threadId: thread._id});
-    if (count === 1 && !thread.spam) { // 修改前状态
+    if (count === 1 && !thread.spam) {
       let router = Router.current();
       Router.go(router.route.getName(), {}, {query: router.params.query});
     }

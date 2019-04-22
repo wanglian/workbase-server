@@ -1,17 +1,5 @@
 import { ThreadCategories } from './thread-categories';
 
-// - category: Email
-// - subject
-// - scope:
-//  - private: only members can reply [inbox]
-//  - protected: everyone can reply [channel]
-//  - public: everyone can search & view [shared]
-//  - admin: admin threads [admin]
-// - userType
-// - userId: created by
-// - lastMessageId
-// - createdAt
-// - updatedAt: lastMessageAt
 Threads = new Mongo.Collection('threads');
 
 Threads.helpers({

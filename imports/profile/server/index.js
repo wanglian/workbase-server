@@ -81,7 +81,6 @@ const ensureAccountThread = (user) => {
   return thread;
 };
 const logAccountAction = (user, content) => {
-  // Account
   let thread = ensureAccountThread(user);
   Threads.addMessage(thread, user, {
     contentType: 'log',
@@ -90,7 +89,6 @@ const logAccountAction = (user, content) => {
 };
 
 Accounts.onLogin(function(attempt) {
-  // console.log("on login ..");
   let user = Users.findOne(attempt.user._id);
   ensureAccountThread(user);
 });

@@ -69,9 +69,7 @@ Threads.addMessage = (thread, user, message) => {
 };
 
 Threads.revokeMessage = (thread, message) => {
-  let count = Messages.remove({_id: message._id});
-  // 文件是否直接删除
-  return count;
+  return Messages.remove({_id: message._id});
 };
 
 Contacts.findOrCreateByAddress = (attrs) => {

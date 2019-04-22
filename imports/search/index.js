@@ -60,16 +60,10 @@ MessagesIndex = new Index({
       };
     },
     selector(searchObject, options, aggregation) {
-      // retrieve the default selector
       const selector = this.defaultConfiguration().selector(searchObject, options, aggregation);
-
-      // options.search.userId contains the userId of the logged in user
-
-      // filter for thread
       if (options.search.props.threadId) {
         selector.threadId = options.search.props.threadId;
       }
-      // console.log(selector);
       return selector;
     },
     transform(doc) {

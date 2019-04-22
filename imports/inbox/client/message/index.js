@@ -15,13 +15,11 @@ let clipboard = (text, event) => {
   });
 
   cb.on('success', function(e) {
-    // console.log(e);
     cb.off('error');
     cb.off('success');
   });
 
   cb.on('error', function(e) {
-    // console.log(e);
     cb.off('error');
     cb.off('success');
   });
