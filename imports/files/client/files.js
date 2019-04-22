@@ -3,7 +3,7 @@ Files = new FilesCollection({
   allowClientCode: false, // Disallow remove files from Client
   onBeforeUpload(file) {
     // Allow upload files under 50MB
-    if (file.size <= 10485760 * 5) {
+    if (file.size <= 1024 * 1024 * 50) {
       return true;
     }
     // only in png/jpg/jpeg formats

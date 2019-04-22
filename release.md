@@ -3,6 +3,7 @@
 ## 0.0.6
 
 - Remove origin email after parsed successfully
+- Avatar file size limit: 2M -> 10M
 
 ## 0.0.5, 2019-04-15
 

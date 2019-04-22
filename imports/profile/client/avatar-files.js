@@ -2,8 +2,8 @@ AvatarFiles = new FilesCollection({
   collectionName: 'avatar-files',
   allowClientCode: false, // Disallow remove files from Client
   onBeforeUpload(file) {
-    // Allow upload files under 2MB
-    if (file.size <= 1024*1024*2) {
+    // Allow upload files under 10MB
+    if (file.size <= 1024 * 1024 * 10) {
       return true;
     }
     // only in png/jpg/jpeg formats
