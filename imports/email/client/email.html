@@ -8,16 +8,16 @@
 <template name="EmailInfo">
   {{#with email}}
     {{#if compare state '===' 'failed'}}
-      <i class="fa fa-warning text-red"></i> {{_ "Email failed"}}
-      <a href="#" class="btn-resend-email">{{_ "Resend"}}</a>
+      <i class="fa fa-warning text-red"></i> {{_ "email_sending_failed"}}
+      <a href="#" class="btn-resend-email">{{_ "email_action_resend"}}</a>
     {{/if}}
     {{#if compare state '===' 'sending'}}
-      <i class="fa fa-spinner fa-spin"></i> {{_ "Email sending"}}
+      <i class="fa fa-spinner fa-spin"></i> {{_ "email_state_sending"}}
     {{else}}
-      {{#if subject}}<div>{{_ 'mail subject'}}: {{subject}}</div>{{/if}}
-      {{#if to}}<div>{{_ 'mail to'}}: {{to}}</div>{{/if}}
-      {{#if cc}}<div>{{_ 'mail cc'}}: {{cc}}</div>{{/if}}
-      {{#if bcc}}<div>{{_ 'mail bcc'}}: {{bcc}}</div>{{/if}}
+      {{#if subject}}<div>{{_ 'email_subject'}}: {{subject}}</div>{{/if}}
+      {{#if to}}<div>{{_ 'email_to'}}: {{to}}</div>{{/if}}
+      {{#if cc}}<div>{{_ 'email_cc'}}: {{cc}}</div>{{/if}}
+      {{#if bcc}}<div>{{_ 'email_bcc'}}: {{bcc}}</div>{{/if}}
     {{/if}}
   {{/with}}
 </template>
@@ -29,7 +29,7 @@
     </div>
     <div class="flat-panel-body">
       <div class="title">{{subject}}</div>
-      <div class="small text-muted">{{_ "Sent by and when" name=user.name time=(formatDayWithTime createdAt)}}</div>
+      <div class="small text-muted">{{_ "email_sent_by_and_when" name=user.name time=(formatDayWithTime createdAt)}}</div>
     </div>
   </div>
 </template>

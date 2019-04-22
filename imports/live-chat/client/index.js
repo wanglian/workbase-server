@@ -20,7 +20,7 @@ ThreadCategories.add("AdminLiveChat", {
   actions() {
     return [
       {
-        title: I18n.t('Members'),
+        title: I18n.t('thread_members'),
         icon: "fa fa-list-ul",
         action() {
           let thread = Threads.findOne({category: 'AdminLiveChat'});

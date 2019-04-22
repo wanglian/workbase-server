@@ -40,7 +40,7 @@ const buildSubject = (thread, message) => {
   if (thread.category === 'Chat') {
     let parentMessage = message.parent();
     let user = message.user();
-    subject = parentMessage && parentMessage.email && parentMessage.email.subject || I18n.getFixedT(user.profile.language)("Message from", {user: user.name()});
+    subject = parentMessage && parentMessage.email && parentMessage.email.subject || I18n.getFixedT(user.profile.language)("email_message_from_who", {user: user.name()});
   }
   return subject;
 };

@@ -14,7 +14,7 @@
   <div class="panel flat-panel thread-detail">
     <div class="flat-panel-body">
       <div class="title">{{subject}}</div>
-      <div class="small text-muted">{{_ "Created by and when" name=user.name time=(formatDayWithTime createdAt)}}</div>
+      <div class="small text-muted">{{_ "thread_created_by_and_when" name=user.name time=(formatDayWithTime createdAt)}}</div>
     </div>
   </div>
 </template>
@@ -25,12 +25,12 @@
       <a data-parent="#thread-details-accordion" href="#members" data-toggle="collapse">
         {{#if showAddMember}}
           <span id="btn-add-member" class="pull-right small text-muted" style="padding-top: 3px;">
-            <i class="fa fa-plus-circle"></i> {{_ "Add"}}
+            <i class="fa fa-plus-circle"></i> {{_ "app_action_add"}}
           </span>
         {{/if}}
         <div class="flat-panel-title">
           <i class="fa fa-users text-success"></i>
-          {{_ "Members"}} ({{threadUsers.count}})
+          {{_ "thread_members"}} ({{threadUsers.count}})
         </div>
       </a>
     </div>
@@ -50,7 +50,7 @@
 
         {{#if showRemove}}
           <a href="#" class="btn-remove-member text-muted small pull-right action" data-type="{{userType}}" data-id="{{userId}}">
-            <i class="fa fa-times"></i> {{_ 'Remove'}}
+            <i class="fa fa-times"></i> {{_ 'app_action_remove'}}
           </a>
         {{/if}}
 

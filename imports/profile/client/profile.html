@@ -22,17 +22,17 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "Profile"}}</h4>
+          <h4 class="modal-title">{{_ "app_profile"}}</h4>
         </div>
         {{#autoForm collection=formCollection schema=formSchema id="profile-form" doc=currentUser.profile type="normal"}}
           <div class="modal-body scroll-box">
             <div class="form-group">
               {{> avatar user=currentUser shape="circle" class="img-circle form-group" size="profile"}}
               <input type="file" style="display:none;" id="avatar-file" accept="image/*"/>
-              <button class="btn btn-default" style="width:180px;" id="btn-upload-avatar">{{_ 'Upload new picture'}}</button>
+              <button class="btn btn-default" style="width:180px;" id="btn-upload-avatar">{{_ 'profile_upload_new_picture'}}</button>
             </div>
             <div class="form-group">
-              <button class="btn btn-default" style="width:180px;" id="btn-change-password">{{_ 'Change password'}}</button>
+              <button class="btn btn-default" style="width:180px;" id="btn-change-password">{{_ 'profile_change_password'}}</button>
             </div>
             {{> afQuickField name="language" defaultValue=currentUser.language firstOption=false}}
             {{> afQuickField name="skin" defaultValue="blue" firstOption=false}}
@@ -42,9 +42,9 @@
             {{#markdown}}> {{{signature}}}{{/markdown}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger pull-left" id="btn-sign-out">{{_ 'Sign out'}}</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
-            <button type="submit" class="btn btn-primary">{{_ "Confirm"}}</button>
+            <button type="button" class="btn btn-danger pull-left" id="btn-sign-out">{{_ 'app_sign_out'}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'app_action_discard'}}</button>
+            <button type="submit" class="btn btn-primary">{{_ "app_action_confirm"}}</button>
           </div>
         {{/autoForm}}
       </div>
@@ -58,7 +58,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "Change password"}}</h4>
+          <h4 class="modal-title">{{_ "profile_change_password"}}</h4>
         </div>
         {{#autoForm collection=formCollection schema=formSchema id="change-password-form" type="normal"}}
           <div class="modal-body">
@@ -67,8 +67,8 @@
             {{> afQuickField name="passwordConfirm"}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
-            <button type="submit" class="btn btn-primary">{{_ "Confirm"}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'app_action_discard'}}</button>
+            <button type="submit" class="btn btn-primary">{{_ "app_action_confirm"}}</button>
           </div>
         {{/autoForm}}
       </div>
@@ -82,15 +82,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "Upload new picture"}}</h4>
+          <h4 class="modal-title">{{_ "profile_upload_new_picture"}}</h4>
         </div>
         <div class="modal-body">
           {{#with currentUpload}}{{> spinner}}{{/with}}
           <div id="image-preview" style="width:100%;height:100%;" class="center-block">{{> spinner}}</div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
-          <button type="button" class="btn btn-primary" id="btn-send-image">{{_ "Upload"}}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'app_action_discard'}}</button>
+          <button type="button" class="btn btn-primary" id="btn-send-image">{{_ "app_action_upload"}}</button>
         </div>
       </div>
     </div>
@@ -114,14 +114,14 @@
 </template>
 
 <template name="AdminMenu">
-  <p class="navbar-text pull-left menu-title">{{_ 'System Settings'}}</p>
+  <p class="navbar-text pull-left menu-title">{{_ 'app_settings'}}</p>
 </template>
 
 <template name="AdminMenuItem">
   {{#if currentUser.isAdmin}}
   <li class="{{#if inRouter 'admin'}}active{{/if}}">
     <a href="/admin">
-      <i class="fa fa-cog"></i> <span>{{_ 'System Settings'}}</span>
+      <i class="fa fa-cog"></i> <span>{{_ 'app_settings'}}</span>
     </a>
   </li>
   {{/if}}

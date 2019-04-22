@@ -68,8 +68,8 @@ Template.SharedMessage.events({
         autocapitalize: 'off'
       },
       showCancelButton: true,
-      confirmButtonText: I18n.t("Send"),
-      cancelButtonText: I18n.t("Discard"),
+      confirmButtonText: I18n.t("app_action_send"),
+      cancelButtonText: I18n.t("app_action_discard"),
       allowOutsideClick: false
     }).then((result) => {
       if (result.value) {

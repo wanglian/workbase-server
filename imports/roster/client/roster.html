@@ -13,16 +13,16 @@
 
 <template name="RosterMenuItem">
   <li class="{{#if inRouter 'roster'}}active{{/if}}">
-    <a href="/roster/users"><i class="fa fa-address-book"></i> <span>{{_ 'Contacts'}}</span></a>
+    <a href="/roster/users"><i class="fa fa-address-book"></i> <span>{{_ 'app_contacts'}}</span></a>
   </li>
 </template>
 
 <template name="RosterMenu">
   <p class="navbar-text pull-left menu-title">
     {{#if compare type '===' 'Contacts'}}
-      {{_ "External Users"}}
+      {{_ "users_external"}}
     {{else}}
-      {{_ "Users"}}
+      {{_ "app_users"}}
     {{/if}}
   </p>
 
@@ -31,9 +31,9 @@
       <li><a href="#" id="btn-search"><i class="fa fa-search"></i></a></li>
       <li>
         {{#if compare type '===' 'Contacts'}}
-          <a href="/roster/users" id="btn-toggle-contacts">{{_ "Users"}} <i class="fa fa-chevron-right"></i></a>
+          <a href="/roster/users" id="btn-toggle-contacts">{{_ "app_users"}} <i class="fa fa-chevron-right"></i></a>
         {{else}}
-          <a href="/roster/external" id="btn-toggle-contacts">{{_ "External Users"}} <i class="fa fa-chevron-right"></i></a>
+          <a href="/roster/external" id="btn-toggle-contacts">{{_ "users_external"}} <i class="fa fa-chevron-right"></i></a>
         {{/if}}
       </li>
     </ul>
@@ -43,7 +43,7 @@
 <template name="RosterList">
   <ul class="list-group threads">
     <li class="list-group-item thread search hide">
-      <input type="text" class="form-control" placeholder="{{_ 'Search'}}">
+      <input type="text" class="form-control" placeholder="{{_ 'search_action'}}">
     </li>
     {{#each users}}
       <a href="{{rosterPath}}" class="list-group-item clearfix thread" id="{{_id}}">
@@ -59,7 +59,7 @@
     {{/each}}
     {{#if nextPath}}
       <a href="{{nextPath}}" class="list-group-item text-center text-muted thread small">
-        {{_ "Load More"}}
+        {{_ "paginate_load_more"}}
       </a>
     {{/if}}
   </ul>
@@ -85,11 +85,11 @@
       </div>
       <div class="box-footer no-padding">
         <ul class="nav nav-stacked">
-          {{#with title}}<li><a class="text-muted text-ellipsis">{{_ 'Work Title'}} <span class="pull-right">{{this}}</span></a></li>{{/with}}
+          {{#with title}}<li><a class="text-muted text-ellipsis">{{_ 'profile_title'}} <span class="pull-right">{{this}}</span></a></li>{{/with}}
           <li><a class="text-muted text-ellipsis">{{_ 'Email'}} <span class="pull-right">{{email}}</span></a></li>
           <li>
             {{#LinkToUserShared user=this class="text-muted text-ellipsis"}}
-              {{_ 'Shares'}}
+              {{_ 'share_title'}}
               <span class="pull-right text-muted"><i class="fa fa-chevron-right"></i></span>
             {{/LinkToUserShared}}
           </li>
@@ -113,7 +113,7 @@
       </div>
       <div class="box-footer no-padding">
         <ul class="nav nav-stacked">
-          {{#with title}}<li><a class="text-muted text-ellipsis">{{_ 'Work Title'}} <span class="pull-right">{{this}}</span></a></li>{{/with}}
+          {{#with title}}<li><a class="text-muted text-ellipsis">{{_ 'profile_title'}} <span class="pull-right">{{this}}</span></a></li>{{/with}}
           <li><a class="text-muted text-ellipsis">{{_ 'Email'}} <span class="pull-right">{{email}}</span></a></li>
         </ul>
       </div>
@@ -132,7 +132,7 @@
 </template>
 
 <template name="LinkToChat">
-  <a href="#" class="btn btn-primary {{class}}" id="btn-chat">{{_ "Send Messages"}}</a>
+  <a href="#" class="btn btn-primary {{class}}" id="btn-chat">{{_ "users_start_chat"}}</a>
 </template>
 
 <template name="LinkToCardModal">

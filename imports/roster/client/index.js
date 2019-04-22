@@ -13,7 +13,7 @@ ThreadCategories.add("Roster", {
   actions() {
     return [
       {
-        title: I18n.t('User List'),
+        title: I18n.t('users_list'),
         icon: "fa fa-list-ul",
         action() {
           Modal.show('RosterListModal', null, {
@@ -22,7 +22,7 @@ ThreadCategories.add("Roster", {
         }
       },
       {
-        title: I18n.t('New User'),
+        title: I18n.t('users_action_new'),
         icon: "fa fa-user-plus",
         action() {
           Modal.show('AddRosterModal', null, {

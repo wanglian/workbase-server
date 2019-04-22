@@ -6,15 +6,15 @@ Template.FileEditNameLink.events({
   "click .btn-edit-file-name"(e, t) {
     e.preventDefault();
     Swal({
-      title: I18n.t('Edit file name'),
+      title: I18n.t('message_action_edit_file_name'),
       input: 'text',
       inputValue: this.name,
       inputAttributes: {
         autocapitalize: 'off'
       },
       showCancelButton: true,
-      confirmButtonText: I18n.t("Save"),
-      cancelButtonText: I18n.t("Discard"),
+      confirmButtonText: I18n.t("app_action_save"),
+      cancelButtonText: I18n.t("app_action_discard"),
       showLoaderOnConfirm: true,
       allowOutsideClick: false
     }).then((result) => {
@@ -29,13 +29,13 @@ Template.FileRemoveLink.events({
   "click .btn-remove-file"(e, t) {
     e.preventDefault();
     Swal({
-      title: I18n.t("Confirm remove file"),
+      title: I18n.t("message_confirm_remove_file"),
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: I18n.t("Confirm"),
-      cancelButtonText: I18n.t("Discard")
+      confirmButtonText: I18n.t("app_action_confirm"),
+      cancelButtonText: I18n.t("app_action_discard")
     }).then((result) => {
       if (result.value) {
         Meteor.call("files.remove", this._id);

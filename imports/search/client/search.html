@@ -1,7 +1,7 @@
 <template name="Search">
   <form action="#" method="get" class="sidebar-form" id="search-form">
     <div class="input-group">
-      <input type="text" name="search" class="form-control" placeholder="{{_ 'Search'}}">
+      <input type="text" name="search" class="form-control" placeholder="{{_ 'search_action'}}">
       <span class="input-group-btn">
         <button type="button" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
         </button>
@@ -18,14 +18,14 @@
           <div class="input-group">
             {{> EasySearch.Input index=threadsIndex attributes=inputAttributes event='enter' noDocumentsOnEmpty=true}}
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button" data-dismiss="modal" aria-label="Close">{{_ 'Cancel'}}</button>
+              <button class="btn btn-default" type="button" data-dismiss="modal" aria-label="Close">{{_ 'app_action_cancel'}}</button>
             </span>
           </div>
         </div>
         <div class="modal-body scroll-box">
           <ul class="list-group threads">
             {{#EasySearch.IfNoResults index=threadsIndex}}
-              <div>{{_ 'Empty'}}</div>
+              <div>{{_ 'app_no_record'}}</div>
             {{/EasySearch.IfNoResults}}
             {{#EasySearch.IfSearching index=threadsIndex}}
               <div>{{> spinner}}</div>
@@ -44,7 +44,7 @@
   <div class="panel flat-panel">
     <div class="flat-panel-heading">
       <div class="flat-panel-title" id="btn-search">
-        <i class="fa fa-search"></i> {{_ 'Search Messages'}}
+        <i class="fa fa-search"></i> {{_ 'search_thread_messages'}}
       </div>
     </div>
   </div>
@@ -58,13 +58,13 @@
           <div class="input-group">
             {{> EasySearch.Input index=messagesIndex attributes=inputAttributes event='enter' noDocumentsOnEmpty=true}}
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button" data-dismiss="modal" aria-label="Close">{{_ 'Cancel'}}</button>
+              <button class="btn btn-default" type="button" data-dismiss="modal" aria-label="Close">{{_ 'app_action_cancel'}}</button>
             </span>
           </div>
         </div>
         <div class="modal-body scroll-box messages">
           {{#EasySearch.IfNoResults index=messagesIndex}}
-            <div>{{_ 'Empty'}}</div>
+            <div>{{_ 'app_no_record'}}</div>
           {{/EasySearch.IfNoResults}}
           {{#EasySearch.IfSearching index=messagesIndex}}
             <div>{{> spinner}}</div>

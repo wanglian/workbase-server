@@ -14,12 +14,12 @@
 
 <template name="ChannelMenu">
   <ul class="dropdown-menu" role="menu">
-    <li><a href="#" id="btn-channel-members"><i class="fa fa-users"></i> {{_ "Channel Members"}}</a></li>
+    <li><a href="#" id="btn-channel-members"><i class="fa fa-users"></i> {{_ "channel_members"}}</a></li>
     {{#if currentUser.isAdmin}}
       <li class="divider"></li>
-      <li><a href="#" id="btn-edit-channel"><i class="fa fa-edit"></i> {{_ "Edit Channel"}}</a></li>
+      <li><a href="#" id="btn-edit-channel"><i class="fa fa-edit"></i> {{_ "channel_action_edit"}}</a></li>
       <li class="divider"></li>
-      <li><a href="#" id="btn-add-channel"><i class="fa fa-plus"></i> {{_ "New Channel"}}</a></li>
+      <li><a href="#" id="btn-add-channel"><i class="fa fa-plus"></i> {{_ "channel_action_new"}}</a></li>
     {{/if}}
   </ul>
 </template>

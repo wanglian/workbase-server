@@ -1,8 +1,8 @@
 <template name="LinkToSendEmail">
   {{#if emailEnabled}}
     <a href="#" id="btn-send-email">
-      <i class="fa fa-send" title="{{_ 'Compose'}}"></i>
-      <span class="hidden-xs">{{_ 'Compose'}}</span>
+      <i class="fa fa-send" title="{{_ 'app_compose'}}"></i>
+      <span class="hidden-xs">{{_ 'app_compose'}}</span>
     </a>
   {{/if}}
 </template>
@@ -13,7 +13,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ 'New Message'}}</h4>
+          <h4 class="modal-title">{{_ 'message_action_new'}}</h4>
         </div>
         {{#autoForm collection=formCollection schema=formSchema id="send-email-form" type="normal"}}
           <div class="modal-body scroll-box">
@@ -39,8 +39,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
-            <button type="submit" class="btn btn-primary">{{_ 'Send'}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'app_action_discard'}}</button>
+            <button type="submit" class="btn btn-primary">{{_ 'app_action_send'}}</button>
           </div>
         {{/autoForm}}
       </div>

@@ -12,7 +12,7 @@ ThreadCategories.add("Channel", {
   actions() {
     return [
       {
-        title: I18n.t('Channel List'),
+        title: I18n.t('channel_list'),
         icon: "fa fa-list-ul",
         action() {
           Modal.show('ChannelListModal', null, {
@@ -21,7 +21,7 @@ ThreadCategories.add("Channel", {
         }
       },
       {
-        title: I18n.t('New Channel'),
+        title: I18n.t('channel_action_new'),
         icon: "fa fa-plus",
         action() {
           Modal.show('AddChannelModal', null, {

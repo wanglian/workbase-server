@@ -4,7 +4,7 @@
 
     {{#with parentMessage}}
       <div>
-        <a href="#" id="btn-remove-quote" class="small text-muted pull-right" style="margin-right: 10px;">{{_ "Remove"}}</a>
+        <a href="#" id="btn-remove-quote" class="small text-muted pull-right" style="margin-right: 10px;">{{_ "app_action_remove"}}</a>
         {{> QuotedMessage}}
       </div>
     {{/with}}
@@ -26,16 +26,16 @@
 
     <div class="clearfix">
       <div class="btn-group pull-right">
-        <button type="submit" class="btn btn-primary">{{_ 'Send'}}</button>
+        <button type="submit" class="btn btn-primary">{{_ 'app_action_send'}}</button>
         {{#if options}}
           <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right">
-              <li><a href="#" id="btn-load-image"><i class="fa fa-image"></i>{{_ "Send Image"}}</a></li>
+              <li><a href="#" id="btn-load-image"><i class="fa fa-image"></i>{{_ "message_action_send_image"}}</a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#" id="btn-markdown"><i class="fa fa-file-code-o"></i>{{_ "Send Markdown"}}</a></li>
+              <li><a href="#" id="btn-markdown"><i class="fa fa-file-code-o"></i>{{_ "message_action_send_markdown"}}</a></li>
             </ul>
           </div>
         {{/if}}
@@ -57,12 +57,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "Send Image Message"}}</h4>
+          <h4 class="modal-title">{{_ "message_send_image_message"}}</h4>
         </div>
         {{#autoForm collection=formCollection schema=formSchema id="image-message-form" threadId=thread._id}}
         <div class="modal-body scroll-box">
           {{> afQuickField name="content" placeholder=contentPlaceholder}}
-          <p class="text-center add-comment"><a href='#'>{{_ 'Write something'}}</a></p>
+          <p class="text-center add-comment"><a href='#'>{{_ 'message_write_something'}}</a></p>
           {{#with currentUpload}}{{> spinner}}{{/with}}
           <div id="image-preview" class="center-block img-thumbnail">{{> spinner}}</div>
         </div>
@@ -70,8 +70,8 @@
           {{#if thread.hasReplyableExternalMembers}}
             <div class="text-muted pull-left">{{> afFieldInput name="internal"}}</div>
           {{/if}}
-          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
-          <button type="button" class="btn btn-primary" id="btn-send-image">{{_ "Send"}}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'app_action_discard'}}</button>
+          <button type="button" class="btn btn-primary" id="btn-send-image">{{_ "app_action_send"}}</button>
         </div>
         {{/autoForm}}
       </div>

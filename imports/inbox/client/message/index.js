@@ -130,16 +130,16 @@ Template.MessageActions.events({
     e.stopPropagation();
     e.preventDefault();
     Swal({
-      title: I18n.t("Confirm revoke message"),
+      title: I18n.t("message_revoke_confirm"),
       type: 'warning',
       showCancelButton: true,
-      confirmButtonText: I18n.t("Confirm"),
-      cancelButtonText: I18n.t("Discard")
+      confirmButtonText: I18n.t("app_action_confirm"),
+      cancelButtonText: I18n.t("app_action_discard")
     }).then((result) => {
       if (result.value) {
         Meteor.call("revokeMessage", this._id, (err, res) => {
           if (err || !res) {
-            Swal(I18n.t("Can not revoke message"), "~_~", "info");
+            Swal(I18n.t("message_revoke_disabled"), "~_~", "info");
           }
         });
       }
@@ -182,7 +182,7 @@ Template.MessageActions.events({
   "click .btn-copy"(e, t) {
     e.stopPropagation();
     clipboard(t.data.content, e);
-    $(e.target).closest('.btn-copy').attr('data-original-title', I18n.t('Copied')).tooltip('fixTitle').tooltip('show');
+    $(e.target).closest('.btn-copy').attr('data-original-title', I18n.t('message_copied')).tooltip('fixTitle').tooltip('show');
   }
 });
 

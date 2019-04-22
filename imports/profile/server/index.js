@@ -74,7 +74,7 @@ Meteor.publishComposite("admin.threads", function() {
 const ensureAccountThread = (user) => {
   let thread = Threads.findOne({category: 'Account', userId: user._id});
   if (!thread) {
-    let threadId = Threads.create(user, 'Account', 'My Account');
+    let threadId = Threads.create(user, 'Account', 'thread_my_account');
     thread = Threads.findOne(threadId);
   }
   Threads.ensureMember(thread, user);

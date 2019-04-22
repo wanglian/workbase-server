@@ -1,5 +1,5 @@
 <template name="Login">
-  <p class="login-box-msg">{{_ "Sign in to start your session"}}</p>
+  <p class="login-box-msg">{{_ "sign_in_info"}}</p>
 
   {{#autoForm collection=formCollection schema=formSchema id="login-form" type="normal"}}
     {{> afQuickField name="email" domain=domain}}
@@ -8,10 +8,10 @@
       <div class="checkbox pull-right small">
         <label>
           <input type="checkbox" value="true" name="remember">
-          {{_ "Remember Me"}}
+          {{_ "sign_in_remember_me"}}
         </label>
       </div>
-      <button type="submit" class="btn btn-primary">{{_ "Sign In"}}</button>
+      <button type="submit" class="btn btn-primary">{{_ "sign_in_action"}}</button>
     </div>
   {{/autoForm}}
 </template>

@@ -9,7 +9,7 @@ const build_message_schema = () => {
   return new SimpleSchema({
     internal: {
       type: Boolean,
-      label: I18n.t('Internal'),
+      label: I18n.t('message_internal'),
       optional: true,
       autoform: {
         type: "boolean-checkbox"
@@ -166,7 +166,7 @@ Template.ImageMessageModal.helpers({
     return build_message_schema();
   },
   contentPlaceholder() {
-    return `${I18n.t('Write something')} ...`;
+    return `${I18n.t('message_write_something')} ...`;
   },
   currentUpload() {
     return Template.instance().currentUpload.get();

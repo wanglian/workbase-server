@@ -9,7 +9,7 @@ const build_roster_schema = () => {
       max: 50,
       autoform: {
         type: 'text',
-        label: I18n.t("User Name")
+        label: I18n.t("users_name")
       }
     },
     email: {
@@ -27,7 +27,7 @@ const build_roster_schema = () => {
       optional: true,
       autoform: {
         type: 'password',
-        label: I18n.t("Password")
+        label: I18n.t("users_password")
       }
     },
     title: {
@@ -36,7 +36,7 @@ const build_roster_schema = () => {
       optional: true,
       autoform: {
         type: 'text',
-        label: I18n.t('Work Title'),
+        label: I18n.t('profile_title'),
       }
     }
   });
@@ -96,7 +96,7 @@ Template.EditContactModal.helpers({
         max: 50,
         autoform: {
           type: 'text',
-          label: I18n.t("User Name")
+          label: I18n.t("users_name")
         }
       },
       email: {
@@ -114,7 +114,7 @@ Template.EditContactModal.helpers({
         optional: true,
         autoform: {
           type: 'text',
-          label: I18n.t('Work Title'),
+          label: I18n.t('profile_title'),
         }
       },
       company: {
@@ -123,12 +123,12 @@ Template.EditContactModal.helpers({
         optional: true,
         autoform: {
           type: 'text',
-          label: I18n.t("Company")
+          label: I18n.t("users_company")
         }
       },
       noreply: {
         type: Boolean,
-        label: I18n.t('Noreply'),
+        label: I18n.t('users_noreply'),
         optional: true,
         autoform: {
           type: "boolean-checkbox"

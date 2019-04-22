@@ -5,7 +5,7 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
           <h4 class="modal-title">
-            {{_ 'Notes'}}
+            {{_ 'thread_notes'}}
           </h4>
         </div>
         {{#autoForm collection=formCollection schema=formSchema id="thread-content-form" doc=this resetOnSuccess=false}}
@@ -14,9 +14,9 @@
             {{> afQuickField name="content"}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Close'}}</button>
-            <button type="button" class="btn btn-success" id="btn-edit-content">{{_ "Edit"}}</button>
-            <button type="submit" class="btn btn-primary" id="btn-save-content">{{_ "Save"}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'app_action_close'}}</button>
+            <button type="button" class="btn btn-success" id="btn-edit-content">{{_ "app_action_edit"}}</button>
+            <button type="submit" class="btn btn-primary" id="btn-save-content">{{_ "app_action_save"}}</button>
           </div>
         {{/autoForm}}
       </div>

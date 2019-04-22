@@ -13,7 +13,7 @@
         <div class="meta-info text-muted small">
           {{> EmailInfo this}}
           {{#if updateUserId}}
-            {{_ "Message Edited By and When" user=updateUser.name time=(formatDayWithTime updatedAt)}}
+            {{_ "message_edit_by_and_when" user=updateUser.name time=(formatDayWithTime updatedAt)}}
           {{/if}}
         </div>
         <div class="summary text-ellipsis text-muted">{{{localizedSummary}}}</div>
@@ -29,7 +29,7 @@
   <span class="message-header-name">{{userName}}</span>
   <span class="text-muted small">
     {{formatDayWithTime createdAt}}
-    {{#if showInternal}}<i class="fa fa-lock" data-toggle="tooltip" title="{{_ 'Internal'}}"></i>{{/if}}
+    {{#if showInternal}}<i class="fa fa-lock" data-toggle="tooltip" title="{{_ 'message_internal'}}"></i>{{/if}}
   </span>
 </template>
 
@@ -72,7 +72,7 @@
   {{#if files.count}}
     <div class="files">
       <span href="#" class="files-count" data-toggle="collapse" data-target="#files-list-{{_id}}" aria-expanded="true">
-        {{_ 'Files with count' count=files.count}} <span class="collapse-arrow"><i class="fa fa-caret-down"></i></span>
+        {{_ 'files_with_count' count=files.count}} <span class="collapse-arrow"><i class="fa fa-caret-down"></i></span>
       </span>
       <ul class="files nav nav-pills nav-stacked collapse in" id="files-list-{{_id}}" aria-expanded="true">
         {{#each files}}
@@ -93,22 +93,22 @@
   <div class="btn-group message-actions pull-right">
     {{#unless compare contentType '===' 'log'}}
       {{#if canRevoke}}
-        <button type="button" class="btn btn-sm btn-default btn-revoke" data-toggle="tooltip" title="{{_ 'Revoke'}}">
+        <button type="button" class="btn btn-sm btn-default btn-revoke" data-toggle="tooltip" title="{{_ 'message_action_revoke'}}">
           <i class="fa fa-undo"></i>
         </button>
       {{/if}}
       {{> EditMessageButton}}
       {{> PinMessageButton}}
       {{#if threadCanReply thread}}
-        <button type="button" class="btn btn-sm btn-default btn-reply" data-toggle="tooltip" title="{{_ 'Reply'}}">
+        <button type="button" class="btn btn-sm btn-default btn-reply" data-toggle="tooltip" title="{{_ 'message_action_reply'}}">
           <i class="fa fa-reply"></i>
         </button>
       {{/if}}
-      <button type="button" class="btn btn-sm btn-default btn-forward" data-toggle="tooltip" title="{{_ 'Forward'}}">
+      <button type="button" class="btn btn-sm btn-default btn-forward" data-toggle="tooltip" title="{{_ 'message_action_forward'}}">
         <i class="fa fa-mail-forward"></i>
       </button>
       {{#if compare contentType '===' 'text'}}
-        <button type="button" class="btn btn-sm btn-default btn-copy" data-toggle="tooltip" title="{{_ 'Copy'}}">
+        <button type="button" class="btn btn-sm btn-default btn-copy" data-toggle="tooltip" title="{{_ 'message_action_copy'}}">
           <i class="fa fa-copy"></i>
         </button>
       {{/if}}
@@ -122,7 +122,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "Send to"}}</h4>
+          <h4 class="modal-title">{{_ "message_forward_to"}}</h4>
         </div>
         <div class="modal-body" style="padding-top: 0; padding-bottom: 0;">
           <ul class="list-group threads simple">
@@ -137,8 +137,8 @@
           </ul>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'Discard'}}</button>
-          <button type="button" class="btn btn-primary" id="btn-forward-message">{{_ "Send"}}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ 'app_action_discard'}}</button>
+          <button type="button" class="btn btn-primary" id="btn-forward-message">{{_ "app_action_send"}}</button>
         </div>
       </div>
     </div>
@@ -151,7 +151,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-SelectThreadModal">&times;</button>
-          <h4 class="modal-title">{{_ "View message"}}</h4>
+          <h4 class="modal-title">{{_ "message_view"}}</h4>
         </div>
         <div class="modal-body scroll-box">
           <div class="message-content">

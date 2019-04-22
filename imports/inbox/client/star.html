@@ -15,7 +15,7 @@
 </template>
 
 <template name="StarMenu">
-  <p class="navbar-text pull-left menu-title">{{_ 'Star'}}</p>
+  <p class="navbar-text pull-left menu-title">{{_ 'app_star'}}</p>
 
   <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
@@ -28,7 +28,7 @@
   {{#if (count 'star')}}
     <li class="{{#if inRouter 'star'}}active{{/if}}">
       <a href="/star">
-        <i class="fa fa-star text-yellow"></i> <span>{{_ 'Star'}}</span>
+        <i class="fa fa-star text-yellow"></i> <span>{{_ 'app_star'}}</span>
         <span class="pull-right-container">
           <span class="label pull-right">{{count 'star'}}</span>
         </span>

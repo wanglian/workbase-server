@@ -25,8 +25,8 @@ Template.MailgunEmails.events({
       title: I18n.t("Confirm drop email"),
       type: 'warning',
       showCancelButton: true,
-      confirmButtonText: I18n.t("Confirm"),
-      cancelButtonText: I18n.t("Discard")
+      confirmButtonText: I18n.t("app_action_confirm"),
+      cancelButtonText: I18n.t("app_action_discard")
     }).then((result) => {
       if (result.value) {
         Meteor.call("removeMailgunEmail", this._id, (err, res) => {

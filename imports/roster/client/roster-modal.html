@@ -4,14 +4,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ 'User List'}}</h4>
+          <h4 class="modal-title">{{_ 'users_list'}}</h4>
         </div>
         <div class="modal-body scroll-box no-padding">
           <ul class="list-group threads">
             {{#each users}}
               <li class="list-group-item clearfix thread" id="{{_id}}">
                 <div class="pull-right">
-                  <a href="#" class="btn-edit-roster text-muted action"><i class="fa fa-edit"></i> {{_ 'Edit'}}</a>
+                  <a href="#" class="btn-edit-roster text-muted action"><i class="fa fa-edit"></i> {{_ 'app_action_edit'}}</a>
                 </div>
                 <div class="thread-icon">
                   {{> avatar user=this shape="circle" class="" size="small"}}
@@ -25,8 +25,8 @@
           </ul>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
-          <a href="#" id="btn-add-roster" class="btn btn-primary">{{_ "New User"}}</a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'app_action_discard'}}</button>
+          <a href="#" id="btn-add-roster" class="btn btn-primary">{{_ "users_action_new"}}</a>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ 'New User'}}</h4>
+          <h4 class="modal-title">{{_ 'users_action_new'}}</h4>
         </div>
         {{#autoForm collection=formCollection schema=formSchema id="add-roster-form" type="normal"}}
           <div class="modal-body">
@@ -49,8 +49,8 @@
             {{> afQuickField name="title"}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
-            <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'app_action_discard'}}</button>
+            <button type="submit" class="btn btn-primary">{{_ "app_action_save"}}</button>
           </div>
         {{/autoForm}}
       </div>
@@ -64,7 +64,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ 'Edit User'}}</h4>
+          <h4 class="modal-title">{{_ 'users_action_edit'}}</h4>
         </div>
         <div class="modal-body">
           {{#autoForm collection=formCollection schema=formSchema doc=this id="edit-roster-form" type="normal"}}
@@ -72,8 +72,8 @@
             {{> afQuickField name="email" domain=domain value=email}}
             {{> afQuickField name="password"}}
             {{> afQuickField name="title" value=title}}
-            <button type="submit" class="btn btn-primary">{{_ 'Save'}}</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
+            <button type="submit" class="btn btn-primary">{{_ 'app_action_save'}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'app_action_discard'}}</button>
           {{/autoForm}}
         </div>
       </div>
@@ -87,7 +87,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ 'Edit Contact'}}</h4>
+          <h4 class="modal-title">{{_ 'users_action_edit_contact'}}</h4>
         </div>
         {{#autoForm collection=formCollection schema=formSchema doc=this id="edit-contact-form" type="normal"}}
           <div class="modal-body scroll-box">
@@ -98,8 +98,8 @@
             {{> afQuickField name="noreply" value=profile.noreply}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
-            <button type="submit" class="btn btn-primary">{{_ 'Save'}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'app_action_discard'}}</button>
+            <button type="submit" class="btn btn-primary">{{_ 'app_action_save'}}</button>
           </div>
         {{/autoForm}}
       </div>
@@ -113,7 +113,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "User Info"}}</h4>
+          <h4 class="modal-title">{{_ "users_user_info"}}</h4>
         </div>
         <div class="modal-body scroll-box">
           <div class="box box-widget widget-user-2">
@@ -126,11 +126,11 @@
             </div>
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                {{#with title}}<li><a class="text-muted text-ellipsis">{{_ 'Work Title'}} <span class="pull-right">{{this}}</span></a></li>{{/with}}
+                {{#with title}}<li><a class="text-muted text-ellipsis">{{_ 'profile_title'}} <span class="pull-right">{{this}}</span></a></li>{{/with}}
                 <li><a class="text-muted text-ellipsis">{{_ 'Email'}} <span class="pull-right">{{email}}</span></a></li>
                 <li>
                   {{#LinkToUserShared user=this class="text-muted text-ellipsis"}}
-                    {{_ 'Shares'}}
+                    {{_ 'share_title'}}
                     <span class="pull-right text-muted"><i class="fa fa-chevron-right"></i></span>
                   {{/LinkToUserShared}}
                 </li>
@@ -139,7 +139,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ "Close"}}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ "app_action_close"}}</button>
           {{> LinkToChat roster=this}}
         </div>
       </div>
@@ -153,7 +153,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "Contact Info"}}</h4>
+          <h4 class="modal-title">{{_ "users_contact_info"}}</h4>
         </div>
         <div class="modal-body scroll-box">
           <div class="box box-widget widget-user-2">
@@ -166,7 +166,7 @@
             </div>
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                {{#with title}}<li><a class="text-muted text-ellipsis">{{_ 'Work Title'}} <span class="pull-right">{{this}}</span></a></li>{{/with}}
+                {{#with title}}<li><a class="text-muted text-ellipsis">{{_ 'profile_title'}} <span class="pull-right">{{this}}</span></a></li>{{/with}}
                 <li><a class="text-muted text-ellipsis">{{_ 'Email'}} <span class="pull-right">{{email}}</span></a></li>
               </ul>
             </div>
@@ -174,9 +174,9 @@
         </div>
         <div class="modal-footer">
           {{#LinkToEditContact contact=this class="pull-left btn btn-default"}}
-            {{_ "Edit"}}
+            {{_ "app_action_edit"}}
           {{/LinkToEditContact}}
-          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ "Close"}}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">{{_ "app_action_close"}}</button>
           {{#unless noreply}}
             {{> LinkToChat roster=this}}
           {{/unless}}

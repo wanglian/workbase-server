@@ -4,15 +4,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "Select a session"}}</h4>
+          <h4 class="modal-title">{{_ "app_select_session"}}</h4>
         </div>
         <div class="modal-body no-padding scroll-box">
           <ul class="list-group threads">
             <a href="#" class="list-group-item thread btn-start-thread">
-              {{_ "New Session"}}
+              {{_ "app_action_new_session"}}
               <span class="pull-right text-muted" style="padding-top: 2px;"><i class="fa fa-chevron-right"></i></span>
             </a>
-            <li class="list-group-item thread group active">{{_ "Latest Sessions"}}</li>
+            <li class="list-group-item thread group active">{{_ "app_latest_sessions"}}</li>
             {{#each threads}}
               <a href="#" class="list-group-item clearfix thread btn-select-thread" id="{{_id}}">
                 {{> Template.dynamic template=(threadListTemplate this)}}
@@ -20,7 +20,7 @@
             {{/each}}
             {{#if ready}}
               {{#unless threads.count}}
-                <li class="list-group-item thread text-muted">{{_ 'Empty'}}</li>
+                <li class="list-group-item thread text-muted">{{_ 'app_no_record'}}</li>
               {{/unless}}
             {{else}}
               <span class="list-group-item text-center text-muted thread small"><i class="fa fa-spinner fa-spin"></i></span>

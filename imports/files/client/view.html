@@ -1,7 +1,7 @@
 <template name="FilesMenuItem">
   {{#if currentUser.isAdmin}}
     <li class="{{#if inRouter 'files'}}active{{/if}}">
-      <a href="/files"><i class="fa fa-files-o"></i> <span>{{_ 'Files'}}</span></a>
+      <a href="/files"><i class="fa fa-files-o"></i> <span>{{_ 'app_files'}}</span></a>
     </li>
   {{/if}}
 </template>
@@ -9,14 +9,14 @@
 <template name="Files">
   {{#contentFor "menu"}}
     <p class="navbar-text pull-left menu-title">
-      {{_ 'Files'}} ({{count 'files'}})
+      {{_ 'app_files'}} ({{count 'files'}})
     </p>
   {{/contentFor}}
 
   {{#Layout template="InboxLayout"}}
     <ul class="list-group threads files">
       {{#unless files.count}}
-        <li class="list-group-item thread text-muted">{{_ 'Empty'}}</li>
+        <li class="list-group-item thread text-muted">{{_ 'app_no_record'}}</li>
       {{/unless}}
       {{#each files}}
         <li class="list-group-item thread" data-user-id="{{userId}}">{{> FileItem}}</li>
@@ -24,7 +24,7 @@
       {{#if ready}}
         {{#if nextPath}}
           <a href="{{nextPath}}" class="list-group-item text-center text-muted thread small">
-            {{_ "Load More"}}
+            {{_ "paginate_load_more"}}
           </a>
         {{/if}}
       {{else}}
@@ -38,17 +38,17 @@
   {{#if compare (filetype type) '===' 'image'}}
     {{#if isGif}}
       <a href="{{fileURL this}}" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
-        <i class="fa fa-eye"></i> {{_ 'View'}}
+        <i class="fa fa-eye"></i> {{_ 'app_action_view'}}
       </a>
     {{else}}
       <a href="{{fileURL this 'preview'}}" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
-        <i class="fa fa-eye"></i> {{_ 'View'}}
+        <i class="fa fa-eye"></i> {{_ 'app_action_view'}}
       </a>
     {{/if}}
   {{/if}}
   {{#if compare (filetype type) '===' 'video'}}
     <a href="{{fileURL this}}?play=true" data-fancybox='thread' data-caption="{{name}}" class="action text-muted">
-      <i class="fa fa-eye"></i> {{_ 'View'}}
+      <i class="fa fa-eye"></i> {{_ 'app_action_view'}}
     </a>
   {{/if}}
   {{#if compare (filetype type) '===' 'audio'}}
@@ -58,38 +58,38 @@
       </audio>
     </div>
     <a href="#" data-fancybox='thread' data-src="#content-{{_id}}" data-caption="{{name}}" class="action text-muted">
-      <i class="fa fa-eye"></i> {{_ 'View'}}
+      <i class="fa fa-eye"></i> {{_ 'app_action_view'}}
     </a>
   {{/if}}
   {{#if compare (filetype type) '===' 'text'}}
     <a href="#" data-fancybox='thread' data-type="iframe" data-src="{{fileURL this}}" data-caption="{{name}}" class="action text-muted">
-      <i class="fa fa-eye"></i>{{_ 'View'}}
+      <i class="fa fa-eye"></i>{{_ 'app_action_view'}}
     </a>
   {{/if}}
   {{#if compare (filetype type) '===' 'pdf|odf'}}
     <a href="#" data-fancybox='thread' data-type="iframe" data-src="/ViewerJS/index.html#..{{fileURL this 'original' '/'}}" data-caption="{{name}}" class="action text-muted">
-      <i class="fa fa-eye"></i> {{_ 'View'}}
+      <i class="fa fa-eye"></i> {{_ 'app_action_view'}}
     </a>
   {{/if}}
   {{#if compare (filetype type) '===' 'word|excel|ppt'}}
     <a href="#" data-fancybox='thread' data-type="iframe" data-src="https://view.officeapps.live.com/op/embed.aspx?src={{fileURL this}}" data-caption="{{name}}" class="action text-muted">
-      <i class="fa fa-eye"></i> {{_ 'View'}}
+      <i class="fa fa-eye"></i> {{_ 'app_action_view'}}
     </a>
   {{/if}}
 </template>
 
 <template name="FileEditNameLink">
-  <a href="#" class="btn-edit-file-name action text-muted"><i class="fa fa-pencil"></i> {{_ 'Edit file name'}}</a>
+  <a href="#" class="btn-edit-file-name action text-muted"><i class="fa fa-pencil"></i> {{_ 'message_action_edit_file_name'}}</a>
 </template>
 
 <template name="FileDownloadLink">
   <a href="{{fileURL this 'original'}}?download=true" download="{{name}}" target="_blank" class="action text-muted">
-    <i class="fa fa-download"></i> {{_ 'Download'}}
+    <i class="fa fa-download"></i> {{_ 'app_action_download'}}
   </a>
 </template>
 
 <template name="FileRemoveLink">
-  <a href="#" class="btn-remove-file action text-muted"><i class="fa fa-times"></i> {{_ 'Remove'}}</a>
+  <a href="#" class="btn-remove-file action text-muted"><i class="fa fa-times"></i> {{_ 'app_action_remove'}}</a>
 </template>
 
 <template name="FileUploadModal">
@@ -98,7 +98,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ 'Uploading'}} {{file.name}}</h4>
+          <h4 class="modal-title">{{_ 'file_uploading'}} {{file.name}}</h4>
         </div>
         <div class="modal-body">
           {{#with currentUpload}}
@@ -118,7 +118,7 @@
   <div class="panel flat-panel">
     <div class="flat-panel-heading">
       <a data-parent="#thread-details-accordion" href="#thread-files" data-toggle="collapse">
-        <div class="flat-panel-title"><i class="fa fa-files-o text-red"></i>{{_ 'Files with count' count=count}}</div>
+        <div class="flat-panel-title"><i class="fa fa-files-o text-red"></i>{{_ 'files_with_count' count=count}}</div>
       </a>
     </div>
     {{#if files.count}}

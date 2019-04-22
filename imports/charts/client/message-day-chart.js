@@ -15,17 +15,17 @@ Template.MessagesDailyChart.onRendered(function() {
         data: {
           labels: _.range(1, days),
           datasets: [{
-            label: I18n.t('Internal'),
+            label: I18n.t('message_internal'),
             data: res["internal"],
             backgroundColor: 'rgba(200, 200, 200, 0.8)',
             borderWidth: 1
           }, {
-            label: I18n.t('Outgoing'),
+            label: I18n.t('report_message_outgoing'),
             data: res["outgoing"],
             backgroundColor: 'rgba(0, 0, 255, 0.8)',
             borderWidth: 1
           }, {
-            label: I18n.t('Incoming'),
+            label: I18n.t('report_message_incoming'),
             data: res["incoming"],
             backgroundColor: 'rgba(0, 128, 0, 0.8)',
             borderWidth: 1
@@ -65,17 +65,17 @@ Template.MessagesHourlyChart.onRendered(function() {
         data: {
           labels: _.range(1, 24),
           datasets: [{
-            label: I18n.t('Internal'),
+            label: I18n.t('message_internal'),
             data: res["internal"],
             backgroundColor: 'rgba(200, 200, 200, 0.8)',
             borderWidth: 1
           }, {
-            label: I18n.t('Outgoing'),
+            label: I18n.t('report_message_outgoing'),
             data: res["outgoing"],
             backgroundColor: 'rgba(0, 0, 255, 0.8)',
             borderWidth: 1
           }, {
-            label: I18n.t('Incoming'),
+            label: I18n.t('report_message_incoming'),
             data: res["incoming"],
             backgroundColor: 'rgba(0, 128, 0, 0.8)',
             borderWidth: 1

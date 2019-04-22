@@ -2,7 +2,7 @@ ThreadActions = {};
 
 ThreadActions.star = {
   title() {
-    return I18n.t('Star');
+    return I18n.t('thread_action_star');
   },
   icon(thread) {
     return thread.star ? "fa fa-star text-yellow" : "fa fa-star-o";
@@ -14,7 +14,7 @@ ThreadActions.star = {
 
 ThreadActions.archive = {
   title(thread) {
-    return thread.archive ? I18n.t('Unarchive') : I18n.t('Archive');
+    return thread.archive ? I18n.t('thread_action_unarchive') : I18n.t('thread_action_archive');
   },
   icon(thread) {
     return thread.archive ? "" : "fa fa-archive";
@@ -30,7 +30,7 @@ ThreadActions.archive = {
 
 ThreadActions.spam = {
   title(thread) {
-    return thread.spam ? I18n.t('Not Spam') : I18n.t('Spam');
+    return thread.spam ? I18n.t('thread_action_unspam') : I18n.t('thread_action_spam');
   },
   icon(thread) {
     return thread.spam ? "" : "fa fa-exclamation-triangle";
@@ -46,7 +46,7 @@ ThreadActions.spam = {
 
 ThreadActions.search = {
   title() {
-    return I18n.t("Search");
+    return I18n.t("search_action");
   },
   icon: "fa fa-search",
   action(thread) {
@@ -58,7 +58,7 @@ ThreadActions.search = {
 
 ThreadActions.notes = {
   title() {
-    return I18n.t("Notes");
+    return I18n.t("thread_notes");
   },
   icon: "fa fa-sticky-note-o",
   action(thread) {

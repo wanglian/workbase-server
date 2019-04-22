@@ -5,9 +5,9 @@
     <div class="status-bar text-center">
       {{#if connecting}}
         <i class="fa fa-spinner fa-spin"></i>
-        {{_ 'Connecting'}}
+        {{_ 'status_connecting'}}
       {{else}}
-        <a href='#' id="btn-connect" title="{{_ 'Click to Reconnect'}}">{{_ 'Disconnected'}}</a>
+        <a href='#' id="btn-connect" title="{{_ 'status_click_to_reconnect'}}">{{_ 'status_disconnected'}}</a>
       {{/if}}
     </div>
   {{/if}}

@@ -33,7 +33,7 @@ Template.ProfileModal.helpers({
         optional: true,
         autoform: {
           type: 'select',
-          label: I18n.t("Language"),
+          label: I18n.t("profile_language"),
           options: [
             {label: "English", value: "en-US"},
             {label: "简体中文", value: "zh-CN"}
@@ -46,13 +46,13 @@ Template.ProfileModal.helpers({
         optional: true,
         autoform: {
           type: 'select',
-          label: I18n.t("Skin"),
+          label: I18n.t("profile_skin"),
           options: [
-            {label: I18n.t("Blue Skin"), value: "blue"},
-            {label: I18n.t("Purple Skin"), value: "purple"},
-            {label: I18n.t("Red Skin"), value: "red"},
-            {label: I18n.t("Green Skin"), value: "green"},
-            {label: I18n.t("Yellow Skin"), value: "yellow"}
+            {label: I18n.t("profile_skin_blue"), value: "blue"},
+            {label: I18n.t("profile_skin_purple"), value: "purple"},
+            {label: I18n.t("profile_skin_red"), value: "red"},
+            {label: I18n.t("profile_skin_green"), value: "green"},
+            {label: I18n.t("profile_skin_yellow"), value: "yellow"}
           ]
         }
       },
@@ -62,7 +62,7 @@ Template.ProfileModal.helpers({
         optional: true,
         autoform: {
           type: 'text',
-          label: I18n.t("Personal Message")
+          label: I18n.t("profile_personal_message")
         }
       },
       signature: {
@@ -71,7 +71,7 @@ Template.ProfileModal.helpers({
         optional: true,
         autoform: {
           type: 'textarea',
-          label: I18n.t("Signature")
+          label: I18n.t("profile_signature")
         }
       }
     });
@@ -166,7 +166,7 @@ AutoForm.hooks({
 
       if (insertDoc.password != insertDoc.passwordConfirm) {
         Swal({
-          title: I18n.t("Passwords do not match"),
+          title: I18n.t("profile_password_not_match"),
           type: "warning"
         });
         return this.done();
@@ -180,7 +180,7 @@ AutoForm.hooks({
           });
         } else {
           Swal({
-            title: I18n.t("Password Saved"),
+            title: I18n.t("profile_password_saved"),
             type: "info"
           });
           Modal.hide("ChangePasswordModal");
@@ -257,7 +257,7 @@ Template.ChangePasswordModal.helpers({
         max: 30,
         autoform: {
           type: 'password',
-          label: I18n.t("Current password")
+          label: I18n.t("profile_current_password")
         }
       },
       password: {
@@ -265,7 +265,7 @@ Template.ChangePasswordModal.helpers({
         max: 30,
         autoform: {
           type: 'password',
-          label: I18n.t("New password")
+          label: I18n.t("profile_new_password")
         }
       },
       passwordConfirm: {
@@ -273,7 +273,7 @@ Template.ChangePasswordModal.helpers({
         max: 30,
         autoform: {
           type: 'password',
-          label: I18n.t("Confirm new password")
+          label: I18n.t("profile_confirm_password")
         }
       }
     });

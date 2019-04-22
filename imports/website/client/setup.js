@@ -119,7 +119,7 @@ Template.Setup.helpers({
         max: 50,
         autoform: {
           type: 'text',
-          label: I18n.t('Company Name')
+          label: I18n.t('setup_company_name')
         }
       },
       domain: {
@@ -127,7 +127,7 @@ Template.Setup.helpers({
         max: 50,
         autoform: {
           type: 'text',
-          label: I18n.t('Domain')
+          label: I18n.t('setup_domain')
         }
       },
       emailType: {
@@ -136,7 +136,7 @@ Template.Setup.helpers({
         autoform: {
           type: 'select',
           label: false,
-          firstOption: I18n.t("Email Disabled"),
+          firstOption: I18n.t("setup_email_disabled"),
           options: [{
             label: "Mailgun",
             value: 'mailgun'
@@ -158,7 +158,7 @@ Template.Setup.helpers({
         autoform: {
           type: 'select',
           label: false,
-          firstOption: I18n.t("Local Storage"),
+          firstOption: I18n.t("setup_storage_local"),
           options: [{
             label: "Amazon S3",
             value: 'S3'
@@ -206,7 +206,7 @@ Template.Setup.helpers({
         max: 50,
         autoform: {
           type: 'text',
-          label: I18n.t('User Name'),
+          label: I18n.t('users_name'),
         }
       },
       email: {
@@ -223,7 +223,7 @@ Template.Setup.helpers({
         max: 50,
         autoform: {
           type: 'password',
-          label: I18n.t("Password")
+          label: I18n.t("users_password")
         }
       }
     });

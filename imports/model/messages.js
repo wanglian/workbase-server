@@ -65,7 +65,7 @@ Messages.helpers({
       return this.summary;
     }
 
-    let key = "No content";
+    let key = "message_no_content";
 
     if (Meteor.isClient) {
       return I18n.t(key);

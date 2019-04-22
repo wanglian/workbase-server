@@ -7,7 +7,7 @@ Accounts.onLogin(function(attempt) {
       let threadId = Threads.startChat(admin, user);
       let thread = Threads.findOne(threadId);
       Threads.addMessage(thread, admin, {
-        content: I18n.t("welcome user message", {user: user.name()})
+        content: I18n.t("message_welcome_new_user", {user: user.name()})
       });
     }
   }

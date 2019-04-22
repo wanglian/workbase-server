@@ -4,7 +4,7 @@
       <i class="fa fa-plus"></i>
     </span>
     <div class="members-info" style="line-height: 35px;">
-      <span>{{_ "Create Group Chat"}}</span>
+      <span>{{_ "thread_create_group"}}</span>
     </div>
   </a>
 </template>
@@ -12,15 +12,15 @@
 <template name="ThreadDetailGroup">
   <div class="panel flat-panel thread-detail">
     <div class="flat-panel-heading">
-      <div class="flat-panel-title"><i class="fa fa-comments-o text-blue"></i> {{_ 'Group'}}</div>
+      <div class="flat-panel-title"><i class="fa fa-comments-o text-blue"></i> {{_ 'thread_group'}}</div>
     </div>
     <div class="flat-panel-body">
       {{#if name}}
         <div class="title">{{name}}</div>
       {{/if}}
       <div class="small text-muted">
-        {{_ "Created by and when" name=user.name time=(formatDayWithTime createdAt)}}
-        <a href="#" id="btn-modify-group-name">{{_ "Modify Group Name"}}</a>
+        {{_ "thread_created_by_and_when" name=user.name time=(formatDayWithTime createdAt)}}
+        <a href="#" id="btn-modify-group-name">{{_ "thread_modify_group_name"}}</a>
       </div>
     </div>
   </div>

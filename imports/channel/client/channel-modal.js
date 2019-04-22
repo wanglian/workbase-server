@@ -9,7 +9,7 @@ const build_channel_form_schema = () => {
       max: 50,
       autoform: {
         type: 'text',
-        label: I18n.t("Channel Name")
+        label: I18n.t("channel_name")
       }
     },
     email: {

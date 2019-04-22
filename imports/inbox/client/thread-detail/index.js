@@ -62,14 +62,14 @@ Template.ThreadMembers.events({
     let user = Users.findOne(userId);
 
     Swal({
-      title: I18n.t("confirm remove member", {name: user.name()}),
+      title: I18n.t("thread_confirm_remove_member", {name: user.name()}),
       type: 'warning',
       position: 'center-end',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: I18n.t("Confirm"),
-      cancelButtonText: I18n.t("Discard")
+      confirmButtonText: I18n.t("app_action_confirm"),
+      cancelButtonText: I18n.t("app_action_discard")
     }).then((result) => {
       if (result.value) {
         Meteor.call("removeThreadMember", t.data._id, userType, userId);

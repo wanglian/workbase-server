@@ -4,18 +4,18 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ 'Channel List'}}</h4>
+          <h4 class="modal-title">{{_ 'channel_list'}}</h4>
         </div>
         <div class="modal-body scroll-box no-padding">
           <ul class="list-group threads">
             {{#unless channels.count}}
-              <li class="list-group-item thread">{{_ 'None'}}</li>
+              <li class="list-group-item thread">{{_ 'app_no_record'}}</li>
             {{/unless}}
             {{#each channels}}
               <li class="list-group-item clearfix thread" id="{{_id}}">
                 <div class="pull-right">
-                  <a href="#" class="btn-edit-channel text-muted action"><i class="fa fa-edit"></i> {{_ 'Edit'}}</a>
-                  <a href="#" class="btn-channel-members text-muted action"><i class="fa fa-users"></i> {{_ 'Members'}}</a>
+                  <a href="#" class="btn-edit-channel text-muted action"><i class="fa fa-edit"></i> {{_ 'app_action_edit'}}</a>
+                  <a href="#" class="btn-channel-members text-muted action"><i class="fa fa-users"></i> {{_ 'thread_members'}}</a>
                 </div>
                 <div class="thread-icon">
                   <button type="button" class="avatar"><i class="fa fa-slack"></i></button>
@@ -29,8 +29,8 @@
           </ul>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
-          <a href="#" id="btn-add-channel" class="btn btn-primary">{{_ "New Channel"}}</a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'app_action_discard'}}</button>
+          <a href="#" id="btn-add-channel" class="btn btn-primary">{{_ "channel_action_new"}}</a>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "New Channel"}}</h4>
+          <h4 class="modal-title">{{_ "channel_action_new"}}</h4>
         </div>
         {{#autoForm collection=formCollection schema=formSchema id="add-channel-form" type="normal"}}
           <div class="modal-body">
@@ -51,8 +51,8 @@
             {{> afQuickField name="email" domain=domain}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "Discard"}}</button>
-            <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "app_action_discard"}}</button>
+            <button type="submit" class="btn btn-primary">{{_ "app_action_save"}}</button>
           </div>
         {{/autoForm}}
       </div>
@@ -66,7 +66,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "Edit Channel"}}</h4>
+          <h4 class="modal-title">{{_ "channel_action_edit"}}</h4>
         </div>
         {{#autoForm collection=formCollection schema=formSchema doc=this id="edit-channel-form" type="normal"}}
           <div class="modal-body">
@@ -74,8 +74,8 @@
             {{> afQuickField name="email" domain=domain value=email}}
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "Discard"}}</button>
-            <button type="submit" class="btn btn-primary">{{_ "Save"}}</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "app_action_discard"}}</button>
+            <button type="submit" class="btn btn-primary">{{_ "app_action_save"}}</button>
           </div>
         {{/autoForm}}
       </div>
@@ -89,12 +89,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-          <h4 class="modal-title">{{_ "Channel Members"}} - {{channel.name}}</h4>
+          <h4 class="modal-title">{{_ "channel_members"}} - {{channel.name}}</h4>
         </div>
         <div class="modal-body scroll-box">
           <ul class="list-group members-list">
             {{#unless members.count}}
-              <li class="list-group-item members-item">{{_ 'None'}}</li>
+              <li class="list-group-item members-item">{{_ 'app_no_record'}}</li>
             {{/unless}}
             {{#each members}}
               <li class="list-group-item members-item clearfix">
@@ -107,7 +107,7 @@
                   {{user.title}}
                   <span class="pull-right">
                     <a href="#" class="btn-remove-member action text-muted" data-id="{{user._id}}">
-                      <i class="fa fa-remove"></i> {{_ "Remove"}}
+                      <i class="fa fa-remove"></i> {{_ "app_action_remove"}}
                     </a>
                   </span>
                   <div class="text-muted text-ellipsis">{{user.email}}</div>
@@ -116,7 +116,7 @@
             {{/each}}
           </ul>
           {{#if users.count}}
-          <p class="page-header">{{_ "Choose to add"}}:</p>
+          <p class="page-header">{{_ "channel_choose_users"}}:</p>
           <ul class="list-group members-list">
             {{#each users}}
               <li class="list-group-item members-item clearfix">
@@ -129,7 +129,7 @@
                   {{title}}
                   <span class="pull-right">
                     <a href="#" class="btn-add-member action text-muted" data-id="{{_id}}">
-                      <i class="fa fa-plus"></i> {{_ "Add"}}
+                      <i class="fa fa-plus"></i> {{_ "app_action_add"}}
                     </a>
                   </span>
                   <div class="text-muted text-ellipsis">{{email}}</div>
@@ -140,7 +140,7 @@
           {{/if}}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Confirm'}}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'app_action_confirm'}}</button>
         </div>
       </div>
     </div>

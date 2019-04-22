@@ -23,7 +23,7 @@ Template.Login.helpers({
         max: 50,
         autoform: {
           type: 'password',
-          label: I18n.t("Password")
+          label: I18n.t("users_password")
         }
       }
     });
@@ -38,7 +38,7 @@ AutoForm.hooks({
       Meteor.loginWithPassword(insertDoc.email, insertDoc.password, (err) => {
         if (err) {
           Swal({
-            title: I18n.t("Login password not match"),
+            title: I18n.t("sign_in_failed"),
             type: "error"
           });
         } else {

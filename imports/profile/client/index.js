@@ -13,7 +13,7 @@ ThreadCategories.add("Account", {
   actions() {
     return [
       {
-        title: I18n.t('Profile'),
+        title: I18n.t('app_profile'),
         icon: "fa fa-cog",
         action() {
           Modal.show('ProfileModal', null, {
@@ -22,13 +22,13 @@ ThreadCategories.add("Account", {
         }
       },
       // {
-      //   title: I18n.t('Shares'),
+      //   title: I18n.t('share_title'),
       //   action() {
       //     Router.go('shared', {_id: Meteor.userId()});
       //   }
       // },
       {
-        title: I18n.t('Sign out'),
+        title: I18n.t('app_sign_out'),
         icon: "fa fa-sign-out",
         action() {
           Meteor.logout();

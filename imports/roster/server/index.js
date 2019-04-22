@@ -6,7 +6,7 @@ Meteor.startup(function() {
   if (thread) {
     //
   } else {
-    Threads.create(null, 'Roster', 'Users Management', 'admin');
+    Threads.create(null, 'Roster', 'thread_users_management', 'admin');
   }
 });
 

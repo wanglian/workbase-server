@@ -1,7 +1,7 @@
 <template name="ThreadList">
   <ul class="list-group threads">
     {{#unless threads.count}}
-      <li class="list-group-item thread text-muted">{{_ 'Empty'}}</li>
+      <li class="list-group-item thread text-muted">{{_ 'app_no_record'}}</li>
     {{/unless}}
     {{#each threads}}
       {{> ThreadListItemTemplate}}
@@ -9,7 +9,7 @@
     {{#if ready}}
       {{#if nextPath}}
         <a href="{{nextPath}}" class="list-group-item text-center text-muted thread small">
-          {{_ "Load More"}}
+          {{_ "paginate_load_more"}}
         </a>
       {{/if}}
     {{else}}

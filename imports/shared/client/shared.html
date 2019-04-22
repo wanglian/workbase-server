@@ -10,10 +10,10 @@
       {{/each}}
       {{#if ready}}
         {{#unless messages.count}}
-          <div class="todo" style="padding: 10px;">{{_ "Empty"}}</div>
+          <div class="todo" style="padding: 10px;">{{_ "app_no_record"}}</div>
         {{/unless}}
         {{#if nextPath}}
-          <div class="text-center"><a href="{{nextPath}}" class="text-muted small">{{_ "Load More"}}</a></div>
+          <div class="text-center"><a href="{{nextPath}}" class="text-muted small">{{_ "paginate_load_more"}}</a></div>
         {{/if}}
       {{else}}
         <div class="text-center text-muted small"><i class="fa fa-spinner fa-spin"></i></div>
@@ -36,16 +36,16 @@
       </div>
       {{> MessageContent}}
       <div class="text-muted small">
-        <a href="#" class="pull-right btn-comment text-muted action"><i class="fa fa-comment-o"></i> {{_ 'Comment'}}</a>
+        <a href="#" class="pull-right btn-comment text-muted action"><i class="fa fa-comment-o"></i> {{_ 'share_action_comment'}}</a>
         {{#if liked}}
           <a href="#" class="pull-right btn-like text-muted action">
             {{countReact 'like'}}
-            <i class="fa fa-heart"></i> {{_ 'Cancel'}}
+            <i class="fa fa-heart"></i> {{_ 'app_action_cancel'}}
           </a>
         {{else}}
           <a href="#" class="pull-right btn-like text-muted action">
             {{countReact 'like'}}
-            <i class="fa fa-heart-o"></i> {{_ 'Like'}}
+            <i class="fa fa-heart-o"></i> {{_ 'app_action_like'}}
           </a>
         {{/if}}
         {{formatDayWithTime createdAt}}
@@ -92,7 +92,7 @@
 <template name="SharedMenuItem">
   <li class="{{#if inRouter 'shared'}}active{{/if}}">
     <a href="/shared">
-      <i class="fa fa-connectdevelop"></i> <span>{{_ 'Discover'}}</span>
+      <i class="fa fa-connectdevelop"></i> <span>{{_ 'app_discover'}}</span>
       {{#unless shared.read}}
         <span class="pull-right-container">
           <span class="label pull-right"><i class="fa fa-circle text-red"></i></span>
@@ -107,7 +107,7 @@
     {{#if user}}
       {{user.name}}
     {{else}}
-      {{_ 'Discover'}}
+      {{_ 'app_discover'}}
     {{/if}}
   </p>
   {{#if compare user '!|' (isMe user)}}
@@ -116,13 +116,13 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle menu-title" data-toggle="dropdown">
             <i class="fa fa-camera"></i>
-            <span class="hidden-xs">{{_ 'Share'}}</span>
+            <span class="hidden-xs">{{_ 'share_action'}}</span>
           </a>
           <ul class="dropdown-menu">
             <input type="file" style="display:none;" id="image-file" accept="image/*"/>
-            <li><a href="#" id="btn-share-image">{{_ 'Share Image'}}</a></li>
+            <li><a href="#" id="btn-share-image">{{_ 'share_action_image'}}</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#" id="btn-share">{{_ 'Share Files'}}</a></li>
+            <li><a href="#" id="btn-share">{{_ 'share_action_files'}}</a></li>
           </ul>
         </li>
       </ul>
@@ -140,7 +140,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close-ShareModal">&times;</button>
-          <h4 class="modal-title">{{_ "Share"}}</h4>
+          <h4 class="modal-title">{{_ "share_action"}}</h4>
         </div>
         <div class="modal-body no-padding">
           {{> MessageForm thread=this}}

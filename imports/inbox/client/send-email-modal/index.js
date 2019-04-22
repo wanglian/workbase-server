@@ -48,8 +48,8 @@ Template.SendEmailModal.helpers({
         max: 1000,
         autoform: {
           type: 'text',
-          label: I18n.t("To"),
-          placeholder: I18n.t("Recipients")
+          label: I18n.t("email_to"),
+          placeholder: I18n.t("email_recipients")
         }
       },
       subject: {
@@ -58,7 +58,7 @@ Template.SendEmailModal.helpers({
         autoform: {
           type: 'text',
           label: false,
-          placeholder: I18n.t("Subject")
+          placeholder: I18n.t("email_subject")
         }
       },
       content: {

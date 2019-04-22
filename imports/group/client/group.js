@@ -33,15 +33,15 @@ Template.ThreadDetailGroup.events({
     e.preventDefault();
 
     Swal({
-      title: I18n.t("Modify Group Name"),
+      title: I18n.t("thread_modify_group_name"),
       input: 'text',
       inputValue: this.name(),
       inputAttributes: {
         autocapitalize: 'off'
       },
       showCancelButton: true,
-      confirmButtonText: I18n.t("Save"),
-      cancelButtonText: I18n.t("Discard"),
+      confirmButtonText: I18n.t("app_action_save"),
+      cancelButtonText: I18n.t("app_action_discard"),
       allowOutsideClick: false
     }).then((result) => {
       if (result.value) {

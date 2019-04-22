@@ -9,7 +9,7 @@ Meteor.startup(function() {
   if (thread) {
     Threads.update(thread._id, {$set: {scope: 'test'}});
   } else {
-    // Threads.create(null, 'Channel', 'Channels Management', 'admin');
+    // Threads.create(null, 'Channel', 'thread_channels_management', 'admin');
   }
 });
 

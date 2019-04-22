@@ -7,7 +7,7 @@ Meteor.startup(function() {
   if (thread) {
     //
   } else {
-    Threads.create(null, 'Charts', 'System Reports', 'admin');
+    Threads.create(null, 'Charts', 'thread_reports', 'admin');
   }
 });
 

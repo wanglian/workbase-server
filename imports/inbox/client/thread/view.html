@@ -24,7 +24,7 @@
     {{> MessageForm thread=this options=true}}
   {{else}}
     <div class="text-muted text-center" id="thread-noreply-info">
-      <span>{{_ "This Email does not need reply"}}</span>
+      <span>{{_ "email_state_noreply"}}</span>
     </div>
   {{/if}}
 
@@ -36,7 +36,7 @@
       {{#if hasMore}}
         <div class="message text-center">
           <a href="#" class="text-muted small btn-load-more">
-            {{_ "Load More"}}
+            {{_ "paginate_load_more"}}
           </a>
         </div>
       {{/if}}

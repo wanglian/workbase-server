@@ -10,7 +10,7 @@ ThreadCategories.add("Charts", {
   actions() {
     return [
       {
-        title: I18n.t('Daily Messages Counts'),
+        title: I18n.t('report_daily_counts'),
         icon: "fa fa-bar-chart",
         action() {
           Modal.show('MessagesDailyChart', null, {
@@ -19,7 +19,7 @@ ThreadCategories.add("Charts", {
         }
       },
       {
-        title: I18n.t('Hourly Messages Counts'),
+        title: I18n.t('report_hourly_counts'),
         icon: "fa fa-bar-chart",
         action() {
           Modal.show('MessagesHourlyChart', null, {

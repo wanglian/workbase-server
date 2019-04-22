@@ -15,7 +15,7 @@
 </template>
 
 <template name="InboxMenu">
-  <p class="navbar-text pull-left menu-title">{{_ 'Inbox'}}</p>
+  <p class="navbar-text pull-left menu-title">{{_ 'app_inbox'}}</p>
 
   <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
@@ -27,7 +27,7 @@
 <template name="InboxMenuItem">
   <li class="{{#if inRouter 'inbox'}}active{{/if}}">
     <a href="/inbox">
-      <i class="fa fa-inbox"></i> <span>{{_ 'Inbox'}}</span>
+      <i class="fa fa-inbox"></i> <span>{{_ 'app_inbox'}}</span>
       {{#if (count 'unread-inbox')}}
         <span class="pull-right-container">
           <span class="label label-danger pull-right">{{count 'unread-inbox'}}</span>

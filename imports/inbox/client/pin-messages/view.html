@@ -8,7 +8,7 @@
   {{#if pinAt}}
     <div class="pin-info text-muted small">
       <span class="icon"><i class="fa fa-thumb-tack fa-rotate-45 text-yellow"></i></span>
-      <span class="info">{{_ "Pinned by and when" user=pinUser.name time=(formatDayWithTime pinAt)}}</span>
+      <span class="info">{{_ "message_pinned_by_and_when" user=pinUser.name time=(formatDayWithTime pinAt)}}</span>
     </div>
   {{/if}}
 </template>
@@ -19,7 +19,7 @@
       <a data-parent="#thread-details-accordion" href="#pinMessages" data-toggle="collapse">
         <div class="flat-panel-title">
           <i class="fa fa-thumb-tack fa-rotate-45 text-yellow"></i>
-          {{_ "Pin Messages with count" count=count}}
+          {{_ "thread_pin_messages_with_count" count=count}}
         </div>
       </a>
     </div>

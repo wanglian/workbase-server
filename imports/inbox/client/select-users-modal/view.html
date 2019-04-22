@@ -6,12 +6,12 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
           <div class="modal-title">
             {{#if selectedList}}
-              {{_ "Selected Users" count=selectedUsers.length}}
-              <a href="#" class="btn-toggle-list">{{_ "Select Users"}}</a>
+              {{_ "app_selected_users" count=selectedUsers.length}}
+              <a href="#" class="btn-toggle-list">{{_ "app_select_users"}}</a>
             {{else}}
-              {{_ "Select Users"}}
+              {{_ "app_select_users"}}
               {{#with selectedUsers}}
-                <a href="#" class="btn-toggle-list">{{_ "Selected Users" count=length}}</a>
+                <a href="#" class="btn-toggle-list">{{_ "app_selected_users" count=length}}</a>
               {{/with}}
             {{/if}}
           </div>
@@ -19,9 +19,9 @@
         <div class="modal-body scroll-box no-padding">
           {{#unless selectedList}}
             <div class="input-group" style="padding: 10px;">
-              <input type="search" value="{{search}}" id="user-search" class="form-control" placeholder="{{_ 'Enter to search'}}">
+              <input type="search" value="{{search}}" id="user-search" class="form-control" placeholder="{{_ 'placeholder_search'}}">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button" id="btn-cancel-search-users">{{_ 'Cancel'}}</button>
+                <button class="btn btn-default" type="button" id="btn-cancel-search-users">{{_ 'app_action_cancel'}}</button>
               </span>
             </div>
           {{/unless}}
@@ -40,8 +40,8 @@
           </ul>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'Discard'}}</button>
-          <button type="button" class="btn btn-primary" id="btn-confirm-selected">{{_ "Confirm"}}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ 'app_action_discard'}}</button>
+          <button type="button" class="btn btn-primary" id="btn-confirm-selected">{{_ "app_action_confirm"}}</button>
         </div>
       </div>
     </div>

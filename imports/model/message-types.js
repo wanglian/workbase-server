@@ -22,7 +22,7 @@ MessageTypes.add('image', {
       return message.summary;
     }
 
-    let key = 'Image Message';
+    let key = 'message_image';
 
     if (Meteor.isClient) {
       return I18n.t(key);

@@ -19,7 +19,7 @@ Meteor.startup(function() {
   if (thread) {
     Threads.update(thread._id, {$set: {scope: 'test'}});
   } else {
-    // Threads.create(null, 'AdminLiveChat', 'Live Chat Management', 'admin');
+    // Threads.create(null, 'AdminLiveChat', 'thread_live_chat', 'admin');
   }
 });
 

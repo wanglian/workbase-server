@@ -6,14 +6,14 @@
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">{{_ "Chat with us"}}</p>
+        <p class="login-box-msg">{{_ "livechat_chat_with_us"}}</p>
 
         {{#autoForm collection=formCollection schema=formSchema id="contact-form" type="normal"}}
           {{> afQuickField name="name"}}
           {{> afQuickField name="email"}}
           {{> afQuickField name="content"}}
           <div class="form-actions clearfix">
-            <button type="submit" class="btn btn-primary">{{_ "Send"}}</button>
+            <button type="submit" class="btn btn-primary">{{_ "app_action_send"}}</button>
           </div>
         {{/autoForm}}
 

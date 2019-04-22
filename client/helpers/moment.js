@@ -4,9 +4,9 @@ require('moment/locale/zh-cn');
 Template.registerHelper('formatSimpleDate', (date) => {
   return moment(date).calendar(null, {
     sameDay: 'HH:mm',
-    nextDay: `[${I18n.t('Tomorrow')}]`,
+    nextDay: `[${I18n.t('date_tomorrow')}]`,
     nextWeek: 'MM-DD',
-    lastDay: `[${I18n.t('Yesterday')}]`,
+    lastDay: `[${I18n.t('date_yesterday')}]`,
     lastWeek: 'dddd',
     sameElse: 'YYYY-MM-DD'
   });
@@ -14,10 +14,10 @@ Template.registerHelper('formatSimpleDate', (date) => {
 
 Template.registerHelper('formatDayWithTime', (date) =>  {
   return moment(date).calendar(null, {
-    sameDay: `[${I18n.t('Today')}] HH:mm`,
-    nextDay: `[${I18n.t('Tomorrow')}] HH:mm`,
+    sameDay: `[${I18n.t('date_today')}] HH:mm`,
+    nextDay: `[${I18n.t('date_tomorrow')}] HH:mm`,
     nextWeek: 'MM-DD HH:mm',
-    lastDay: `[${I18n.t('Yesterday')}] HH:mm`,
+    lastDay: `[${I18n.t('date_yesterday')}] HH:mm`,
     lastWeek: 'dddd HH:mm',
     sameElse: 'YYYY-MM-DD HH:mm'
   });
