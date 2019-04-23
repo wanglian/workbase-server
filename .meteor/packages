@@ -27,6 +27,7 @@ accounts-ui
 accounts-password
 random
 
+wanglian:lodash
 aldeed:collection2
 matb33:collection-hooks
 dburles:collection-helpers
@@ -41,7 +42,7 @@ ostrio:templatehelpers
 
 twbs:bootstrap
 fortawesome:fontawesome
-mfactory:admin-lte
+wanglian:admin-lte@0.0.3
 peppelg:bootstrap-3-modal
 aldeed:autoform
 jamiecollinson:selectize-bootstrap
@@ -60,4 +61,3 @@ meteortesting:mocha
 xolvio:cleaner
 johanbrook:publication-collector
 dburles:factory
-wanglian:lodash
