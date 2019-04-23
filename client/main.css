@@ -73,6 +73,12 @@ blockquote {
 .close {
   font-size: 26px;
 }
+
+/* swal */
+.swal2-popup .swal2-input {
+  font-weight: 500;
+}
+
 /* search */
 .modal.full-screen.search .modal-body {
   top: 65px;

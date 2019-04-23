@@ -64,5 +64,52 @@ Meteor.methods({
       return MessageRecords.find({year: d.year(), month: d.month() + 1, hour, userType: 'Contacts'}).count();
     });
     return data;
+  },
+  async validateMailgun() {
+    let instance = Instance.get();
+    if (!instance.modules.email) return false;
+
+    let re = await Mailgun.validate(instance.domain);
+    switch (re) {
+    case 401:
+      Instance.update(instance._id, {$set: {
+        "modules.email.mailgun.key_valid": false,
+        "modules.email.mailgun.domain_valid": false
+      }});
+      break;
+    case 404:
+      Instance.update(instance._id, {$set: {
+        "modules.email.mailgun.key_valid": true,
+        "modules.email.mailgun.domain_valid": false
+      }});
+      break;
+    default:
+      Instance.update(instance._id, {$set: {
+        "modules.email.mailgun.key_valid": true,
+        "modules.email.mailgun.domain_valid": true
+      }});
+    }
+    return re;
+  },
+  updateMailgunKey(key) {
+    check(key, String);
+    Instance.update({}, {$set: {
+      "modules.email.mailgun.key": key,
+      "modules.email.mailgun.key_valid": false,
+      "modules.email.mailgun.domain_valid": false
+    }});
+    Mailgun.setup(key, Instance.domain());
+    return Meteor.call("validateMailgun");
+  },
+  updateCompanyName(name) {
+    check(name, String);
+    return Instance.update({}, {$set: {
+      company: name
+    }});
+  },
+  updateCompanyDomain(domain) {
+    check(domain, String);
+    Instance.update({}, {$set: {domain}});
+    return Meteor.call("validateMailgun");
   }
-})
+});

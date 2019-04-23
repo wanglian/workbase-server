@@ -9,15 +9,25 @@
         <div class="modal-body">
           <dl>
             <dt>{{_ "setup_company_name"}}</dt>
-            <dd>{{instance.company}}</dd>
+            <dd>
+              {{#with instance}}
+                {{company}}
+                <a href="#" id="btn-modify-company">{{_ "app_action_edit"}}</a>
+              {{/with}}
+            </dd>
           </dl>
           <dl>
             <dt>{{_ "setup_domain"}}</dt>
-            <dd>{{instance.domain}}</dd>
+            <dd>
+              {{#with instance}}
+                {{domain}}
+                <a href="#" id="btn-modify-domain">{{_ "app_action_edit"}}</a>
+              {{/with}}
+            </dd>
           </dl>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "app_action_confirm"}}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "app_action_close"}}</button>
         </div>
       </div>
     </div>
@@ -36,20 +46,39 @@
           <dl>
             <dt>{{_ "settings_email_send"}}</dt>
             <dd>
-              {{#if instance.modules.email}}
-                Mailgun: {{instance.modules.email.mailgun.key}}
+              {{#with instance.modules.email}}
+                Mailgun: {{mailgun.key}}
+                <a href="#" id="btn-modify-key">{{_ "app_action_edit"}}</a>
+                {{#if mailgun.key_valid}}
+                  <span class="pull-right"><i class="fa fa-check text-green"></i></span>
+                {{else}}
+                  <span class="pull-right"><i class="fa fa-close text-red"></i></span>
+                {{/if}}
               {{else}}
                 {{_ "setup_email_disabled"}}
-              {{/if}}
+                <a href="#" id="btn-modify-key">{{_ "settings_email_set_mailgun"}}</a>
+              {{/with}}
             </dd>
           </dl>
           <dl>
             <dt>{{_ "settings_email_receive"}}</dt>
-            <dd>&lt;BASE_URL&gt;/api/v1/mailgun</dd>
+            <dd>
+              {{mailgun_api_url}}
+              {{#if instance.modules.email.mailgun.domain_valid}}
+                <span class="pull-right"><i class="fa fa-check text-green"></i></span>
+              {{else}}
+                <span class="pull-right"><i class="fa fa-close text-red"></i></span>
+              {{/if}}
+            </dd>
           </dl>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "app_action_confirm"}}</button>
+          <!-- {{#with instance.modules.email}}
+            {{#unless compare mailgun.key_valid '&&' mailgun.domain_valid}}
+              <button type="button" class="btn btn-success pull-left" id="btn-validate">{{_ "Validate"}}</button>
+            {{/unless}}
+          {{/with}} -->
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "app_action_close"}}</button>
         </div>
       </div>
     </div>
@@ -89,12 +118,15 @@
           {{else}}
           <dl>
             <dt>{{_ "setup_storage_info"}}</dt>
-            <dd>{{_ "setup_storage_local"}}</dd>
+            <dd>
+              {{_ "setup_storage_local"}}
+              <span class="pull-right"><i class="fa fa-check text-green"></i></span>
+            </dd>
           </dl>
           {{/with}}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "app_action_confirm"}}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "app_action_close"}}</button>
         </div>
       </div>
     </div>

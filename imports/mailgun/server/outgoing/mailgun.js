@@ -14,9 +14,10 @@ Mailgun = {
   validate(domain) {
     return new Promise((resolve, reject) => {
       Mailgun.client.domains(domain).info((err, res) => {
-        if (err && err.statusCode == 401) {
-          // console.log(err.statusCode);
-          resolve(false);
+        if (err) {
+          // 401 - Invalid private key
+          // 404 - Domain not found
+          resolve(err.statusCode);
         } else {
           resolve(true);
         }
