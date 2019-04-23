@@ -3,27 +3,33 @@ const MailgunClient = require('mailgun-js');
 const moment = require('moment');
 
 Mailgun = {
-  setup() {
-    let instance = Instance.get();
-    let modules = instance && instance.modules;
-    let email = modules && modules.email;
-    if (email && email.type === 'mailgun') {
-      Mailgun.api_key = email.mailgun.key;
-      Mailgun.domain = Instance.domain();
-
-      /* Check settings existence */
-      /* This is the best practice for app security */
-      if (!Mailgun.api_key || !Mailgun.domain) {
-        throw new Meteor.Error(401, 'Missing Mailgun settings');
-      }
-
-      Mailgun.client = MailgunClient({apiKey: Mailgun.api_key, domain: Mailgun.domain});
+  setup(key, domain) {
+    /* Check settings existence */
+    /* This is the best practice for app security */
+    if (!key || !domain) {
+      throw new Meteor.Error(401, 'Missing Mailgun settings');
     }
+    Mailgun.client = MailgunClient({apiKey: key, domain});
+  },
+  validate(domain) {
+    return new Promise((resolve, reject) => {
+      Mailgun.client.domains(domain).info((err, res) => {
+        if (err && err.statusCode == 401) {
+          // console.log(err.statusCode);
+          resolve(false);
+        } else {
+          resolve(true);
+        }
+      });
+    });
   }
 };
 
 Meteor.startup(function() {
-  Mailgun.setup();
+  let instance = Instance.get();
+  let modules = instance && instance.modules;
+  let email = modules && modules.email;
+  email && email.type == 'mailgun' && Mailgun.setup(email.mailgun.key, instance.domain);
 });
 
 const buildMailgunAttachment = (file) => {

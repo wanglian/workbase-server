@@ -24,7 +24,7 @@ Meteor.methods({
         type: 'mailgun',
         mailgun: {key: params.key}
       }}});
-      Mailgun.setup();
+      Mailgun.setup(params.key, Instance.domain());
       break;
     default:
       Instance.update({}, {$unset: {"modules.email": ""}});
