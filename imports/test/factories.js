@@ -1,4 +1,5 @@
 import { Instance } from '/imports/model/instance';
+import { Users } from '/imports/model/users';
 import { Threads } from '/imports/model/threads';
 import { ThreadUsers } from '/imports/model/thread-users';
 import { Messages } from '/imports/model/messages';
@@ -10,6 +11,18 @@ Factory.define('instance', Instance, {
   company: () => faker.company.companyName(),
   domain:  () => faker.internet.domainName(),
   adminId: () => faker.random.uuid()
+});
+
+Factory.define('user', Users, {
+  profile: {
+    type: () => 'Users'
+  },
+  emails() {
+    return [{
+      address: faker.internet.email(),
+      verified: false,
+    }];
+  },
 });
 
 Factory.define('thread', Threads, {
