@@ -5,12 +5,16 @@ import moment from 'moment';
 Meteor.startup(function() {
   let thread = Threads.findOne({category: 'Charts'});
   thread || Threads.create(null, 'Charts', 'thread_reports', 'admin');
+  thread = Threads.findOne({category: 'Settings'});
+  thread || Threads.create(null, 'Settings', 'thread_settings', 'admin');
 });
 
 Accounts.onLogin(function(attempt) {
   let user = Users.findOne(attempt.user._id);
   if (user && user.isAdmin()) {
     let thread = Threads.findOne({category: 'Charts'});
+    thread && Threads.ensureMember(thread, user);
+    thread = Threads.findOne({category: 'Settings'});
     thread && Threads.ensureMember(thread, user);
   }
 });

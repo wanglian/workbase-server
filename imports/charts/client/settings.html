@@ -1,0 +1,102 @@
+<template name="SettingCompanyModal">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'settings_company'}}</h4>
+        </div>
+        <div class="modal-body">
+          <dl>
+            <dt>{{_ "setup_company_name"}}</dt>
+            <dd>{{instance.company}}</dd>
+          </dl>
+          <dl>
+            <dt>{{_ "setup_domain"}}</dt>
+            <dd>{{instance.domain}}</dd>
+          </dl>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "app_action_confirm"}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="SettingEmailModal">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'settings_email'}}</h4>
+        </div>
+        <div class="modal-body">
+          <dl>
+            <dt>{{_ "settings_email_send"}}</dt>
+            <dd>
+              {{#if instance.modules.email}}
+                Mailgun: {{instance.modules.email.mailgun}}
+              {{else}}
+                {{_ "setup_email_disabled"}}
+              {{/if}}
+            </dd>
+          </dl>
+          <dl>
+            <dt>{{_ "settings_email_receive"}}</dt>
+            <dd>&lt;BASE_URL&gt;/api/v1/mailgun</dd>
+          </dl>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "app_action_confirm"}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="SettingStorageModal">
+  <div class="modal fade modal-rounded">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+          <h4 class="modal-title">{{_ 'settings_storage'}}</h4>
+        </div>
+        <div class="modal-body">
+          {{#with instance.modules.storage.s3}}
+            <dl>
+              <dt>{{_ "setup_storage_info"}}</dt>
+              <dd>Amazon S3</dd>
+            </dl>
+            <dl>
+              <dt>Key</dt>
+              <dd>{{key}}</dd>
+            </dl>
+            <dl>
+              <dt>Secret</dt>
+              <dd>{{secret}}</dd>
+            </dl>
+            <dl>
+              <dt>Bucket</dt>
+              <dd>{{bucket}}</dd>
+            </dl>
+            <dl>
+              <dt>Region</dt>
+              <dd>{{region}}</dd>
+            </dl>
+          {{else}}
+          <dl>
+            <dt>{{_ "setup_storage_info"}}</dt>
+            <dd>{{_ "setup_storage_local"}}</dd>
+          </dl>
+          {{/with}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{_ "app_action_confirm"}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
