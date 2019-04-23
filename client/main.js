@@ -1,5 +1,4 @@
 import '../lib/avatar';
-import '../lib/lodash';
 import '../lib/markdown';
 import './lib/animate';
 import './lib/avatar';

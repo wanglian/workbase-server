@@ -5,7 +5,6 @@ import { Tracker }  from 'meteor/tracker';
 import { $ }        from 'meteor/jquery';
 
 import chai   from 'chai';
-import lodash from 'lodash';
 
 import '../factories';
 
@@ -18,7 +17,6 @@ faker;
 
 expect = chai.expect;
 should = chai.should();
-_ = lodash;
 
 Template.registerHelper('_', key => key);
 

@@ -1,6 +1,4 @@
 import { MessageTypes } from './message-types';
-import lodash from 'lodash';
-const _ = lodash;
 
 Messages = new Mongo.Collection('messages');
 

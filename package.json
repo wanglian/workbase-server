@@ -27,7 +27,6 @@
     "gridfs-stream": "^1.1.1",
     "i18next": "^12.1.0",
     "i18next-browser-languagedetector": "^2.2.4",
-    "lodash": "^4.17.11",
     "mailgun-js": "^0.22.0",
     "marked": "^0.6.2",
     "meteor-node-stubs": "^0.4.1",

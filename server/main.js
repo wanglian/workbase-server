@@ -1,5 +1,4 @@
 import '../lib/avatar';
-import '../lib/lodash';
 import '../lib/markdown';
 // basic
 import '/imports/i18n/server';
