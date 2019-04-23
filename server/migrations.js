@@ -3,3 +3,14 @@ Meteor.startup(() => {
   Migrations.unlock();
   Migrations.migrateTo('latest');
 });
+
+Migrations.add({
+  version: 1,
+  name: 'change i18n keys',
+  up: function() {
+    Threads.update({category: 'Roster'}, {$set: {subject: "thread_users_management"}});
+    Threads.update({category: 'Charts'}, {$set: {subject: "thread_reports"}});
+    Threads.update({category: 'Account'}, {$set: {subject: "thread_my_account"}}, {multi: true});
+  },
+  down: function() {}
+});

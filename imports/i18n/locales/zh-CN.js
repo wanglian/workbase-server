@@ -98,7 +98,7 @@ export const locale_zh_cn = {
   "thread_users_management": "用户管理",
   "thread_channels_management": "频道管理",
   "thread_live_chat": "在线客服",
-  "thread_reports": "统计报表",
+  "thread_reports": "报表",
   "thread_settings": "设置",
   "thread_members": "成员",
   "thread_created_by_and_when": "{{name}} 创建于 {{time}}",
