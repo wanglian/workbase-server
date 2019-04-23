@@ -14,6 +14,8 @@ const parseEmail = (email) => {
 };
 
 MailgunEmails.create = (params) => {
+  // check domain
+  if (params['domain'] != Instance.domain()) return false;
   let email = MailgunEmails.findOne({emailId: params['Message-Id']});
   if (email) {
     // same email: drop
