@@ -194,6 +194,7 @@ export const locale_zh_cn = {
   "search_action": "搜索",
   "search_thread": "搜索主题",
   "search_thread_messages": "搜索消息",
+  "share_desc": "在这里与团队分享。",
   "share_action": '分享',
   "share_title": '分享',
   "share_action_image": "分享图片",

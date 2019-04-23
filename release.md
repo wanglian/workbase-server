@@ -5,7 +5,7 @@
 - Remove origin email after parsed successfully
 - Avatar file size limit: 2M -> 10M
 - Only receive emails matching the company's domain
-- Add system configuration view (read only)
+- Update system config, validate mailgun settings
 
 ## 0.0.5, 2019-04-15
 

@@ -194,6 +194,7 @@ export const locale_en_us = {
   "search_action": "Search",
   "search_thread": "Search Subjects",
   "search_thread_messages": "Search Messages",
+  "share_desc": "This is the place to share your moments with your team players.",
   "share_action": 'Share',
   "share_title": 'Shares',
   "share_action_image": "Share Image",

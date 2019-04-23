@@ -10,7 +10,9 @@
       {{/each}}
       {{#if ready}}
         {{#unless messages.count}}
-          <div class="todo" style="padding: 10px;">{{_ "app_no_record"}}</div>
+          <p class="bg-success" style="padding: 15px; margin: 10px;">
+            {{_ "share_desc"}}
+          </p>
         {{/unless}}
         {{#if nextPath}}
           <div class="text-center"><a href="{{nextPath}}" class="text-muted small">{{_ "paginate_load_more"}}</a></div>
