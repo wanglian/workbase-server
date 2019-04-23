@@ -37,7 +37,7 @@
             <dt>{{_ "settings_email_send"}}</dt>
             <dd>
               {{#if instance.modules.email}}
-                Mailgun: {{instance.modules.email.mailgun}}
+                Mailgun: {{instance.modules.email.mailgun.key}}
               {{else}}
                 {{_ "setup_email_disabled"}}
               {{/if}}

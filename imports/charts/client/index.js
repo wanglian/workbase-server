@@ -33,8 +33,8 @@ ThreadCategories.add("Charts", {
 });
 
 ThreadCategories.add("Settings", {
-  icon: "fa fa-bar-chart",
-  iconUnread: "fa fa-cog",
+  icon: "fa fa-cogs",
+  iconUnread: "fa fa-cogs",
   title(thread) {
     return I18n.t(thread.subject);
   },

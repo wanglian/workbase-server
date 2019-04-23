@@ -7,10 +7,18 @@ import { Files } from '/imports/files/server/files';
 Meteor.publish('instance', function() {
   if (!this.userId) return this.ready();
 
-  return [
-    Instance.find({}, {fields: {domain: 1, company: 1, adminId: 1, sharedId: 1, "modules.email.type": 1, "modules.storage.type": 1}}),
-    Threads.find({category: 'Account', userId: this.userId})
-  ];
+  let user = Users.findOne(this.userId);
+  if (user.isAdmin()) {
+    return [
+      Instance.find({}),
+      Threads.find({category: 'Account', userId: this.userId})
+    ];
+  } else {
+    return [
+      Instance.find({}, {fields: {domain: 1, company: 1, adminId: 1, sharedId: 1, "modules.email.type": 1, "modules.storage.type": 1}}),
+      Threads.find({category: 'Account', userId: this.userId})
+    ];
+  }
 });
 
 Meteor.publish('counters', function() {
