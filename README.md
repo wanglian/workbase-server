@@ -1,54 +1,41 @@
-# WorkBase
+![WorkBase logo](/public/assets/workbase-v.png)
 
-WorkBase is an open source, private cloud message service.
+WorkBase is an open source, private cloud message service.  
 It's based on email protocol which means it can connect anyone with an email address.
 
-## Prerequisites
+- [Install](./docs/install.md) ([中文](./docs/install-zh-CN.md))
+- [Developer](./docs/develop.md)
 
-- [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- [Meteor](https://www.meteor.com/install)
-- [GraphicsMagick or ImageMagick](https://github.com/aheckmann/gm)
+## Bring your own server
 
-## Run
+You'll have the following features and even more
+- Emails
+- Chats
+- Groups
+- Channels
+- Mobile App
 
-```
-git clone https://github.com/wanglian/workbase.git
-cd workbase
-meteor npm install
-meteor npm start
-```
+## Why WorkBase?
 
-## Run Tests
+Most popular messaging services are currently proprietary, closed and operated by single providers. This leads to several problems:
 
-```
-// unit tests
-meteor npm run test
-// integration tests
-meteor npm run test-app
-// acceptance tests
-meteor npm run test-e2e
-```
+### Privacy
+The provider knows all about your social network: when you communicate with whom, the frequency of your communication and the number, type and length of your messages – even with end to end encryption in place.
 
-## References
+### Unfair competition
+Service providers depend on the rules set by the messaging owner and access to the API for participation. If the messaging provider changes the rules or API, you are out of luck and must adapt fast.
 
-- [Meteor](https://docs.meteor.com/)
-- [Blaze](http://blazejs.org/api/templates.html)
-- [bootstrap](https://getbootstrap.com/docs/3.3/javascript/)
-- [FontAwesome](https://fontawesome.com/v4.7.0/icons/)
-- [AdminLTE](https://adminlte.io/themes/AdminLTE/documentation/index.html)
-- [autoform](https://github.com/aldeed/meteor-autoform)
-- [iron-router](http://iron-meteor.github.io/iron-router/)
-- [Meteor Files](https://github.com/VeliovGroup/Meteor-Files/wiki)
-- [Meteor Template helpers](https://github.com/VeliovGroup/Meteor-Template-helpers/)
-- [Meteor Easy Search](http://matteodem.github.io/meteor-easy-search/getting-started/)
-- [SubsManager](https://github.com/kadirahq/subs-manager)
-- [mailgun](https://documentation.mailgun.com/en/latest/api-routes.html)
-- [mailgun-js](https://github.com/bojand/mailgun-js)
-- [i18next](https://www.i18next.com/)
-- [gm](http://aheckmann.github.io/gm/docs.html)
-- [lodash](https://lodash.com/docs/4.17.11)
-- [momentjs](https://momentjs.com/docs/)
-- [chartjs](https://www.chartjs.org/)
-- [w3schools CSS](https://www.w3schools.com/css/default.asp)
-- [JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
-- [ES6 入门](http://es6.ruanyifeng.com)
+### Lock in
+Users cannot simply change to another provider; all their friends and peers are on that popular service. If they want to switch, they would need to convince all their friends to join the new service too. Other side effects are they would lose all their conversation history, if they dare to move away. Also, if you don’t like the new app version? Bad luck, you cannot go anywhere else!
+
+### Silo
+Each network is closed and the users in that network are isolated. This means restricted movement between silos, no new innovation outside the controlling power, no new players, no resistance to attacks (single source code) and it simply goes against the philosophy of the internet: freedom, innovation and growth around the use of common standards.
+
+### Closed Ecosystem
+The network is only controlled by a single party, you cannot start hosting your own WhatsApp, WeChat or FB Messenger Service.
+
+### No Choice
+Some large providers, like Facebook, control many of the popular messaging apps, like WhatsApp and Facebook Messenger making it feel like there is no real choice.
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/workbase-server)
+[![Install from App Store](https://user-images.githubusercontent.com/551004/29770691-a2082ff4-8bc6-11e7-89a6-964cd405ea8e.png)](https://itunes.apple.com/app/workbase/id1447713624)
