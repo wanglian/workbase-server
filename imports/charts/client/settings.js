@@ -73,7 +73,7 @@ Template.SettingEmailModal.events({
     Swal({
       title: I18n.t("settings_email_update_key"),
       input: 'text',
-      inputValue: this.mailgun.key,
+      inputValue: this.mailgun && this.mailgun.key,
       inputAttributes: {
         autocapitalize: 'off'
       },

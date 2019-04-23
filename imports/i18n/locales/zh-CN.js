@@ -96,7 +96,7 @@ export const locale_zh_cn = {
   "settings_email_send": "发送",
   "settings_email_receive": "接收",
   "settings_email_set_mailgun": "设置 Mailgun",
-  "settings_email_update_key": "修改 Mailgun Key",
+  "settings_email_update_key": "设置 Mailgun Key",
   "settings_storage": "存储",
   "thread_my_account": "我的帐号",
   "thread_users_management": "用户管理",
