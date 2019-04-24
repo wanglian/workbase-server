@@ -6,6 +6,12 @@ It's based on email protocol which means it can connect anyone with an email add
 - [Install](./docs/install.md) ([中文](./docs/install-zh-CN.md))
 - [Developer](./docs/develop.md)
 
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/workbase-server)
+
+## Mobile App
+
+[![Install from App Store](https://user-images.githubusercontent.com/551004/29770691-a2082ff4-8bc6-11e7-89a6-964cd405ea8e.png)](https://itunes.apple.com/app/workbase/id1447713624)
+
 ## Bring your own server
 
 You'll have the following features and even more
@@ -16,6 +22,8 @@ You'll have the following features and even more
 - Mobile App
 
 ## Why WorkBase?
+
+Source: [COI - Chat Over IMAP](https://www.coi-dev.org/)
 
 Most popular messaging services are currently proprietary, closed and operated by single providers. This leads to several problems:
 
@@ -36,6 +44,3 @@ The network is only controlled by a single party, you cannot start hosting your 
 
 ### No Choice
 Some large providers, like Facebook, control many of the popular messaging apps, like WhatsApp and Facebook Messenger making it feel like there is no real choice.
-
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/workbase-server)
-[![Install from App Store](https://user-images.githubusercontent.com/551004/29770691-a2082ff4-8bc6-11e7-89a6-964cd405ea8e.png)](https://itunes.apple.com/app/workbase/id1447713624)
