@@ -7,7 +7,7 @@
 # 5.  `snapcraft snap`
 
 name: workbase-server
-version: 0.0.5
+version: #{WB_VERSION}
 summary: WorkBase server
 description: Have your own network, built with Meteor.
 grade: stable

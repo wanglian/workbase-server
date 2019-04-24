@@ -2,5 +2,6 @@
 build.sh
 examples/
 node_modules/
+private/*dev.pem
 settings.json
 tests/cypress/videos/
