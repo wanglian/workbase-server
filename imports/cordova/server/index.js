@@ -88,11 +88,15 @@ const pushToUser = (to, message) => {
 };
 
 Messages.after.insert(function(userId, doc) {
-  if (Meteor.isAppTest) return;
-  let message = this.transform();
+  if (Meteor.isAppTest) {
+    return;
+  }
 
+  let message = this.transform();
   ThreadUsers.find({threadId: message.threadId, userType: 'Users', userId: {$ne: message.userId}}).forEach((tu) => {
-    if (tu.spam) return;
+    if (tu.spam) {
+      return;
+    }
 
     pushToUser(tu.user(), message).then((result) => {
       // console.log("[push] " + tu.userId + ' - ' + message._id);

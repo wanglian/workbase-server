@@ -32,7 +32,7 @@ Template.MessageForm.onRendered(function() {
 
   this.autorun(() => {
     let data = Template.currentData().thread;
-    if (data && data._id != threadId) {
+    if (data && data._id !== threadId) {
       // save
       if (threadId) {
         let textarea = $('form textarea');
@@ -114,11 +114,11 @@ Template.MessageForm.events({
 
 AutoForm.hooks({
   "message-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
       let threadId = this.formAttributes.threadId;
-      let fileIds = Files.find({"meta.relations": {$elemMatch: {threadId, messageId: null, type: 'file'}}}).map(f => f._id);
+      let fileIds = Files.find({"meta.relations": {$elemMatch: {threadId, messageId: null, type: 'file'}}}).map((f) => f._id);
       let parentMessage = Session.get(`message-draft-parent-${threadId}`);
       let parentMessageId = parentMessage && parentMessage._id;
       Meteor.call('sendMessage', threadId, {

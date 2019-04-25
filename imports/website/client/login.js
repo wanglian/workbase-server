@@ -32,7 +32,7 @@ Template.Login.helpers({
 
 AutoForm.hooks({
   "login-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
       Meteor.loginWithPassword(insertDoc.email, insertDoc.password, (err) => {

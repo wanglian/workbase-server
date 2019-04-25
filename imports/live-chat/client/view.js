@@ -42,7 +42,7 @@ Template.Contact.helpers({
 
 AutoForm.hooks({
   "contact-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
       Meteor.call('sendLiveChatMessage', insertDoc.email, insertDoc.name, insertDoc.content, (err, res) => {
@@ -55,7 +55,7 @@ AutoForm.hooks({
             title: I18n.t("livechat_response_thanks"),
             text: I18n.t("livechat_response_message")
             // footer: '<a href>Why do I have this issue?</a>'
-          })
+          });
         }
         this.done();
       });

@@ -2,11 +2,13 @@ import '../';
 
 const updateGroupSubject = (threadId) => {
   let thread = Threads.findOne(threadId);
-  if (thread.name()) return;
+  if (thread.name()) {
+    return;
+  }
 
   let members = thread.members();
   Threads.update(threadId, {$set: {
-    subject: members.map(m => m.name()) // array
+    subject: members.map((m) => m.name()) // array
   }});
 };
 
@@ -45,12 +47,12 @@ Meteor.methods({
     check(userIds, [String]);
     
     let user = Users.findOne(this.userId);
-    let users = userIds.map(userId => Users.findOne(userId));
+    let users = userIds.map((userId) => Users.findOne(userId));
     let thread = Threads.startGroup(user, users);
 
     logGroup(thread, user, {
       action: "group.create",
-      params: {user: user.name(), users: users.map(m => m.internalName()).join(", ")}
+      params: {user: user.name(), users: users.map((m) => m.internalName()).join(", ")}
     });
     return thread._id;
   },

@@ -22,15 +22,19 @@ Template.Thread.onRendered(function() {
   let limit, handle; // pagination
   self.autorun(() => {
     data = Template.currentData();
-    if (data && data._id != threadId) {
+    if (data && data._id !== threadId) {
       // mark read: delay 2s
-      if (self.timeout) Meteor.clearTimeout(self.timeout);
+      if (self.timeout) {
+        Meteor.clearTimeout(self.timeout);
+      }
       self.timeout = Meteor.setTimeout(() => {
         if (!data.read) {
           markRead.call({
             threadId
           }, (err, res) => {
-            if (err) console.log(err);
+            if (err) {
+              console.log(err);
+            }
           });
         }
       }, 2000);
@@ -55,14 +59,18 @@ Template.Thread.onRendered(function() {
       markRead.call({
         threadId
       }, (err, res) => {
-        if (err) console.log(err);
+        if (err) {
+          console.log(err);
+        }
       });
     }
   });
 });
 
 Template.Thread.onDestroyed(function() {
-  if (this.timeout) Meteor.clearTimeout(this.timeout);
+  if (this.timeout) {
+    Meteor.clearTimeout(this.timeout);
+  }
   $('#inbox-right').off('scroll');
 });
 

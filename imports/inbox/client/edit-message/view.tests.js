@@ -8,14 +8,14 @@ describe('EditMessageButton', () => {
   it('if can edit, renders elements correctly', () => {
     let message = Factory.build('message', {internal: true});
     Meteor.userId = sinon.fake.returns(message.userId);
-    withRenderedTemplate('EditMessageButton', message, el => {
+    withRenderedTemplate('EditMessageButton', message, (el) => {
       expect($(el).find('button.btn-edit').length).to.eq(1);
     });
   });
 
   it('if can not edit, renders nothing', () => {
     let message = Factory.build('message', {internal: false});
-    withRenderedTemplate('EditMessageButton', message, el => {
+    withRenderedTemplate('EditMessageButton', message, (el) => {
       expect($(el).find('button.btn-edit').length).to.eq(0);
     });
   });
@@ -24,7 +24,7 @@ describe('EditMessageButton', () => {
 describe('EditMessageModal', () => {
   it('renders elements correctly', () => {
     let message = Factory.build('message', {internal: true});
-    withRenderedTemplate('EditMessageModal', message, el => {
+    withRenderedTemplate('EditMessageModal', message, (el) => {
       expect($(el).find('button.close').length).to.eq(1);
       expect($(el).find('form#edit-message-form').length).to.eq(1);
       expect($(el).find('textarea[name=content]').length).to.eq(1);

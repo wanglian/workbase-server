@@ -18,7 +18,7 @@ faker;
 expect = chai.expect;
 should = chai.should();
 
-Template.registerHelper('_', key => key);
+Template.registerHelper('_', (key) => key);
 
 const withDiv = function withDiv(callback) {
   const el = document.createElement('div');

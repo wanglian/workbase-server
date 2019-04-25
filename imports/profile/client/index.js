@@ -34,7 +34,7 @@ ThreadCategories.add("Account", {
           Meteor.logout();
         }
       }
-    ]
+    ];
   }
 });
 

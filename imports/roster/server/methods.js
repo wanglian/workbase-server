@@ -4,7 +4,7 @@ const logUserAdmin = (admin, content) => {
     contentType: 'log',
     content
   });
-}
+};
 
 Meteor.methods({
   addMember(email, name, password, title) {
@@ -45,7 +45,7 @@ Meteor.methods({
     let user = Users.findOne(id);
     if (user) {
       let changes = {};
-      if (email != user.email()) {
+      if (email !== user.email()) {
         changes.email = {from: user.email(), to: email};
         Accounts.removeEmail(id, user.email());
         Accounts.addEmail(id, email);
@@ -54,11 +54,11 @@ Meteor.methods({
         changes.password = "changed";
         Accounts.setPassword(id, password);
       }
-      if (name != user.name()) {
+      if (name !== user.name()) {
         changes.name = {from: user.name(), to: name};
         Users.update(id, {$set: {"profile.name": name}});
       }
-      if (title != user.title()) {
+      if (title !== user.title()) {
         changes.title = {from: user.title(), to: title};
         Users.update(id, {$set: {"profile.title": title}});
       }
@@ -87,10 +87,10 @@ Meteor.methods({
 
     let contact = Contacts.findOne(id);
     let modifier = {};
-    if (params.name !== contact.name()) _.extend(modifier, {"profile.name": params.name});
-    if (params.title !== contact.profile.title) _.extend(modifier, {"profile.title": params.title || ""});
-    if (params.company !== contact.profile.company) _.extend(modifier, {"profile.company": params.company || ""});
-    if (params.noreply !== contact.profile.noreply) _.extend(modifier, {"profile.noreply": params.noreply});
+    if (params.name    !== contact.name())          { _.extend(modifier, {"profile.name":    params.name}); }
+    if (params.title   !== contact.profile.title)   { _.extend(modifier, {"profile.title":   params.title || ""}); }
+    if (params.company !== contact.profile.company) { _.extend(modifier, {"profile.company": params.company || ""}); }
+    if (params.noreply !== contact.profile.noreply) { _.extend(modifier, {"profile.noreply": params.noreply}); }
 
     if (!_.isEmpty(modifier)) {
       Contacts.update(id, {$set: modifier});

@@ -44,7 +44,7 @@ Meteor.publishComposite("shared.thread", function() {
         }
       }
     ]
-  }
+  };
 });
 
 const MIN_MESSAGES = 20;
@@ -90,5 +90,5 @@ Meteor.publishComposite("shared.messages", function(userId, options) {
         }
       }
     ]
-  }
+  };
 });

@@ -37,7 +37,7 @@ Messages.after.insert(function(userId, doc) {
 Meteor.methods({
   getChartDay() {
     let d = moment();
-    let days = Array.from(Array(d.date()).keys()).map(i => i+1);
+    let days = Array.from(Array(d.date()).keys()).map((i) => i+1);
     let data = {};
     data.internal = days.map((day) => {
       return MessageRecords.find({year: d.year(), month: d.month() + 1, day, internal: true}).count();
@@ -67,7 +67,9 @@ Meteor.methods({
   },
   async validateMailgun() {
     let instance = Instance.get();
-    if (!instance.modules.email) return false;
+    if (!instance.modules.email) {
+      return false;
+    }
 
     let re = await Mailgun.validate(instance.domain);
     switch (re) {

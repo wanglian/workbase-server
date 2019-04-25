@@ -23,7 +23,7 @@ const selectizeEmail = (method, params) => {
     labelField: 'name',
     searchField: ['name', 'email'],
     render: {
-      item: function(item, escape) {
+      item(item, escape) {
         if (item.name) {
           return '<div>' +
             '<span class="name">' + escape(item.name) + '</span> ' +
@@ -33,36 +33,40 @@ const selectizeEmail = (method, params) => {
           return '<div><span class="email">' + escape(item.email) + '</span></div>';
         }
       },
-      option: function(item, escape) {
-        var label = item.name || item.email;
-        var caption = item.name ? item.email : null;
+      option(item, escape) {
+        let label = item.name || item.email;
+        let caption = item.name ? item.email : null;
         return '<div>' +
           '<span class="selectize-label">' + escape(label) + '</span>' +
           (caption ? ' <span class="selectize-caption">&lt;' + escape(caption) + '&gt;</span>' : '') +
         '</div>';
       },
-      option_create: function(data, escape) {
+      option_create(data, escape) {
         return '<div class="create">' + I18n.t("添加") + ' <strong>' + escape(data.input) + '</strong>&hellip;</div>';
       }
     },
-    createFilter: function(input) {
-      var match, regex;
+    createFilter(input) {
+      let match, regex;
 
       // email@address.com
       regex = new RegExp('^' + REGEX_EMAIL + '$');
       match = input.match(regex);
-      if (match) return !this.options.hasOwnProperty(match[0]);
+      if (match) {
+        return !this.options.hasOwnProperty(match[0]);
+      }
 
       // name <email@address.com>
       regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$');
       match = input.match(regex);
-      if (match) return !this.options.hasOwnProperty(match[2]);
+      if (match) {
+        return !this.options.hasOwnProperty(match[2]);
+      }
 
       return false;
     },
     create: true,
-    // create: function(input) {
-    //   var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+    // create(input) {
+    //   let match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
     //   if (match) {
     //     return {
     //       email : match[2],
@@ -86,8 +90,10 @@ const selectizeEmail = (method, params) => {
     //     return false;
     //   }
     // },
-    load: function(query, callback) {
-      if (!query.length) return callback();
+    load(query, callback) {
+      if (!query.length) {
+        return callback();
+      }
 
       Meteor.call(method, query, params, (err, res) => {
         if (err) {
@@ -102,4 +108,4 @@ const selectizeEmail = (method, params) => {
   };
 };
 
-export {selectizeEmail};
+export { selectizeEmail };

@@ -61,7 +61,7 @@ Template.SelectUsersModal.events({
 
     let users = t.selectedUsers.get();
     if (_.find(users, {_id: this._id})) {
-      _.remove(users, u => u._id === this._id);
+      _.remove(users, (u) => u._id === this._id);
     } else {
       users.push(this);
     }

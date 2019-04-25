@@ -2,7 +2,7 @@ import './email-input.html';
 
 Template.afEmailInput.helpers({
   atts() {
-    var atts = _.clone(this.atts);
+    let atts = _.clone(this.atts);
     // Add bootstrap class
     atts = AutoForm.Utility.addClass(atts, 'form-control');
     return atts;

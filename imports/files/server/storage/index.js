@@ -40,7 +40,9 @@ Storage.setup = () => {
   let instance = Instance.get();
   let modules = instance && instance.modules;
   let storage = modules && modules.storage;
-  if (!storage) return false;
+  if (!storage) {
+    return false;
+  }
 
   switch(storage.type) {
   case 'S3':

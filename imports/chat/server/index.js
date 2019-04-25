@@ -3,7 +3,7 @@ Accounts.onLogin(function(attempt) {
   // welcome
   if (ThreadUsers.find({category: 'Chat', userType: 'Users', userId: user._id}).count() === 0) {
     let admin = Instance.admin();
-    if (admin._id != user._id) {
+    if (admin._id !== user._id) {
       let threadId = Threads.startChat(admin, user);
       let thread = Threads.findOne(threadId);
       Threads.addMessage(thread, admin, {

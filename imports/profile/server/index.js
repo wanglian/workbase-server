@@ -29,7 +29,7 @@ Meteor.methods({
 
     let user = Meteor.users.findOne(this.userId);
     let profile = user.profile;
-    let changedSet = _.omitBy(params, (v, k, o) => { return v === profile[k]});
+    let changedSet = _.omitBy(params, (v, k, o) => { return v === profile[k]; });
     if (!_.isEmpty(changedSet)) {
       _.extend(profile, changedSet);
       Users.direct.update(this.userId, {$set: {profile}});
@@ -48,9 +48,13 @@ Meteor.methods({
 });
 
 Meteor.publishComposite("admin.threads", function() {
-  if (!this.userId) return this.ready();
+  if (!this.userId) {
+    return this.ready();
+  }
   let user = Users.findOne(this.userId);
-  if (!user || !user.isAdmin()) return this.ready();
+  if (!user || !user.isAdmin()) {
+    return this.ready();
+  }
 
   return {
     find() {

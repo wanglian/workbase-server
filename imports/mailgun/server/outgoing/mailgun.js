@@ -30,7 +30,7 @@ Meteor.startup(function() {
   let instance = Instance.get();
   let modules = instance && instance.modules;
   let email = modules && modules.email;
-  email && email.type == 'mailgun' && Mailgun.setup(email.mailgun.key, instance.domain);
+  email && email.type === 'mailgun' && Mailgun.setup(email.mailgun.key, instance.domain);
 });
 
 const buildMailgunAttachment = (file) => {
@@ -86,14 +86,14 @@ Mailgun.send = (message) => {
   let threadId = message.threadId;
   let thread = Threads.findOne(threadId);
   let contacts = thread.externalMembers();
-  contacts = _.reject(contacts, c => c.noreply());
+  contacts = _.reject(contacts, (c) => c.noreply());
 
   if (!_.isEmpty(contacts)) {
     let user = message.user();
 
     let params = {
       from:    (message.email && message.email.from) || user.address(),
-      to:      contacts.map(c => c.address()),
+      to:      contacts.map((c) => c.address()),
       subject: buildSubject(thread, message)
     };
 
@@ -124,7 +124,7 @@ Mailgun.send = (message) => {
     let files = message.files();
     if (files && files.count() > 0) {
       _.extend(params, {
-        attachment: files.map(file => buildMailgunAttachment(file))
+        attachment: files.map((file) => buildMailgunAttachment(file))
       });
     }
 

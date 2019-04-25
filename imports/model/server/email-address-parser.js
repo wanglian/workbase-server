@@ -4,7 +4,7 @@ const purgeEmails = (emails) => {
   emails = emails.trim();
   // ending with ',': 'abc@example.com,'
   let length = emails.length;
-  if (emails[length-1] == ',') {
+  if (emails[length-1] === ',') {
     emails = emails.substring(0, length - 1);
   }
   return emails;
@@ -26,7 +26,7 @@ const formatAddress = (emails) => {
   });
   let regex = new RegExp("^[^\"|\'].*(?=<" + EMAIL_REGEX + ">)");
   return emails.split(FORMAT_SEPERATOR).map((email) => {
-    return email.replace(regex, '"' + '$&'.trim() + '" ')
+    return email.replace(regex, '"' + '$&'.trim() + '" ');
   }).join(", ");
 };
 

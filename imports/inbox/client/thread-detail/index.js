@@ -24,10 +24,10 @@ Template.ThreadDetailMembers.events({
     e.stopPropagation();
     let threadId = this._id;
     Modal.show('SelectUsersModal', {
-      excludeIds: t.data.threadUsers().map(tu => tu.userId),
+      excludeIds: t.data.threadUsers().map((tu) => tu.userId),
       callback(selectedUsers) {
         console.log(selectedUsers.length);
-        Meteor.call('addThreadMembers', threadId, selectedUsers.map(u => u._id), (err, res) => {
+        Meteor.call('addThreadMembers', threadId, selectedUsers.map((u) => u._id), (err, res) => {
           if (err) {
             console.log(err);
           } else {

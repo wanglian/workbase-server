@@ -10,7 +10,7 @@ const setLocale = (lng) => {
   I18n.changeLanguage(lng);
   // moment
   moment.locale(lng.toLowerCase());
-}
+};
 
 Meteor.startup(() => {
   // default: browser
@@ -18,7 +18,6 @@ Meteor.startup(() => {
 });
 
 Accounts.onLogin(function(attempt) {
-  // console.log("on login ..");
   let user = Meteor.user();
   setLocale(user.language());
 });

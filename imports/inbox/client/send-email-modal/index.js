@@ -79,10 +79,10 @@ Template.SendEmailModal.helpers({
 
 AutoForm.hooks({
   "send-email-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
-      let fileIds = Files.find({"meta.relations": {$elemMatch: {threadId: null, messageId: null, type: 'file'}}}).map(f => f._id);
+      let fileIds = Files.find({"meta.relations": {$elemMatch: {threadId: null, messageId: null, type: 'file'}}}).map((f) => f._id);
       Meteor.call('sendEmail', insertDoc.to, insertDoc.subject, insertDoc.content, fileIds, (err, res) => {
         if (err) {
           console.log(err);
@@ -95,7 +95,7 @@ AutoForm.hooks({
         }
       });
     },
-    onError: function(formType, error) {
+    onError(formType, error) {
       Swal({
         title: error.message,
         type: "error"

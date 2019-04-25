@@ -17,7 +17,7 @@ FilesController = ApplicationController.extend({
   subscriptions() {
     this.filesSub = FileSubs.subscribe("files", {limit: this.limit()});
   },
-  limit: function() {
+  limit() {
     return parseInt(this.params.query.limit) || this.perPage;
   },
   data() {

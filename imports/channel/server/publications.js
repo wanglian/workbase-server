@@ -1,6 +1,8 @@
 // query current user's channels
 Meteor.publishComposite('channels', function() {
-  if (!this.userId) return this.ready();
+  if (!this.userId) {
+    return this.ready();
+  }
 
   return {
     find() {
@@ -9,7 +11,7 @@ Meteor.publishComposite('channels', function() {
     children: [
       {
         find(channelUser) {
-          return Users.find({_id: channelUser.channelId}, {fields: {emails: 1, profile: 1}})
+          return Users.find({_id: channelUser.channelId}, {fields: {emails: 1, profile: 1}});
         }
       }
     ]
@@ -22,7 +24,9 @@ Meteor.publish('channel.list', function() {
 
 Meteor.publishComposite('channel.members', function(channelId) {
   check(channelId, String);
-  if (!this.userId) return this.ready();
+  if (!this.userId) {
+    return this.ready();
+  }
 
   return {
     find() {
@@ -36,7 +40,7 @@ Meteor.publishComposite('channel.members', function(channelId) {
         children: [
           {
             find(channelUser) {
-              return Users.find({_id: channelUser.userId}, {fields: {emails: 1, profile: 1}})
+              return Users.find({_id: channelUser.userId}, {fields: {emails: 1, profile: 1}});
             }
           }
         ]

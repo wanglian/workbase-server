@@ -4,7 +4,7 @@
 // check: one-one email
 isOneToOne = (toUser, toUsers, ccUsers) => {
   let users = _.compact(_.concat([toUser], toUsers, ccUsers));
-  let userIds = _.uniq(users.map(u => u._id));
+  let userIds = _.uniq(users.map((u) => u._id));
   if (userIds.length === 2 && (!ccUsers || ccUsers.length === 0)) {
     // bcc/forward
     if (toUsers && toUsers.length === 1) return true;
@@ -13,7 +13,7 @@ isOneToOne = (toUser, toUsers, ccUsers) => {
 };
 // query thread between users
 findThreadIdBetweenUsers = (from, to) => {
-  let threadIds = ThreadUsers.find({userType: from.className(), userId: from._id}).map(tu => tu.threadId);
+  let threadIds = ThreadUsers.find({userType: from.className(), userId: from._id}).map((tu) => tu.threadId);
   let tu = ThreadUsers.findOne({threadId: {$in: threadIds}, userType: to.className(), userId: to._id});
   return tu && tu.threadId;
 };
@@ -103,8 +103,8 @@ parseMailgunEmail = async (doc) => {
   } else {
     Threads.ensureMember(thread, fromUser);
     Threads.ensureMember(thread, toUser);
-    toUsers && toUsers.forEach(user => Threads.ensureMember(thread, user));
-    ccUsers && ccUsers.forEach(user => Threads.ensureMember(thread, user));
+    toUsers && toUsers.forEach((user) => Threads.ensureMember(thread, user));
+    ccUsers && ccUsers.forEach((user) => Threads.ensureMember(thread, user));
   }
 
   // === content
@@ -124,7 +124,7 @@ parseMailgunEmail = async (doc) => {
     if (cidMap) {
       cidMap = JSON.parse(cidMap);
       _.each(cidMap, (url, cid) => {
-        let index = attachments.findIndex((a) => {return a.url === url;});
+        let index = attachments.findIndex((a) => { return a.url === url; });
         // <RqCqStfKSrKJLrgE4.jpeg>
         attachments[index].cid = cid.match(/<(.*?)>/i)[1];
       });

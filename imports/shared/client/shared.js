@@ -33,7 +33,9 @@ Template.Shared.onRendered(function() {
 
 Template.Shared.helpers({
   messages() {
-    if (!this.thread) return;
+    if (!this.thread) {
+      return;
+    }
     let condition = {threadId: this.thread._id, parentId: {$exists: false}};
     if (this.user) {
       _.extend(condition, {userId: this.user._id});
@@ -47,7 +49,7 @@ Template.SharedMessage.helpers({
     return this.hasReact(Meteor.userId(), 'like');
   },
   likeUsers() {
-    return this.reacts && this.reacts.like && this.reacts.like.map(id => Users.findOne(id));
+    return this.reacts && this.reacts.like && this.reacts.like.map((id) => Users.findOne(id));
   },
   comments() {
     return Messages.find({parentId: this._id}, {sort: {createdAt: 1}});

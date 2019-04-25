@@ -37,7 +37,9 @@ Meteor.methods({
         Accounts.removeEmail(id, channel.email());
         Accounts.addEmail(id, email);
       }
-      if (name !== channel.name()) Channels.update(id, {$set: {"profile.name": name}});
+      if (name !== channel.name()) {
+        Channels.update(id, {$set: {"profile.name": name}});
+      }
 
       let admin = Users.findOne(this.userId);
       channel.findOne(id);

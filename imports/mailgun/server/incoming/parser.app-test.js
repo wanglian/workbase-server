@@ -12,7 +12,7 @@ describe('parse Mailgun email', function() {
     user = Users.findOne(instance.adminId);
   });
 
-  it('one to one: recipient == to', async function() {
+  it('one to one: recipient === to', async function() {
     let email = Factory.create('email');
     email.emailId = email.params["Message-Id"];
     email.params["To"] = user.email();
@@ -44,7 +44,7 @@ describe('parse Mailgun email', function() {
     expect(message.userType).to.eq("Contacts");
   });
 
-  it('one to one: recipient != to', async function() {
+  it('one to one: recipient !== to', async function() {
     let email = Factory.create('email');
     email.emailId = email.params["Message-Id"];
     email.params["recipient"] = user.email();

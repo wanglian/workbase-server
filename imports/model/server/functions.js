@@ -88,7 +88,7 @@ Contacts.findOrCreateByAddress = (attrs) => {
           name: attrs.name() || attrs.user(),
           noreply
         }
-      })
+      });
       contact = Contacts.findOne(contactId);
     }
     return contact;
@@ -101,6 +101,6 @@ Contacts.parseOne = (address) => {
 };
 
 Contacts.parse = (address) => {
-  let users = parseEmailAddress(address).map(attrs => Contacts.findOrCreateByAddress(attrs));
+  let users = parseEmailAddress(address).map((attrs) => Contacts.findOrCreateByAddress(attrs));
   return _.compact(users);
 };

@@ -6,7 +6,7 @@ Template.ServerPicker.events({
     let nw = t.$(".server-address").val();
 
     window.localStorage.setItem("__root_url", nw);
-    if(old != nw){
+    if(old !== nw){
       console.log("Reload for server change!!");
       window.location.reload();
     }
@@ -15,7 +15,7 @@ Template.ServerPicker.events({
 
 Template.ServerPicker.helpers({
   selected() {
-    return window.localStorage.getItem("__root_url") == this.valueOf()? {selected: true} : {};
+    return window.localStorage.getItem("__root_url") === this.valueOf()? {selected: true} : { };
   },
   currentServer() {
     return window.localStorage.getItem("__root_url");

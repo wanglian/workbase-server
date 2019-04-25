@@ -11,6 +11,6 @@ ThreadCategories.add("Email", {
       ThreadActions.star,
       ThreadActions.spam,
       ThreadActions.archive
-    ]
+    ];
   }
 });

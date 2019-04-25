@@ -19,18 +19,18 @@ Meteor.startup(function() {
     });
 
     cordova.plugins.diagnostic.isCameraAuthorized(
-      authorized => {
+      (authorized) => {
         if (!authorized) {
           cordova.plugins.diagnostic.requestCameraAuthorization(
-            granted => {
+            (granted) => {
               console.log( "Authorization request for camera use was " +
                 (granted ? "granted" : "denied"));
             },
-            error => { console.error(error); }
+            (error) => { console.error(error); }
           );
         }
       },
-      error => { console.error(error); }
+      (error) => { console.error(error); }
     );
 
     document.addEventListener("deviceready", () => {

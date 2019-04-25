@@ -232,7 +232,7 @@ Template.Setup.helpers({
 
 AutoForm.hooks({
   "setup-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
       Meteor.call('setupAdmin', insertDoc.name, insertDoc.email, insertDoc.password, (err, res) => {

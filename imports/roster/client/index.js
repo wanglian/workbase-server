@@ -30,7 +30,7 @@ ThreadCategories.add("Roster", {
           });
         }
       }
-    ]
+    ];
   }
 });
 
@@ -40,7 +40,7 @@ RosterController = ApplicationController.extend({
   subscriptions() {
     // this.subscribe("roster");
   },
-  limit: function() {
+  limit() {
     return parseInt(this.params.query.limit) || this.perPage;
   },
   userId() {

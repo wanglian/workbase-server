@@ -5,12 +5,14 @@ Threads.before.insert(function(userId, doc) {
 });
 
 const channelReplied = (message) => {
-  if (message.internal) return false;
+  if (message.internal) {
+    return false;
+  }
 
   let tu = ThreadUsers.findOne({threadId: message.threadId, userType: 'Channels'});
   if (tu) { // is channel
     let thread = Threads.findOne(message.threadId);
-    if (thread.userId != message.userId) { // from user
+    if (thread.userId !== message.userId) { // from user
       return tu;
     }
   }
@@ -26,7 +28,7 @@ Messages.before.insert(function(userId, doc) {
     let user = Users.findOne(doc.userId);
     doc.email = {
       from: `${user.name()} <${channel.email()}>`
-    }
+    };
   }
 });
 

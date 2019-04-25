@@ -89,7 +89,7 @@ const createThumbnail = (collection, fileRef, definition, cb) => {
                       }
 
                       fileRef.versions[definition.name] = {
-                        path: path,
+                        path,
                         size: stat.size,
                         type: fileRef.type,
                         extension: fileRef.extension,

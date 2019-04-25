@@ -22,6 +22,6 @@ ThreadCategories.add("Group", {
       ThreadActions.notes,
       ThreadActions.star,
       ThreadActions.archive
-    ]
+    ];
   }
 });

@@ -36,7 +36,7 @@ ThreadCategories.add("AdminLiveChat", {
 
         }
       }
-    ]
+    ];
   }
 });
 

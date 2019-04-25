@@ -72,7 +72,7 @@ describe('ValidatedMethods', function() {
   });
 
   it("updateMessage - should update message's content", function() {
-    let content = faker.lorem.paragraph()
+    let content = faker.lorem.paragraph();
     updateMessage._execute({userId}, {messageId, content});
     let message = Messages.findOne(messageId);
     expect(message.content).to.eq(content);

@@ -5,8 +5,8 @@ ThreadsIndex = new Index({
   fields: ['subject'],
   defaultSearchOptions: {limit: 15},
   engine: new MongoDBEngine({
-    sort: () => { updatedAt: -1 },
-    clientSort: () => { updatedAt: -1 },
+    sort: {updatedAt: -1},
+    clientSort: { updatedAt: -1 },
     permission: (options) => options.userId,
     selector(searchObject, options, aggregation) {
       // retrieve the default selector
@@ -15,7 +15,7 @@ ThreadsIndex = new Index({
       selector.category = {$nin: ['Account', 'Shared']};
       selector.scope = {$ne: 'admin'};
       // options.search.userId contains the userId of the logged in user
-      let threadIds = ThreadUsers.find({userType: 'Users', userId: options.search.userId}).map(tu => tu.threadId);
+      let threadIds = ThreadUsers.find({userType: 'Users', userId: options.search.userId}).map((tu) => tu.threadId);
       selector._id = {$in: threadIds};
       // console.log(selector['$or'][0].subject);
       return selector;

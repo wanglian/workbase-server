@@ -2,7 +2,7 @@ import './roster-modal.html';
 
 import SimpleSchema from 'simpl-schema';
 
-const build_roster_schema = () => {
+const buildRosterSchema = () => {
   return new SimpleSchema({
     name: {
       type: String,
@@ -72,7 +72,7 @@ Template.AddRosterModal.helpers({
     return Users;
   },
   formSchema() {
-    return build_roster_schema();
+    return buildRosterSchema();
   }
 });
 
@@ -81,7 +81,7 @@ Template.EditRosterModal.helpers({
     return Users;
   },
   formSchema() {
-    return build_roster_schema();
+    return buildRosterSchema();
   }
 });
 
@@ -140,7 +140,7 @@ Template.EditContactModal.helpers({
 
 AutoForm.hooks({
   "add-roster-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
       Meteor.call('addMember', insertDoc.email, insertDoc.name, insertDoc.password, insertDoc.title, (err, res) => {
@@ -156,7 +156,7 @@ AutoForm.hooks({
     }
   },
   "edit-roster-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
       Meteor.call('editMember', currentDoc._id, insertDoc.email, insertDoc.name, insertDoc.password, insertDoc.title, (err, res) => {
@@ -171,7 +171,7 @@ AutoForm.hooks({
     }
   },
   "edit-contact-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
       Meteor.call('editContact', currentDoc._id, insertDoc, (err, res) => {

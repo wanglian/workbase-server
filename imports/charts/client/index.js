@@ -68,6 +68,6 @@ ThreadCategories.add("Settings", {
           });
         }
       }
-    ]
+    ];
   }
 });

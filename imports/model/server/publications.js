@@ -5,7 +5,9 @@ import { ThreadUsers } from '../thread-users';
 import { Files } from '/imports/files/server/files';
 
 Meteor.publish('instance', function() {
-  if (!this.userId) return this.ready();
+  if (!this.userId) {
+    return this.ready();
+  }
 
   let user = Users.findOne(this.userId);
   if (user.isAdmin()) {
@@ -22,7 +24,9 @@ Meteor.publish('instance', function() {
 });
 
 Meteor.publish('counters', function() {
-  if (!this.userId) return this.ready();
+  if (!this.userId) {
+    return this.ready();
+  }
 
   Counts.publish(this, 'count-unread-inbox', ThreadUsers.find({
     scope:    'private',
@@ -195,7 +199,7 @@ Meteor.publishComposite("thread.messages", function(threadId, options) {
         }
       }
     ]
-  }
+  };
 });
 
 Meteor.publishComposite("thread.messages.pin", function(threadId, options) {
@@ -229,7 +233,7 @@ Meteor.publishComposite("thread.messages.pin", function(threadId, options) {
         }
       }
     ]
-  }
+  };
 });
 
 Meteor.publish("roster", function() {

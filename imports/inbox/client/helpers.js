@@ -4,9 +4,9 @@ Template.registerHelper('threadIcon', (thread) => {
     return false; // happens when data not ready
   }
   if (thread.read) {
-    return typeof(c.icon) == "function" ? c.icon(thread) : c.icon;
+    return typeof(c.icon) === "function" ? c.icon(thread) : c.icon;
   } else {
-    return typeof(c.iconUnread) == "function" ? c.iconUnread(thread) : c.iconUnread;
+    return typeof(c.iconUnread) === "function" ? c.iconUnread(thread) : c.iconUnread;
   }
 });
 
@@ -15,7 +15,7 @@ Template.registerHelper('threadTitle', (thread, detail) => {
   if (!c) {
     return false; // happens when data not ready
   }
-  return typeof(c.title) == "function" ? c.title(thread, detail) : thread.subject;
+  return typeof(c.title) === "function" ? c.title(thread, detail) : thread.subject;
 });
 
 Template.registerHelper('threadListTemplate', (thread, mode) => {
@@ -29,7 +29,9 @@ Template.registerHelper('threadListTemplate', (thread, mode) => {
 });
 
 Template.registerHelper('threadCanReply', (thread) => {
-  if (!thread.category) return false;
+  if (!thread.category) {
+    return false;
+  }
   if (thread.category === 'Chat') {
     let chat = thread.chat();
     return chat && chat.noreply() ? false : true;

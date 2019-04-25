@@ -55,7 +55,7 @@ Template.SelectThreadModal.events({
           });
         } else if (count > 1) {
           // group
-          let userIds = selectedUsers.map(u => u._id);
+          let userIds = selectedUsers.map((u) => u._id);
           userIds.push(Meteor.userId());
           Meteor.call("startGroup", userIds, (err, res) => {
             if (err) {

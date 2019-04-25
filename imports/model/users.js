@@ -19,7 +19,7 @@ Users.helpers({
     return this.profile && this.profile.language || 'en-US';
   },
   internal() {
-    return this.className() != 'Contacts';
+    return this.className() !== 'Contacts';
   },
   internalName() {
     return this.internal() ? this.name() : this.address();

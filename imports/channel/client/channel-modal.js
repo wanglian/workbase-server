@@ -2,7 +2,7 @@ import './channel-modal.html';
 
 import SimpleSchema from 'simpl-schema';
 
-const build_channel_form_schema = () => {
+const buildChannelFormSchema = () => {
   return new SimpleSchema({
     name: {
       type: String,
@@ -60,7 +60,7 @@ Template.AddChannelModal.helpers({
     return Users;
   },
   formSchema() {
-    return build_channel_form_schema();
+    return buildChannelFormSchema();
   }
 });
 
@@ -69,7 +69,7 @@ Template.EditChannelModal.helpers({
     return Users;
   },
   formSchema() {
-    return build_channel_form_schema();
+    return buildChannelFormSchema();
   }
 });
 
@@ -85,7 +85,7 @@ Template.ChannelMembersModal.helpers({
     return ChannelUsers.find({channelId: this._id});
   },
   users() {
-    let memberIds = ChannelUsers.find({channelId: this._id}).map(cu => cu.userId);
+    let memberIds = ChannelUsers.find({channelId: this._id}).map((cu) => cu.userId);
     return Users.find({_id: {$nin: memberIds}, "profile.type": 'Users'}, {limit: 20}); // TODO: search
   }
 });
@@ -103,7 +103,7 @@ Template.ChannelMembersModal.events({
 
 AutoForm.hooks({
   "add-channel-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
       Meteor.call('addChannel', insertDoc.email, insertDoc.name, insertDoc.title, (err, res) => {
@@ -118,7 +118,7 @@ AutoForm.hooks({
     }
   },
   "edit-channel-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
       Meteor.call('editChannel', currentDoc._id, insertDoc.email, insertDoc.name, (err, res) => {

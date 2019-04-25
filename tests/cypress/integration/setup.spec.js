@@ -1,7 +1,7 @@
 describe('System initialization', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
-    cy.window().then(win => {
+    cy.window().then((win) => {
       win.Meteor.call("resetDatabase");
     });
   });
@@ -37,7 +37,7 @@ describe('System initialization', () => {
 
     cy.url().should('eq', 'http://localhost:3000/inbox');
 
-    cy.window().then(win => {
+    cy.window().then((win) => {
       // this allows accessing the window object within the browser
       const user = win.Meteor.user();
       expect(user).to.exist;
@@ -70,7 +70,7 @@ describe('System initialization', () => {
 
     cy.url().should('eq', 'http://localhost:3000/inbox');
 
-    cy.window().then(win => {
+    cy.window().then((win) => {
       // this allows accessing the window object within the browser
       const user = win.Meteor.user();
       expect(user).to.exist;

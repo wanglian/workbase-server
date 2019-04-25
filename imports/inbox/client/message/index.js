@@ -61,7 +61,7 @@ Template.Message.events({
     } else {
       if ($(m).hasClass("fold")) {
         $(m).toggleClass("fold");
-        if ($(m).find(".message-content").length == 0) {
+        if ($(m).find(".message-content").length === 0) {
           Blaze.renderWithData(Template.MessageContent, t.data, $(m)[0]);
         }
       } else {
@@ -74,14 +74,15 @@ Template.Message.events({
 Template.MessageHeaderInfo.helpers({
   userName() {
     let user = this.user();
-    if (!user) return;
+    if (!user) {
+      return;
+    }
 
     switch(this.userType) {
     case 'Users':
       return user.name();
     default:
-      if (this.email) return this.email.from;
-      return user.address();
+      return this.email && this.email.from || user.address();
     }
   }
 });
@@ -103,7 +104,7 @@ Template.MessageContent.helpers({
   templateData() {
     return {
       message: this
-    }
+    };
   }
 });
 

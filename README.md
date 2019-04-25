@@ -22,7 +22,7 @@ You'll have the following features and even more
 * Channels
 * Mobile App
 
-## Why WorkBase? ##
+## Why WorkBase ##
 
 Source: [COI - Chat Over IMAP](https://www.coi-dev.org/)
 

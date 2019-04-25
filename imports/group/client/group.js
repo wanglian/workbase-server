@@ -8,15 +8,15 @@ Template.LinkToCreateGroup.events({
 
     let users = t.data.users;
     Modal.show('SelectUsersModal', {
-      excludeIds: users.map(u => u._id),
+      excludeIds: users.map((u) => u._id),
       callback(selectedUsers) {
-        console.log(selectedUsers.length);
-        let userIds = _.union(users.map(u => u._id), selectedUsers.map(u => u._id));
+        // console.log(selectedUsers.length);
+        let userIds = _.union(users.map((u) => u._id), selectedUsers.map((u) => u._id));
         Meteor.call("startGroup", userIds, (err, res) => {
           if (err) {
             console.log(err);
           } else {
-            console.log(res);
+            // console.log(res);
             Router.go('inbox', {_id: res});
           }
           $('#SelectUsersModal button[class=close]').click();

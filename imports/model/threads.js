@@ -10,10 +10,10 @@ Threads.helpers({
     return ThreadUsers.find({threadId: this._id}, {fields: {read: 0}});
   },
   members() {
-    return ThreadUsers.find({threadId: this._id}).map(tu => tu.user());
+    return ThreadUsers.find({threadId: this._id}).map((tu) => tu.user());
   },
   externalMembers() {
-    return ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).map(tu => tu.user());
+    return ThreadUsers.find({threadId: this._id, userType: 'Contacts'}).map((tu) => tu.user());
   },
   hasReplyableExternalMembers() {
     return this.externalMembers().some((contact) => {
@@ -34,7 +34,7 @@ Threads.helpers({
   actions() {
     clientOnly();
     let c = ThreadCategories.get(this.category);
-    return typeof(c.actions) == "function" ? c.actions(this) : [];
+    return typeof(c.actions) === "function" ? c.actions(this) : [];
   },
   lastMessage() {
     return Messages.findOne(this.lastMessageId);

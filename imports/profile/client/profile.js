@@ -83,7 +83,6 @@ Template.ProfileModal.helpers({
 
 Template.ProfileModal.events({
   "keyup form textarea[name=signature]"(e, t) {
-    console.log("ddd");
     t.signature.set($(e.target).val());
   },
   "change form select[name=language]"(e, t) {
@@ -138,7 +137,7 @@ Template.ProfileModal.events({
 
 AutoForm.hooks({
   "profile-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
       Meteor.call('updateProfile', insertDoc, (err, res) => {
@@ -161,10 +160,10 @@ AutoForm.hooks({
     }
   },
   "change-password-form": {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+    onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
-      if (insertDoc.password != insertDoc.passwordConfirm) {
+      if (insertDoc.password !== insertDoc.passwordConfirm) {
         Swal({
           title: I18n.t("profile_password_not_match"),
           type: "warning"

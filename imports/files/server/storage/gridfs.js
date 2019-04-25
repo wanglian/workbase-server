@@ -16,7 +16,7 @@ const uploadToGridFS = (collection, fileRef) => {
 
     fs.createReadStream(fileRef.versions[versionName].path).pipe(writeStream);
 
-    writeStream.on('close', Meteor.bindEnvironment(file => {
+    writeStream.on('close', Meteor.bindEnvironment((file) => {
       const property = `versions.${versionName}.meta.gridFsFileId`;
 
       // If we store the ObjectID itself, Meteor (EJSON?) seems to convert it to a
@@ -32,7 +32,7 @@ const streamFromGridFS = (collection, http, fileRef, version) => {
   const _id = (fileRef.versions[version] && fileRef.versions[version].meta || {}).gridFsFileId;
   if (_id) {
     const readStream = gfs.createReadStream({ _id });
-    readStream.on('error', err => { throw err; });
+    readStream.on('error', (err) => { throw err; });
     readStream.pipe(http.response);
   }
   return Boolean(_id); // Serve file from either GridFS or FS if it wasn't uploaded yet
@@ -40,10 +40,16 @@ const streamFromGridFS = (collection, http, fileRef, version) => {
 
 const removeFromGridFS = (collection, search) => {
   let cursor = collection.collection.find(search);
-  cursor.forEach(fileRef => {
-    Object.keys(fileRef.versions).forEach(versionName => {
+  cursor.forEach((fileRef) => {
+    Object.keys(fileRef.versions).forEach((versionName) => {
       const _id = (fileRef.versions[versionName].meta || {}).gridFsFileId;
-      if (_id) gfs.remove({ _id }, err => { if (err) throw err; });
+      if (_id) {
+        gfs.remove({ _id }, (err) => {
+          if (err) {
+            throw err;
+          }
+        });
+      }
     });
   });
 };

@@ -1,20 +1,19 @@
 const sendEmail = (message) => {
   // 忽略：内部消息和来自外部的消息
-  if (message.userType === 'Contacts' || message.internal) return;
+  if (message.userType === 'Contacts' || message.internal) {
+    return;
+  }
   // 忽略：日志
-  if (message.contentType === 'log') return;
+  if (message.contentType === 'log') {
+    return;
+  }
 
-  new Promise((resolve, reject) => {
-    try {
-      Mailgun.send(message);
-      resolve();
-    } catch (e) {
-      reject(e);
-    }
-  }).catch((e) => {
+  try {
+    Mailgun.send(message);
+  } catch (e) {
     console.log("[mailgun] send error:");
     console.log(e);
-  });
+  }
 };
 
 Meteor.methods({
@@ -32,7 +31,7 @@ Meteor.methods({
       let thread = Threads.findOne(threadId);
 
       Threads.ensureMember(thread, user);
-      contacts.forEach(c => Threads.ensureMember(thread, c));
+      contacts.forEach((c) => Threads.ensureMember(thread, c));
       let messageId = Threads.addMessage(thread, user, {
         content,
         fileIds

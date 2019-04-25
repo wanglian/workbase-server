@@ -24,7 +24,7 @@ Meteor.methods({
     let thread = Threads.findOne(threadId);
     let threadUser = ThreadUsers.findOne({threadId, userId, userType: 'Users'});
 
-    if (thread && thread.scope != 'private' || threadUser) {
+    if (thread && thread.scope !== 'private' || threadUser) {
       return Threads.addMessage(thread, user, params);
     }
   },
@@ -32,7 +32,9 @@ Meteor.methods({
     check(messageId, String);
 
     let message = Messages.findOne(messageId);
-    if (message.createdAt < moment().subtract(2, 'minutes').toDate()) return false;
+    if (message.createdAt < moment().subtract(2, 'minutes').toDate()) {
+      return false;
+    }
 
     let user = Users.findOne(this.userId);
     let thread = Threads.findOne(message.threadId);
@@ -51,21 +53,21 @@ Meteor.methods({
       {"profile.name": {$regex: keyword, $options: 'i'}},
       {"emails.address": {$regex: keyword, $options: 'i'}}
     ]};
-    return Users.find(search, {limit: 12}).map(c => [{name: c.name(), email: c.email()}]);
+    return Users.find(search, {limit: 12}).map((c) => [{name: c.name(), email: c.email()}]);
   },
   queryContactsForThread(keyword, params) {
     check(keyword, String);
     check(params, Object);
 
     let threadId = params.id;
-    let userIds = ThreadUsers.find({threadId, userType: 'Users'}).map(tu => tu.userId);
-    let contactIds = ThreadUsers.find({threadId, userType: 'Contacts'}).map(tu => tu.userId);
+    let userIds = ThreadUsers.find({threadId, userType: 'Users'}).map((tu) => tu.userId);
+    let contactIds = ThreadUsers.find({threadId, userType: 'Contacts'}).map((tu) => tu.userId);
 
     let search = {$or: [
       {"profile.name": {$regex: keyword, $options: 'i'}},
       {"emails.address": {$regex: keyword, $options: 'i'}}
     ]};
-    return Users.find(_.extend(search, {_id: {$nin: userIds}}), {limit: 5}).map(c => [{name: c.name(), email: c.email()}]);
+    return Users.find(_.extend(search, {_id: {$nin: userIds}}), {limit: 5}).map((c) => [{name: c.name(), email: c.email()}]);
   },
   addThreadMembers(threadId, userIds) {
     check(threadId, String);
@@ -75,10 +77,10 @@ Meteor.methods({
     // TODO: 权限
 
     let thread = Threads.findOne(threadId);
-    let members = userIds.map(userId => Users.findOne(userId));
-    members.forEach(c => Threads.ensureMember(thread, c));
+    let members = userIds.map((userId) => Users.findOne(userId));
+    members.forEach((c) => Threads.ensureMember(thread, c));
 
-    logThread(thread, user, {action: "thread.members.add", params: {count: members.length, emails: members.map(m => m.address()).join(", ")}});
+    logThread(thread, user, {action: "thread.members.add", params: {count: members.length, emails: members.map((m) => m.address()).join(", ")}});
     return members.length;
   },
   removeThreadMember(threadId, userType, userId) {
