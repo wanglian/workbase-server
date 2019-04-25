@@ -6,6 +6,7 @@ It's based on email protocol which means it can connect anyone with an email add
 [![Project Dependencies](https://david-dm.org/wanglian/workbase-server.svg)](https://david-dm.org/wanglian/workbase-server)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/47a8010c9ee64655b3fbc1673981b236)](https://app.codacy.com/app/wanglian/workbase-server?utm_source=github.com&utm_medium=referral&utm_content=wanglian/workbase-server&utm_campaign=Badge_Grade_Dashboard)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3cab8d81530e76baa699/maintainability)](https://codeclimate.com/github/wanglian/workbase-server/maintainability)
+[![GPL 3.0 License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](./LICENSE)
 
 * [Install](./docs/install.md)
 * [Install - 中文](./docs/install-zh-CN.md)
