@@ -1,5 +1,22 @@
 import '../account';
 
+const ensureAccountThread = (user) => {
+  let thread = Threads.findOne({category: 'Account', userId: user._id});
+  if (!thread) {
+    let threadId = Threads.create(user, 'Account', 'thread_my_account');
+    thread = Threads.findOne(threadId);
+  }
+  Threads.ensureMember(thread, user);
+  return thread;
+};
+const logAccountAction = (user, content) => {
+  let thread = ensureAccountThread(user);
+  Threads.addMessage(thread, user, {
+    contentType: 'log',
+    content
+  });
+};
+
 Meteor.methods({
   updateProfile(params) {
     check(params, {
@@ -70,23 +87,6 @@ Meteor.publishComposite("admin.threads", function() {
     ]
   };
 });
-
-const ensureAccountThread = (user) => {
-  let thread = Threads.findOne({category: 'Account', userId: user._id});
-  if (!thread) {
-    let threadId = Threads.create(user, 'Account', 'thread_my_account');
-    thread = Threads.findOne(threadId);
-  }
-  Threads.ensureMember(thread, user);
-  return thread;
-};
-const logAccountAction = (user, content) => {
-  let thread = ensureAccountThread(user);
-  Threads.addMessage(thread, user, {
-    contentType: 'log',
-    content
-  });
-};
 
 Accounts.onLogin(function(attempt) {
   let user = Users.findOne(attempt.user._id);

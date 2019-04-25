@@ -36,7 +36,7 @@ Template.Thread.onRendered(function() {
       }, 2000);
     }
     if (data && data._id) {
-      if (data._id != threadId) {
+      if (data._id !== threadId) {
         // reset pagination
         threadId = data._id;
         console.log("reset limit - " + threadId);

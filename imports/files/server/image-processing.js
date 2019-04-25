@@ -6,21 +6,6 @@ const bound = Meteor.bindEnvironment((callback) => {
   return callback();
 });
 
-// size: {name, width, crop}
-const createThumbnails = (collection, fileRef, definitions) => {
-  return Promise.all(definitions.map((def) => {
-    return new Promise(function(resolve, reject) {
-      try {
-        createThumbnail(collection, fileRef, def, () => {
-          resolve();
-        });
-      } catch (e) {
-        reject(e);
-      }
-    });
-  }));
-};
-
 const createThumbnail = (collection, fileRef, definition, cb) => {
   check(fileRef, Object);
   check(definition, {
@@ -137,6 +122,21 @@ const createThumbnail = (collection, fileRef, definition, cb) => {
     });
   });
   return true;
+};
+
+// size: {name, width, crop}
+const createThumbnails = (collection, fileRef, definitions) => {
+  return Promise.all(definitions.map((def) => {
+    return new Promise(function(resolve, reject) {
+      try {
+        createThumbnail(collection, fileRef, def, () => {
+          resolve();
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }));
 };
 
 export default createThumbnails;

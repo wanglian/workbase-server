@@ -1,3 +1,11 @@
+const logChannelAdmin = (admin, content) => {
+  let thread = Threads.findOne({category: 'Channel'});
+  Threads.addMessage(thread, admin, {
+    contentType: 'log',
+    content
+  });
+};
+
 Meteor.methods({
   addChannel(email, name) {
     check(name, String);
@@ -25,11 +33,11 @@ Meteor.methods({
     if (id) {
       let prev = channel.address();
 
-      if (email != channel.email()) {
+      if (email !== channel.email()) {
         Accounts.removeEmail(id, channel.email());
         Accounts.addEmail(id, email);
       }
-      if (name != channel.name()) Channels.update(id, {$set: {"profile.name": name}});
+      if (name !== channel.name()) Channels.update(id, {$set: {"profile.name": name}});
 
       let admin = Users.findOne(this.userId);
       channel.findOne(id);
@@ -77,11 +85,3 @@ Meteor.methods({
     });
   }
 });
-
-const logChannelAdmin = (admin, content) => {
-  let thread = Threads.findOne({category: 'Channel'});
-  Threads.addMessage(thread, admin, {
-    contentType: 'log',
-    content
-  });
-};

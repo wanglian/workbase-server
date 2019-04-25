@@ -1,22 +1,5 @@
 const emailParser = require('address-rfc2822');
 
-/**
- * Parse emails from string
- * @param  {String} emails
- * @return [{Address}] Address object by address-rfc2822
- */
-export const parseEmailAddress = (emails) => {
-  emails = purgeEmails(emails);
-  let result;
-  try {
-    result = emailParser.parse(emails);
-  } catch (e) {
-    emails = formatAddress(emails);
-    result = emailParser.parse(emails);
-  }
-  return result;
-};
-
 const purgeEmails = (emails) => {
   emails = emails.trim();
   // ending with ',': 'abc@example.com,'
@@ -45,4 +28,21 @@ const formatAddress = (emails) => {
   return emails.split(FORMAT_SEPERATOR).map((email) => {
     return email.replace(regex, '"' + '$&'.trim() + '" ')
   }).join(", ");
+};
+
+/**
+ * Parse emails from string
+ * @param  {String} emails
+ * @return [{Address}] Address object by address-rfc2822
+ */
+export const parseEmailAddress = (emails) => {
+  emails = purgeEmails(emails);
+  let result;
+  try {
+    result = emailParser.parse(emails);
+  } catch (e) {
+    emails = formatAddress(emails);
+    result = emailParser.parse(emails);
+  }
+  return result;
 };

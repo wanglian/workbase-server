@@ -29,24 +29,8 @@ Meteor.startup(function() {
   Push.debug = true;
 });
 
-Messages.after.insert(function(userId, doc) {
-  if (Meteor.isAppTest) return;
-  let message = this.transform();
-
-  ThreadUsers.find({threadId: message.threadId, userType: 'Users', userId: {$ne: message.userId}}).forEach((tu) => {
-    if (tu.spam) return;
-
-    pushToUser(tu.user(), message).then((result) => {
-      // console.log("[push] " + tu.userId + ' - ' + message._id);
-    }).catch((e) => {
-      console.log("Push error:");
-      console.log(e);
-    });
-  });
-});
-
 const pushToUser = (to, message) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     try {
       let thread = message.thread();
       let from   = message.user();
@@ -103,3 +87,18 @@ const pushToUser = (to, message) => {
   });
 };
 
+Messages.after.insert(function(userId, doc) {
+  if (Meteor.isAppTest) return;
+  let message = this.transform();
+
+  ThreadUsers.find({threadId: message.threadId, userType: 'Users', userId: {$ne: message.userId}}).forEach((tu) => {
+    if (tu.spam) return;
+
+    pushToUser(tu.user(), message).then((result) => {
+      // console.log("[push] " + tu.userId + ' - ' + message._id);
+    }).catch((e) => {
+      console.log("Push error:");
+      console.log(e);
+    });
+  });
+});

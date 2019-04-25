@@ -1,3 +1,11 @@
+const logUserAdmin = (admin, content) => {
+  let thread = Threads.findOne({category: 'Roster'});
+  Threads.addMessage(thread, admin, {
+    contentType: 'log',
+    content
+  });
+}
+
 Meteor.methods({
   addMember(email, name, password, title) {
     check(name,  String);
@@ -79,26 +87,18 @@ Meteor.methods({
 
     let contact = Contacts.findOne(id);
     let modifier = {};
-    if (params.name != contact.name()) _.extend(modifier, {"profile.name": params.name});
-    if (params.title != contact.profile.title) _.extend(modifier, {"profile.title": params.title || ""});
-    if (params.company != contact.profile.company) _.extend(modifier, {"profile.company": params.company || ""});
-    if (params.noreply != contact.profile.noreply) _.extend(modifier, {"profile.noreply": params.noreply});
+    if (params.name !== contact.name()) _.extend(modifier, {"profile.name": params.name});
+    if (params.title !== contact.profile.title) _.extend(modifier, {"profile.title": params.title || ""});
+    if (params.company !== contact.profile.company) _.extend(modifier, {"profile.company": params.company || ""});
+    if (params.noreply !== contact.profile.noreply) _.extend(modifier, {"profile.noreply": params.noreply});
 
     if (!_.isEmpty(modifier)) {
       Contacts.update(id, {$set: modifier});
     }
 
-    if (params.email != contact.email()) {
+    if (params.email !== contact.email()) {
       Accounts.removeEmail(id, contact.email());
       Accounts.addEmail(id, params.email);
     }
   }
 });
-
-const logUserAdmin = (admin, content) => {
-  let thread = Threads.findOne({category: 'Roster'});
-  Threads.addMessage(thread, admin, {
-    contentType: 'log',
-    content
-  });
-}

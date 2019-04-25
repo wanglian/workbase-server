@@ -1,5 +1,12 @@
 import moment from 'moment';
 
+const logThread = (thread, user, content) => {
+  Threads.addMessage(thread, user, {
+    contentType: 'log',
+    content
+  });
+};
+
 Meteor.methods({
   sendMessage(threadId, params) {
     check(threadId, String);
@@ -86,10 +93,3 @@ Meteor.methods({
     logThread(thread, user, {action: "thread.members.remove", params: {email: member.address()}});
   }
 });
-
-const logThread = (thread, user, content) => {
-  Threads.addMessage(thread, user, {
-    contentType: 'log',
-    content
-  });
-};

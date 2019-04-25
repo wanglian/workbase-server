@@ -33,6 +33,13 @@ Threads.startGroup = (user, users) => {
   return thread;
 };
 
+const logGroup = (thread, user, content) => {
+  Threads.addMessage(thread, user, {
+    contentType: 'log',
+    content
+  });
+};
+
 Meteor.methods({
   startGroup(userIds) {
     check(userIds, [String]);
@@ -62,10 +69,3 @@ Meteor.methods({
     return re;
   }
 });
-
-const logGroup = (thread, user, content) => {
-  Threads.addMessage(thread, user, {
-    contentType: 'log',
-    content
-  });
-};

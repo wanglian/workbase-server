@@ -5,7 +5,7 @@
 isOneToOne = (toUser, toUsers, ccUsers) => {
   let users = _.compact(_.concat([toUser], toUsers, ccUsers));
   let userIds = _.uniq(users.map(u => u._id));
-  if (userIds.length === 2 && (!ccUsers || ccUsers.length == 0)) {
+  if (userIds.length === 2 && (!ccUsers || ccUsers.length === 0)) {
     // bcc/forward
     if (toUsers && toUsers.length === 1) return true;
   }
