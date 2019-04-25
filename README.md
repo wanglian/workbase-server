@@ -7,6 +7,7 @@ It's based on email protocol which means it can connect anyone with an email add
 * [Install - 中文](./docs/install-zh-CN.md)
 * [Developer](./docs/develop.md)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/47a8010c9ee64655b3fbc1673981b236)](https://app.codacy.com/app/wanglian/workbase-server?utm_source=github.com&utm_medium=referral&utm_content=wanglian/workbase-server&utm_campaign=Badge_Grade_Dashboard)
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/workbase-server)
 
 ## Mobile App ##
