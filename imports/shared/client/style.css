@@ -38,6 +38,7 @@
 .shared-messages .react-container .icon {
   position: absolute;
   left: 22px;
+  font-size: 14px;
   padding-top: 10px;
 }
 .shared-messages .like-users .like-user {
@@ -63,13 +64,13 @@
 }
 
 @media (max-width: 991px) {
-  .share-menu .dropdown-menu {
-    right: 0 !important;
+  .navbar-custom-menu .navbar-nav.share-menu .dropdown-menu {
+    right: 0;
   }
-  .share-menu .dropdown-menu li a {
-    color: #777 !important;
+  .navbar-custom-menu .navbar-nav.share-menu .dropdown-menu li a {
+    color: #777;
   }
-  .share-menu .dropdown-menu li.divider {
-    background: #EEE !important;
+  .navbar-custom-menu .navbar-nav.share-menu .dropdown-menu li.divider {
+    background: #EEE;
   }
 }

@@ -42,7 +42,7 @@
         {{#if liked}}
           <a href="#" class="pull-right btn-like text-muted action">
             {{countReact 'like'}}
-            <i class="fa fa-heart"></i> {{_ 'app_action_cancel'}}
+            <i class="fa fa-heart-o text-red"></i> {{_ 'app_action_cancel'}}
           </a>
         {{else}}
           <a href="#" class="pull-right btn-like text-muted action">
@@ -55,7 +55,7 @@
       {{#if (isMe user)}}
         {{#if likeUsers.length}}
           <div class="react-container like">
-            <div class="icon"><i class="fa fa-heart-o"></i></div>
+            <div class="icon"><i class="fa fa-heart-o text-red"></i></div>
             <div class="like-users clearfix">
               {{#each likeUsers}}
                 {{#LinkToCardModal user=this class="like-user pull-left"}}

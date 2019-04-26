@@ -63,10 +63,10 @@
 
 @media (max-width: 767px) {
   body #inbox-left {
-    height: calc(100vh - 100px) !important;
+    height: calc(100vh - 100px);
   }
   body #inbox-right,
   body #inbox-sidebar {
-    height: calc(100vh - 162px) !important;
+    height: calc(100vh - 162px);
   }
 }
