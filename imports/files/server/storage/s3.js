@@ -6,7 +6,7 @@ import stream from 'stream';
 import moment from 'moment';
 import { StorageBase } from './base';
 
-const bound  = Meteor.bindEnvironment((callback) => {
+const bound = Meteor.bindEnvironment((callback) => {
   return callback();
 });
 
@@ -28,6 +28,7 @@ export class StorageS3 extends StorageBase {
         agent: false
       }
     });
+    this.bucket = config.bucket;
   }
   upload(collection, fileRef) {
     let now = moment();
@@ -47,7 +48,7 @@ export class StorageS3 extends StorageBase {
       this.client.putObject({
         // ServerSideEncryption: 'AES256', // Optional
         StorageClass: 'STANDARD',
-        Bucket: s3Conf.bucket,
+        Bucket: this.bucket,
         Key: filePath,
         Body: fs.createReadStream(vRef.path),
         ContentType: vRef.type,
@@ -94,7 +95,7 @@ export class StorageS3 extends StorageBase {
     // content-disposition, chunked "streaming" and cache-control
     // we're using low-level .serve() method
     let opts = {
-      Bucket: s3Conf.bucket,
+      Bucket: this.bucket,
       Key: path
     };
 
@@ -142,7 +143,7 @@ export class StorageS3 extends StorageBase {
         if (vRef && vRef.meta && vRef.meta.pipePath) {
           // Remove the object from AWS:S3 first, then we will call the original FilesCollection remove
           this.client.deleteObject({
-            Bucket: s3Conf.bucket,
+            Bucket: this.bucket,
             Key: vRef.meta.pipePath,
           }, (error) => {
             bound(() => {
