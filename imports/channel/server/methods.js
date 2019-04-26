@@ -11,6 +11,10 @@ Meteor.methods({
     check(name, String);
     check(email, String);
 
+    if (!Users.isAdmin(this.userId)) {
+      return false;
+    }
+
     let channelId = Channels.create(email, name);
 
     let admin = Users.findOne(this.userId);
@@ -28,6 +32,10 @@ Meteor.methods({
     check(id, String);
     check(name, String);
     check(email, String);
+
+    if (!Users.isAdmin(this.userId)) {
+      return false;
+    }
 
     let channel = Channels.findOne(id);
     if (id) {
@@ -56,6 +64,10 @@ Meteor.methods({
     check(id, String);
     check(userId, String);
 
+    if (!Users.isAdmin(this.userId)) {
+      return false;
+    }
+
     ChannelUsers.ensureMember(id, userId);
 
     let admin = Users.findOne(this.userId);
@@ -72,6 +84,10 @@ Meteor.methods({
   removeChannelMember(id, userId) {
     check(id, String);
     check(userId, String);
+
+    if (!Users.isAdmin(this.userId)) {
+      return false;
+    }
 
     ChannelUsers.removeMember(id, userId);
 

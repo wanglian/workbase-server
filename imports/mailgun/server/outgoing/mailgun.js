@@ -12,6 +12,9 @@ Mailgun = {
     Mailgun.client = MailgunClient({apiKey: key, domain});
   },
   validate(domain) {
+    if (!Mailgun.client) {
+      return false;
+    }
     return new Promise((resolve, reject) => {
       Mailgun.client.domains(domain).info((err, res) => {
         if (err) {

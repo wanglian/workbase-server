@@ -12,4 +12,4 @@ export class StorageBase {
     console.log("remove from local file system");
     return true;
   }
-};
+}

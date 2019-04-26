@@ -156,4 +156,4 @@ export class StorageS3 extends StorageBase {
       });
     });
   }
-};
+}

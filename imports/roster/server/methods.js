@@ -13,6 +13,10 @@ Meteor.methods({
     check(password, Match.Maybe(String));
     check(title, Match.Maybe(String));
 
+    if (!Users.isAdmin(this.userId)) {
+      return false;
+    }
+
     let userId = Accounts.createUser({
       email,
       profile: {
@@ -41,6 +45,10 @@ Meteor.methods({
     check(email, String);
     check(password, Match.Maybe(String));
     check(title, Match.Maybe(String));
+
+    if (!Users.isAdmin(this.userId)) {
+      return false;
+    }
 
     let user = Users.findOne(id);
     if (user) {

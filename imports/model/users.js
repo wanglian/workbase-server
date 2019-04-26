@@ -45,4 +45,9 @@ Users.helpers({
   }
 });
 
+Users.isAdmin = (userId) => {
+  let user = Users.findOne(userId);
+  return user && user.isAdmin();
+};
+
 export { Users };

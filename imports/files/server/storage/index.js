@@ -21,8 +21,8 @@ export class Storage {
   }
   static client() {
     if (!Storage.engine) {
-      Storage.setup()
+      Storage.setup();
     }
     return Storage.engine;
   }
-};
+}

@@ -55,4 +55,4 @@ export class StorageGridFS extends StorageBase {
       });
     });
   }
-};
+}
