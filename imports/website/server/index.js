@@ -1,7 +1,18 @@
+import { Storage } from '/imports/files/server/storage';
+
+const isAdmin = (userId) => {
+  let user = Users.findOne(userId);
+  return user && user.isAdmin();
+};
+
 Meteor.methods({
   setupCompany(company, domain) {
     check(company, String);
     check(domain, String);
+
+    if (!isAdmin(this.userId)) {
+      return;
+    }
 
     if (Instance.enabled()) {
       return false;
@@ -19,6 +30,10 @@ Meteor.methods({
       key: Match.Maybe(String)
     }));
 
+    if (!isAdmin(this.userId)) {
+      return;
+    }
+
     if (Instance.enabled()) {
       return false;
     }
@@ -34,7 +49,7 @@ Meteor.methods({
       Instance.update({}, {$unset: {"modules.email": ""}});
     }
   },
-  setupS3(type, params) {
+  setupStorage(type, params) {
     check(type, String);
     check(params, Match.Maybe({
       key:    Match.Maybe(String),
@@ -43,9 +58,13 @@ Meteor.methods({
       region: Match.Maybe(String),
     }));
 
-    if (Instance.enabled()) {
-      return false;
+    if (!isAdmin(this.userId)) {
+      return;
     }
+
+    // if (Instance.enabled()) {
+    //   return false;
+    // }
     switch(type) {
     case 'S3':
       Instance.update({}, {$set: {"modules.storage": {
@@ -65,6 +84,10 @@ Meteor.methods({
     check(name, String);
     check(email, String);
     check(password, String);
+
+    if (!isAdmin(this.userId)) {
+      return;
+    }
 
     if (Instance.enabled()) {
       return false;

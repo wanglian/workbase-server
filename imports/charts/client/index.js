@@ -45,27 +45,21 @@ ThreadCategories.add("Settings", {
         title: I18n.t('settings_company'),
         icon: "fa fa-building-o",
         action() {
-          Modal.show('SettingCompanyModal', null, {
-            backdrop: 'static'
-          });
+          Modal.show('SettingCompanyModal');
         }
       },
       {
         title: I18n.t('settings_email'),
         icon: "fa fa-envelope-o",
         action() {
-          Modal.show('SettingEmailModal', null, {
-            backdrop: 'static'
-          });
+          Modal.show('SettingEmailModal');
         }
       },
       {
         title: I18n.t('settings_storage'),
         icon: "fa fa-cloud",
         action() {
-          Modal.show('SettingStorageModal', null, {
-            backdrop: 'static'
-          });
+          Modal.show('SettingStorageModal');
         }
       }
     ];

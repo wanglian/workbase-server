@@ -58,7 +58,7 @@ Template.Setup.events({
         });
         break;
       case "S3":
-        Meteor.call("setupS3", $('select[name=storageType]').val(), {
+        Meteor.call("setupStorage", $('select[name=storageType]').val(), {
           key: $('input[name=s3Key]').val(),
           secret: $('input[name=s3Secret]').val(),
           bucket: $('input[name=s3Bucket]').val(),
