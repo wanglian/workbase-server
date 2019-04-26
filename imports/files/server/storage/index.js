@@ -1,61 +1,28 @@
-import S3 from './s3';
-import GridFS from './gridfs';
+import { StorageBase }   from "./base";
+import { StorageGridFS } from "./gridfs";
+import { StorageS3 }     from "./s3";
 
-Storage = {
-  type: 'local',
-  options: {},
-  addOption(type, definition) {
-    this.options[type] = definition;
-  },
-  load(type) {
-    let t = this.options[type];
-    if (t) {
-      console.log("[Files] use storage: " + type);
-      this.type = type;
-      this.upload = t.upload;
-      this.stream = t.stream;
-      this.remove = t.remove;
-    } else {
-      console.log("[Files] use local file system");
+export class Storage {
+  static setup() {
+    let instance = Instance.get();
+    let storage = instance && instance.modules && instance.modules.storage;
+    if (storage) {
+      switch (storage.type) {
+      case "S3":
+        Storage.engine = new StorageS3(storage.s3);
+        break;
+      case "GridFS":
+        Storage.engine = new StorageGridFS();
+        break;
+      default:
+        Storage.engine = new StorageBase();
+      };
     }
-  },
-  upload(collection, fileRef) {
-    console.log("saved in local file system");
-    return true;
-  },
-  stream(collection, http, fileRef, version, path) {
-    console.log("stream from local file system");
-    return false;
-  },
-  remove(collection, search) {
-    console.log("remove from local file system");
-    return true;
+  }
+  static client() {
+    if (!Storage.engine) {
+      Storage.setup()
+    }
+    return Storage.engine;
   }
 };
-
-Storage.addOption('S3', S3);
-Storage.addOption('GridFS', GridFS);
-
-Storage.setup = () => {
-  let instance = Instance.get();
-  let modules = instance && instance.modules;
-  let storage = modules && modules.storage;
-  if (!storage) {
-    return false;
-  }
-
-  switch(storage.type) {
-  case 'S3':
-    Storage.load('S3');
-    S3.setup();
-    break;
-  default:
-    Storage.load('GridFS');
-  }
-};
-
-Meteor.startup(function() {
-  Storage.setup();
-});
-
-export default Storage;

@@ -1,5 +1,7 @@
-import Storage from './storage';
+import { Storage } from './storage';
 import createThumbnails from './image-processing';
+
+let client = Storage.client();
 
 AvatarFiles = new FilesCollection({
   debug: false, // Change to `true` for debugging
@@ -16,10 +18,10 @@ AvatarFiles = new FilesCollection({
       // Run `createThumbnails` only over PNG, JPG and JPEG files
       if (/png|jpe?g/i.test(fileRef.extension || '')) {
         createThumbnails(this, fileRef, [{width: 180, crop: true, name: 'thumbnail'}]).then(() => {
-          Storage.upload(this, fileRef);
+          client.upload(this, fileRef);
         });
       } else {
-        Storage.upload(this, fileRef);
+        client.upload(this, fileRef);
       }
     } catch(error) {
       console.log("[Files] after upload error:");
@@ -36,7 +38,7 @@ AvatarFiles = new FilesCollection({
     }
 
     if (path) {
-      return Storage.stream(this, http, fileRef, version, path);
+      return client.stream(this, http, fileRef, version, path);
     }
     // While file is not yet uploaded to AWS:S3
     // It will be served file from FS
@@ -47,7 +49,7 @@ AvatarFiles = new FilesCollection({
 // Intercept FilesCollection's remove method to remove file from AWS:S3
 let _origRemove = Files.remove;
 Files.remove = function(search) {
-  Storage.remove(this, search);
+  client.remove(this, search);
 
   //remove original file from database
   _origRemove.call(this, search);

@@ -6,8 +6,10 @@
 //   - type: file/inline
 //   - createdAt
 
-import Storage from './storage';
+import { Storage } from './storage';
 import createThumbnails from './image-processing';
+
+let client = Storage.client();
 
 Files = new FilesCollection({
   debug: false, // Change to `true` for debugging
@@ -27,10 +29,10 @@ Files = new FilesCollection({
           {width: 800, name: 'thumbnail'},
           {width: 2048, name: 'preview'}
         ]).then(() => {
-          Storage.upload(this, fileRef);
+          client.upload(this, fileRef);
         });
       } else {
-        Storage.upload(this, fileRef);
+        client.upload(this, fileRef);
       }
     } catch(error) {
       console.log("[Files] after upload error:");
@@ -40,7 +42,7 @@ Files = new FilesCollection({
   // Intercept access to the file
   // And redirect request to Storage
   interceptDownload(http, fileRef, version) {
-    return Storage.stream(this, http, fileRef, version);
+    return client.stream(this, http, fileRef, version);
   }
 });
 
@@ -48,7 +50,7 @@ Files = new FilesCollection({
 let _origRemove = Files.remove;
 
 Files.remove = function(search) {
-  Storage.remove(this, search);
+  client.remove(this, search);
 
   //remove original file from database
   _origRemove.call(this, search);
