@@ -4,11 +4,15 @@
     <span class="red-point"></span>
   </div>
   <div class="thread-title">
-    <small class="pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
-    <div class="thread-subject text-ellipsis">{{threadTitle this}}</div>
-    <div class="message-summary text-ellipsis text-muted">
-      {{lastMessage.localizedSummary}}
+    <div class="thread-title-item">
+      <small class="thread-time pull-right text-muted">{{formatSimpleDate updatedAt}}</small>
+      <div class="thread-subject text-ellipsis">{{threadTitle this}}</div>
     </div>
+    {{#with lastMessage}}
+      <div class="thread-title-item message-summary text-ellipsis text-muted">
+        {{localizedSummary}}
+      </div>
+    {{/with}}
   </div>
 </template>
 

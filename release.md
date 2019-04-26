@@ -1,5 +1,9 @@
 # Release History
 
+## 0.0.7
+
+* Improve thread list style: vertical align middle if no subtitle
+
 ## 0.0.6, 2019-04-23
 
 * Remove origin email after parsed successfully
