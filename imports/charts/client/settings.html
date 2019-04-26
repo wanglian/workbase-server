@@ -63,7 +63,7 @@
           <dl>
             <dt>{{_ "settings_email_receive"}}</dt>
             <dd>
-              {{mailgun_api_url}}
+              {{mailgunEndpoint}}
               {{#if instance.modules.email.mailgun.domain_valid}}
                 <span class="pull-right"><i class="fa fa-check text-green"></i></span>
               {{else}}

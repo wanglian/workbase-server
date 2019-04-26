@@ -28,7 +28,7 @@ ThreadCategories.add("Charts", {
           });
         }
       }
-    ]
+    ];
   }
 });
 

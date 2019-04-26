@@ -31,9 +31,11 @@
   width: 100%;
   height: 25px;
   background: #fff;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #fff), color-stop(1, rgba(255, 255, 255, 0)));
-  background: -moz-linear-gradient(center bottom, #fff 0, rgba(255, 255, 255, 0) 100%);
-  background: -ms-linear-gradient(bottom, #fff, rgba(255, 255, 255, 0));
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%, #fff), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -moz-linear-gradient(center bottom, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-linear-gradient(bottom, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(bottom, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(bottom, #fff 0%, rgba(255, 255, 255, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0)', endColorstr='#ffffff', GradientType=0);
   pointer-events: none;
   z-index: 1

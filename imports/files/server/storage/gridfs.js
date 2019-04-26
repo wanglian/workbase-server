@@ -10,7 +10,7 @@ let gfs = Grid(
 );
 
 const uploadToGridFS = (collection, fileRef) => {
-  Object.keys(fileRef.versions).forEach(versionName => {
+  Object.keys(fileRef.versions).forEach((versionName) => {
     const metadata = {versionName, imageId: fileRef._id, storedAt: new Date()}; // Optional
     const writeStream = gfs.createWriteStream({filename: fileRef.name, metadata});
 

@@ -23,7 +23,7 @@ describe('ValidatedMethods', function() {
   });
 
   it("saveThreadContent - should update thread's content", function() {
-    let content = faker.lorem.paragraph()
+    let content = faker.lorem.paragraph();
     saveThreadContent._execute({userId}, {threadId, content});
     let thread = Threads.findOne(threadId);
     expect(thread.content).to.eq(content);

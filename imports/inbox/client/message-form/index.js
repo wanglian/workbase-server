@@ -5,7 +5,7 @@ import SimpleSchema from 'simpl-schema';
 import autosize from 'autosize';
 import Swal from 'sweetalert2';
 
-const build_message_schema = () => {
+const buildMessageSchema = () => {
   return new SimpleSchema({
     internal: {
       type: Boolean,
@@ -63,7 +63,7 @@ Template.MessageForm.helpers({
     return Messages;
   },
   formSchema() {
-    return build_message_schema();
+    return buildMessageSchema();
   },
   parentMessage() {
     let m = Session.get(`message-draft-parent-${this.thread._id}`);
@@ -163,7 +163,7 @@ Template.ImageMessageModal.helpers({
     return Messages;
   },
   formSchema() {
-    return build_message_schema();
+    return buildMessageSchema();
   },
   contentPlaceholder() {
     return `${I18n.t('message_write_something')} ...`;

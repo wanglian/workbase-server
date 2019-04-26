@@ -55,7 +55,7 @@ Template.SettingEmailModal.helpers({
   instance() {
     return Instance.get();
   },
-  mailgun_api_url() {
+  mailgunEndpoint() {
     return Meteor.absoluteUrl() + 'api/v1/mailgun';
   }
 });

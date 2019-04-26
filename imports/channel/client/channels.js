@@ -27,7 +27,7 @@ Template.ChannelMenuItems.onCreated(function() {
 
 Template.ChannelMenuItems.helpers({
   channels() {
-    return ChannelUsers.find({userId: Meteor.userId()}).map(cu => cu.channel());
+    return ChannelUsers.find({userId: Meteor.userId()}).map((cu) => cu.channel());
   },
   inChannel(id) {
     return Router.current().params.channel === id;

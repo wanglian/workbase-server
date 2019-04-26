@@ -1,4 +1,4 @@
-export const locale_en_us = {
+export const LOCALE_EN_US = {
   "website_product_slogan": "Better Communication <br/> Better Collaboration",
   "website_product_desc": "A Secure and Simple Solution for Your Company",
   "website_get_started": "Get Started",

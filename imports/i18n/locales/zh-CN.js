@@ -1,4 +1,4 @@
-export const locale_zh_cn = {
+export const LOCALE_ZH_CN = {
   "website_product_slogan": "简单沟通, 有效协作",
   "website_product_desc": "构建安全简单、面向未来的工作方式",
   "website_get_started": "立即开启",
