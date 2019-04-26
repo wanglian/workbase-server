@@ -16,7 +16,7 @@ export class Storage {
         break;
       default:
         Storage.engine = new StorageBase();
-      };
+      }
     }
   }
   static client() {

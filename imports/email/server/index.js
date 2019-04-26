@@ -1,11 +1,7 @@
 const sendEmail = (message) => {
-  // 忽略：内部消息和来自外部的消息
-  if (message.userType === 'Contacts' || message.internal) {
-    return;
-  }
-  // 忽略：日志
-  if (message.contentType === 'log') {
-    return;
+  // not: messages from cnotacts, internal messages, logs
+  if (message.userType === 'Contacts' || message.internal || message.contentType === 'log') {
+    return false;
   }
 
   try {
