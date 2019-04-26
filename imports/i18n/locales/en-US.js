@@ -9,7 +9,7 @@ export const locale_en_us = {
   "website_feature_solved": "Solved",
   "website_desc_solved": "Full stack, a hight start point for your company. Solve your problems easily.",
   "website_contact_us": "Contact Us",
-  "website_copyright": "2019 WorkBase, all rights reserved",
+  "website_copyright": "2019 WorkBase",
   "status_connecting": "Connecting",
   "status_disconnected": "Disconnected",
   "status_click_to_reconnect": "Click to Reconnect",
