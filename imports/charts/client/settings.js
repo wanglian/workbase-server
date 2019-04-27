@@ -123,7 +123,7 @@ Template.SettingStorageModal.events({
       cancelButtonText: I18n.t("app_action_discard")
     }).then((result) => {
       if (result.value) {
-        Meteor.call('setupStorage', 'GridFs', (err, res) => {
+        Meteor.call('updateStorage', 'GridFs', (err, res) => {
           if (err) {
             console.log(err);
           }
@@ -180,7 +180,7 @@ AutoForm.hooks({
     onSubmit(insertDoc, updateDoc, currentDoc) {
       this.event.preventDefault();
 
-      Meteor.call('setupStorage', 'S3', {
+      Meteor.call('updateStorage', 'S3', {
           key:    insertDoc.s3Key,
           secret: insertDoc.s3Secret,
           bucket: insertDoc.s3Bucket,

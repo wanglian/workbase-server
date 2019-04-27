@@ -5,8 +5,6 @@ import { ThreadUsers } from '/imports/model/thread-users';
 import { Messages } from '/imports/model/messages';
 import { MailgunEmails } from '/imports/mailgun/mailgun-emails';
 
-faker = require('faker');
-
 Factory.define('instance', Instance, {
   company: () => faker.company.companyName(),
   domain:  () => faker.internet.domainName(),

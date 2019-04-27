@@ -108,50 +108,7 @@ Meteor.methods({
     Instance.update({}, {$set: {domain}});
     return Meteor.call("validateMailgun");
   },
-  setupCompany(company, domain) {
-    check(company, String);
-    check(domain, String);
-
-    if (!Users.isAdmin(this.userId)) {
-      return false;
-    }
-
-    // if (Instance.enabled()) {
-    //   return false;
-    // }
-    let instance = Instance.findOne();
-    if (instance) {
-      Instance.update({}, {$set: {company, domain}});
-    } else {
-      Instance.insert({company, domain});
-    }
-  },
-  setupEmail(type, params) {
-    check(type, String);
-    check(params, Match.Maybe({
-      key: Match.Maybe(String)
-    }));
-
-    if (!Users.isAdmin(this.userId)) {
-      return false;
-    }
-
-    if (Instance.enabled()) {
-      return false;
-    }
-    switch(type) {
-    case 'mailgun':
-      Instance.update({}, {$set: {"modules.email": {
-        type: 'mailgun',
-        mailgun: {key: params.key}
-      }}});
-      Mailgun.setup(params.key, Instance.domain());
-      break;
-    default:
-      Instance.update({}, {$unset: {"modules.email": ""}});
-    }
-  },
-  setupStorage(type, params) {
+  updateStorage(type, params) {
     check(type, String);
     check(params, Match.Maybe({
       key:    Match.Maybe(String),
@@ -164,9 +121,6 @@ Meteor.methods({
       return false;
     }
 
-    // if (Instance.enabled()) {
-    //   return false;
-    // }
     switch(type) {
     case 'S3':
       Instance.update({}, {$set: {"modules.storage": {
@@ -181,39 +135,5 @@ Meteor.methods({
       }}});
       Storage.setup();
     }
-  },
-  setupAdmin(name, email, password) {
-    check(name, String);
-    check(email, String);
-    check(password, String);
-
-    if (!Users.isAdmin(this.userId)) {
-      return false;
-    }
-
-    if (Instance.enabled()) {
-      return false;
-    }
-    let user = Accounts.findUserByEmail(email);
-    let adminId;
-    if (user) {
-      adminId = user._id;
-      Accounts.setPassword(adminId, password);
-      Users.update(adminId, {$set: {"profile.name": name}});
-    } else {
-      adminId = Accounts.createUser({
-        email,
-        password,
-        profile: {
-          type: 'Users',
-          name,
-          title: 'Admin',
-          role: 'admin'}
-      });
-    }
-
-    Instance.update({}, {$set: {adminId}});
-
-    return adminId;
   }
 });
