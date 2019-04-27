@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { FilesCollection } from 'meteor/ostrio:files';
 import { MongoInternals } from 'meteor/mongo';
 import { StorageBase } from './base';

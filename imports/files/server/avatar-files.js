@@ -47,8 +47,8 @@ AvatarFiles = new FilesCollection({
 });
 
 // Intercept FilesCollection's remove method to remove file from AWS:S3
-let _origRemove = Files.remove;
-Files.remove = function(search) {
+let _origRemove = AvatarFiles.remove;
+AvatarFiles.remove = function(search) {
   client.remove(this, search);
 
   //remove original file from database

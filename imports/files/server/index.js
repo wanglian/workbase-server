@@ -17,7 +17,7 @@ const updateRelations = (message, type, fileIds) => {
       "meta.relations.$.threadId":  message.threadId,
       "meta.relations.$.messageId": message._id
     }
-  }, {"multi": true});
+  }, {multi: true});
 
   if (count === 0) {
     Files.collection.update({
@@ -33,17 +33,32 @@ const updateRelations = (message, type, fileIds) => {
           createdAt: new Date()
         }
       }
-    });
+    }, {multi: true});
   }
 };
+
+const removeFiles = (message) => {
+  Files.find({_id: {$in: _.union(message.fileIds, message.inlineFileIds)}}).forEach((file) => {
+    Files.collection.update(file._id, {$pull: {"meta.relations": {messageId: message._id}}});
+    file = Files.findOne(file._id);
+    if (file.meta && file.meta.relations && file.meta.relations.length == 0) {
+      Files.remove(file._id);
+    }
+  });
+};
+
 Messages.after.insert(function(userId, doc) {
   let message = this.transform();
-  if (doc.fileIds) {
+  if (!_.isEmpty(doc.fileIds)) {
     updateRelations(message, 'file', doc.fileIds);
   }
-  if (doc.inlineFileIds) {
+  if (!_.isEmpty(doc.inlineFileIds)) {
     updateRelations(message, 'inline', doc.inlineFileIds);
   }
+});
+
+Messages.after.remove(function(userId, doc) {
+  removeFiles(doc);
 });
 
 Meteor.publish("files.pending", function() {

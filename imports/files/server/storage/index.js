@@ -15,8 +15,10 @@ export class Storage {
         Storage.engine = new StorageGridFS();
         break;
       default:
-        Storage.engine = new StorageBase();
+        throw "Not supported storage: " + storage.type;
       }
+    } else {
+      Storage.engine = new StorageBase();
     }
   }
   static client() {
