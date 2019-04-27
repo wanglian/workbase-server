@@ -21,10 +21,10 @@ Template.registerHelper('threadTitle', (thread, detail) => {
 Template.registerHelper('threadListTemplate', (thread, mode) => {
   if (mode === 'simple') {
     let tmpl = `Simple${thread.category}ListItem`;
-    return Template[tmpl] ? tmpl : 'SimpleThreadListItem';
+    return _.has(Template, tmpl) ? tmpl : 'SimpleThreadListItem';
   } else {
     let tmpl = `${thread.category}ListItem`;
-    return Template[tmpl] ? tmpl : 'ThreadListItem';
+    return _.has(Template, tmpl) ? tmpl : 'ThreadListItem';
   }
 });
 

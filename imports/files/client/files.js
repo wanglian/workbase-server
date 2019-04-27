@@ -1,5 +1,5 @@
 Files = new FilesCollection({
-  collectionName: 'files',
+  collectionName: "files",
   allowClientCode: false, // Disallow remove files from Client
   onBeforeUpload(file) {
     // Allow upload files under 50MB
@@ -10,7 +10,7 @@ Files = new FilesCollection({
     // if (/png|jpg|jpeg/i.test(file.extension)) {
     //   return true;
     // }
-    return 'Please upload file, with size equal or less than 50MB';
+    return "Please upload file, with size equal or less than 50MB";
   }
 });
 
@@ -20,4 +20,4 @@ Files = new FilesCollection({
 //   }
 // });
 
-export {Files};
+export { Files };

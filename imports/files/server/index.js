@@ -1,5 +1,5 @@
-import './files';
-import './avatar-files';
+import "./files";
+import "./avatar-files";
 
 Files.collection.before.insert(function(userId, doc) {
   _.extend(doc, {createdAt: new Date()});
@@ -41,7 +41,7 @@ const removeFiles = (message) => {
   Files.find({_id: {$in: _.union(message.fileIds, message.inlineFileIds)}}).forEach((file) => {
     Files.collection.update(file._id, {$pull: {"meta.relations": {messageId: message._id}}});
     file = Files.findOne(file._id);
-    if (file.meta && file.meta.relations && file.meta.relations.length == 0) {
+    if (file.meta && file.meta.relations && file.meta.relations.length === 0) {
       Files.remove(file._id);
     }
   });
@@ -50,10 +50,10 @@ const removeFiles = (message) => {
 Messages.after.insert(function(userId, doc) {
   let message = this.transform();
   if (!_.isEmpty(doc.fileIds)) {
-    updateRelations(message, 'file', doc.fileIds);
+    updateRelations(message, "file", doc.fileIds);
   }
   if (!_.isEmpty(doc.inlineFileIds)) {
-    updateRelations(message, 'inline', doc.inlineFileIds);
+    updateRelations(message, "inline", doc.inlineFileIds);
   }
 });
 
@@ -86,7 +86,7 @@ Meteor.publish("files", function(options) {
     limit: Match.Maybe(Number)
   }));
 
-  Counts.publish(this, 'count-files', Files.find({}).cursor);
+  Counts.publish(this, "count-files", Files.find({}).cursor);
   let limit = options && options.limit || MIN_FILES;
   return Files.find({}, {sort: {createdAt: -1}, limit: Math.min(limit, MAX_FILES)}).cursor;
 });

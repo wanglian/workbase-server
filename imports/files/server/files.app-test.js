@@ -1,5 +1,4 @@
 import { resetDatabase } from "meteor/xolvio:cleaner";
-import fs from 'fs';
 import "/imports/test/test-helpers";
 import "/imports/test/server/generate-data.app-test";
 import "./index";

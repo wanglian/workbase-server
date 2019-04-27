@@ -1,8 +1,8 @@
-import { FilesCollection } from 'meteor/ostrio:files';
-import { MongoInternals } from 'meteor/mongo';
-import { StorageBase } from './base';
-import Grid from 'gridfs-stream';
-import fs from 'fs';
+import { FilesCollection } from "meteor/ostrio:files";
+import { MongoInternals } from "meteor/mongo";
+import { StorageBase } from "./base";
+import Grid from "gridfs-stream";
+import fs from "fs";
 
 export class StorageGridFS extends StorageBase {
   constructor() {
@@ -19,7 +19,7 @@ export class StorageGridFS extends StorageBase {
 
       fs.createReadStream(fileRef.versions[versionName].path).pipe(writeStream);
 
-      writeStream.on('close', Meteor.bindEnvironment((file) => {
+      writeStream.on("close", Meteor.bindEnvironment((file) => {
         const property = `versions.${versionName}.meta.gridFsFileId`;
 
         // If we store the ObjectID itself, Meteor (EJSON?) seems to convert it to a
@@ -34,7 +34,7 @@ export class StorageGridFS extends StorageBase {
     const _id = (fileRef.versions[version] && fileRef.versions[version].meta || {}).gridFsFileId;
     if (_id) {
       const readStream = this.client.createReadStream({ _id });
-      readStream.on('error', (err) => { throw err; });
+      readStream.on("error", (err) => { throw err; });
       readStream.pipe(http.response);
     }
     return Boolean(_id); // Serve file from either GridFS or FS if it wasn't uploaded yet

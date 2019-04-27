@@ -1,11 +1,11 @@
-import { Storage } from './storage';
-import createThumbnails from './image-processing';
+import { Storage } from "./storage";
+import createThumbnails from "./image-processing";
 
 let client = Storage.client();
 
 AvatarFiles = new FilesCollection({
   debug: false, // Change to `true` for debugging
-  collectionName: 'avatar-files',
+  collectionName: "avatar-files",
   storagePath() {
     let dir = process.env.UPLOADS_DIR;
     return (dir && `${dir}/avatar-files`) || "assets/app/uploads/avatars-files";
@@ -16,8 +16,8 @@ AvatarFiles = new FilesCollection({
   onAfterUpload(fileRef) {
     try {
       // Run `createThumbnails` only over PNG, JPG and JPEG files
-      if (/png|jpe?g/i.test(fileRef.extension || '')) {
-        createThumbnails(this, fileRef, [{width: 180, crop: true, name: 'thumbnail'}]).then(() => {
+      if (/png|jpe?g/i.test(fileRef.extension || "")) {
+        createThumbnails(this, fileRef, [{width: 180, crop: true, name: "thumbnail"}]).then(() => {
           client.upload(this, fileRef);
         });
       } else {

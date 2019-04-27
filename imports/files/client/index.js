@@ -1,7 +1,7 @@
-import './files';
-import './helper';
-import './view';
-import './style.css';
+import "./files";
+import "./helper";
+import "./view";
+import "./style.css";
 
 const FileSubs = new SubsManager({
   cacheLimit: 10,
@@ -12,7 +12,7 @@ Accounts.onLogout(function() {
 });
 
 FilesController = ApplicationController.extend({
-  template: 'Files',
+  template: "Files",
   perPage: 25,
   subscriptions() {
     this.filesSub = FileSubs.subscribe("files", {limit: this.limit()});
@@ -24,7 +24,7 @@ FilesController = ApplicationController.extend({
     let query = _.clone(this.params.query);
     _.extend(query, {limit: this.limit() + this.perPage});
     let nextPath = this.route.path(this.params, {query});
-    let total = Counts.get('count-files');
+    let total = Counts.get("count-files");
     let hasMore = total > this.limit();
     return {
       files:    Files.find({}, {sort: {createdAt: -1}}),
@@ -34,7 +34,7 @@ FilesController = ApplicationController.extend({
   }
 });
 
-Router.route('/files/:_id?', {
-  name: 'files',
-  controller: 'FilesController'
+Router.route("/files/:_id?", {
+  name: "files",
+  controller: "FilesController"
 });

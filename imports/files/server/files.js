@@ -6,14 +6,14 @@
 //   - type: file/inline
 //   - createdAt
 
-import { Storage } from './storage';
-import createThumbnails from './image-processing';
+import { Storage } from "./storage";
+import createThumbnails from "./image-processing";
 
 let client = Storage.client();
 
 Files = new FilesCollection({
   debug: false, // Change to `true` for debugging
-  collectionName: 'files',
+  collectionName: "files",
   storagePath() {
     let dir = process.env.UPLOADS_DIR;
     return (dir && `${dir}/files`) || "assets/app/uploads/files";
@@ -24,10 +24,10 @@ Files = new FilesCollection({
   onAfterUpload(fileRef) {
     try {
       // Run `createThumbnails` only over PNG, JPG and JPEG files
-      if (/png|jpe?g/i.test(fileRef.extension || '')) {
+      if (/png|jpe?g/i.test(fileRef.extension || "")) {
         createThumbnails(this, fileRef, [
-          {width: 800, name: 'thumbnail'},
-          {width: 2048, name: 'preview'}
+          {width: 800, name: "thumbnail"},
+          {width: 2048, name: "preview"}
         ]).then(() => {
           client.upload(this, fileRef);
         });
