@@ -3,7 +3,7 @@ import '/imports/test/test-helpers';
 import '/imports/test/server/generate-data.app-test';
 import '../index';
 
-describe('parse Mailgun email', function() {
+describe('Mailgun email parser', function() {
   let user;
 
   beforeEach(function() {

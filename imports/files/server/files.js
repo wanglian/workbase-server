@@ -57,4 +57,3 @@ Files.remove = function(search) {
 };
 
 export { Files };
-
