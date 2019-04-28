@@ -1,6 +1,6 @@
 # Release History
 
-## 0.0.7
+## 0.0.7, 2019-04-28
 
 * Can update S3 settings, switch storage type
 * Fix admin access control

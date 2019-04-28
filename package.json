@@ -1,5 +1,6 @@
 {
   "name": "WorkBase",
+  "verions": "0.0.7",
   "scripts": {
     "start": "meteor run",
     "test": "TEST_BROWSER_DRIVER=chrome TEST_WATCH=1 meteor test --driver-package meteortesting:mocha",
