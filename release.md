@@ -1,6 +1,6 @@
 # Release History
 
-## 0.0.7
+## 0.0.7, 2019-04-28
 
 * Improve thread list style: vertical align middle if no subtitle
 * Can update S3 settings, switch storage type
