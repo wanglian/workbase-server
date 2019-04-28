@@ -2,7 +2,6 @@
 
 ## 0.0.7, 2019-04-28
 
-* Improve thread list style: vertical align middle if no subtitle
 * Can update S3 settings, switch storage type
 * Fix admin access control
 * Fix revoke message: remove files

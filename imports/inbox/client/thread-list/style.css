@@ -20,7 +20,7 @@ ul.list-group.threads .list-group-item.thread:last-child {
   border-radius: 0;
 }
 ul.list-group.threads .list-group-item.thread:last-child {
-  border-bottom: solid 1px #d8d8d8;
+  border-color: #d8d8d8;
 }
 ul.list-group.threads .list-group-item.thread.group {
   padding: 2px 10px;
@@ -33,13 +33,6 @@ ul.list-group.threads .list-group-item.thread.active {
   border-color: #d8d8d8;
 }
 /* 话题标题和最新消息 */
-ul.list-group.threads .list-group-item.thread .thread-title .thread-title-item {
-  width: 100%;
-}
-ul.list-group.threads .list-group-item.thread .thread-title .thread-title-item:only-of-type {
-  position: absolute;
-  top: 10px;
-}
 ul.list-group.threads .list-group-item.thread .thread-title {
   display: table-cell;
   position: relative;
@@ -47,6 +40,7 @@ ul.list-group.threads .list-group-item.thread .thread-title {
   height: 40px;
 }
 ul.list-group.threads .list-group-item.thread .thread-subject {
+  position: absolute;
   width: calc(100% - 65px);
   font-weight: 600;
 }
