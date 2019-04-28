@@ -21,7 +21,7 @@ export class Storage {
       Storage.engine = new StorageBase();
     }
   }
-  static client() {
+  static get client() {
     if (!Storage.engine) {
       Storage.setup();
     }
