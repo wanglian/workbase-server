@@ -1,4 +1,5 @@
 import { Storage } from '/imports/files/server/storage';
+import moment from 'moment';
 
 Meteor.methods({
   getChartDay() {
