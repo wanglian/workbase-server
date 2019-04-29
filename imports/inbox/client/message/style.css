@@ -53,7 +53,7 @@
 }
 .message-content {
   padding-top: 15px;
-  overflow: scroll;
+  overflow: auto;
 }
 .message-content img.img-thumbnail {
   max-height: 350px;

@@ -48,7 +48,7 @@ body .page-header {
 /* fix AdminLTE */
 .main-sidebar .sidebar {
   height: calc(100vh - 120px);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .sidebar-collapse .main-sidebar .sidebar {
   overflow-y: unset;
