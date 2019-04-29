@@ -66,6 +66,7 @@ jparker:gravatar@0.3.1
 jquery@1.11.11
 launch-screen@1.1.1
 less@2.8.0
+littledata:synced-cron@1.5.1
 livedata@1.0.18
 lmieulet:meteor-coverage@1.1.4
 localstorage@1.2.0

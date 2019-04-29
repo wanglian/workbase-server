@@ -6,18 +6,11 @@ Meteor.methods({
       return false;
     }
 
-    let d = moment();
-    let days = Array.from(Array(d.date()).keys()).map((i) => i+1);
+    let records = MessageDailyRecords.find({}, {limit: 30, sort: {createdAt: -1}});
     let data = {};
-    data.internal = days.map((day) => {
-      return MessageRecords.find({year: d.year(), month: d.month() + 1, day, internal: true}).count();
-    });
-    data.outgoing = days.map((day) => {
-      return MessageRecords.find({year: d.year(), month: d.month() + 1, day, internal: false, userType: 'Users'}).count();
-    });
-    data.incoming = days.map((day) => {
-      return MessageRecords.find({year: d.year(), month: d.month() + 1, day, userType: 'Contacts'}).count();
-    });
+    data.internal = records.map((d) => d.countInternal);
+    data.outgoing = records.map((d) => d.countOutgoing);
+    data.incoming = records.map((d) => d.countIncoming);
     return data;
   },
   getCharHour() {
