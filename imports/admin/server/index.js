@@ -1,21 +1,27 @@
-import './message-records';
-import './methods';
+import "./message-records";
+import "./settings-methods";
+import "./roster-methods";
+import "./reports-methods";
 
-import moment from 'moment';
+import moment from "moment";
 
 Meteor.startup(function() {
-  let thread = Threads.findOne({category: 'Charts'});
-  thread || Threads.create(null, 'Charts', 'thread_reports', 'admin');
-  thread = Threads.findOne({category: 'Settings'});
-  thread || Threads.create(null, 'Settings', 'thread_settings', 'admin');
+  let thread = Threads.findOne({category: "Charts"});
+  thread || Threads.create(null, "Charts", "thread_reports", "admin");
+  thread = Threads.findOne({category: "Settings"});
+  thread || Threads.create(null, "Settings", "thread_settings", "admin");
+  thread = Threads.findOne({category: "Roster"});
+  thread || Threads.create(null, "Roster", "thread_users_management", "admin");
 });
 
 Accounts.onLogin(function(attempt) {
   let user = Users.findOne(attempt.user._id);
   if (user && user.isAdmin()) {
-    let thread = Threads.findOne({category: 'Charts'});
+    let thread = Threads.findOne({category: "Charts"});
     thread && Threads.ensureMember(thread, user);
-    thread = Threads.findOne({category: 'Settings'});
+    thread = Threads.findOne({category: "Settings"});
+    thread && Threads.ensureMember(thread, user);
+    thread = Threads.findOne({category: "Roster"});
     thread && Threads.ensureMember(thread, user);
   }
 });

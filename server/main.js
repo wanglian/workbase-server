@@ -12,7 +12,6 @@ import '/imports/mailgun/server';
 import '/imports/profile/server';
 import '/imports/inbox/server';
 import '/imports/channel/server';
-import '/imports/roster/server';
 import '/imports/admin/server';
 import '/imports/search/server';
 import '/imports/shared/server';

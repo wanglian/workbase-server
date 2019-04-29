@@ -1,4 +1,4 @@
-import './message-day-chart.html';
+import './reports.html';
 
 import Chart from 'chart.js';
 import moment from 'moment';

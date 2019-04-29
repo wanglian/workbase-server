@@ -1,0 +1,29 @@
+<template name="Admin">
+  {{#contentFor "menu"}}
+    {{> AdminMenu}}
+  {{/contentFor}}
+
+  {{#Layout template="InboxLayout" hasRight=hasRight hasSidebar=hasSidebar}}
+    {{> ThreadList}}
+
+    {{> contentFor region="header" template="ThreadHeader" data=thread}}
+    {{> contentFor region="right" template="Thread" data=thread}}
+    {{#if hasSidebar}}
+      {{> contentFor region="sidebar" template="ThreadDetail" data=thread}}
+    {{/if}}
+  {{/Layout}}
+</template>
+
+<template name="AdminMenu">
+  <p class="navbar-text pull-left menu-title">{{_ 'app_system'}}</p>
+</template>
+
+<template name="AdminMenuItem">
+  {{#if currentUser.isAdmin}}
+  <li class="{{#if inRouter 'admin'}}active{{/if}}">
+    <a href="/admin">
+      <i class="fa fa-cubes"></i> <span>{{_ 'app_system'}}</span>
+    </a>
+  </li>
+  {{/if}}
+</template>
