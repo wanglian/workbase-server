@@ -13,11 +13,10 @@ jobs:
           LANGUAGE: C.UTF-8
           LC_ALL: C.UTF-8
           LC_NUMERIC: en_US.UTF-8
-          METEOR_VERSION: '1.7'
+          METEOR_VERSION: '1.8'
           NODE_ENV: development
           TOOL_NODE_FLAGS: >-
             --max_old_space_size=8192 --optimize_for_size --gc_interval=100
-            --min_semi_space_size=8 --max_semi_space_size=256
           METEOR_PROFILE: 1000
           CIRCLE_CI: 1
           DEBUG: true
