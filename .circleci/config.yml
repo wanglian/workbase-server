@@ -51,17 +51,14 @@ jobs:
       - run:
           name: Install node_modules
           command: meteor npm i
-      # - run:
-      #     name: Install nightmare
-      #     command: meteor npm i nightmare --no-save
       - save_cache:
           name: Cache node_modules
           key: 'node_modules-3-{{ checksum "./package.json" }}'
           paths:
             - ./node_modules
-      # - run:
-      #     name: Run tests
-      #     command: meteor npm run test-app
+      - run:
+          name: Run tests
+          command: meteor npm run test
       - save_cache:
           name: Cache meteor system
           key: 'meteor-system-3-{{ checksum "./.circleci/config.yml" }}'
