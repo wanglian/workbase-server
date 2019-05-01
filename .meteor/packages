@@ -61,4 +61,3 @@ meteortesting:mocha
 xolvio:cleaner
 johanbrook:publication-collector
 dburles:factory
-littledata:synced-cron
