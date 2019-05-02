@@ -3,8 +3,8 @@
   "verions": "0.0.7",
   "scripts": {
     "start": "meteor run",
-    "test": "TEST_BROWSER_DRIVER=chrome TEST_WATCH=1 meteor test --driver-package meteortesting:mocha",
-    "test-app": "TEST_BROWSER_DRIVER=chrome TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "test": "TEST_BROWSER_DRIVER=nightmare TEST_WATCH=1 meteor test --driver-package meteortesting:mocha",
+    "test-app": "TEST_BROWSER_DRIVER=nightmare TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "test-e2e": "start-server-and-test start http://localhost:3000 cypress:run",
@@ -45,10 +45,9 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
-    "chromedriver": "^2.46.0",
     "cypress": "^3.2.0",
     "faker": "^4.1.0",
-    "selenium-webdriver": "^3.6.0",
+    "nightmare": "^3.0.2",
     "sinon": "^7.3.1",
     "start-server-and-test": "^1.7.13"
   }
