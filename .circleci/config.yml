@@ -26,12 +26,12 @@ jobs:
       - restore_cache:
           name: Restore meteor system
           keys:
-            - 'meteor-system-www-3-{{ checksum "./.circleci/config.yml" }}'
+            - 'meteor-system-{{ checksum "./.circleci/config.yml" }}'
       - restore_cache:
           name: Restore meteor app
           keys:
             - >-
-              meteor-app-3-{{ checksum
+              meteor-app-{{ checksum
               "./.meteor/release" }}-{{ checksum
               "./.meteor/packages" }}-{{ checksum
               "./.meteor/versions" }}
@@ -39,8 +39,11 @@ jobs:
           name: Restore node_modules
           keys:
             - >-
-              node_modules-3-{{ checksum "./package.json"
-              }}
+              node_modules-{{ checksum "./package.json" }}
+      - restore_cache:
+          name: Restore Cypress
+          keys:
+            - 'cypress-{{ checksum "./package.json" }}'
       - run:
           name: Create results directory
           command: mkdir ./results
@@ -52,9 +55,14 @@ jobs:
           command: meteor npm i
       - save_cache:
           name: Cache node_modules
-          key: 'node_modules-3-{{ checksum "./package.json" }}'
+          key: 'node_modules-{{ checksum "./package.json" }}'
           paths:
             - ./node_modules
+      - save_cache:
+          name: Cache Cypress
+          key: 'cypress-{{ checksum "./package.json" }}'
+          paths:
+            - ~/.cache/Cypress/
       - run:
           name: Run unit tests
           command: meteor npm run test
@@ -66,13 +74,13 @@ jobs:
           command: meteor npm run test-e2e
       - save_cache:
           name: Cache meteor system
-          key: 'meteor-system-3-{{ checksum "./.circleci/config.yml" }}'
+          key: 'meteor-system-{{ checksum "./.circleci/config.yml" }}'
           paths:
             - ~/.meteor
       - save_cache:
           name: Cache meteor app
           key: >-
-            meteor-microservice-3-{{ checksum
+            meteor-app-{{ checksum
             "./.meteor/release" }}-{{ checksum
             "./.meteor/packages" }}-{{ checksum
             "./.meteor/versions" }}
