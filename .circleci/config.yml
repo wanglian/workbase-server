@@ -56,8 +56,14 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: Run tests
+          name: Run unit tests
           command: meteor npm run test
+      - run:
+          name: Run integration tests
+          command: meteor npm run test-app
+      - run:
+          name: Run acceptance tests
+          command: meteor npm run test-e2e
       - save_cache:
           name: Cache meteor system
           key: 'meteor-system-3-{{ checksum "./.circleci/config.yml" }}'
