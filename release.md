@@ -3,8 +3,7 @@
 ## 0.0.8
 
 * Fix css: hide scrollbar for windows browsers
-* Fix reports
-* Improve message reports
+* Improve reports
 
 ## 0.0.7, 2019-04-28
 

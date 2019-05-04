@@ -1,5 +1,6 @@
 import './profile.html';
 
+import loadImage from "blueimp-load-image";
 import SimpleSchema from 'simpl-schema';
 import Swal from 'sweetalert2';
 import autosize from 'autosize';
@@ -194,7 +195,6 @@ Template.AvatarUploadModal.onCreated(function() {
   this.currentUpload = new ReactiveVar(false);
 });
 
-import loadImage from "blueimp-load-image";
 Template.AvatarUploadModal.onRendered(function() {
   loadImage(this.data.file, (img) => {
     $("#image-preview").html(img);
