@@ -3,6 +3,7 @@
 ## 0.0.8
 
 * Fix css: hide scrollbar for windows browsers
+* Fix css: share button for small screens
 * Improve reports
 
 ## 0.0.7, 2019-04-28
