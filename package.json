@@ -1,6 +1,6 @@
 {
   "name": "WorkBase",
-  "verions": "0.0.7",
+  "verions": "0.0.9",
   "scripts": {
     "start": "meteor run",
     "test": "TEST_BROWSER_DRIVER=nightmare meteor test --once --driver-package meteortesting:mocha",

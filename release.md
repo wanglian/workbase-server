@@ -1,8 +1,12 @@
 # Release History
 
-## 0.0.9
+## 0.0.10
 
 * Fix search by subject
+
+## 0.0.9, 2019-09-12
+
+* Fix lodash secruity issues
 
 ## 0.0.8, 2019-05-04
 

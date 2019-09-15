@@ -46,7 +46,9 @@ hooks:
 parts:
     node:
         plugin: dump 
-        prepare: ./resources/preparenode  
+        override-build: |
+            ./resources/preparenode
+            snapcraftctl build
         build-packages:
             # For fibers
             - python
@@ -56,7 +58,9 @@ parts:
         build-packages:
             - curl
         plugin: dump
-        prepare: ./resources/prepareWorkBase
+        override-build: |
+            ./resources/prepareWorkBase
+            snapcraftctl build
         after: [node]
         source: .
         stage-packages:
@@ -73,7 +77,9 @@ parts:
         build-packages:
             - wget
         source: ./
-        prepare: ./resources/preparemongo
+        override-build: |
+            ./resources/preparemongo
+            snapcraftctl build
         plugin: dump
         stage-packages:
             - libssl1.0.0
@@ -95,7 +101,9 @@ parts:
         prime:
             - bin
     caddy:
-        prepare: ./resources/preparecaddy
+        override-build: |
+            ./resources/preparecaddy
+            snapcraftctl build
         plugin: dump
         source: ./
         prime:
