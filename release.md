@@ -1,6 +1,11 @@
 # Release History
 
-## 0.0.8
+
+## 0.0.9
+
+* Fix lodash secruity issues
+
+## 0.0.8, 2019-05-04
 
 * Fix css: hide scrollbar for windows browsers
 * Fix css: share button for small screens
