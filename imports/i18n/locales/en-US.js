@@ -24,7 +24,7 @@ export const LOCALE_EN_US = {
   "app_contacts": "Contacts",
   "app_system": "System",
   "app_discover": "Discover",
-  "app_spam_box": "Spam Box",
+  "app_spam_box": "Spam",
   "app_action_add": "Add",
   "app_action_remove": "Remove",
   "app_action_edit": "Edit",
