@@ -42,6 +42,7 @@ Meteor.methods({
     }
 
     Instance.update({}, {$set: {
+      "modules.email.type": 'mailgun',
       "modules.email.mailgun.key": key,
       "modules.email.mailgun.key_valid": false,
       "modules.email.mailgun.domain_valid": false
