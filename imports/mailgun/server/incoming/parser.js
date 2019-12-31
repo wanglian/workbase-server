@@ -130,7 +130,7 @@ parseMailgunEmail = async (doc) => {
       });
     }
     // upload
-    attachments.map((attachment, index) => {
+    for (let attachment of attachments) {
       // attachment: url,name,content-type,size
       try {
         // cid
@@ -164,7 +164,7 @@ parseMailgunEmail = async (doc) => {
         console.log("[mailgun] upload error: ");
         console.log(e);
       }
-    });
+    }
   }
 
   // === customized
