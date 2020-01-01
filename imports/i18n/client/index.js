@@ -19,5 +19,7 @@ Meteor.startup(() => {
 
 Accounts.onLogin(function(attempt) {
   let user = Meteor.user();
-  setLocale(user.language());
+  if (user) {
+    setLocale(user.language());
+  }
 });

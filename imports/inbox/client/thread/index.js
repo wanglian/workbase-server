@@ -43,11 +43,11 @@ Template.Thread.onRendered(function() {
       if (data._id !== threadId) {
         // reset pagination
         threadId = data._id;
-        console.log("reset limit - " + threadId);
+        // console.log("reset limit - " + threadId);
         self.limit.set(PER_PAGE);
       }
       limit = self.limit.get();
-      console.log("sub messages - " + threadId + " - " + limit);
+      // console.log("sub messages - " + threadId + " - " + limit);
       handle = MessageSubs.subscribe("thread.messages", threadId, {limit});
       self.ready.set(handle.ready());
     }
