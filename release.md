@@ -2,7 +2,10 @@
 
 ## 0.0.10
 
+* upgrade to Meteor 1.8.3
 * Fix search by subject
+* Fix default avatar
+* Fix update email setting
 
 ## 0.0.9, 2019-09-12
 
