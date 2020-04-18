@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl -SLf "https://github.com/wanglian/workbase-server/releases/download/#{WB_VERSION}/workbase.tar.gz" -o workbase.tar.gz
+curl -SLf "https://github.com/wanglian/workbase-server/releases/download/v0.0.18/workbase.tar.gz" -o workbase.tar.gz
 
 tar xf workbase.tar.gz --strip 1
 
@@ -28,3 +28,7 @@ npm i
 
 # Having to manually remove because of latest warning
 # rm -rf npm/node_modules/meteor/konecty_user-presence/node_modules/colors/lib/.colors.js.swp
+
+# not know why, sometimes change
+# rm npm/node_modules/meteor/raix_push/node_modules/husky/.node_modules-garbage-110lol.3kudxo/strip-indent
+rm npm/node_modules/meteor/raix_push/node_modules/husky/.node_modules-garbage-1448af4.zfbyl/strip-indent

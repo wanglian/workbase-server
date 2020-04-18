@@ -7,15 +7,14 @@
 # 5.  `snapcraft snap`
 
 name: workbase-server
-version: #{WB_VERSION}
+version: v0.0.18
 summary: WorkBase server
 description: Have your own network, built with Meteor.
 grade: stable
 confinement: strict
 assumes: [snapd2.21]
 architectures:
-  - build-on: amd64
-    run-on: amd64
+  - build-on: [armhf]
 apps:
     workbase-server:
         command: startWorkBase
@@ -46,6 +45,7 @@ hooks:
 parts:
     node:
         plugin: dump 
+        source: ./.snapcraft/
         override-build: |
             ./resources/preparenode
             snapcraftctl build
@@ -62,7 +62,7 @@ parts:
             ./resources/prepareWorkBase
             snapcraftctl build
         after: [node]
-        source: .
+        source: ./.snapcraft/
         stage-packages:
             - graphicsmagick
             - execstack
@@ -73,10 +73,11 @@ parts:
             - .node_version.txt
             - etc
             - usr
+            - star.json
     mongodb:
         build-packages:
             - wget
-        source: ./
+        source: ./.snapcraft/
         override-build: |
             ./resources/preparemongo
             snapcraftctl build
@@ -89,7 +90,7 @@ parts:
             - lib
     scripts:
         plugin: dump
-        source: resources/
+        source: .snapcraft/resources/
         organize:
             backupdb: bin/backupdb
             restoredb: bin/restoredb
@@ -105,7 +106,7 @@ parts:
             ./resources/preparecaddy
             snapcraftctl build
         plugin: dump
-        source: ./
+        source: ./.snapcraft/
         prime:
             - bin
         organize:
