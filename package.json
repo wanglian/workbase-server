@@ -19,7 +19,7 @@
     "animate.css": "^3.7.2",
     "autosize": "^4.0.2",
     "aws-sdk": "^2.601.0",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "blueimp-load-image": "^2.26.0",
     "chart.js": "^2.9.3",
     "clipboard": "^2.0.4",
