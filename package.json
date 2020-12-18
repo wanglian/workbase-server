@@ -23,7 +23,7 @@
     "blueimp-load-image": "^2.26.0",
     "chart.js": "^2.9.3",
     "clipboard": "^2.0.4",
-    "dompurify": "^2.0.7",
+    "dompurify": "^2.0.17",
     "fs-extra": "^7.0.1",
     "gm": "^1.23.1",
     "gridfs-stream": "^1.1.1",
