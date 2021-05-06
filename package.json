@@ -34,7 +34,7 @@
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.24.0",
     "request": "^2.88.0",
-    "sanitize-html": "^1.20.1",
+    "sanitize-html": "^2.3.2",
     "simpl-schema": "^1.5.6",
     "sweetalert2": "^7.33.1"
   },
