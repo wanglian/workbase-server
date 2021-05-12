@@ -35,7 +35,7 @@
     "moment": "^2.24.0",
     "request": "^2.88.0",
     "sanitize-html": "^1.20.1",
-    "simpl-schema": "^1.5.6",
+    "simpl-schema": "^1.10.2",
     "sweetalert2": "^7.33.1"
   },
   "meteor": {
