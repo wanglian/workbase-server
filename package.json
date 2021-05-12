@@ -21,7 +21,7 @@
     "aws-sdk": "^2.601.0",
     "bcrypt": "^3.0.7",
     "blueimp-load-image": "^2.26.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "clipboard": "^2.0.4",
     "dompurify": "^2.0.7",
     "fs-extra": "^7.0.1",
